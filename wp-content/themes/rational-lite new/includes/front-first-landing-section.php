@@ -79,7 +79,7 @@
                                         
                                     </ul>
                                     <div class="text-right push-30" style="padding-right:30px; font-weight:400">
-                                        <a class="link-effect" href="https://upgrid.gridet.com/" target="_blank" style="color:#3169b1;">Learn more
+                                        <a class="link-effect" href="https://upgrid.gridet.com/#/upgrid-regular" target="_blank" style="color:#3169b1;">Learn more
                                             <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
                                         </a>
 
@@ -97,26 +97,36 @@
 
 
                                 <div class="intropara">
-                                    <h4 class="introtitle text-uppercase">Progrid</h4>
-                                    <p>Precision Marketing Tool for Graduate Program Recruitment</p>
+                                    <h4 class="introtitle text-uppercase">Upgrid - Exec. Ed.</h4>
+                                    <p>For institutions with Open-Enrollment and Customized Offerings</p>
                                 </div>
 
                                     <ul class="fa-ul firstlist push-10-t push-30">
-                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Empowers you with the ability to market directly to “true” prospects</a>
+                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Complete Reports on Peers from past to present and beyond</a>
                                             <ul class="">
-                                                <li><span class="push-5-l">Improve conversion rate by precise communication with prospects</span></li>
-                                              
+                                                <li><span class="push-5-l">Gain access to a complete set of your competitors’ category and course offerings</span></li>
+                                                <li><span class="push-5-l">Revealing and displaying the changes and updates made by your peers in an intuitive manner</span></li>
+
                                             </ul>
                                         </li>
-                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Better understand potential applicants</a>
+                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Peer Analysis Tools - deepen your insight</a>
                                         <ul class="">
-                                                <li><span class="push-5-l">Utilize analysis tools to target prospective students with relevant interests</span></li>
-                                                <li><span class="push-5-l">Stay tuned in to trends of how competing programs draw prospects’ attention</span></li>
+                                                <li><span class="push-5-l">Gain access to the past with historical snapshots of your peers</span></li>
+                                                <li><span class="push-5-l">Equip yourself with a side-by-side comparison tool to deepen your understanding of the field</span></li>
+                                                <li><span class="push-5-l">Dig deeper into competitors offerings with a specialized keyword search tool</span></li>
+
                                             </ul>
                                         </li>
                                         
                                         
                                     </ul>
+
+                                    <div class="text-right push-30" style="padding-right:30px; font-weight:400">
+                                        <a class="link-effect" href="https://upgrid.gridet.com/#/upgrid-exec-edu" target="_blank" style="color:#3169b1;">Learn more
+                                            <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                                        </a>
+
+                                    </div> 
 
                                  </div>
 

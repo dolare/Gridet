@@ -22,7 +22,7 @@
                                 <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
                                     <div class="col-sm-12 col-xs-12">
 
-                                        <div style="font-weight: 500"><span><i class="fa fa-university" aria-hidden="true"></i></span>&nbsp;&nbsp;A top-ranked graduate institution in NYC</div>
+                                        <div style="font-weight: 500"><span><i class="fa fa-university" aria-hidden="true"></i></span>&nbsp;&nbsp;A top-ranked business school in NYC</div>
 
                                     </div>
 
@@ -73,15 +73,19 @@
 									</div>
                                 </div>
 
-                                <div class="col-sm-7" style="margin-bottom:52px;">
+                                <div class="col-sm-7 push-30" >
                                     
                                     <p class="push-50-t push-5 font-w500 nice-copy" style="line-height:2.5rem;font-family:'Helvetica Neue','Open Sans',Helvetica,Arial,sans-serif;font-weight: 400 !important;">
 
 
 	                                    <p class="font-w300 flat-text-white" style="font-size: 20px; line-height: 1.4rem; letter-spacing: 0.8px; margin-bottom: 25px;font-weight: 400 !important;">
-	                                    	<span class="firstcharacter" style="color: lightsalmon;">W</span>e bring together former graduate students and experts in graduate enrollment, big data analytics and more to create SaaS products that bridge the gap between graduate schools and applicants.
+	                                    	<span class="firstcharacter" style="color: lightsalmon;">W</span>e offer a CONTINUOUS CONSULTING AND REPORTING model to help businesses to closely monitor their peers, so that clients can stay on top of the competition at all times.
 
 	                                    </p>
+
+                                        <p class="font-w300 flat-text-white" style="font-size: 20px; line-height: 1.4rem; letter-spacing: 0.8px; margin-bottom: 25px;font-weight: 400 !important;">
+                                            Currently, we are primarily partnering with Institution of Higher Education and Executive Education providers, but we do look forward to the opportunity to diversify our offerings by catering to a greater range of industries.
+                                        </p>
 	                                    <!-- <p class="font-w300 flat-text-white" style="font-size: 20px; line-height: 1.4rem; letter-spacing: 0.8px; margin-bottom: 25px;font-weight: 400 !important;">
 											We strive to facilitate the graduate application process, to make it more efficient, and to provide the tools that applicants need to successfully navigate the application process and find the school of their dreams.
 	                                    </p> -->

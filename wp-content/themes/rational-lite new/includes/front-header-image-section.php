@@ -23,7 +23,7 @@
                            </h1> -->
                            <h1 id="headertext" class="text-white-transparent animated fadeInDown text-uppercase text-left flat-text-shadow" data-toggle="appear" data-class="animated fadeInDown" style="margin-bottom: 0; font-weight:800; padding-left: 20px;line-height: 1.2em;letter-spacing: 0.5px;font-family: 'Lato','Helvetica Neue','Open Sans',Helvetica,Arial,sans-serif;">
                             <span class="lat-text-shadow" style="color: rgba(52,152,219,1);">sifting</span> <span class="text-white-transparent">out value</span><br/>
-                            from <span style="color:lightsalmon; text-transform:none;">CHAOS</span>
+                            from <span style="color:#ff6b6b; text-transform:none;font-family: 'Playball', cursive; font-size: 115%;">Chaos</span>
                             </h1>
 
 	
@@ -31,9 +31,9 @@
     												color: #ccc;
     												text-align: left;
     												padding-left: 25px;
-    												
+    												font-family: 'Playball', cursive;
 
-						">Filling the information gap between applicants and graduate institutions</div>
+						">- Filling the information gap between massive data acquisition and meaningful presentation</div>
 
 						<div class="col-sm-8 text-left push-100-t" style="padding-left:25px">
 							
@@ -45,7 +45,7 @@
     						background-color: rgba(52,152,219,1);
     						color: white;
     						font-family: Helvetica,Arial,sans-serif;
-    						font-weight: 200;
+    						font-weight: 500;
     						border: none;
     						border-radius: 0;
     						text-shadow: none;

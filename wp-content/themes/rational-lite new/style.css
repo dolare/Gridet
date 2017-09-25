@@ -10,6 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Text Domain: rational-lite
 Tags: blue, gray, orange, pink, purple, dark, light, two-columns, right-sidebar, fixed-layout, custom-header, custom-background, custom-colors, custom-menu, featured-images, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready
 -------------------------------------------------------------- */
+@import url(https://fonts.googleapis.com/css?family=Playball)
 
 #page-container {
   display:none;
