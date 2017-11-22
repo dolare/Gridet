@@ -102,22 +102,49 @@
                                 </div>
 
                                     <ul class="fa-ul firstlist push-10-t push-30">
-                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Complete Reports on Peers from past to present and beyond</a>
+                                        <!-- <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Complete Reports on Peers from past to present and beyond</a>
                                             <ul class="">
                                                 <li><span class="push-5-l">Gain access to a complete set of your competitors’ category and course offerings</span></li>
                                                 <li><span class="push-5-l">Revealing and displaying the changes and updates made by your peers in an intuitive manner</span></li>
 
                                             </ul>
-                                        </li>
-                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Peer Analysis Tools - deepen your insight</a>
+                                        </li> -->
+                                        
+                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Complete Reports on Peers from past to present and beyond</a>
                                         <ul class="">
-                                                <li><span class="push-5-l">Gain access to the past with historical snapshots of your peers</span></li>
-                                                <li><span class="push-5-l">Equip yourself with a side-by-side comparison tool to deepen your understanding of the field</span></li>
-                                                <li><span class="push-5-l">Dig deeper into competitors offerings with a specialized keyword search tool</span></li>
+                                                <li><span class="push-5-l">Gain access to a complete set of your competitors’ category and course offerings</span></span></li>
+                                                <li><span class="push-5-l">Revealing and displaying the changes and updates made by your peers in an intuitive manner</span></li>
 
                                             </ul>
                                         </li>
-                                        
+
+                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Peer Analysis Tools - deepen your insight</a>
+                                        <ul class="">
+                                                <li><span class="push-5-l">Stay on top of your peers' category offerings with an interactive tool</span></li>
+                                                <li><span class="push-5-l">Equip yourself with a side-by-side comparison tool to deepen your understanding of the field</span></li>
+                                                <li><span class="push-5-l">Dig deeper into competitors offerings with a specialized keyword search tool</span></li>
+                                                <li><span class="push-5-l">Gain access to the past with historical snapshots of your peers</span></li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Trend Analysis - stay on top of the field - Coming soon!</a>
+                                        <ul class="">
+                                                <li><span class="push-5-l">Find out what offerings have been added or removed in the field across user-defined time frames</span></span></li>
+                                                <li><span class="push-5-l">Research tuition changes on a large scale and compare pricing for the course offerings amongst your peers</span></li>
+                                                <li><span class="push-5-l">Make better informed course-scheduling decisions by quickly scanning the field</span></li>
+                                                <li><span class="push-5-l">Enhance your understanding of peers' global strategy with our geography analysis</span></li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li><a href="javascript:void(0)" class="text-primary"><span class="fa-li bullet">&#10148;</span>Customized programs</a>
+                                        <ul class="">
+                                                <li><span class="push-5-l">Gain access to a full list of potential clients and partnerships at peer institutions</span></span></li>
+                                    
+
+                                            </ul>
+                                        </li>
                                         
                                     </ul>
 
