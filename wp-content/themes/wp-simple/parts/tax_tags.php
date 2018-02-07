@@ -6,7 +6,7 @@ if (has_category() || has_tag()) {
         <div class="col-xs-6 tax">
             <?php 
                 if (has_category()) {
-                    _e('Posted in: ', 'nimbus'); 
+                    _e('Posted in: ', 'wp-simple' ); 
                     the_category(', ');
                 }
             ?>

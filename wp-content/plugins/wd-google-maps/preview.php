@@ -44,7 +44,11 @@ class GMWDPreview {
         }
         if(gmwd_get_option("map_api_key")){
             $map_api_url .= "&key=" . gmwd_get_option("map_api_key");
-        }         
+        } 
+		else{
+			$api_keys = array("AIzaSyAmYQInD-coq0G5wC_D9h7uHjGeHhSSR4o", "AIzaSyBxiaSJPIRfQWID9j4hCrX3t7z-9IOOjis","	AIzaSyDi6aVWxOVptj9WZZYeAgdAA1xpqAR1mnw", "AIzaSyCzvhE5_lt5l0fYYChF1TpRtfFTjXpYkVI","AIzaSyBMWPhZdxcpwpfXBrGPGmz8zMjwJJt83mc");
+			$map_api_url .= "&key=" . $api_keys[rand(0,4)];
+		}        
         wp_register_script ('google_map-js', $map_api_url, array ('jquery'), '' );
         wp_enqueue_script('google_map-js');
         
@@ -57,7 +61,6 @@ class GMWDPreview {
 
         wp_enqueue_style('font_awsome-css',  GMWD_URL . '/css/font-awesome/font-awesome.css');
         wp_enqueue_style('bootstrap-css',  GMWD_URL . '/css/bootstrap.css');
-        wp_enqueue_style('bootstrap_theme-css',  GMWD_URL . '/css/bootstrap-theme.css');
         wp_enqueue_style('frontend_main-css',  GMWD_URL . '/css/frontend_main.css');      
 
        

@@ -2,16 +2,16 @@
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only"><?php _e('Toggle navigation','wp-simple'); ?></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="<?php echo home_url(); ?>">
+            <a class="navbar-brand" href="<?php echo esc_url(home_url()); ?>">
             <?php 
-            $nimbus_text_logo = trim(nimbus_get_option('logo'));
-            if (!empty($nimbus_text_logo)) { echo $nimbus_text_logo; } else { echo get_bloginfo( 'name' ); } 
+            $nimbus_text_logo = esc_html(nimbus_get_option('logo'));
+            if (!empty($nimbus_text_logo)) { echo $nimbus_text_logo; } else { echo esc_html(get_bloginfo( 'name' )); } 
             ?>
             </a>
         </div>

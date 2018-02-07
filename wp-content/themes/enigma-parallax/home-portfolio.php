@@ -1,7 +1,7 @@
 <!-- portfolio section -->
 <?php $wl_theme_options = enigma_parallax_get_options(); ?>
 <div  id="portfolio" <?php if($wl_theme_options['slider_home'] != "1" && $wl_theme_options['service_home'] != "1") { ?> style="padding-top:204px !important;" <?php } ?>></div>
-<div class="enigma_project_section" >
+<div class="enigma_project_section" <?php if($wl_theme_options['upload__portfolio_image']!=''){ echo 'style="background-image:url('.$wl_theme_options['upload__portfolio_image'].');"'; }?>>
 <?php if($wl_theme_options['port_heading'] !='') { ?>
 	<div class="container">
 		<div class="row">
@@ -34,7 +34,7 @@
 					
 					<?php if($wl_theme_options['port_'.$i.'_title'] !='') { ?>	
 					<div class="enigma_home_portfolio_caption">
-					<h3><a href="<?php echo esc_url($wl_theme_options['port_'.$i.'_link']); ?>"><?php echo esc_attr($wl_theme_options['port_'.$i.'_title']); ?></a></h3>
+					<h3 class="port_<?php echo $i ?>"><a href="<?php echo esc_url($wl_theme_options['port_'.$i.'_link']); ?>"><?php echo esc_attr($wl_theme_options['port_'.$i.'_title']); ?></a></h3>
 					</div>					
 					</div>
 					<div class="enigma_portfolio_shadow"></div>

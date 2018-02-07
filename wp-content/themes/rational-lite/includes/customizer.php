@@ -132,7 +132,51 @@ function rational_lite_customize_register( $wp_customize ) {
 		'description' => __('Enter Tumbler link.', 'rational-lite'),
 		'section' => 'social_settings',
 	));
-	
+	$wp_customize->add_setting( 'rational_lite_skype_link', array(
+		'default'        => '#',
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control('rational_lite_skype_link', array(
+		'label' => __('skype Link', 'rational-lite'),
+		'description' => __('Enter skype link.', 'rational-lite'),
+		'section' => 'social_settings',
+	));
+	$wp_customize->add_setting( 'rational_lite_instagram_link', array(
+		'default'        => '#',
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control('rational_lite_instagram_link', array(
+		'label' => __('instagram Link', 'rational-lite'),
+		'description' => __('Enter instagram link.', 'rational-lite'),
+		'section' => 'social_settings',
+	));
+	$wp_customize->add_setting( 'rational_lite_vk_link', array(
+		'default'        => '#',
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control('rational_lite_vk_link', array(
+		'label' => __('vk Link', 'rational-lite'),
+		'description' => __('Enter vk link.', 'rational-lite'),
+		'section' => 'social_settings',
+	));
+	$wp_customize->add_setting( 'rational_lite_whatsapp_link', array(
+		'default'        => '#',
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control('rational_lite_whatsapp_link', array(
+		'label' => __('whatsapp Link', 'rational-lite'),
+		'description' => __('Enter whatsapp link.', 'rational-lite'),
+		'section' => 'social_settings',
+	));
+	$wp_customize->add_setting( 'rational_lite_googleplus_link', array(
+		'default'        => '#',
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control('rational_lite_googleplus_link', array(
+		'label' => __('google+ Link', 'rational-lite'),
+		'description' => __('Enter googleplus link.', 'rational-lite'),
+		'section' => 'social_settings',
+	));
 	// ====================================
 	// = Home Page Settings Sections
 	// ====================================
@@ -201,17 +245,6 @@ function rational_lite_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'rational_lite_sanitize_pages'
 	) );
 	$wp_customize->add_control( 'rational_lite_rat_third_section', array(
-		'type' => 'select',
-		'section' => 'home_page_settings',
-		'label' => __( 'Select page for third landing section.', 'rational-lite' ),
-		'choices' => $rational_lite_landing_pages,
-	) );
-    
-    $wp_customize->add_setting( 'rational_lite_rat_forth_section', array(
-		'default'           => '',
-		'sanitize_callback' => 'rational_lite_sanitize_pages'
-	) );
-	$wp_customize->add_control( 'rational_lite_rat_forth_section', array(
 		'type' => 'select',
 		'section' => 'home_page_settings',
 		'label' => __( 'Select page for third landing section.', 'rational-lite' ),

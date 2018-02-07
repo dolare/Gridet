@@ -24,11 +24,11 @@
         <ul class="social_logos">			
             <?php if (compass_get_option('compass_rss') != '') { ?>
                 <li class="rss"><a href="<?php echo compass_get_option('compass_rss'); ?>" alt="RSS" title="RSS" target="_blank"></a></li>
-            <?php } ?>  
-            <?php if (compass_get_option('compass_pinterest') != '') { ?>
+            <?php } 
+            if (compass_get_option('compass_pinterest') != '') { ?>
                 <li class="pn"><a href="<?php echo compass_get_option('compass_pinterest'); ?>" alt="Pinterest" target="_blank" title="Pinterest"></a></li>
-            <?php } ?> 
-            <?php if (compass_get_option('compass_linkedin') != '') { ?>
+            <?php }
+            if (compass_get_option('compass_linkedin') != '') { ?>
                 <li class="ln"><a href="<?php echo compass_get_option('compass_linkedin'); ?>" alt="Linked In" target="_blank" title="Linked In"></a></li> 
             <?php } ?>  
 

@@ -15,4 +15,3 @@ function freesiaempire_jetpack_setup() {
 	) );
 }
 add_action( 'after_setup_theme', 'freesiaempire_jetpack_setup' );
-?>

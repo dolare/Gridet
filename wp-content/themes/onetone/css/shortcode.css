@@ -1102,7 +1102,7 @@ a.magee-btn-normal:hover {
 	color: #777;
 	background-color: #f8f8f8;
 }
-
+ 
 /*
  * 6.0 Panels & Alerts
  */
@@ -1148,14 +1148,13 @@ a.magee-btn-normal:hover {
 	opacity: 1;
 }
 
-.close {
+.magee-alert .close {
 	-webkit-transition: all 0.2s ease;
 	-moz-transition: all 0.2s ease;
 	-o-transition: all 0.2s ease; 
 	transition: all 0.2s ease;
 }
-
-.close:hover {
+.magee-alert .close:hover {
 	color: inherit;
 	-webkit-transform: rotate(90deg);
 	transform: rotate(90deg);
@@ -1168,7 +1167,7 @@ a.magee-btn-normal:hover {
 /*
  * 7.0 Pricing
  */
-
+ 
 .magee-pricing-box {
 	box-shadow: 1px 1px 5px 0 rgba(0,0,0,.1);
 	overflow: hidden;
@@ -1220,7 +1219,6 @@ a.magee-btn-normal:hover {
 
 .pricing-tag .price {
 	color: #fdd200;
-
 }
 
 .pricing-tag .unit {
@@ -1274,6 +1272,7 @@ a.magee-btn-normal:hover {
 
 .pricing-box-flat.featured .magee-btn-normal {
     border: 2px solid #fff;
+    background-color: transparent!important;
 }
 
 @media (min-width: 992px) {
@@ -1363,6 +1362,7 @@ a.magee-btn-normal:hover {
 	border-radius: 4px;
 	line-height: 28px;
 	display: inline-block;
+	border: 0;
 }
 
 .person-social li a:hover {
@@ -1381,6 +1381,10 @@ a.magee-btn-normal:hover {
 .person-social.boxed li a:hover {
 	color: #fff;
 	background-color: #fdd200;
+}
+
+.magee-person-box.person-box-horizontal {
+    margin: 0 -15px;
 }
 
 .person-box-horizontal .person-vcard .person-name {
@@ -1453,6 +1457,7 @@ a.magee-btn-normal:hover {
 
 .testimonial-author .name {
 	margin: 0;
+	color: inherit;
 }
 
 .testimonial-vcard.style2 .testimonial-avatar {
@@ -1622,9 +1627,9 @@ a.magee-btn-normal:hover {
 	padding: 20px;
 }
 
-.counter-box.box-bg {
-	background-color: rgba(0,0,0,.05);
+.magee-counter-box.boxed {
 	padding: 20px;
+	border: 0 solid #ddd;
 }
 
 .counter-top-icon {
@@ -1635,7 +1640,7 @@ a.magee-btn-normal:hover {
 
 .counter {
 	font-size: 50px;
-	line-height: 1.2em;
+	line-height: 1em;
 }
 
 .counter:after {
@@ -1647,8 +1652,8 @@ a.magee-btn-normal:hover {
 	content: "";
 }
 
-.counter-title {
-	margin: 15px 0 5px;
+h3.counter-title {
+	margin: 0!important;
 	font-size: 14px;
 }
 
@@ -1663,7 +1668,7 @@ a.magee-btn-normal:hover {
 
 .magee-countdown {
 	list-style-type: none;
-	margin: 0;
+	margin: 0 -15px;
 }
 
 /*
@@ -2152,9 +2157,8 @@ a.magee-btn-normal:hover {
 .ss-doublediagonal::before,
 .ss-doublediagonal::after {
 	top: 0;
-	left: -25%;
 	z-index: -1;
-	width: 150%;
+	width: 100%;
 	height: 75%;
 	background: inherit;
 	-webkit-transform: rotate(-2deg);
@@ -2387,6 +2391,7 @@ a.magee-btn-normal:hover {
 }
 
 .ss-boxes-up::before,
+
 .ss-boxes-down:after {
 	left: 0;
 	width: 100%;
@@ -2530,7 +2535,7 @@ a.magee-btn-normal:hover {
 	overflow: hidden;
 	position: relative;
     display: inline-block;
-    margin-bottom: -7px;
+    margin-bottom: -8px;
     max-width: 100%;
 }
 
@@ -2739,6 +2744,23 @@ a.magee-btn-normal:hover {
 .img-frame.shadow {
 	box-shadow: 2px 2px 5px 0 #aaa;
 }
+
+/*
+ * 18.2 Image Banner
+ */
+
+.magee-image-banner .img-box .img-overlay-content {
+	color: #fff;
+}
+
+.magee-image-banner .img-box .img-overlay-content {
+	padding: 15px;
+}
+
+.magee-image-banner .img-box:hover .img-overlay {
+	background-color: rgba(0,0,0,.35);
+}
+
 
 /*
  * 19.0 Carousel
@@ -3017,9 +3039,60 @@ ol.multi-carousel-indicators {
 	line-height: 50px;
 }
 
+/*Portfolio List*/
+.portfolio-list-wrap {
+	position: relative;
+	margin: 0;
+}
+
 .portfolio-list-items {
 	overflow: hidden;
+	margin: 0 -15px;
 }
+
+.portfolio-box-wrap {
+	float: left;
+	padding: 0 15px 15px;
+	margin-bottom: 30px;
+}
+
+.portfolio-carousel .portfolio-box-wrap {
+	padding-bottom: 0;
+}
+
+.portfolio-list-filter .portfolio-box-wrap {
+	display:none;
+}
+
+.portfolio-list-wrap.full-width .portfolio-list-items {
+	margin: 0;
+}
+
+.portfolio-list-wrap.full-width .portfolio-box-wrap {
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.portfolio-box .feature-img-box {
+    margin-bottom: 0;
+}
+
+.portfolio-box .entry-header {
+    margin: 0;
+}
+
+.portfolio-box .entry-title {
+    margin: 20px 0 0;
+}
+
+.portfolio-box .entry-meta {
+	margin: 10px 0 0;
+}
+
+.portfolio-box .entry-summary {
+	margin: 5px 0 0;
+}
+
 
 /*
  * 22.0 Blog List
@@ -3346,6 +3419,7 @@ ol.multi-carousel-indicators {
 	height: 2em;
 	line-height: 2;
 	text-align: center;	
+	color: #fff;
 	background-color: #f5f5f5;
 	border: 1px solid transparent;
 }
@@ -3354,13 +3428,20 @@ ol.multi-carousel-indicators {
 	box-shadow: 0 2px 0 0 #e5e5e5;
 }
 
-.video-wrap {
-	width: 100%;
+.magee-fa-icon {
+	font-size: inherit;
 }
 
-.video-wrap iframe {
-	width: 100%;
-	height: 100%;
+.magee-fa-icon.icon-boxed {
+	font-size: inherit;
+	width: 2em;
+	height: 2em;
+	line-height: 2em;
+	text-align: center;	
+	color: #fff;
+	background-color: #777;
+	border: 0;
+	border-radius: 5px;
 }
 
 /*
@@ -3377,16 +3458,18 @@ ol.multi-carousel-indicators {
 
 .fullheight {
 	min-height: 100vh;
-}
-
-.verticlemiddle {
-	display: table;
+	display:table;
 	width: 100%;
 }
 
-.magee-section.verticlemiddle .container,
-.magee-section.verticlemiddle .container-fullwidth {
-	display: table-cell;
+.magee-section.fullheight .section-content {
+	display: table-cell;	
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.magee-section.verticalmiddle .section-content {
 	vertical-align: middle;
 }
 
@@ -3401,18 +3484,16 @@ ol.multi-carousel-indicators {
 }
 
 .magee-section .background-media {
-	z-index: 1;
+
 }
 
 .magee-section .background-overlay {
-	z-index: 2;
+
 }
 
 .magee-section .container,
 .magee-section .container-fullwidth {
-	position: relative;
-	z-index: 3;
-	overflow: hidden;
+	
 }
 
 /*
@@ -3441,6 +3522,185 @@ ol.multi-carousel-indicators {
 }
 
 /*
- * 31.0 Title
+ * 31.0 Heading
  */
 
+.magee-heading {
+	border-color: #555;
+}
+
+.magee-heading .heading-inner {
+	display: inline-block;
+	border-style: solid;
+	border-color: inherit;
+}
+
+.magee-heading.heading-default .heading-inner {
+
+}
+
+.magee-heading.heading-border .heading-inner {
+	padding: 5px 0;
+	border-top-width: 2px;
+	border-bottom-width: 2px;
+	border-left-width: 0!important;
+	border-right-width: 0!important;
+}
+
+.magee-heading.heading-boxed .heading-inner {
+	padding: 10px;
+	border-width: 2px;
+}
+
+.magee-heading.heading-boxed-reverse {
+	color: #fff;
+}
+
+.magee-heading.heading-boxed-reverse .heading-inner {
+	padding: 10px;
+	box-shadow: 0 0 0 2px #fff inset;
+	border-width: 2px;
+	background-color: #555;	
+}
+
+.magee-heading.heading-doubleline {
+	overflow: hidden;
+}
+
+.magee-heading.heading-doubleline .heading-inner {
+	position: relative;
+	z-index: 9;
+}
+
+.magee-heading.heading-doubleline .heading-inner:before,
+.magee-heading.heading-doubleline .heading-inner:after {
+	content: "";
+	position: absolute;
+	width: 2000px;
+	height: 12px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 0!important;
+	border-right-width: 0!important;
+	border-style: solid;
+	border-color: inherit;
+	top: 50%;
+	margin-top: -6px;
+	z-index: -1;
+}
+
+.magee-heading.heading-doubleline .heading-inner:before {
+	right: 100%;
+	margin-right: 10px;
+}
+
+.magee-heading.heading-doubleline .heading-inner:after {
+	left: 100%;
+	margin-left: 10px;
+}
+
+.magee-heading.heading-charactershadow .heading-inner {
+	position: relative;
+	z-index: 9;
+	padding: 2em 0 1em;
+}
+
+.magee-heading.heading-charactershadow .heading-inner:before {
+	content: "T";
+	position: absolute;
+	top: 0; 
+	z-index: -1;
+	color: inherit;
+	opacity: .2;
+	font-size: 4em;
+	width: 100%;
+}
+
+/*
+ * 31.0 Table
+ */
+
+.table,
+.table th,
+.table td {
+	border-width: 0;
+}
+
+.table.table-bordered {
+  border-width: 1px;
+}
+
+.magee-table .table thead th {
+	background-color: #fdd200;
+	color: #fff;
+	border-bottom-width: 0;
+}
+
+/*Image*/
+.img-side {
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.img-side.img-right {
+    right: 0;
+}
+
+.img-side.img-left {
+    left: 0;
+}
+
+/*
+ * 32.0 Twitter Feed
+ */
+
+.magee-twitter-feed {
+	list-style-type: none;
+	margin: 0;
+}
+
+.magee-twitter-feed li {s
+	list-style-type: none;
+    font-style: italic;
+    margin: 0 0 12px 0;
+    padding: 0 0 0 25px;
+    position: relative;
+}
+
+.magee-twitter-feed li:before {
+	position: absolute;
+	font: normal normal normal 20px/25px FontAwesome;
+	content: "\f099";
+	left:0; top:0;
+}
+
+.magee-twitter-feed li span {
+	display: block;
+	font-size: .8em;
+	font-style: normal;
+}
+
+/*
+ * 33.0 Label
+ */
+
+.magee-label {
+	background-color: #fdd200;
+}
+
+/*
+ * 34.0 Video
+ */
+
+.video-wrap {
+	width: 100%;
+}
+
+.video-wrap iframe {
+	width: 100%;
+	height: 100%;
+}

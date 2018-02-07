@@ -27,7 +27,7 @@ function gmwdInitMainMap(el, excludeOverlays){
 		minZoom: minZoom,
 		scrollwheel: mapWhellScrolling,
 		draggable: mapDragable,
-    disableDoubleClickZoom: mapDbClickZoom,
+		disableDoubleClickZoom: mapDbClickZoom,
 		zoomControl: enableZoomControl,
 		mapTypeControl: enableMapTypeControl,
 		scaleControl: enableScaleControl,
@@ -61,6 +61,7 @@ function gmwdInitMainMap(el, excludeOverlays){
 	gmwdSetLayers("transit");
 
 	if(excludeOverlays == false){
+		infoWindowInfo = jQuery("[name=info_window_info]").length > 0 ? jQuery("[name=info_window_info]").val() : infoWindowInfo;
         // overlays
         gmwdSetMapMarkers();
         gmwdSetMapPolygons();
@@ -123,12 +124,20 @@ function gmwdSetMapMarkers(){
 		allMarkers.push(marker);
         var infoWindow;
         if(mapMarker.enable_info_window == 1){
-
-            contentString = (mapMarker.title + "<br>" + mapMarker.address);
-
+            //var infoWindowInfo = jQuery("[name=info_window_info]").val() ;
+            contentString = "";
+            if(infoWindowInfo.indexOf("title") != -1){
+                contentString += mapMarker.title;
+            }
+            if(infoWindowInfo.indexOf("address") != -1){
+                if(infoWindowInfo.indexOf("title") != -1){
+                    contentString += "<br>" ;
+                }
+                contentString +=  mapMarker.address;
+            } 
             infoWindow = new google.maps.InfoWindow({
                 content: contentString,
-                disableAutoPan: true
+                disableAutoPan: false
             });
             if(mapMarker.info_window_open == 1){
                 infoWindow.open(map, marker);

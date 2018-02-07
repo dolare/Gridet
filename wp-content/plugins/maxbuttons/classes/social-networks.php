@@ -1,4 +1,6 @@
 <?php 
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
 
 class maxSN
 {
@@ -13,6 +15,7 @@ class maxSN
 	
 	}
 
+	/* Set the network variables to be using for this inquery */ 
 	public function setNetwork($network)
 	{
  
@@ -48,7 +51,7 @@ class maxSN
 	 		case "facebook": 
 				$network_data["share_url"] = 'https://www.facebook.com/sharer.php?u={url}'; 
 				$network_data["count_api"] = "https://graph.facebook.com/{url}"; 
-				$network_data["json_return_var"] = "shares"; 
+				$network_data["json_return_var"] = "share|share_count"; 
 	 		break;
 	 		case "google-plus": 
 	 			$network_data["share_url"] = 'https://plus.google.com/share?url={url}'; 
@@ -110,6 +113,9 @@ class maxSN
 				$network_data["share_url"] = "whatsapp://send?text={url} {title}"; 
 				$network_data["count_api"] = ''; 
 			break;
+			default: 
+				$network_data['popup'] = false; // no network no popup. 
+			break;
 
 	 	}
 	
@@ -164,7 +170,7 @@ class maxSN
 		$network = $this->network; 
 		//$count = get_transient('mb-col-' . $network . '-' . $share_url . '-shares'); 
 		$count = maxUtils::get_transient('mbcol-shares-' . $network . '-' . $share_url); 
-		
+
 		if ($args["force_share_update"]) 
 			$count = -1; // force an update
 			

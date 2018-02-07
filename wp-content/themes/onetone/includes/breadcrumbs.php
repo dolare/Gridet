@@ -1,52 +1,20 @@
 <?php
-/**
-* Breadcrumb Trail - A breadcrumb menu script for WordPress.
-*
-* Breadcrumb Trail is a script for showing a breadcrumb trail for any type of page. It tries to
-* anticipate any type of structure and display the best possible trail that matches your site's
-* permalink structure. While not perfect, it attempts to fill in the gaps left by many other
-* breadcrumb scripts.
-*
-* This program is free software; you can redistribute it and/or modify it under the terms of the GNU
-* General Public License as published by the Free Software Foundation; either version 2 of the License,
-* or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-* even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*
-* @package BreadcrumbTrail
-* @version 0.6.1
-* @author Justin Tadlock <justin@justintadlock.com>
-* @copyright Copyright (c) 2008 - 2013, Justin Tadlock
-* @link http://themehybrid.com/plugins/breadcrumb-trail
-* @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-*/
-/**
-* Shows a breadcrumb for all types of pages. This is a wrapper function for the Breadcrumb_Trail class,
-* which should be used in theme templates.
-*
-* @since 0.1.0
-* @access public
-* @param array $args Arguments to pass to Breadcrumb_Trail.
-* @return void
-*/
+
 function onetone_breadcrumb_trail( $args = array() ) {
-if ( function_exists( 'is_bbpress' ) && is_bbpress() )
-$breadcrumb = new onetone_bbPress_Breadcrumb_Trail( $args );
-else
-$breadcrumb = new onetone_Breadcrumb_Trail( $args );
-return $breadcrumb->trail();
+	if ( function_exists( 'is_bbpress' ) && is_bbpress() )
+	  $breadcrumb = new onetone_bbPress_Breadcrumb_Trail( $args );
+	else
+	$breadcrumb = new onetone_Breadcrumb_Trail( $args );
+	  return $breadcrumb->trail();
 }
 /**
 * Creates a breadcrumbs menu for the site based on the current page that's being viewed by the user.
 *
-* @since 0.6.0
 */
 class onetone_Breadcrumb_Trail {
 /**
 * Array of items belonging to the current breadcrumb trail.
 *
-* @since 0.1.0
 * @access public
 * @var array
 */
@@ -62,114 +30,110 @@ public $args = array();
 /**
 * Sets up the breadcrumb trail.
 *
-* @since 0.6.0
 * @access public
 * @param array $args The arguments for how to build the breadcrumb trail.
 * @return void
 */
 public function __construct( $args = array() ) {
-/* Remove the bbPress breadcrumbs. */
-add_filter( 'bbp_get_breadcrumb', '__return_false' );
-$defaults = array(
-'container' => 'div',
-'separator' => '&#47;',
-'before' => '',
-'after' => '',
-'show_on_front' => true,
-'network' => false,
-//'show_edit_link' => false,
-'show_title' => true,
-'show_browse' => true,
-'echo' => true,
-/* Post taxonomy (examples follow). */
-'post_taxonomy' => array(
-  'portfolio' => 'portfolio_category',
-// 'book' => 'genre',
-),
-/* Labels for text used (see Breadcrumb_Trail::default_labels). */
-'labels' => array()
-);
-$this->args = apply_filters( 'breadcrumb_trail_args', wp_parse_args( $args, $defaults ) );
-/* Merge the user-added labels with the defaults. */
-$this->args['labels'] = wp_parse_args( $this->args['labels'], $this->default_labels() );
-$this->do_trail_items();
+	/* Remove the bbPress breadcrumbs. */
+	add_filter( 'bbp_get_breadcrumb', '__return_false' );
+	$defaults = array(
+	'container' => 'div',
+	'separator' => '&#47;',
+	'before' => '',
+	'after' => '',
+	'show_on_front' => true,
+	'network' => false,
+	//'show_edit_link' => false,
+	'show_title' => true,
+	'show_browse' => true,
+	'echo' => true,
+	/* Post taxonomy (examples follow). */
+	'post_taxonomy' => array(
+	  'portfolio' => 'portfolio-category',
+	// 'book' => 'genre',
+	),
+	/* Labels for text used (see Breadcrumb_Trail::default_labels). */
+	'labels' => array()
+	);
+	$this->args = apply_filters( 'breadcrumb_trail_args', wp_parse_args( $args, $defaults ) );
+	/* Merge the user-added labels with the defaults. */
+	$this->args['labels'] = wp_parse_args( $this->args['labels'], $this->default_labels() );
+	$this->do_trail_items();
 }
 /**
 * Formats and outputs the breadcrumb trail.
 *
-* @since 0.6.0
 * @access public
 * @return string
 */
 public function trail() {
-$breadcrumb = '';
-/* Connect the breadcrumb trail if there are items in the trail. */
-if ( !empty( $this->items ) && is_array( $this->items ) ) {
-/* Make sure we have a unique array of items. */
-$this->items = array_unique( $this->items );
-/* Open the breadcrumb trail containers. */
-$breadcrumb = "\n\t\t" . '<' . tag_escape( $this->args['container'] ) . ' class="breadcrumb-nav breadcrumbs" itemprop="breadcrumb">';
-/* If $before was set, wrap it in a container. */
-$breadcrumb .= ( !empty( $this->args['before'] ) ? "\n\t\t\t" . '<span class="trail-before">' . $this->args['before'] . '</span> ' . "\n\t\t\t" : '' );
-/* Add 'browse' label if it should be shown. */
-if ( true === $this->args['show_browse'] )
-$breadcrumb .= "\n\t\t\t" . '<span class="trail-browse">' . $this->args['labels']['browse'] . '</span> ';
-/* Adds the 'trail-begin' class around first item if there's more than one item. */
-if ( 1 < count( $this->items ) )
-array_unshift( $this->items, '<span class="trail-begin">' . array_shift( $this->items ) . '</span>' );
-/* Adds the 'trail-end' class around last item. */
-array_push( $this->items, '<span class="trail-end">' . array_pop( $this->items ) . '</span>' );
-/* Format the separator. */
-$separator = ( !empty( $this->args['separator'] ) ? '<span class="sep">' . $this->args['separator'] . '</span>' : '<span class="sep">/</span>' );
-/* Join the individual trail items into a single string. */
-$breadcrumb .= join( "\n\t\t\t {$separator} ", $this->items );
-/* If $after was set, wrap it in a container. */
-$breadcrumb .= ( !empty( $this->args['after'] ) ? "\n\t\t\t" . ' <span class="trail-after">' . $this->args['after'] . '</span>' : '' );
-/* Close the breadcrumb trail containers. */
-$breadcrumb .= "\n\t\t" . '</' . tag_escape( $this->args['container'] ) . '>';
-}
-/* Allow developers to filter the breadcrumb trail HTML. */
-$breadcrumb = apply_filters( 'breadcrumb_trail', $breadcrumb, $this->args );
-if ( true === $this->args['echo'] )
-echo $breadcrumb;
-else
-return $breadcrumb;
+	$breadcrumb = '';
+	/* Connect the breadcrumb trail if there are items in the trail. */
+	if ( !empty( $this->items ) && is_array( $this->items ) ) {
+	/* Make sure we have a unique array of items. */
+	$this->items = array_unique( $this->items );
+	/* Open the breadcrumb trail containers. */
+	$breadcrumb = "\n\t\t" . '<' . tag_escape( $this->args['container'] ) . ' class="breadcrumb-nav breadcrumbs" itemprop="breadcrumb">';
+	/* If $before was set, wrap it in a container. */
+	$breadcrumb .= ( !empty( $this->args['before'] ) ? "\n\t\t\t" . '<span class="trail-before">' . $this->args['before'] . '</span> ' . "\n\t\t\t" : '' );
+	/* Add 'browse' label if it should be shown. */
+	if ( true === $this->args['show_browse'] )
+	$breadcrumb .= "\n\t\t\t" . '<span class="trail-browse">' . $this->args['labels']['browse'] . '</span> ';
+	/* Adds the 'trail-begin' class around first item if there's more than one item. */
+	if ( 1 < count( $this->items ) )
+	array_unshift( $this->items, '<span class="trail-begin">' . array_shift( $this->items ) . '</span>' );
+	/* Adds the 'trail-end' class around last item. */
+	array_push( $this->items, '<span class="trail-end">' . array_pop( $this->items ) . '</span>' );
+	/* Format the separator. */
+	$separator = ( !empty( $this->args['separator'] ) ? '<span class="sep">' . $this->args['separator'] . '</span>' : '<span class="sep">/</span>' );
+	/* Join the individual trail items into a single string. */
+	$breadcrumb .= join( "\n\t\t\t {$separator} ", $this->items );
+	/* If $after was set, wrap it in a container. */
+	$breadcrumb .= ( !empty( $this->args['after'] ) ? "\n\t\t\t" . ' <span class="trail-after">' . $this->args['after'] . '</span>' : '' );
+	/* Close the breadcrumb trail containers. */
+	$breadcrumb .= "\n\t\t" . '</' . tag_escape( $this->args['container'] ) . '>';
+	}
+	/* Allow developers to filter the breadcrumb trail HTML. */
+	$breadcrumb = apply_filters( 'breadcrumb_trail', $breadcrumb, $this->args );
+	if ( true === $this->args['echo'] )
+	echo $breadcrumb;
+	else
+	return $breadcrumb;
 }
 /**
 * Returns an array of the default labels.
 *
-* @since 0.6.0
 * @access public
 * @return array
 */
 public function default_labels() {
-$labels = array(
-'browse' => __( 'Browse:', 'onetone' ),
-'home' => __( 'Home', 'onetone' ),
-'error_404' => __( '404 Not Found', 'onetone' ),
-'archives' => __( 'Archives', 'onetone' ),
-/* Translators: %s is the search query. The HTML entities are opening and closing curly quotes. */
-'search' => __( 'Search results for &#8220;%s&#8221;', 'onetone' ),
-/* Translators: %s is the page number. */
-'paged' => __( 'Page %s', 'onetone' ),
-/* Translators: Minute archive title. %s is the minute time format. */
-'archive_minute' => __( 'Minute %s', 'onetone' ),
-/* Translators: Weekly archive title. %s is the week date format. */
-'archive_week' => __( 'Week %s', 'onetone' ),
-/* "%s" is replaced with the translated date/time format. */
-'archive_minute_hour' => '%s',
-'archive_hour' => '%s',
-'archive_day' => '%s',
-'archive_month' => '%s',
-'archive_year' => '%s',
-);
-return $labels;
+	$labels = array(
+	'browse' => __( 'Browse:', 'onetone' ),
+	'home' => __( 'Home', 'onetone' ),
+	'error_404' => __( '404 Not Found', 'onetone' ),
+	'archives' => __( 'Archives', 'onetone' ),
+	/* Translators: %s is the search query. The HTML entities are opening and closing curly quotes. */
+	'search' => __( 'Search results for &#8220;%s&#8221;', 'onetone' ),
+	/* Translators: %s is the page number. */
+	'paged' => __( 'Page %s', 'onetone' ),
+	/* Translators: Minute archive title. %s is the minute time format. */
+	'archive_minute' => __( 'Minute %s', 'onetone' ),
+	/* Translators: Weekly archive title. %s is the week date format. */
+	'archive_week' => __( 'Week %s', 'onetone' ),
+	/* "%s" is replaced with the translated date/time format. */
+	'archive_minute_hour' => '%s',
+	'archive_hour' => '%s',
+	'archive_day' => '%s',
+	'archive_month' => '%s',
+	'archive_year' => '%s',
+	);
+	return $labels;
 }
 /**
 * Runs through the various WordPress conditional tags to check the current page being viewed. Once
 * a condition is met, a specific method is launched to add items to the $items array.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -233,7 +197,6 @@ $this->items = apply_filters( 'breadcrumb_trail_items', $this->items, $this->arg
 /**
 * Gets front items based on $wp_rewrite->front.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -245,7 +208,6 @@ $this->do_path_parents( $wp_rewrite->front );
 /**
 * Adds the page/paged number to the items array.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -260,7 +222,6 @@ $this->items[] = sprintf( $this->args['labels']['paged'], number_format_i18n( ab
 /**
 * Adds the network (all sites) home page link to the items array.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -271,7 +232,6 @@ $this->items[] = '<a href="' . network_home_url() . '" title="' . esc_attr( $thi
 /**
 * Adds the current site's home page link to the items array.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -283,7 +243,6 @@ $this->items[] = '<a href="' . home_url() . '" title="' . esc_attr( get_bloginfo
 /**
 * Adds items for the front page to the items array.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -306,7 +265,6 @@ $this->items[] = ( is_multisite() && true === $this->args['network'] ) ? get_blo
 /**
 * Adds items for the posts page (i.e., is_home()) to the items array.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -328,7 +286,6 @@ $this->items[] = $title;
 /**
 * Adds singular post items to the items array.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -363,7 +320,6 @@ $this->items[] = $post_title;
 /**
 * Adds a specific post's parents to the items array.
 *
-* @since 0.6.0
 * @access public
 * @param int $post_id The ID of the post to get the parents of.
 * @return void
@@ -389,7 +345,6 @@ $this->items = array_merge( $this->items, array_reverse( $parents ) );
 /**
 * Adds a post's terms from a specific taxonomy to the items array.
 *
-* @since 0.6.0
 * @access public
 * @param int $post_id The ID of the post to get the terms for.
 * @return void
@@ -405,7 +360,6 @@ $this->items[] = get_the_term_list( $post_id, $this->args['post_taxonomy'][ $pos
 * Adds a specific post's hierarchy to the items array. The hierarchy is determined by post type's
 * rewrite arguments and whether it has an archive page.
 *
-* @since 0.6.0
 * @access public
 * @param int $post_id The ID of the post to get the hierarchy for.
 * @return void
@@ -441,7 +395,6 @@ $this->items[] = '<a href="' . get_post_type_archive_link( $post_type ) . '">' .
 * Gets post types by slug. This is needed because the get_post_types() function doesn't exactly
 * match the 'has_archive' argument when it's set as a string instead of a boolean.
 *
-* @since 0.6.0
 * @access public
 * @param int $slug The post type archive slug to search for.
 * @return void
@@ -458,7 +411,6 @@ return $return;
 /**
 * Adds the items to the trail items array for taxonomy term archives.
 *
-* @since 0.6.0
 * @access public
 * @global object $wp_rewrite
 * @return void
@@ -518,7 +470,6 @@ $this->items[] = single_term_title( '', false );
 /**
 * Adds the items to the trail items array for post type archives.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -536,13 +487,16 @@ $this->do_path_parents( $post_type_object->rewrite['slug'] );
 /* Add the post type [plural] name to the trail end. */
 if ( is_paged() )
 $this->items[] = '<a href="' . esc_url( get_post_type_archive_link( $post_type_object->name ) ) . '" title="' . esc_attr( post_type_archive_title( '', false ) ) . '">' . post_type_archive_title( '', false ) . '</a>';
-elseif ( true === $this->args['show_title'] )
-$this->items[] = post_type_archive_title( '', false );
+elseif ( true === $this->args['show_title'] ){
+	if( function_exists('is_shop') && function_exists('woocommerce_page_title') && is_shop())
+     $this->items[] =  woocommerce_page_title(false);
+	else
+    $this->items[] = post_type_archive_title( '', false );
+}
 }
 /**
 * Adds the items to the trail items array for user (author) archives.
 *
-* @since 0.6.0
 * @access public
 * @global object $wp_rewrite
 * @return void
@@ -565,7 +519,6 @@ $this->items[] = get_the_author_meta( 'display_name', $user_id );
 /**
 * Adds the items to the trail items array for minute + hour archives.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -579,7 +532,6 @@ $this->items[] = sprintf( $this->args['labels']['archive_minute_hour'], get_the_
 /**
 * Adds the items to the trail items array for minute archives.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -593,7 +545,6 @@ $this->items[] = sprintf( $this->args['labels']['archive_minute'], get_the_time(
 /**
 * Adds the items to the trail items array for hour archives.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -607,7 +558,6 @@ $this->items[] = sprintf( $this->args['labels']['archive_hour'], get_the_time( _
 /**
 * Adds the items to the trail items array for day archives.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -630,7 +580,6 @@ $this->items[] = $day;
 /**
 * Adds the items to the trail items array for week archives.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -651,7 +600,6 @@ $this->items[] = $week;
 /**
 * Adds the items to the trail items array for month archives.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -672,7 +620,6 @@ $this->items[] = $month;
 /**
 * Adds the items to the trail items array for year archives.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -691,7 +638,6 @@ $this->items[] = $year;
 * Adds the items to the trail items array for archives that don't have a more specific method
 * defined in this class.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -705,7 +651,6 @@ $this->items[] = $this->args['labels']['archives'];
 /**
 * Adds the items to the trail items array for search results.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -718,7 +663,6 @@ $this->items[] = sprintf( $this->args['labels']['search'], get_search_query() );
 /**
 * Adds the items to the trail items array for 404 pages.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -731,7 +675,6 @@ $this->items[] = $this->args['labels']['error_404'];
 * post type. The goal of this function is to create a clear path back to home given what would
 * normally be a "ghost" directory. If any page matches the given path, it'll be added.
 *
-* @since 0.6.0
 * @access public
 * @param string $path The path (slug) to search for posts by.
 * @return void
@@ -776,7 +719,6 @@ break;
 * Searches for term parents of hierarchical taxonomies. This function is similar to the WordPress
 * function get_category_parents() but handles any type of taxonomy.
 *
-* @since 0.6.0
 * @param int $term_id ID of the term to get the parents of.
 * @param string $taxonomy Name of the taxonomy for the given term.
 * @return void
@@ -803,7 +745,6 @@ $this->items = array_merge( $this->items, $parents );
 * post type. In the future, maybe it'll handle a wider variety of possibilities, especially for custom post
 * types.
 *
-* @since 0.6.0
 * @access public
 * @param int $post_id ID of the post whose parents we want.
 * @param string $path Path of a potential parent page.
@@ -864,7 +805,6 @@ $this->items[] = '<a href="' . get_term_link( $term, 'category' ) . '" title="' 
 * Extends the Breadcrumb_Trail class for bbPress. Only use this if bbPress is in use. This should
 * serve as an example for other plugin developers to build custom breadcrumb items.
 *
-* @since 0.6.0
 * @access public
 */
 class onetone_bbPress_Breadcrumb_Trail extends onetone_Breadcrumb_Trail {
@@ -872,7 +812,6 @@ class onetone_bbPress_Breadcrumb_Trail extends onetone_Breadcrumb_Trail {
 * Runs through the various bbPress conditional tags to check the current page being viewed. Once
 * a condition is met, add items to the $items array.
 *
-* @since 0.6.0
 * @access public
 * @return void
 */
@@ -973,4 +912,3 @@ $this->items[] = bbp_get_displayed_user_field( 'display_name' );
 $this->items = apply_filters( 'breadcrumb_trail_get_bbpress_items', $this->items, $this->args );
 }
 }
-?>

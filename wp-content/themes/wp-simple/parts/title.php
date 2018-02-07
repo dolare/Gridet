@@ -2,7 +2,8 @@
 global $post;
 $paged = get_query_var( 'paged', 1 );
 if (is_home() && is_paged()){
-		echo 'Page: '.$paged.'';
+	_e('Page: ', 'wp-simple' );
+	echo $paged;
 } else if (is_home()){
 	echo get_the_title( get_option('page_for_posts', true) );
 } else if (is_singular()){
@@ -25,7 +26,7 @@ if (is_home() && is_paged()){
 				echo  get_the_date('Y'); 
 			}
 		} else if (is_author()) {
-			_e('Posts by: ', 'nimbus' );
+			_e('Posts by: ', 'wp-simple' );
 			echo get_query_var('author_name');
 		} else if (is_category()) {
 			single_cat_title( '', true );
@@ -34,8 +35,8 @@ if (is_home() && is_paged()){
 		}
 	}
 } else if (is_404()){
-	_e('404', 'nimbus_venture' );
+	_e('404', 'wp-simple' );
 } else if (is_search()){
-	echo __('Results for: ', 'nimbus' ) . get_search_query();
+	_e('Results for: ', 'wp-simple' ) . get_search_query();
 }
 ?>

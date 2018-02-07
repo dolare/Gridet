@@ -21,9 +21,9 @@ if (empty($sidebar_select) || ($sidebar_select == 'none')) {
                 <div class="col-sm-8">
                     <p> 
                     <?php 
-                    _e('Posted by ', 'nimbus');  
+                    _e('Posted by ', 'simple-business-wp');  
                     the_author_posts_link(); 
-                    _e(' on ', 'nimbus');
+                    _e(' on ', 'simple-business-wp');
                     the_time(get_option( 'date_format' ));
                     ?></p>
                 </div>
@@ -33,7 +33,7 @@ if (empty($sidebar_select) || ($sidebar_select == 'none')) {
             </div>
             <?php
             the_content();
-            nimbus_clear();
+            simple_business_wp_clear();
             get_template_part( 'parts/wp_link_pages');
             get_template_part( 'parts/tax_tags');
             comments_template();
@@ -57,9 +57,9 @@ if (empty($sidebar_select) || ($sidebar_select == 'none')) {
                 <div class="col-sm-8">
                     <p> 
                     <?php 
-                    _e('Posted by ', 'nimbus');  
+                    _e('Posted by ', 'simple-business-wp');  
                     the_author_posts_link(); 
-                    _e(' on ', 'nimbus');
+                    _e(' on ', 'simple-business-wp');
                     the_time(get_option( 'date_format' ));
                     ?></p>
                 </div>
@@ -69,7 +69,7 @@ if (empty($sidebar_select) || ($sidebar_select == 'none')) {
             </div>
             <?php        
             the_content();
-            nimbus_clear();
+            simple_business_wp_clear();
             get_template_part( 'parts/wp_link_pages');
             get_template_part( 'parts/tax_tags');
             comments_template();

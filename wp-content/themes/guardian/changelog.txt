@@ -1,8 +1,48 @@
 Change Log:
+
+Version 3.8[09/12/2017]
+1. Snow effect option added.
+2. Rating banner dismiss option added.
+
+Version 3.7[01/11/2017]
+1. Text Editor added in Slider, Service Options.
+2. Icon Picker added in Service Options.
+3. Quick Edit Option added.
+4. Home Page Layout Options added.
+5. Rating banner added.
+
+Version 3.6.3[14/07/2017]
+1. New feature add in Slider Option.
+2. Excerpt Option added.
+3. Minor changes in header.
+
+Version 3.6.2[21/03/2017]
+1. Minor changes in custom header.
+
+Version 3.6.1[30/01/2017]
+1. Snow effect Removed.
+2. Randomised Image support.
+
+Version 3.6[13/01/2017]
+1. Minor changes in guardian theme and plugin. FontAwesome Library updated 4.7.0.
+3. Snow effect Added.
+4. minor changes in header and services.
+
+Version 3.4[29/11/2016]
+1. New theme tag changed
+2. Minor CSS header and footer layout changed.
+3. Sidebar layout designs with neww css
+
+Version 3.3[12/08/2016]
+1. Updated Pro Themes & Plugin Page with Upcoming Premium Themes.
+2. Minor CSS related issue Fixed.
+3. Google Fonts reletd issue Fixed.
+4. Font Awesome new version added.
+5. Plugin Recomendation added. 
+
 Version 3.2[10/06/2016]
 1. Updated Pro Themes & Plugin Page with Premium Themes and Plugin Features.
 2. Woocommerce issue Fixed. 
-
 
 Version 3.1[28/05/2016]
 1. Update Theme Info Pgae with Premium Themes and Plugin Features.

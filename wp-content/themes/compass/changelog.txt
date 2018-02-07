@@ -2,8 +2,12 @@
 
 = Theme Name: Compass Theme
 
-= Version: 1.1 =
-***************************************
+= Version: 1.1.1 =
+1. Added few theme support functions.
+2. Made some changes in stylesheet.
+3. Removed some deprecated tags from stylesheet.
+
+= Version: 1.1.0 =
 1. Support Link Button Added In WordPress Customize
 
 = Version: 1.0.9 =

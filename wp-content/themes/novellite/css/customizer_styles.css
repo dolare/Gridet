@@ -31,3 +31,36 @@ ul#sortable li label{
 	box-shadow:  none!important;
 	min-height:20px;
 }
+#accordion-section-section_home_ordering .accordion-section-title:after,
+#accordion-section-pro_slider_feature .accordion-section-title:after,
+#accordion-section-pro_service_feature .accordion-section-title:after,
+#accordion-section-pro_testimonial_feature .accordion-section-title:after,
+#accordion-section-pro_team_feature .accordion-section-title:after{
+    content: "\f160";
+    color:#999;
+}
+#accordion-section-section_home_ordering .accordion-section-title:hover:after,
+#accordion-section-section_home_ordering .accordion-section-title:focus:after,
+#accordion-section-pro_slider_feature .accordion-section-title:hover:after,
+#accordion-section-pro_slider_feature .accordion-section-title:focus:after,
+#accordion-section-pro_service_feature .accordion-section-title:hover:after,
+#accordion-section-pro_service_feature .accordion-section-title:focus:after,
+#accordion-section-pro_testimonial_feature .accordion-section-title:hover:after,
+#accordion-section-pro_testimonial_feature .accordion-section-title:focus:after,
+#accordion-section-pro_team_feature .accordion-section-title:hover:after,
+#accordion-section-pro_team_feature .accordion-section-title:focus:after{
+color:#999!important;
+}
+#accordion-section-section_home_ordering .accordion-section-title:hover,
+#accordion-section-section_home_ordering .accordion-section-title:focus,
+#accordion-section-pro_slider_feature .accordion-section-title:hover,
+#accordion-section-pro_slider_feature .accordion-section-title:focus,
+#accordion-section-pro_service_feature .accordion-section-title:hover,
+#accordion-section-pro_service_feature .accordion-section-title:focus,
+#accordion-section-pro_testimonial_feature .accordion-section-title:hover,
+#accordion-section-pro_testimonial_feature .accordion-section-title:focus,
+#accordion-section-pro_team_feature .accordion-section-title:hover,
+#accordion-section-pro_team_feature .accordion-section-title:focus{
+color: #999!important;
+border-left-color: #999!important;
+}

@@ -1,27 +1,31 @@
 <div class="row content_squeeze">
     <div class="col-sm-6 col-sm-push-6">
-        <?php if (nimbus_get_option('social-toggle') == "1") { ?>
+        <?php if (simple_business_wp_get_option('social-toggle') == "1") { ?>
         <p id="social_buttons" class="text-right">
             <?php
-            $social_type = array("fa-facebook" => "nimbus_facebook_url", "fa-linkedin" => "nimbus_linkedin_url", "fa-twitter" => "nimbus_twitter_url", "fa-envelope" => "nimbus_mail_url");
+            $social_type = array("fa-facebook" => "simple_business_wp_facebook_url", "fa-linkedin" => "simple_business_wp_linkedin_url", "fa-twitter" => "simple_business_wp_twitter_url", "fa-envelope" => "simple_business_wp_mail_url");
             foreach ($social_type as $key => $id) {
-                $$id = trim(nimbus_get_option($id));
+                $$id = trim(simple_business_wp_get_option($id));
                 $mailto = ($key == 'fa-envelope') ? 'mailto:' : '';
-                $id = $$id;
+                if ($key == 'fa-envelope'){
+                    $id = sanitize_email($$id);
+                } else {
+                    $id = esc_url($$id);
+                }
                 if (!empty($id)) {
                 ?>
                     <a href="<?php echo $mailto; ?><?php echo $id; ?>"><i class="fa <?php echo $key; ?> fa-socialcircle"></i></a>
                 <?php
                 }
             }
-            if (nimbus_get_option('nimbus_hide_rss_icon') == 0) {
+            if (simple_business_wp_get_option('simple_business_wp_hide_rss_icon') == 0) {
             ?>
                 <a href="<?php echo get_bloginfo('rss2_url'); ?>"><i class="fa fa-rss fa-socialcircle"></i></a>
             <?php
             }
             ?>
         </p>
-        <?php } else if (nimbus_get_option('social-toggle') == "3") { ?>
+        <?php } else if (simple_business_wp_get_option('social-toggle') == "3") { ?>
 
         <?php } else { ?>
             <p id="social_buttons" class="text-right">

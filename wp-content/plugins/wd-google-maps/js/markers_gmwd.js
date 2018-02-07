@@ -105,16 +105,26 @@ function gmwdSetMarker(){
 
 function gmwdCreateInfoWindow(){
 	var contentString = "";
-    if(jQuery("#pic_url").val()){
-        contentString += '<img src="' + jQuery("#pic_url").val() + '"  style="float:right; margin-left: 10px; max-width:100px">';
+    var infoWindowInfo = jQuery("[name=info_window_info]").val();
+    var contentString = "";
+
+    if(infoWindowInfo.indexOf("title") != -1){
+        contentString += jQuery("#title").val();
     }
-    contentString += (jQuery("#title").val() + "<br>" + jQuery("#marker_address").val()) ;
+    if(infoWindowInfo.indexOf("address") != -1){
+        if(infoWindowInfo.indexOf("title") != -1){
+            contentString += "<br>";
+        }
+        contentString += jQuery("#marker_address").val();
+    } 
+    
 	if(infoWindow){
 		infoWindow.setOptions({content: contentString});
 	}
 	else{
 		infoWindow = new google.maps.InfoWindow({
-			content: contentString
+			content: contentString,
+			disableAutoPan: false
 		});
 	}
 

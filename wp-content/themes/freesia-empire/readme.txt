@@ -1,5 +1,5 @@
 == Freesia Empire ==
-Freesia Empire is a Responsive Multi-Purpose WordPress Theme, Designed & Developed by Theme Freesia. This theme supports popular plugins like Breadcrumb NavXT, WP-PageNavi, Contact Form 7, Jetpack by WordPress.com, Polylang, Newsletter, bbPress and WooCommerce. It is also translation ready and currently translated in French language. It is also easily customizable with lots of theme options using Customizer. It consists contact-template, gallery-template, freesiaempire-corporate template and with lots of widgets and sidebar. Get free support at http://themefreesia.com/support-forum/ and View demo site at http://demo.themefreesia.com/freesia-empire.
+Freesia Empire is a Responsive Multi-Purpose WordPress Theme, Designed & Developed by Theme Freesia. This theme supports popular plugins like Breadcrumb NavXT, WP-PageNavi, Contact Form 7, Jetpack by WordPress.com, Polylang, WPML Compatible, Newsletter, bbPress and WooCommerce. It is also translation ready and currently translated in French language. It is also easily customizable with lots of theme options using Customizer. It consists contact-template, gallery-template, freesiaempire-corporate template and with lots of widgets and sidebar. Get free support at https://tickets.themefreesia.com/ and View demo site at http://demo.themefreesia.com/freesia-empire.
 
 Contributors: ThemeFreesia Team
 
@@ -38,14 +38,15 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 		wow.js: https://github.com/matthieua/WOW/blob/master/LICENSE-MIT under MIT license
 
+		navigation.js
+		Based on Underscores http://underscores.me/, (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+
 	-Images
 		Screenshot Images:
 		https://pixabay.com/en/smartphone-mobile-notebook-notepad-925287/
 		Licensed: Public Domain Images
 		Screenshot Image is modified by ThemeFreesia which is license under GNU General Public License Version 3 or later and can be used or modify for both commercial and personal use
 
-	-TGM-Plugin-Activation
-		https://github.com/TGMPA/TGM-Plugin-Activation/blob/develop/LICENSE.md under GNU GPL license
 
 	- Google Fonts - Apache License, version 2.0
 
@@ -58,16 +59,16 @@ All the theme files and other un-specified scripts are licensed under GNU Genera
 == Freesia Empire Info ==
 
 	- About Theme -
-	http://themefreesia.com/themes/freesia-empire
+	https://themefreesia.com/themes/freesia-empire
 
 	- Theme Demo -
 	http://demo.themefreesia.com/freesia-empire
 
 	- Theme Instruction -
-	http://themefreesia.com/theme-instruction/freesia-empire
+	https://themefreesia.com/theme-instruction/freesia-empire
 
 	- Free Support -
-	http://themefreesia.com/support-forum
+	https://tickets.themefreesia.com/
 
 =================================================================================
 == Menus ==

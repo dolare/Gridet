@@ -6,7 +6,10 @@
  * @subpackage Freesia Empire
  * @since Freesia Empire 1.0
  */
-
+/********************* Set Default Value if not set ***********************************/
+	if ( !get_theme_mod('freesiaempire_theme_options') ) {
+		set_theme_mod( 'freesiaempire_theme_options', freesiaempire_get_option_defaults_values() );
+	}
 /********************* freesiaempire RESPONSIVE AND CUSTOM CSS OPTIONS ***********************************/
 function freesiaempire_resp_and_custom_css() {
 	$freesiaempire_settings = freesiaempire_get_theme_options();
@@ -15,17 +18,6 @@ function freesiaempire_resp_and_custom_css() {
 	<?php } else{ ?>
 	<meta name="viewport" content="width=1070" />
 	<?php  }
-	if (!empty($freesiaempire_settings['freesiaempire_custom_css'] ) ){
-		$freesiaempire_internal_css = '<!-- Custom CSS -->'."\n";
-		$freesiaempire_internal_css .= '<style type="text/css" media="screen">'."\n";
-		if (!empty($freesiaempire_settings['freesiaempire_custom_css']) ) {
-			$freesiaempire_internal_css .= $freesiaempire_settings['freesiaempire_custom_css']."\n";
-		}
-		$freesiaempire_internal_css .= '</style>'."\n";
-	}
-	if (isset($freesiaempire_internal_css)) {
-		echo $freesiaempire_internal_css;
-	}
 }
 add_filter( 'wp_head', 'freesiaempire_resp_and_custom_css');
 
@@ -45,9 +37,8 @@ add_filter('excerpt_more', 'freesiaempire_continue_reading');
 
 /***************** USED CLASS FOR BODY TAGS ******************************/
 function freesiaempire_body_class($classes) {
-	global $freesiaempire_site_layout, $freesiaempire_content_layout;
+	global $freesiaempire_site_layout, $freesiaempire_content_layout, $post;
 	$freesiaempire_settings = freesiaempire_get_theme_options();
-	global $post;
 	if ($post) {
 		$layout = get_post_meta($post->ID, 'freesiaempire_sidebarlayout', true);
 	}
@@ -103,21 +94,6 @@ function freesiaempire_body_class($classes) {
 }
 add_filter('body_class', 'freesiaempire_body_class');
 
-/********************** SCRIPTS FOR DONATE/ UPGRADE BUTTON ******************************/
-function freesiaempire_customize_scripts() {
-	if(!class_exists('Freesia_Empire_Plus_Features')){
-	wp_enqueue_script( 'freesiaempire_customizer_custom', get_template_directory_uri() . '/inc/js/customizer-custom-scripts.js', array( 'jquery' ), '20140108', true );
-
-	$freesiaempire_upgrade_links = array(
-							'upgrade_link'              => esc_url('http://themefreesia.com/themes/freesia-empire'),
-							'upgrade_text'              => __( 'Upgrade to Pro', 'freesia-empire' ),
-							);
-		wp_localize_script( 'freesiaempire_customizer_custom', 'freesiaempire_upgrade_links', $freesiaempire_upgrade_links );
-		wp_enqueue_script( 'freesiaempire_customizer_custom' );
-	wp_enqueue_style( 'freesiaempire_customizer_custom', get_template_directory_uri() . '/inc/js/freesiaempire-customizer.css');wp_enqueue_script( 'freesiaempire_customizer_custom' );
-}
-}
-add_action( 'customize_controls_print_scripts', 'freesiaempire_customize_scripts');
 /***************************** wp_enqueue_script ********* *******************/
 function freesiaempire_jquery_javascript_file($hook) {
 	if( $hook != 'widgets.php' )
@@ -204,7 +180,12 @@ function freesiaempire_page_sliders() {
 					if ($excerpt != '') {
 						$excerpt_text = $freesiaempire_settings['freesiaempire_tag_text'];
 						$freesiaempire_page_sliders_display .= '<div class="slider-text">';
-						$freesiaempire_page_sliders_display .= '<h3>'.$excerpt.' </h3></div><!-- end .slider-text -->';
+						if($freesiaempire_settings['freesiaempire_crop_excerpt_length'] ==1){
+							$freesiaempire_page_sliders_display .= '<h3>'.esc_attr($excerpt).' </h3></div><!-- end .slider-text -->';
+						}else{
+							$freesiaempire_page_sliders_display .= '<h3>'.esc_attr(get_the_excerpt()).' </h3></div><!-- end .slider-text -->';
+						}
+						
 						$freesiaempire_page_sliders_display .= '<div class="slider-buttons">';
 						if($freesiaempire_settings['freesiaempire_slider_button'] == 0){
 							if($excerpt_text == '' || $excerpt_text == 'Read More') :
@@ -249,10 +230,14 @@ function freesiaempire_scripts() {
 	if($freesiaempire_stick_menu != 1):
 	wp_enqueue_script('sticky-scroll', get_template_directory_uri().'/js/freesiaempire-sticky-scroll.js', array('jquery'));
 	endif;
+	wp_enqueue_script('freesiaempire-navigation', get_template_directory_uri().'/js/navigation.js', array('jquery'), false, true);
 	wp_enqueue_script('freesiaempire-quote-slider', get_template_directory_uri().'/js/freesiaempire-quote-slider.js', array('jquery'),'4.2.2', true);
 	wp_enqueue_style( 'freesiaempire_google_fonts' );
 	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.4.1' );
-	wp_style_add_data('freesiaempire-ie', 'conditional', 'lt IE 9');
+
+	// Load the html5 shiv.
+	wp_enqueue_script( 'html5', get_template_directory_uri() . '/js/html5.js', array(), '3.7.3' );
+	wp_script_add_data( 'html5', 'conditional', 'lt IE 9' );
 	if( $freesiaempire_settings['freesiaempire_responsive'] == 'on' ) {
 		wp_enqueue_style('freesiaempire-responsive', get_template_directory_uri().'/css/responsive.css');
 	}
@@ -266,4 +251,23 @@ function freesiaempire_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'freesiaempire_scripts' );
-?>
+/*************************** Importing Custom CSS to the core option added in WordPress 4.7. ****************************************/
+function freesiaempire_custom_css_migrate(){
+$ver = get_theme_mod( 'custom_css_version', false );
+	if ( version_compare( $ver, '4.7' ) >= 0 ) {
+		return;
+	}
+	if ( function_exists( 'wp_update_custom_css_post' ) ) {
+		$freesiaempire_settings = freesiaempire_get_theme_options();
+		if ( $freesiaempire_settings['freesiaempire_custom_css'] != '' ) {
+			$freesiaempire_core_css = wp_get_custom_css(); // Preserve css which is added from core
+			$return   = wp_update_custom_css_post( $freesiaempire_core_css . $freesiaempire_settings['freesiaempire_custom_css'] );
+			if ( ! is_wp_error( $return ) ) {
+				unset( $freesiaempire_settings['freesiaempire_custom_css'] );
+				set_theme_mod( 'freesiaempire_theme_options', $freesiaempire_settings );
+				set_theme_mod( 'custom_css_version', '4.7' );
+			}
+		}
+	}
+}
+add_action( 'after_setup_theme', 'freesiaempire_custom_css_migrate' );

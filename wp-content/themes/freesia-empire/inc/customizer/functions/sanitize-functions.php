@@ -45,6 +45,8 @@ function freesiaempire_sanitize_custom_css( $input ) {
 function freesiaempire_reset_alls( $input ) {
 	if ( $input == 1 ) {
 		delete_option( 'freesiaempire_theme_options');
+		$input=0;
+		return $input;
 	} 
 	else {
 		return '';
@@ -58,4 +60,3 @@ function freesiaempire_sanitize_page( $input ) {
 		return '';
 	}
 }
-?>

@@ -1,13 +1,12 @@
 <?php
-
+namespace MaxButtons; 
 defined('ABSPATH') or die('No direct access permitted');
 
 /* Datamodel and base functionality for a button 
 
 */
 
-use MaxButtons\maxBlocks  as maxBlocks;
-use MaxButtons\maxField   as maxField;	
+use \simple_html_dom as simple_html_dom;
 	 
 class maxButton
 {
@@ -21,10 +20,10 @@ class maxButton
 	protected $button_loaded = false;
 
 	protected $data = array(); 
-	protected $blocks; //= array('basic', 'text' , 'border', 'color', 'gradient', 'container', 'advanced', 'responsive'); // Blocks
+	protected $blocks; // Block Classes
 	protected $templates = array(); // .tpl files
 
-	protected $button_css = array('normal' => array() ,':hover' => array() ,':visited' => array(), "responsive" => array()); 
+	protected $button_css = array(); 
 	protected $button_js = array(); 
 	
 	// output conditions
@@ -33,7 +32,7 @@ class maxButton
 	
 	protected $cssParser = false; 
 	protected $parsed_css = ''; 
-	
+
 	 
 	/* Class constructor 
 	   
@@ -48,97 +47,45 @@ class maxButton
 		// get all files from blocks map 
 		
 		// get all blocks via apply filters, do init. Init should not load anything big. 
+		$this->loadBlockClasses(); 
 		
-
-		$block_paths = apply_filters('mb-block-paths',  array(MB()->get_plugin_path() . "blocks/") );
-		 
-		global $blockClass; // load requires only once
-
-		if ($blockClass == '' || count($blockClass) == 0)
-		{ 
-
-			$newBlocks = array();
-			
-			foreach($block_paths as $block_path)
-			{
-				$dir_iterator = new RecursiveDirectoryIterator($block_path, FilesystemIterator::SKIP_DOTS);
-				$iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
-		
-				foreach ($iterator as $fileinfo)
-				{
-
- 					$path = $fileinfo->getRealPath(); 
- 					// THIS IS PHP > 5.3.6
- 					//$extension = $fileinfo->getExtension(); 
- 					$extension = pathinfo($path, PATHINFO_EXTENSION);
- 					
-					if ($fileinfo->isFile() )
-					{
-						if ($extension == 'php') 
-						{
-						 	require_once($path);
-						}
-						elseif($extension == 'tpl') 
-						{	
-							$filename = $fileinfo->getBasename('.tpl');
-							$this->templates[$filename] = array('path' => $path); 
-						}
-					}
-				}
-
-			}
-				ksort($blockOrder);
-				foreach($blockOrder as $prio => $blockArray)
-				{
-					foreach($blockArray as $block)
-					{
-						if (isset($blockClass[$block]))
-							$newBlocks[$block] = $blockClass[$block]; 
-					
-					}
-				}
-				$blockClass = $newBlocks;
-				if (is_admin())
-				{
-					maxField::setTemplates($this->templates); 
-					maxBlocks::init();
-				}
-				$this->loadBlockClasses($blockClass); 
-		
-
-						
-		} 
-		
-		$this->blocks = array_keys($blockClass);
 	}
  
 	/* Makes overriding block features possible by subclass
 	
 	*/
-	private function loadBlockClasses($classes)
+	private function loadBlockClasses()
 	{
+
 		// set blocks to the 'block name' that survived. 
 		maxUtils::addTime("Load Block classes"); 
 		
-		$classes = apply_filters("mb_blockclassesload", $classes);
+		//$classes = apply_filters("mb_blockclassesload", $classes);
+		$class_array = maxBlocks::getBlockClasses(); 
+		$classes = array_map(maxUtils::namespaceit('maxUtils::array_namespace'), $class_array ); 
 		
-		
-			foreach($classes as $block => $class)
+		foreach($classes as $block => $class)
+		{
+			$block = new $class(); 
+			
+			$this->blocks[] = $block;
+			if (is_admin())
 			{
-				$block = new $class(); 
-				if (is_admin())
-					maxBlocks::add($block); // block collection.
+				maxBlocks::add($block); // block collection.
 			}
+		}
 
- 		do_action("mb_blockclassesloaded", $classes); 
+		
+		$this->clear(); // init
+ 		do_action("mb\blockclasses", $class_array); 
 
 	}
 	
-	/** Simple function to retrieve loaded blocks - * Questionable if in use */ 
-	public function getDefinedBlocks() 
+	/** Simple function to retrieve loaded blocks - * Used by install class */ 
+	public function getBlocks() 
 	{
 		return $this->blocks;
-	}
+	} 
 	
 	/**  Get Data from Database and set variables
 	*
@@ -153,18 +100,16 @@ class maxButton
  		$id = intval($id);
  		$name = sanitize_text_field($name);
  		$status = sanitize_text_field($status);
- 		
- 
- 		
+
 		global $wpdb;
 		$this->clear(); // clear the internals of any previous work 
 		
 		// check to see if the value passed is NOT numeric. If it is, use title, else assume numeric
 		if($id == 0 && $name != '') {
-			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxUtils::get_buttons_table_name() . " WHERE name = '%s' and status ='%s'", trim($name), $status ), ARRAY_A);
+			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxUtils::get_table_name() . " WHERE name = '%s' and status ='%s'", trim($name), $status ), ARRAY_A);
  
 		} else {
-			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxUtils::get_buttons_table_name() . " WHERE id = %d and status ='%s'", $id, $status), ARRAY_A);
+			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxUtils::get_table_name() . " WHERE id = %d and status ='%s'", $id, $status), ARRAY_A);
 		}
 		
 		if (count($row) == 0) 
@@ -188,38 +133,45 @@ class maxButton
 		unset($this->data);
 		unset($this->button_css);
 		$this->id = 0; // clear id
-		$this->button_css = '';
+		$this->button_css = array();
 		$this->button_js = array(); 
-		$this->data = array();
+		$this->data = array('id' => 0);
 		$this->data = $this->save(array(),false);
+
 		$this->cache = ''; 
 		$this->button_loaded = false;
+
+		foreach($this->blocks as $block)
+		{
+			$block->set($this->data); // reset blocks 
+		}
+
 	}
 		
 	function setupData($data)
 	{
+
 		maxUtils::addTime("Button: Setup data");
 		foreach($this->blocks as $block)
 		{
+			$block_name = $block->get_name();
 
-			if (array_key_exists($block, $data))  // strangely isset doesn't work
+			if (array_key_exists($block_name, $data))  // strangely isset doesn't work
 			{
-				$this->data[$block] = maybe_unserialize($data[$block]); // allow to feed unserialized stuff not from dbase
-				if (! is_array($this->data[$block])) 
+				$this->data[$block_name] = maybe_unserialize($data[$block_name]); // allow to feed unserialized stuff not from dbase
+				if (! is_array($this->data[$block_name])) 
 				{
-					$this->data[$block] = json_decode($data[$block], true);
+					$this->data[$block_name] = json_decode($data[$block_name], true);
 				}
  
 			}
-			else 
-			{
-				// else block does not exist in this dataset - ignoring. 
-				//exit("Fatal: Something wrong with provider on $block ");
-			} 
 		}
- 
+		 
 		$this->id = $data["id"];
-		$this->document_id = maxButtons::getDocumentID(array("button_id" => $this->id));
+
+		// Because PHP 5.3 
+		$class = maxUtils::namespaceit('maxButtons');
+		$this->document_id = $class::getDocumentID(array("button_id" => $this->id));
 		$this->cache = isset($data["cache"]) ? trim($data["cache"]) : ''; // not set at button packs / non-dbase buttons!
 		$this->data["id"] = $this->id; // needed for certain blocks, to be button aware. 
 		$this->data["document_id"] = $this->document_id; // bound to JS and others. 
@@ -227,7 +179,14 @@ class maxButton
 		$this->status = $data["status"];
 		$this->description = $this->data["basic"]["description"]; 
 
-		do_action('mb-data-load', $this->data);
+		//do_action('mb-data-load', $this->data);
+		foreach($this->blocks as $block)
+		{
+			$block->set($this->data);
+		}
+		
+		maxBlocks::setData($this->data);
+
 
 		return true;
 		 
@@ -291,6 +250,7 @@ class maxButton
 		$this->cache = $cache; 
 	}	
 
+	/* Used by collections and import. Use sparingly. Button data is reput to blocks on display */
 	function setData($blockname, $data ) 
 	{
 		foreach($data as $key => $value)
@@ -299,15 +259,17 @@ class maxButton
 	
 		}
 	}
+
 	
-	/* Tell all blocks to reload the daa
+	/* Tell all blocks to reload the data
 	
 	   This function will tell all loaded blocks to reload it's data. This is needed when data is changed after the initial button load. 
 	   
 	*/ 
 	function reloadData()
 	{
-		do_action('mb-data-load', $this->data);
+		exit('reload Data - do not use');
+		//do_action('mb-data-load', $this->data);
 	
 	} 
 
@@ -337,8 +299,12 @@ class maxButton
 		else
 		{ 
 			/* Internal filter, please don't use */ 
-			$css = apply_filters('mb-css-blocks', $css, $mode);
-			
+			foreach($this->blocks as $block)
+			{
+				$css = $block->parse_css($css, $mode); 
+			}
+			//$css = apply_filters('mb-css-blocks', $css, $mode);
+			 
 			/* Filter the raw CSS array before compile
 			
 			This filters passes an array with all CSS element before compile time. This should be CSS elements that can be understood by the CSS parser. 
@@ -346,10 +312,12 @@ class maxButton
 				@param $css CSS Array - split by element and pseudo (normal/hover) 
 				
 			*/
+					
  			$css = apply_filters('mb/button/rawcss', $css, $mode); 
 
 			$this->button_css = $css;
-		 
+
+
 			$css = $this->getCSSParser()->parse($this->button_css);
 			$css = apply_filters('mb/button/compiledcss', $css, $mode); // the final result. 
 						
@@ -374,7 +342,12 @@ class maxButton
 	{
 		maxUtils::addTime("Button :: parse JS");
 		$js = $this->button_js; 
-		$js = 	apply_filters('mb-js-blocks', $js, $mode);
+		foreach($this->blocks as $block)
+		{
+			$js = $block->parse_js($js,$mode); 
+			
+		}
+
 		$this->button_js = $js; 
 	}
 	
@@ -403,7 +376,12 @@ class maxButton
 		$domObj = new simple_html_dom();
 		$domObj->load('<a class="' . $classes . '"></a>'); 
    
-		$domObj = apply_filters('mb-parse-button', $domObj, $mode, $this->id); 
+
+ 		foreach($this->blocks as $block)
+ 		{
+ 			$domObj = $block->parse_button($domObj, $mode);
+ 		}	
+ 
  
 		$domObj->load($domObj->save());
  
@@ -416,7 +394,12 @@ class maxButton
 	/* Display all data and html to allow users to edit button settings */ 
 	public function admin_fields() 
 	{
-		do_action('mb-admin-fields' ); 
+		foreach($this->blocks as $block)
+		{
+			$block->admin_fields(); 
+			
+		}
+		//do_action('mb-admin-fields' ); 
  
 	}
 	
@@ -444,9 +427,10 @@ class maxButton
 			if (! $args["mode"] == 'editor' ) 
 				return;
  
-			$data = apply_filters("mb-save-fields", array(), array() ); // load defaults
-			$data["id"] = 0;
-			do_action('mb-data-load', $data);
+			 $this->clear();	
+			
+			$this->data["id"] = 0;
+			//do_action('mb-data-load', $data);
 		}
 		
 		$mode = (isset($args["mode"])) ? $args["mode"] : "normal"; 		
@@ -467,8 +451,14 @@ class maxButton
  				$compile = false;
  			break;
  		}
-		
 
+
+		// Apply filters for general data override
+
+		$this->data = apply_filters('mb/button/data_before_display', $this->data, $mode, array('preview' => $preview, 'compile' => $compile) ); // hooks 
+
+		
+		
  		if ( $this->load_css == "element" || $args["preview_part"] != "full" || $args["compile"] == true) { // if css output is on element, for to compile - otherwise inline styles will not be loaded.
  			$compile = true;
 
@@ -476,6 +466,12 @@ class maxButton
  		else 
  			$compile = false;
 
+		// reload the data into the blocks, might have been altered by shortcode, filters etc.
+
+		foreach($this->blocks as $block)
+		{
+			$block->set($this->data);
+		}
 
 		$domObj = $this->parse_button($mode); 
 		
@@ -554,7 +550,11 @@ class maxButton
 	public function display_field_map()
 	{
 		$map = array(); 
-		$map = apply_filters("mb-field-map",$map); 
+		foreach($this->blocks as $block)
+		{
+			$map = $block->map_fields($map); 
+		}
+		//$map = apply_filters("mb-field-map",$map); 
 		
 
 		echo "<script language='javascript'>"; 	
@@ -659,7 +659,13 @@ class maxButton
 	public function save($post, $savedb = true)
 	{
  		$post = stripslashes_deep($post); // don't multiply slashes please.
-		$data = apply_filters('mb-save-fields',$this->data, $post); 
+		//$data = apply_filters('mb-save-fields',$this->data, $post); 
+ 		$data = $this->data;
+ 
+ 		foreach($this->blocks as $block) 
+ 		{
+ 			$data = $block->save_fields($data, $post); 
+ 		}
  
 		if (! $savedb ) return $data; 
 		return $this->update($data); // save to db. 
@@ -675,10 +681,12 @@ class maxButton
 		$fields = array(); 
 		foreach($this->blocks as $block)
 		{
-			if (isset($data[$block])) 
+			$block_name = $block->get_name(); 
+			
+			if (isset($data[$block_name])) 
 			{
-				$blockData = $data[$block]; 
-				$fields[$block] = json_encode($blockData);
+				$blockData = $data[$block_name]; 
+				$fields[$block_name] = json_encode($blockData);
 			}
 		}	
  		if (isset($data["name"])) {  // other fields. 
@@ -699,21 +707,24 @@ class maxButton
 		}
 		else
 		{
- 
+ 			$fields['created'] = current_time('mysql',1); 
+
 			$result = $wpdb->insert(maxUtils::get_table_name(), $fields);
 			$id = $wpdb->insert_id;
-	 
+
  			$this->id = $id;
  			$return = $id; 
 		
 		}
 		
  
-		if ($result === 0)
+		if ($result === false)
 		{
-
 			$error = "Database error " . $wpdb->last_error;
 			MB()->add_notice('error', $error); 
+		 	$install = MB()->getClass("install"); 
+			$install::create_database_table(); // run dbdelta to try and fix.
+			
 		}
 		
  		// update the cache 
@@ -775,6 +786,7 @@ class maxButton
 				'name' => '',
 				'text' => '',
 				'url' => '',
+				'linktitle' => '', 
 				'window' => '',
 				'nofollow' => '',
 				'nocache' => false, 
@@ -790,7 +802,7 @@ class maxButton
 			$result = $this->set($button_id); 
 		elseif ($button_name != '') 
 			$result = $this->set(0, $button_name); 
-		else return; // no button
+		else return; // no button id / name
 		 
 		/* Shortcode cache control
 		
@@ -837,9 +849,21 @@ class maxButton
 			$this->data["basic"]["new_window"] = 1;  
 			$overrides = true;
 		}
+		elseif ($window != '' && $window == 'same') 
+		{
+			$this->data["basic"]["new_window"] = 0;  
+			$overrides = true;		
+		}
+		
 		if ($nofollow != '' && $nofollow == 'true') 
 		{
 			$this->data["basic"]["nofollow"] = 1; 
+			$overrides = true;
+		}
+		
+		if ($linktitle != '') 
+		{
+			$this->data['basic']['link_title'] = $linktitle; 
 			$overrides = true;
 		}
 
@@ -858,15 +882,16 @@ class maxButton
 		$this->data = $this->shortcode_overrides($this->data, $atts); 
 		$this->data = apply_filters('mb/shortcode/data', $this->data, $atts); 
 		
-		if ($data !== $this->data) 
+/*		if ($data !== $this->data) 
 		{
 			$overrides = true; 
 		}
-		
-		if ($overrides)
+*/		
+/*		if ($overrides)
 		{
 			do_action('mb-data-load', $this->data);
 		}
+*/		
 		// if there are no reasons not to display; display
 		$args = array("echo" => false, 
 					  "load_css" => $load_css, 
@@ -887,5 +912,5 @@ class maxButton
 		return $data;
 	}
 	
-}
+} // class
 

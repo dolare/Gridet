@@ -9,7 +9,6 @@
 
 get_header();
 	$freesiaempire_settings = freesiaempire_get_theme_options();
-	global $post;
 	global $freesiaempire_content_layout;
 	if( $post ) {
 		$layout = get_post_meta( $post->ID, 'freesiaempire_sidebarlayout', true );
@@ -28,7 +27,7 @@ get_header();
 	<?php }
 	}?>
 	<div id="main">
-	<?php global $post;
+	<?php
 	if( have_posts() ) {
 		while( have_posts() ) {
 			the_post(); ?>
@@ -65,4 +64,4 @@ if( 'default' == $layout ) { //Settings from customizer
 	} 
 }
 get_sidebar();
-get_footer(); ?>
+get_footer();

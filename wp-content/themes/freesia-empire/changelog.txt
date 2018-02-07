@@ -1,4 +1,61 @@
 == CHANGE LOG ==
+= 1.2.3.1 =
+	- Fix - Search field issue fixed for safari browser
+			- html5 enqueued properly
+			- fixed for touch-hover issue on small devices
+	- Update - Jquery Script and CSS Updated
+
+= 1.2.3.0 =
+	- Fix - Undefined variable: post in freesia-empire/inc/settings/freesiaempire-common-functions.php on line 92
+
+= 1.2.2.9 =
+	- Removed - TGM Plugin activation removed
+	- Update - POT file updated
+
+= 1.2.2.8 =
+	- New - Compatible with Product Zoom, Gallery Lightbox and Slider
+			- Crop Excerpt length by text added
+	- Update - Ticket Links Updated
+
+
+= 1.2.2.7 =
+	- Fix - Fixed an issue with  Default Layout Set in Customizer while it reset to default value
+	- Fix - Invalid error with reset button fixed
+
+= 1.2.2.6 =
+	- Update - Upgrade to Pro button removed from top of customizer and added on section
+	- Updated - Custom CSS added to support core for WP version 4.7
+	- Fix - http to https path changed
+
+= 1.2.2.5 =
+	- Fix - Undefined post fixed inside freesiaempire-functions.php
+
+= 1.2.2.4 =
+	- New - Featured Image also displayed on page
+	- Fix - Featured Image on Search Results added
+	- Fix - WooCommerce CSS for overlapping fixed
+
+= 1.2.2.3 =
+	- Fix - Single page loop issues fixed
+
+= 1.2.2.2 =
+	- Fix - Unwanted Code removed
+
+= 1.2.2.1 =
+	- Fix - $post global value removed
+	- Fix - Used the_title_attribute('echo=0') instead the_title( '', '', false )
+	- Fix - Using the_post_thumbnail as recommended
+	- Fix - Removed theme support html5 from search form
+	
+= 1.2.2 =
+	- Update - Compatible with WPML
+
+= 1.2.1 =
+	- Tweak - html5 enqueued as twentysixteen
+	- Fix - Unwanted Code removed
+	- Fix - is_product_category undefined issue fixed while using bbpress forum
+	- Update - WooCommerce Account Page css added
+
 = 1.2.0 =
 	- Fix - Deprecated Tag removed
 	- Fix - slider issue fixed

@@ -31,10 +31,7 @@ class GMWDViewMaps_gmwd extends GMWDView{
 	?>	
         
 		<div class="gmwd">	
-            <div style="font-size: 14px; font-weight: bold;">
-                <?php _e(" This section allows you to create, edit and delete maps.","gmwd");?>
-                <a style="color: #00A0D2; text-decoration: none;" target="_blank" href="https://web-dorado.com/wordpress-google-maps/creating-map.html"><?php _e("Read More in User Manual.","gmwd");?></a>
-            </div>          
+        
 			<form method="post" action="" id="adminForm">
                 <?php wp_nonce_field('nonce_gmwd', 'nonce_gmwd'); ?>  
 				<!-- header -->
@@ -185,11 +182,7 @@ class GMWDViewMaps_gmwd extends GMWDView{
         <div class="gmwd_opacity_div">
             <div class="gmwd_opacity_div_loading"><img src="<?php echo GMWD_URL."/images/loading.gif";?>"></div>
         </div>
-		<div class="gmwd_edit"> 
-            <div style="font-size: 14px; font-weight: bold;">
-                <?php _e(" This section allows you to add/edit map.","gmwd");?>
-                <a style="color: #00A0D2; text-decoration: none;" target="_blank" href="https://web-dorado.com/wordpress-google-maps/creating-map.html"><?php _e("Read More in User Manual.","gmwd");?></a>
-            </div>         
+		<div class="gmwd_edit">         
             <h2>
 				<img src="<?php echo GMWD_URL . '/images/icon-map.png';?>" width="30" style="vertical-align:middle;">
 				<span>
@@ -645,6 +638,9 @@ class GMWDViewMaps_gmwd extends GMWDView{
 					<li>
 						<a href="#settings-marker-listing" <?php echo (GMWDHelper::get('active_settings_tab') == "settings-marker-listing") ? 'class="wd-settings-active-tab"' : ''; ?> ><?php _e("Marker Listing","gmwd");?></a>
 					</li>
+                     <li>             
+						<a href="#settings-marker_category_filter	" <?php echo (GMWDHelper::get('active_settings_tab') == "settings-marker_category_filter") ? 'class="wd-settings-active-tab"' : ''; ?> ><?php _e("Marker Category Filter","gmwd");?></a>
+					</li>                      
 					<li>
 						<a href="#settings-advanced" <?php echo (GMWDHelper::get('active_settings_tab') == "settings-advanced") ? 'class="wd-settings-active-tab"' : ''; ?> ><?php _e("Advanced Settings","gmwd");?></a>
 					</li>						
@@ -671,6 +667,9 @@ class GMWDViewMaps_gmwd extends GMWDView{
 					<div id="settings-marker-listing" class="wd-left wd-settings-container" <?php echo GMWDHelper::get('active_settings_tab') == "settings-marker-listing"  ? '' : 'style="display:none;"'; ?>>
 						<?php $this->settings_marker_listing($row, $lists); ?>
 					</div>
+					<div id="settings-marker_category_filter" class="wd-left wd-settings-container" <?php echo GMWDHelper::get('active_settings_tab') == "settings-marker_category_filter"  ? '' : 'style="display:none;"'; ?>>
+						<?php $this->settings_marker_category_filter($row, $lists); ?>
+					</div>	                    
 					<div id="settings-advanced" class="wd-left wd-settings-container" <?php echo GMWDHelper::get('active_settings_tab') == "settings-advanced"  ? '' : 'style="display:none;"'; ?>>
 						<?php $this->settings_advanced($row, $lists); ?>
 					</div>                      
@@ -1035,7 +1034,16 @@ class GMWDViewMaps_gmwd extends GMWDView{
 					</select>
 				</td>
 			</tr>
-
+			<tr>
+				<td><label title="<?php _e("Choose whether to display category filter or not.","gmwd");?>"><?php _e("Show Categories","gmwd"); ?>:</label></td>
+				<td>
+				  <input type="radio" class="gmwd_disabled_field" id="enable_store_locator_cats0" name="enable_store_locator_cats" checked="checked value="0" disabled readonly>
+				  <label for="enable_store_locator_cats0"><?php _e("No","gmwd"); ?></label>
+				  <input type="radio" class="gmwd_disabled_field" id="enable_store_locator_cats1" name="enable_store_locator_cats"  value="1" disabled readonly >
+				  <label for="enable_store_locator_cats1"><?php _e("Yes","gmwd"); ?></label>
+				  <div class="gmwd_pro_option"><small><?php _e("Only in the Paid version.","gmwd");?></small></div>
+				</td>
+			</tr>
             <tr>
                 <td><label for="circle_line_width" title="<?php _e("Scale the area of the circle of store locator on the map.","gmwd");?>"><?php _e("Circle Line Width","gmwd");?>:</label></td>
                 <td>
@@ -1179,7 +1187,24 @@ class GMWDViewMaps_gmwd extends GMWDView{
 				<td>
                     <input type="text" name="listing_header_title" id="listing_header_title" value="<?php _e("Markers","gmwd");?>" disabled readonly>                
                 </td>
-			</tr>             
+			</tr>
+            <tr>
+                <td><label for="marker_listing_order" title="<?php _e("Order your marker listsing.","gmwd");?>"><?php _e("Order By","gmwd");?>:</label></td>
+                <td>
+                    <select name="marker_listing_order" id="marker_listing_order" disabled readonly>
+                            <option><?php _e("Title","gmwd");?></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="marker_listing_order_dir" title="<?php _e("Choose order direction for your marker listsing.","gmwd");?>"><?php _e("Order Direction","gmwd");?>:</label></td>
+                <td>
+                    <input type="radio" class="inputbox" id="marker_listing_order_dir0" name="marker_listing_order_dir" checked="checked" value="asc" disabled readonly>
+                    <label for="marker_listing_order_dir0"><?php _e("Asc","gmwd"); ?></label>
+                    <input type="radio" class="inputbox" id="marker_listing_order_dir1" name="marker_listing_order_dir"  value="desc" disabled readonly>
+                    <label for="marker_listing_order_dir1"><?php _e("Desc","gmwd"); ?></label>
+                </td>
+            </tr>
 			<tr>
 				<td><label for="marker_list_position" title="<?php _e("Select the position for marker listing.","gmwd");?>"><?php _e("Marker List Position","gmwd");?>:</label></td>
 				<td>
@@ -1207,15 +1232,7 @@ class GMWDViewMaps_gmwd extends GMWDView{
 					</select>
 				</td>
 			</tr>            
-			<tr>
-				<td><label title="<?php _e("Disable/enable category filter.","gmwd");?>"><?php _e("Enable Category Filter","gmwd"); ?>:</label></td>
-				<td>
-				  <input type="radio" class="inputbox gmwd_disabled_field" id="enable_category_filter0" name="enable_category_filter" <?php echo (($row->enable_category_filter) ? '' : 'checked="checked"'); ?> value="0"  disabled readonly>
-				  <label for="enable_category_filter0"><?php _e("No","gmwd"); ?></label>
-				  <input type="radio" class="inputbox gmwd_disabled_field" id="enable_category_filter1" name="enable_category_filter" <?php echo (($row->enable_category_filter) ? 'checked="checked"' : ''); ?> value="1" disabled readonly >
-				  <label for="enable_category_filter1"><?php _e("Yes","gmwd"); ?></label>
-				</td>
-			</tr>
+
 			<tr>
 				<td><label title="<?php _e(" Disable/enable marker list on the map.","gmwd");?>"><?php _e("Enable List Inside Map","gmwd"); ?>:</label></td>
 				<td>
@@ -1244,7 +1261,65 @@ class GMWDViewMaps_gmwd extends GMWDView{
 	
 	<?php	
 	}	
-    
+	private function settings_marker_category_filter($row, $lists){
+	?>
+        <div class="gmwd_pro_option gmwd_pro_option_msg"><?php _e("Marker category filter is avalibale only in the Paid version.","gmwd");?></div>
+		<table class="settings_table">           
+			<tr>
+				<td><label title="<?php _e("Disable/enable category filter.","gmwd");?>"><?php _e("Enable Category Filter","gmwd"); ?>:</label></td>
+				<td>
+				  <input type="radio" class="inputbox gmwd_disabled_field" id="enable_category_filter0" name="enable_category_filter" checked value="0" disabled readonly >
+				  <label for="enable_category_filter0"><?php _e("No","gmwd"); ?></label>
+				  <input type="radio" class="inputbox gmwd_disabled_field" id="enable_category_filter1" name="enable_category_filter" value="1" disabled readonly >
+				  <label for="enable_category_filter1"><?php _e("Yes","gmwd"); ?></label>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="category_filter_type" title="<?php _e("Select the view type of your markers category filter.","gmwd");?>"><?php _e("Category Filter View","gmwd"); ?>:</label></td>
+				<td>
+					<select name="category_filter_type" id="category_filter_type" class="gmwd_disabled_field" disabled readonly>
+                        <option>Select</option>
+					</select>
+				</td>
+			</tr> 
+			<tr>
+				<td><label title="<?php _e(" Disable/enable marker category filter on the map.","gmwd");?>"><?php _e("Enable Category Filter Inside Map","gmwd"); ?>:</label></td>
+				<td>
+				  <input type="radio" class="inputbox gmwd_disabled_field" id="marker_categories_inside_map0" name="marker_categories_inside_map" checked value="0" disabled readonly>
+				  <label for="marker_categories_inside_map0"><?php _e("No","gmwd"); ?></label>
+				  <input type="radio" class="inputbox gmwd_disabled_field" id="marker_categories_inside_map1" name="marker_categories_inside_map"  value="1" disabled readonly>
+				  <label for="marker_categories_inside_map1"><?php _e("Yes","gmwd"); ?></label>
+				</td>	
+			</tr>
+			<tr>
+				<td><label for="imcategory_filter_type" title="<?php _e("Select the view type of your inside map markers category filter.","gmwd");?>"><?php _e("Inside Map Category Filter View","gmwd"); ?>:</label></td>
+				<td>
+					<select name="imcategory_filter_type" id="imcategory_filter_type" class="gmwd_disabled_field" disabled readonly>
+                        <option>Select</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="category_filter_im_position" title="<?php _e("Select the inside map marker category filter position.","gmwd");?>"><?php _e("Inside Map Category Filter Position","gmwd"); ?>:</label></td>
+				<td>
+					<select name="category_filter_im_position" id="category_filter_im_position" class="gmwd_disabled_field" disabled readonly>
+                        <option>Select</option>
+					</select>
+				</td>
+			</tr> 
+			<tr>
+				<td><label title="<?php _e(" Show/hide marker category icon.","gmwd");?>"><?php _e("Show Category Icon","gmwd"); ?>:</label></td>
+				<td>
+				  <input type="radio" class="inputbox gmwd_disabled_field" id="show_cat_icon0" name="show_cat_icon" checked value="0" disabled readonly>
+				  <label for="show_cat_icon0"><?php _e("No","gmwd"); ?></label>
+				  <input type="radio" class="inputbox gmwd_disabled_field" id="show_cat_icon1" name="show_cat_icon"  value="1" disabled readonly>
+				  <label for="show_cat_icon1"><?php _e("Yes","gmwd"); ?></label>
+				</td>	
+			</tr>            
+		</table>
+	
+	<?php	
+	}    
     private function settings_advanced($row, $lists){ 
     ?>
         <table class="settings_table">
@@ -1266,7 +1341,15 @@ class GMWDViewMaps_gmwd extends GMWDView{
 					</select>
 				</td>
 			</tr>	
+			<tr>
+				<td><label for="info_window_info" title="<?php _e("Choose information to show in an info window.","gmwd");?>"><?php _e("Show in Info Window","gmwd");?>:</label></td>
+				<td>
+                    <input type="checkbox" value="title" id="info_window_title" class="info_window_info" <?php echo in_array("title", $row->info_window_info) ? "checked" : ""; ?> ><label for="info_window_title"><?php _e("Marker Title","gmwd");?></label><br> 
+                    <input type="checkbox" value="address" id="info_window_address" class="info_window_info" <?php echo in_array("address", $row->info_window_info) ? "checked" : ""; ?> ><label for="info_window_address"><?php _e("Marker Address","gmwd");?></label><br>                    
+                    <input type="hidden" name="info_window_info" value="<?php echo implode(",", $row->info_window_info); ?>">                    
 
+				</td>
+			</tr>
 			<tr>
 				<td><label title="<?php _e("Select marker info window type.","gmwd");?>"><?php _e("Marker Info Window Type","gmwd"); ?>:</label></td>
 				<td>
@@ -1300,7 +1383,7 @@ class GMWDViewMaps_gmwd extends GMWDView{
 				</td>
 			</tr> 
 			<tr>
-				<td><label for="searchbox_position" title="<?php _e("Select the position of the searchbox.","gmwd");?>"><?php _e("Serachbox Position","gmwd"); ?>:</label></td>
+				<td><label for="searchbox_position" title="<?php _e("Select the position of the searchbox.","gmwd");?>"><?php _e("Searchbox Position","gmwd"); ?>:</label></td>
 				<td>
 					<select name="searchbox_position" id="searchbox_position">
 						<?php 

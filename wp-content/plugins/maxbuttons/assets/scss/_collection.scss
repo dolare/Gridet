@@ -5,9 +5,45 @@
 	max-width: none;
 }
 
-.collection_list { 
- 
+// temp interface befire exit collection IF
+.social-share-move {
+	padding: 15px; 
+	border: 0;
+	.inside {
+		border: 0;
+	}
+	h3 { 
+		font-size: 28px;
+		line-height: 30px;
+		
+	}
 	
+	p { 
+		font-size: 16px;
+	}
+	a {
+		width: 200px;
+		height: auto;
+		font-size: 30px;
+		line-height: 32px;
+		padding: 12px 0;
+		text-align: center;
+	}
+	
+}
+
+.collection-addnew
+{
+	display: inline-block;
+	@include bp(780)
+	{
+		//margin: 5px 0px 5px 5px;
+		//display: inline-block;
+		margin-left: 5px;
+	}
+}
+
+.collection_list { 
 	.collection { 
 		position: relative;
 		background-color: #fff;
@@ -38,9 +74,13 @@
 				vertical-align: top; 
 			}
 		} 
-		.tb-close-icon {
+		.collection_remove {
 			top: 10px; 
-			right: 10px; 
+			right: 15px; 
+			font-size: 25px;
+			font-weight: 400; 
+			position:absolute; 
+			cursor: pointer; 
 		}
 		&.welcome  // intro-text
 			
@@ -156,14 +196,25 @@
 	right: 20px; 
 	width: 30%; 
 	max-width: 45%; 
-	height: 300px; 
+	//height: 300px; 
 	max-height: 90vh; 
 	background-color: rgba(255,255,255,0.7);
 	border: 1px solid #000; 
 	z-index: 500 !important;
 	overflow: hidden; 
 	display: none;
-	
+	@include bp(780)
+	{
+		position: relative;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		height: auto;
+		display: inline-block;
+		border-color: #ccc;
+	}
 	.mb-preview-wrapper {
 		position: relative; 
  		display: inline-block;
@@ -210,7 +261,7 @@
 	//height: 100%; 
 	//width: 100%; 
 	width: calc(100%  - 60px); 
-	height: calc(100% - 60px);
+	//height: calc(100% - 60px);
 	min-height: 300px; 
 	top: 30px; bottom: 30px;
 	left: 30px; right: 30px;
@@ -369,7 +420,10 @@
 			height: 100%;
 			left: 130px;
 			right: 180px;
-			
+			@include bp(780)
+			{
+				display: none;
+			}	// hide items on small screens.	
 			.item {
 				height: 40px;
 				width: 40px; 

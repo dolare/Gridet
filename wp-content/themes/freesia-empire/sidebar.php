@@ -6,8 +6,7 @@
  * @subpackage Freesia Empire
  * @since Freesia Empire 1.0
  */
-	$freesiaempire_settings = freesiaempire_get_theme_options();
-	global $post;   
+	$freesiaempire_settings = freesiaempire_get_theme_options(); 
 	global $freesiaempire_content_layout;
 	if( $post ) {
 		$layout = get_post_meta( $post->ID, 'freesiaempire_sidebarlayout', true );
@@ -38,4 +37,3 @@ if( 'default' == $layout ) { //Settings from customizer
 			echo '</aside><!-- #secondary -->';
 		}
 	}
-?>

@@ -4,11 +4,11 @@
  Author:       Themeisle
  Author URI:   https://themeisle.com
  Template:     zerif-lite
- Version:      1.0.3
+ Version:      1.0.4
  License:      GNU General Public License version 3
  License URI:  http://www.gnu.org/licenses/gpl-3.0.html
  Text Domain:  one-pirate
- Tags:         black, gray, red, white, one-column, two-columns, right-sidebar, responsive-layout, custom-background, custom-menu, editor-style, featured-images, threaded-comments, translation-ready
+ Tags:         one-column, two-columns, right-sidebar, custom-background, custom-menu, editor-style, featured-images, threaded-comments, translation-ready
 */
 
 
@@ -31,11 +31,11 @@ body {
 Header
 --------------------------------------------------------------*/
 .navbar-inverse .navbar-nav > li > a {
-    color: #302404 !important;
+    color: #302404;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover {
-    color: #E96656 !important;
+    color: #E96656;
     outline: medium none;
     border-bottom: 2px solid #E96656;
     -webkit-transition: all 100ms;
@@ -65,7 +65,7 @@ Content
 
 .focus-box .service-icon .pixeden {
     border-radius: 50%;
-    background-color: #FEFEFE !important;
+    background-color: #FEFEFE;
 }
 
 .focus {
@@ -82,7 +82,7 @@ Content
 
 .about-us * .section-header h2 {
     padding-bottom: 10px;
-    color: #FFF !important;
+    color: #FFF;
     line-height: 40px;
     position: relative;
     display: inline-block;
@@ -91,20 +91,20 @@ Content
 }
 
 .about-us * .white-text{
-    color: #34c5f2 !important;
+    color: #34c5f2;
 }
 
 .about-us * p{
-    color: #7E7E7E !important;
+    color: #7E7E7E;
 }
 
 .dark-text{
-    color: #412a22 !important;
+    color: #412a22;
 }
 
 .testimonial {
     padding-bottom: 90px;
-    background: rgba(247, 203, 0, 0.9) none repeat scroll 0% 0% !important;
+    background: rgba(247, 203, 0, 0.9) none repeat scroll 0% 0%;
 }
 
 
@@ -120,13 +120,13 @@ Content
     content: "";
     width: 75%;
     height: 2px;
-    background: #FFB000 none repeat scroll 0% 0% !important;
+    background: #FFB000 none repeat scroll 0% 0%;
     bottom: -9px;
     left: 12.5%;
 }
 
 .our-team * h6{
-    color: #44B0CE !important;
+    color: #44B0CE;
 }
 
 
@@ -164,19 +164,19 @@ Content
 
 
 #carousel-homepage-latestnews .item .latestnews-box:nth-child(4n+1) .latestnews-title a::before {
-    background: #fc6041 none repeat scroll 0% 0% !important;
+    background: #fc6041 none repeat scroll 0% 0%;
 }
 
 #carousel-homepage-latestnews .item .latestnews-box:nth-child(4n+2) .latestnews-title a::before {
-    background: #ccbe0a none repeat scroll 0% 0% !important;
+    background: #ccbe0a none repeat scroll 0% 0%;
 }
 
 #carousel-homepage-latestnews .item .latestnews-box:nth-child(4n+3) .latestnews-title a::before {
-    background: #6fd0f7 none repeat scroll 0% 0% !important;
+    background: #6fd0f7 none repeat scroll 0% 0%;
 }
 
 #carousel-homepage-latestnews .item .latestnews-box:nth-child(4n+4) .latestnews-title a::before {
-    background: #f7cb00 none repeat scroll 0% 0% !important;
+    background: #f7cb00 none repeat scroll 0% 0%;
 }
 
 .latesnews-content > p{
@@ -185,7 +185,7 @@ Content
 
 .team-member:hover .details {
     top: 0px;
-    background: #44B9DC none repeat scroll 0% 0% !important;
+    background: #44B9DC none repeat scroll 0% 0%;
     color: #FFF;
     opacity: 1;
 }

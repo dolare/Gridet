@@ -2,13 +2,16 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package WordPress
+ * @package ThemeHunk
  * @subpackage NovelLite
  * @since NovelLite 1.0
  */
 ?>
 <?php get_header(); ?>
-<div class="page_heading_container">
+<?php $layout = novellite_get_layout(); ?>
+<div class="page_heading_container" <?php if (get_theme_mod('header_image','') != '') { ?>
+ style="background: url(<?php echo esc_url(get_theme_mod('header_image','')); ?>);"
+ <?php }?> >
     <div class="container">
         <div class="row">
 		<div class="col-md-12">
@@ -23,8 +26,12 @@
      <div class="container">
         <div class="row">
 		<div class="col-md-12">
-            <div class="page-content">
-                 <div class="col-md-9">
+        <div class="page-content <?php echo $layout; ?>">
+<?php if ( $layout != 'no-sidebar' ){ ?>
+    <div class="col-md-9">
+<?php } else { ?>
+    <div class="col-md-12">
+<?php } ?>
                     <div class="content-bar">  
                         <!-- Start the Loop. -->
                         <?php
@@ -94,11 +101,13 @@
                         <!--End post-->
                     </div>
                 </div>
-				 <div class="col-md-3">
-				<!--Start Sidebar-->
-				<?php get_sidebar(); ?>
-				<!--End Sidebar-->
-				</div> 
+		<?php if ( $layout != 'no-sidebar' ) { ?>
+		<div class="col-md-3">
+		<!--Start Sidebar-->
+		<?php get_sidebar(); ?>
+		<!--End Sidebar-->
+		</div> 
+        <?php } ?>
             </div>
 			</div>
         </div>

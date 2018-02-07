@@ -66,18 +66,18 @@ wdwt_lbox = {
 
     jQuery("html").attr("style", "overflow:hidden !important;");
 
-    popup_el ='<div id="spider_popup_loading_' + current_view + '" class="spider_popup_loading"></div>'
-              +'<div id="spider_popup_overlay_' + current_view + '" class="spider_popup_overlay" onclick="wdwt_lbox.destroypopup(1000)"></div>';
+    popup_el ='<div id="wdwt_spider_popup_loading_' + current_view + '" class="wdwt_spider_popup_loading"></div>'
+              +'<div id="wdwt_spider_popup_overlay_' + current_view + '" class="wdwt_spider_popup_overlay" onclick="wdwt_lbox.destroypopup(1000)"></div>';
     //add styles for popup ttt!!!
     jQuery( "body" ).append( popup_el);
 
-    jQuery("#spider_popup_loading_" + current_view).css({display: "block"});
-    jQuery("#spider_popup_overlay_" + current_view).css({display: "block"});
+    jQuery("#wdwt_spider_popup_loading_" + current_view).css({display: "block"});
+    jQuery("#wdwt_spider_popup_overlay_" + current_view).css({display: "block"});
 
     jQuery.post(url, data_send, function(data) {
       
       var popup = jQuery(
-      '<div id="spider_popup_wrap" class="spider_popup_wrap" style="' + 
+      '<div id="wdwt_spider_popup_wrap" class="wdwt_spider_popup_wrap" style="' + 
             ' width:' + width + 'px;' +
             ' height:' + height + 'px;' + 
             ' margin-top:-' + height / 2 + 'px;' + 
@@ -88,7 +88,7 @@ wdwt_lbox = {
         .appendTo("body");
       wdwt_lbox.showpopup(description, lifetime, popup, duration);
     }).success(function(jqXHR, textStatus, errorThrown) {
-      jQuery("#spider_popup_loading_" + current_view).css({display: "none !important;"});
+      jQuery("#wdwt_spider_popup_loading_" + current_view).css({display: "none !important;"});
     });
   },
   /*spider_showpopup*/
@@ -118,16 +118,16 @@ wdwt_lbox = {
   /*spider_destroypopup*/
   
   destroypopup: function(duration) {
-    if (document.getElementById("spider_popup_wrap") != null) {
+    if (document.getElementById("wdwt_spider_popup_wrap") != null) {
       if (typeof jQuery().fullscreen !== 'undefined' && jQuery.isFunction(jQuery().fullscreen)) {
         if (jQuery.fullscreen.isFullScreen()) {
           jQuery.fullscreen.exit();
         }
       }
       setTimeout(function () {
-        jQuery(".spider_popup_wrap").remove();
-        jQuery(".spider_popup_loading").remove();
-        jQuery(".spider_popup_overlay").remove();
+        jQuery(".wdwt_spider_popup_wrap").remove();
+        jQuery(".wdwt_spider_popup_loading").remove();
+        jQuery(".wdwt_spider_popup_overlay").remove();
         jQuery(document).off("keydown");
         jQuery("html").attr("style", "");
         jQuery(window).trigger('resize');//for resizing thumbs after lightbox closing

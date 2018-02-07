@@ -18,7 +18,7 @@ jQuery(document).ready(function ($) {
         if ($(window).width() < 765) {
             stickyTop = 46;
         } else {
-            stickyTop = 32;
+            stickyTop = 31;
         }
     }
     else {

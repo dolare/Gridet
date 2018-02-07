@@ -3,12 +3,15 @@
 * Theme Core Functions and Codes
 */
 	/**Includes required resources here**/
-	require( get_template_directory() . '/core/menu/default-menu-walker.php' );
-	require( get_template_directory() . '/core/menu/weblizar-nav-walker.php' );
+	require( get_template_directory() . '/core/menu/default_menu_walker.php' );
+	require( get_template_directory() . '/core/menu/weblizar_nav_walker.php' );
+	require( get_template_directory() . '/core/menu/weblizar_nav_side_walker.php' );//side menu
+	require( get_template_directory() . '/core/admin/admin.php');
 	require( get_template_directory() . '/core/scripts/css-js.php' ); //Enquiring Resources here	
 	require( get_template_directory() . '/core/comment-function.php' );
 	require(dirname(__FILE__).'/customizer.php');
-	require_once(get_template_directory() . '/core/class-tgm-plugin-activation.php');
+	require(get_template_directory() . '/class-tgm-plugin-activation.php');
+	require get_template_directory() . '/core/custom-header.php';
 	//Sane Defaults
 	function enigma_parallax_default_settings()
 {
@@ -25,24 +28,29 @@
 	$client2 = get_template_directory_uri() ."/images/client2.jpg";
 	$client3 = get_template_directory_uri() ."/images/client3.jpg";
 	$client4 = get_template_directory_uri() ."/images/client4.jpg";
-	
-	$test1 = get_template_directory_uri() ."/images/test1.png";
-	$test2 = get_template_directory_uri() ."/images/test2.jpg";
-	$test3 = get_template_directory_uri() ."/images/test3.jpg";
-	$test4 = get_template_directory_uri() ."/images/test4.jpg";
-	
 	$team1 = get_template_directory_uri() ."/images/team1.jpg";
 	$team2 = get_template_directory_uri() ."/images/team2.jpg";
 	$team3 = get_template_directory_uri() ."/images/team3.jpg";
 	$team4 = get_template_directory_uri() ."/images/team4.jpg";
 	$wl_theme_options=array(
-			//Logo and Fevicon header			
+			//Logo and Fevicon header
+			'title_position'=>'',
 			'upload_image_logo'=>'',
 			'height'=>'55',
 			'width'=>'150',
 			'_frontpage' => '1',
 			'blog_count'=>'3',		
 			'custom_css'=>'',
+			'excerpt_blog'=>'55',
+			'snoweffect'=>'0',
+			
+			'service_home'=>'',
+			'show_testimonial'=>'',
+			'show_blog'=>'',
+			'show_team'=>'',
+			'show_contact'=>'',
+			
+			'slider_image_speed' => '',
 			'slide_image_1' => $ImageUrl,
 			'slide_title_1' => __('Contrary to popular ', 'enigma-parallax' ),
 			'slide_desc_1' => __('Lorem Ipsum is simply dummy text of the printing', 'enigma-parallax' ),
@@ -72,30 +80,36 @@
 			'youtube_link' =>"#",
 			'instagram' =>"#",
 			'gplus' =>"#",
+			'vk_link' =>"#",
+			'qq_link' =>"#",
 			
+			//side menu
+			'side' => 'on',
+
 			'email_id' => 'example@mymail.com',
 			'phone_no' => '0159753586',
-			'footer_customizations' => __(' &#169; 2015 Enigma Theme', 'enigma-parallax' ),
+			'footer_customizations' => __(' &#169; 2017 Enigma-Parallax Theme', 'enigma-parallax' ),
 			'developed_by_text' => __('Theme Developed By', 'enigma-parallax' ),
 			'developed_by_weblizar_text' => __('enigma-parallax Themes', 'enigma-parallax' ),
 			'developed_by_link' => 'http://weblizar.com/',
 			// service
-			'service_home'=>'1',
+			'services_home'=>'1',
 			'home_service_heading' => __('Our Services', 'enigma-parallax' ),
 			'service_1_title'=>__("Idea",'enigma-parallax' ),
-			'service_1_icons'=>"fa fa-google",
+			'service_1_icons'=>"fa-google",
 			'service_1_text'=>__("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in.", 'enigma-parallax' ),
 			'service_1_link'=>"#",
-			
 			'service_2_title'=>__('Records', 'enigma-parallax' ),
-			'service_2_icons'=>"fa fa-database",
+			'service_2_icons'=>"fa-database",
 			'service_2_text'=>__("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in.", 'enigma-parallax' ),
 			'service_2_link'=>"#",
-			
 			'service_3_title'=>__("WordPress", 'enigma-parallax' ),
-			'service_3_icons'=>"fa fa-wordpress",
+			'service_3_icons'=>"fa-wordpress",
 			'service_3_text'=>__("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in.", 'enigma-parallax' ),
-			'service_3_link'=>"#",			
+			'service_3_link'=>"#",
+
+			//product settings:
+			'product_title'=>'',
 
 			//Portfolio Settings:
 			'portfolio_home'=>'1',
@@ -112,40 +126,14 @@
 			'port_4_img'=> $ImageUrl7,
 			'port_4_title'=>__('randomised', 'enigma-parallax' ),
 			'port_4_link'=>'#',
+			'upload__portfolio_image'=>'',
 			//BLOG Settings
-			'show_blog' => '1',
+			'blog_home' => '1',
 			'blog_title'=>__('Latest Blog', 'enigma-parallax' ),
-			
-			//testimonial settings
-			'show_testimonial' => '1',
-			'testimonial_title' =>__('Testimonials','enigma-parallax'),
-			'testimonial_name_1' => __('Testimonial 1','enigma-parallax'),
-			'testimonial_name_2' => __('Testimonial 2','enigma-parallax'),
-			'testimonial_name_3' => __('Testimonial 3','enigma-parallax'),
-			'testimonial_name_4' => __('Testimonial 4','enigma-parallax'),
-			'testimonial_desti_1' => __('Author 1','enigma-parallax'),
-			'testimonial_desti_2' => __('Author 2','enigma-parallax'),
-			'testimonial_desti_3' => __('Author 3','enigma-parallax'),
-			'testimonial_desti_4' => __('Author 4','enigma-parallax'),
-			'testimonial_desc_1' => __('Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.','enigma-parallax'),
-			'testimonial_desc_2' => __('Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.','enigma-parallax'),
-			'testimonial_desc_3' => __('Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.','enigma-parallax'),
-			'testimonial_desc_4' => __('Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.','enigma-parallax'),
-			'testimonial_1_img' => $test1,
-			'testimonial_2_img' => $test2,
-			'testimonial_3_img' => $test3,
-			'testimonial_4_img' => $test4,
-			//contact options
-			'show_contact' =>'1',
-			'contact_title' => __('Get In Touch','enigma-parallax'),
-			'contact_desc' => __('Send Your Feedback','enigma-parallax'),
-			'contact_number' => __('1234567890','enigma-parallax'),
-			'contact_mail' => __('enigma-parallax@gmail.com','enigma-parallax'),
-			'contact_time' => __('10 AM to 6 PM','enigma-parallax'),
-			'contact_location' => __('California','enigma-parallax'),
-			
+			'upload__blog_image'=>'',
+			'blog_speed'=>'2000',
 			//team options
-			'show_team' => '1',
+			'team_home' => '1',
 			'team_title' => __('Our Team','enigma-parallax'),
 			'team_name_1' => __('Member 1','enigma-parallax'),
 			'team_name_2' => __('Member 2','enigma-parallax'),
@@ -173,30 +161,15 @@
 			'team_4_img' => $team4,
 			'slider_home' =>'1',
 			
+			/* meta option */
+			'meta_single'=>'',
+			'meta_single_img'=>'',
+			
 			/* Font section */
 			'font_title' => 'Open Sans',
 			'font_description' => 'Open Sans',
-			'font_link' => 'Open Sans',
-			'header_menu_link' => 'Open Sans',
-			'slider_title' => 'Open Sans',
-			'slider_description' => 'Open Sans',
-			'slider_btn_link' => 'Open Sans',
-			'service_description' => 'Open Sans',
-			'service_title_link' => 'Open Sans',
-			'service_title' => 'Open Sans',
-			'blog_title_font' => 'Open Sans',
-			'blog_description' => 'Open Sans',
-			'blog_btn_link' => 'Open Sans',
-			'team_description' => 'Open Sans',
-			'portfolio_link' => 'Open Sans',
-			'testimonial_description' => 'Open Sans',
-			'contact_area_text' => 'Open Sans',
-			'footer_callout_text' =>'Open Sans',
-			'footer_area_text' => 'Open Sans',
-			'footer_widget_area_title' => 'Open Sans',
-            'footer_widget_area_text' => 'Open Sans',
-			'sidebar_title_text' => 'Open Sans',
-			'sidebar_desc_text' => 'Open Sans',		
+			'theme_title' => 'Open Sans',
+			'header_menu_link' => 'Open Sans',	
 		);
 		
 		
@@ -210,14 +183,24 @@
     );    
 	}
 	
- add_action('wp_enqueue_scripts', 'enigma_parallax_font_family');
- function enigma_parallax_font_family()
+	
+		$args = array(
+	'flex-width'    => true,
+	'width'         => 2000,
+	'default-text-color'     => '000000',
+	'flex-height'    => true,
+	'height'        => 100,
+	'default-image' => get_template_directory_uri() . '/images/header-bg.png',
+);
+add_theme_support( 'custom-header', $args ); 
+add_action('wp_enqueue_scripts', 'enigma_parallax_font_family');
+function enigma_parallax_font_family()
    {
-	 wp_register_style('googleFonts', 'http://fonts.googleapis.com/css?family=Rock+Salt|Neucha|Sans+Serif|Indie+Flower|Shadows+Into+Light|Dancing+Script|Kaushan+Script|Tangerine|Pinyon+Script|Great+Vibes|Bad+Script|Calligraffitti|Homemade+Apple|Allura|Megrim|Nothing+You+Could+Do|Fredericka+the+Great|Rochester|Arizonia|Astloch|Bilbo|Cedarville+Cursive|Clicker+Script|Dawning+of+a+New+Day|Ewert|Felipa|Give+You+Glory|Italianno|Jim+Nightshade|Kristi|La+Belle+Aurore|Meddon|Montez|Mr+Bedfort|Over+the+Rainbow|Princess+Sofia|Reenie+Beanie|Ruthie|Sacramento|Seaweed+Script|Stalemate|Trade+Winds|UnifrakturMaguntia|Waiting+for+the+Sunrise|Yesteryear|Zeyada|Warnes|Verdana|Abril+Fatface|Advent+Pro|Aldrich|Alex+Brush|Amatic+SC|Antic+Slab|Candal');
+	 wp_register_style('googleFonts', 'https://fonts.googleapis.com/css?family=Rock+Salt|Neucha|Sans+Serif|Indie+Flower|Shadows+Into+Light|Dancing+Script|Kaushan+Script|Tangerine|Pinyon+Script|Great+Vibes|Bad+Script|Calligraffitti|Homemade+Apple|Allura|Megrim|Nothing+You+Could+Do|Fredericka+the+Great|Rochester|Arizonia|Astloch|Bilbo|Cedarville+Cursive|Clicker+Script|Dawning+of+a+New+Day|Ewert|Felipa|Give+You+Glory|Italianno|Jim+Nightshade|Kristi|La+Belle+Aurore|Meddon|Montez|Mr+Bedfort|Over+the+Rainbow|Princess+Sofia|Reenie+Beanie|Ruthie|Sacramento|Seaweed+Script|Stalemate|Trade+Winds|UnifrakturMaguntia|Waiting+for+the+Sunrise|Yesteryear|Zeyada|Warnes|Verdana|Abril+Fatface|Advent+Pro|Aldrich|Alex+Brush|Amatic+SC|Antic+Slab|Candal');
      
 	 wp_enqueue_style ('googleFonts');
      }
-	
+		
 	/*After Theme Setup*/
 	add_action( 'after_setup_theme', 'enigma_parallax_head_setup' ); 	
 	function enigma_parallax_head_setup()
@@ -232,16 +215,27 @@
 		add_image_size('enigma_parallax_page_thumb',730,350,true);	
 		add_image_size('enigma_parallax_blog_2c_thumb',570,350,true);
 		add_theme_support( 'title-tag' );
+		
+		// Logo
+		add_theme_support( 'custom-logo', array(
+			'width'       => 250,
+			'height'      => 250,
+			'flex-width'  => true,
+			'flex-height'  => true,
+		));
+		
 		// Load text domain for translation-ready
 		load_theme_textdomain( 'enigma-parallax', get_template_directory() . '/core/languages' );	
 		
 		add_theme_support( 'post-thumbnails' ); //supports featured image
 		// This theme uses wp_nav_menu() in one location.
-		register_nav_menu( 'primary', __( 'Primary Menu', 'enigma-parallax' ) );
+		
 		// theme support 	
 		$args = array('default-color' => '000000',);
 		add_theme_support( 'custom-background', $args); 
 		add_theme_support( 'automatic-feed-links');
+		add_theme_support( 'customize-selective-refresh-widgets' );
+		
 	}
 	
 
@@ -447,11 +441,16 @@
 <?php 
 	}
 if (is_admin()) {
-	require_once('core/admin/admin.php');
+	require_once('core/admin/admin-themes.php');
 }
 add_action('tgmpa_register','enigma_parallax_plugin_recommend');
 function enigma_parallax_plugin_recommend(){
 	$plugins = array(
+	array(
+            'name'      => 'Appointment Scheduler',
+            'slug'      => 'appointment-scheduler-weblizar',
+            'required'  => false,
+        ),
 	array(
             'name'      => 'Ultimate Responsive Image Slider',
             'slug'      => 'Ultimate Responsive Image Slider',
@@ -461,9 +460,74 @@ function enigma_parallax_plugin_recommend(){
             'name'      => 'Admin Custom Login',
             'slug'      => 'admin-custom-login',
             'required'  => false,
-        )
-		
+        ),
 	);
     tgmpa( $plugins );
 }	
+/*===================================================================================
+	* DISPLAY LOCATION
+	* =================================================================================*/
+function register_my_menus() {
+	register_nav_menu( 'primary', __( 'Primary Menu', 'enigma-parallax' ) );
+  register_nav_menus(
+    array(
+      'SIDEER' => esc_attr( 'SIDE MENU' ),
+      /*'another-menu' => __( 'Another Menu' ),
+      'an-extra-menu' => __( 'An Extra Menu' )*/
+    )
+  );
+}
+add_action( 'init', 'register_my_menus' );
+
+
+function enigma_parallax_custom_admin_notice() {
+	wp_register_style( 'custom_admin_css', get_template_directory_uri() . '/core/admin/admin-rating.css');
+    wp_enqueue_style( 'custom_admin_css' );
+	$wl_th_info = wp_get_theme(); 
+	$currentversion = str_replace('.','',(esc_html( $wl_th_info->get('Version') )));
+	$isitdismissed = 'enigma_parallax_notice_dismissed'.$currentversion;
+	if ( !get_user_meta( get_current_user_id() , $isitdismissed ) ) { ?>
+	<div class="notice-box notice-success is-dismissible flat_responsive_notice" data-dismissible="disable-done-notice-forever">
+		<div>
+			<p>	
+			<?php _e('Thank you for using the free version of ','enigma-parallax'); ?>
+			<?php echo esc_html( $wl_th_info->get('Name') );?> - 
+			<?php echo esc_html( $wl_th_info->get('Version') );
+			 ?>
+			<?php _e('Please give your reviews and ratings on ','enigma-parallax'); echo $wl_th_info->get('Name'); _e(' theme. Your ratings will help us to improve our themes.', 'enigma-parallax'); ?>
+			<script type="text/javascript">alert(<?php echo $isitdismissed?>);</script>
+			<?php if($wl_th_info->get('Name')=="enigma-parallax") { ?>
+			<a class="rateme" href="<?php echo esc_url('https://wordpress.org/support/theme/enigma-parallax/reviews/?filter=5');  ?>" target="_blank" aria-label="Dismiss the welcome panel"> <?php } else { ?>
+			<a class="rateme" href="<?php echo esc_url('https://wordpress.org/support/theme/parallaxis/reviews/?filter=5');  ?>" target="_blank" aria-label="Dismiss the welcome panel"> <?php } ?>
+				<strong><?php _e('Rate Us here','enigma-parallax');?></strong>
+			</a>
+			<a class="dismiss" href="?-notice-dismissed<?php echo $currentversion;?>">Dismiss</a>
+			</p>
+		</div>
+		
+	</div>
+	
+<?php
+	}
+ }
+add_action('admin_notices', 'enigma_parallax_custom_admin_notice');
+
+function enigma_parallax_notice_dismissed() {
+	$wl_th_info = wp_get_theme(); 
+	$currentversion = str_replace('.','',(esc_html( $wl_th_info->get('Version') )));
+	$dismissurl = '-notice-dismissed'.$currentversion;
+	$isitdismissed = 'enigma_parallax_notice_dismissed'.$currentversion;
+    $user_id = get_current_user_id();
+    if ( isset( $_GET[$dismissurl] ) )
+        add_user_meta( $user_id, $isitdismissed, 'true', true );
+}
+add_action( 'admin_init', 'enigma_parallax_notice_dismissed' );
+
+$theme_options = enigma_parallax_get_options();
+if($theme_options['snoweffect']!=''){
+	function snow_script() {
+	wp_enqueue_script('snow', get_template_directory_uri() .'/js/snowstorm.js');
+	}
+	add_action( 'wp_enqueue_scripts', 'snow_script' );
+}
 ?>

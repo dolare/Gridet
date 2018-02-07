@@ -1,25 +1,33 @@
 <?php
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
+
 global $page_title; 
 $page_title = __("Social Share", "maxbuttons"); 
 $admin = MB()->getClass("admin"); 
 
-//$action = "<a class='page-title-action add-new-h2' href='" . admin_url() . "admin.php?page=maxbuttons-collections&action=edit&collection=social'>" . __('Add New', 'maxbuttons') . "</a>";
+$action = "<a class='page-title-action add-new-h2' href='" . admin_url() . "admin.php?page=maxbuttons-collections&action=edit&collection=social'>" . __('Add New', 'maxbuttons') . "</a>";
 
 $admin->get_header(array("tabs_active" => true, "title" => $page_title, "title_action" => $action)); 
 
 $collections = maxCollections::getCollections(); 
 $maxCol = new maxCollection(); 
+
+//if (count($collections) == 0) : 
+	require_once('social-share.php'); 
+
+//else:
+
+?>
+ <!--
+ <a class="page-title-action collection-addnew" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-collections&action=edit&collection=social">
+	<?php _e("Add New","maxbuttons"); ?></a>  -->
+
+<?php //endif; 
 ?>
  
- <a class="page-title-action " href="<?php echo admin_url() ?>admin.php?page=maxbuttons-collections&action=edit&collection=social">
-	<?php _e("Add New","maxbuttons"); ?></a> 
- 
 <?php 
-	/* Display admin notices [deprecated]
-	@ignore
-	*/
-	do_action("mb_display_notices"); 
-	
+
 	/* Display admin notices 
 	
 	   Hook to display admin notices on error and other occurences in the editor. Follows WP guidelines on format. 
@@ -43,9 +51,13 @@ foreach ($collections as $index => $data)
 {
 	$id = $data["collection_id"]; 
 	$name = $maxCol->get_meta($id, "collection_name"); 
-	$name = $name["collection_name"]; 
+	$name = isset($name['collection_name']) ? $name["collection_name"] : ''; 
+
 
 	$collection = maxCollections::getCollectionById($id); 	
+	if (! $collection) 
+		continue; 
+		
 	$collection_type = $collection->getType();
 	$block_nonce = wp_create_nonce('mbpro_collection_block-' . $id); 
 
@@ -60,7 +72,7 @@ foreach ($collections as $index => $data)
 ?>	
 	 
 	<div class='collection collection-<?php echo $id ?>' data-id="<?php echo $id ?>" data-blocknonce="<?php echo $block_nonce ?>" data-type="<?php echo $collection_type ?>">	
-		<div class="collection_remove tb-close-icon"></div>
+		<div class="collection_remove dashicons dashicons-no"></div>
  
 		<h3 class='title'><a href="?page=maxbuttons-collections&action=edit&collection=social&collection_id=<?php echo $id ?>"><?php echo $name; ?></a> 
 		
@@ -88,10 +100,11 @@ foreach ($collections as $index => $data)
 <?php
 }
 
+/*
 if (count($collections) == 0) 
 {
 	do_action("mb-display-collection-welcome"); 
-}
+} */
 ?>
  
 </div> <!-- // collection-list --> 

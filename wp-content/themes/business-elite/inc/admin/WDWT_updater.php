@@ -29,8 +29,8 @@ class WDWT_updater{
     /*if not update or upgrade*/
     if(!$this->compare_version($this->version_new, $this->version_old)){
       $this->options = get_option(WDWT_OPT, false );
-      $current_theme = wp_get_theme();
-      $current_version = $current_theme->get( 'Version' );
+
+      $current_version = WDWT_VERSION;
 
       if(substr( $current_version , 0, 1 ) == '2' && 
         substr( $this->version_old , 0, 1 ) == '1' && 
@@ -52,8 +52,7 @@ class WDWT_updater{
     /* if theme is installed first time*/
     if(!$widgets_updated && count($this->mods) <= 1  && empty($this->options)){
       /*save only version*/
-      $current_theme = wp_get_theme();
-      $this->options['theme_version'] = $current_theme->get( 'Version' );
+      $this->options['theme_version'] = WDWT_VERSION;
       update_option(WDWT_OPT, $this->options);
       /*does not save other options*/
       return $this->options;
@@ -90,8 +89,7 @@ class WDWT_updater{
     if($from_theme_mod || $widgets_updated){
       update_option($this->theme_mods_name, $this->mods); /*save theme_mod back without old params*/
     }
-    $current_theme = wp_get_theme();
-    $current_version = $current_theme->get( 'Version' );
+    $current_version = WDWT_VERSION;
 
     if(substr( $current_version , 0, 1 ) == '2' && 
       substr( $this->version_old , 0, 1 ) == '1' && 
@@ -221,7 +219,7 @@ class WDWT_updater{
           $old_name = $change['old'];
           $new_name = $change['new'];
           $widget_opt = get_option( "widget_".$old_name );
-          if( isset($widget_opt ) ){
+          if (isset($widget_opt) && $widget_opt) {
             add_option( "widget_".$new_name, $widget_opt );
             delete_option( "widget_".$old_name );
             $updated = true;

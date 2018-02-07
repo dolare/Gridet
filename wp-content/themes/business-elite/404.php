@@ -7,7 +7,7 @@
 </header>
 
 	<div class="<?php echo $single_title_bg ?  'before_blog_2' : 'before_blog_1'; ?>">
-		<h2><?php _e('404 Page', "business-elite"); ?></h2>
+		<h1><?php _e('404 Page', "business-elite"); ?></h1>
 	</div>
 	<?php	if($single_title_bg) { ?>
 		<div class="before_blog"></div>

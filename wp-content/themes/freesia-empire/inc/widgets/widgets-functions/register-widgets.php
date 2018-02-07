@@ -80,4 +80,3 @@ function freesiaempire_widgets_init() {
 			'after_title' => '</h2>',
 		));
 }
-?>

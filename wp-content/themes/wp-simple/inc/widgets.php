@@ -11,8 +11,8 @@ class nimbus_about_content_widget extends WP_Widget {
     function __construct() {
         parent::__construct(
           'nimbus-about-content-widget', // Base ID
-          'Nimbus - About Content Widget', // Name
-          array( 'description' => __('Display about content boxes on the frontpage', 'nimbus' ))  // Description
+          __('Nimbus - About Content Widget', 'wp-simple' ), // Name
+          array( 'description' => __('Display about content boxes on the frontpage', 'wp-simple' ))  // Description
         );
     }
     
@@ -22,7 +22,7 @@ class nimbus_about_content_widget extends WP_Widget {
 		?>
             <div class="about-content">
                 <?php if ( ! empty( $instance['content'] ) ) { 
-                    echo $instance['content']; 
+                    echo esc_html($instance['content']); 
                 } ?>
             </div>  
 		<?php
@@ -31,10 +31,10 @@ class nimbus_about_content_widget extends WP_Widget {
     
     // Create widget form
 	public function form( $instance ) {
-		$content = ! empty( $instance['content'] ) ? $instance['content'] : __( '', 'nimbus' );
+		$content = ! empty( $instance['content'] ) ? $instance['content'] : __( '', 'wp-simple' );
 		?>
 		<p>
-			<textarea id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" rows="4" cols="50"><?php echo esc_attr( $content ); ?></textarea>
+			<textarea id="<?php echo esc_attr($this->get_field_id( 'content' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'content' )); ?>" rows="4" cols="50"><?php echo esc_html( $content ); ?></textarea>
 		</p>
 		<?php 
 	}
@@ -66,8 +66,8 @@ class nimbus_about_quote_widget extends WP_Widget {
     function __construct() {
         parent::__construct(
           'nimbus-about-quote-widget', // Base ID
-          'Nimbus - About Quote Widget', // Name
-          array( 'description' => __('Display quote boxes on the frontpage', 'nimbus' ))  // Description
+          __('Nimbus - About Quote Widget', 'wp-simple' ), // Name
+          array( 'description' => __('Display quote boxes on the frontpage', 'wp-simple' ))  // Description
         );
     }
     
@@ -77,7 +77,7 @@ class nimbus_about_quote_widget extends WP_Widget {
 		?>
             <div class="about-quote">
                 <?php if ( ! empty( $instance['quote'] ) ) { 
-                    echo $instance['quote'] ."<span>~" . $instance['tag'] ."</span>"; 
+                    echo esc_html($instance['quote']) ."<span>~" . esc_html($instance['tag']) ."</span>"; 
                 } ?>
             </div>  
 		<?php
@@ -86,16 +86,16 @@ class nimbus_about_quote_widget extends WP_Widget {
     
     // Create widget form
 	public function form( $instance ) {
-		$quote = ! empty( $instance['quote'] ) ? $instance['quote'] : __( '', 'nimbus' );
-		$tag = ! empty( $instance['tag'] ) ? $instance['tag'] : __( '', 'nimbus' );
+		$quote = ! empty( $instance['quote'] ) ? $instance['quote'] : __( '', 'wp-simple' );
+		$tag = ! empty( $instance['tag'] ) ? $instance['tag'] : __( '', 'wp-simple' );
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'quote' ); ?>"><?php _e( 'Quote:', 'nimbus' ); ?></label> 
-			<textarea id="<?php echo $this->get_field_id( 'quote' ); ?>" name="<?php echo $this->get_field_name( 'quote' ); ?>" rows="4" cols="50"><?php echo esc_attr( $quote ); ?></textarea>
+		<label for="<?php echo esc_attr($this->get_field_id( 'quote' )); ?>"><?php _e( 'Quote:', 'wp-simple' ); ?></label> 
+			<textarea id="<?php echo esc_attr($this->get_field_id( 'quote' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'quote' )); ?>" rows="4" cols="50"><?php echo esc_html( $quote ); ?></textarea>
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'tag' ); ?>"><?php _e( 'Name:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'tag' ); ?>" name="<?php echo $this->get_field_name( 'tag' ); ?>" type="text" value="<?php echo esc_attr( $tag ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'tag' )); ?>"><?php _e( 'Name:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'tag' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'tag' )); ?>" type="text" value="<?php echo esc_html( $tag ); ?>">
 		</p>
 		<?php 
 	}
@@ -128,8 +128,8 @@ class nimbus_team_content_widget extends WP_Widget {
     function __construct() {
         parent::__construct(
           'nimbus-team-content-widget', // Base ID
-          'Nimbus - Team Content Widget', // Name
-          array( 'description' => __('Display team content boxes on the frontpage', 'nimbus' )) // Description
+          __('Nimbus - Team Content Widget', 'wp-simple' ), // Name
+          array( 'description' => __('Display team content boxes on the frontpage', 'wp-simple' )) // Description
         );
     }
     
@@ -139,25 +139,25 @@ class nimbus_team_content_widget extends WP_Widget {
 		?>
 		    <h4 class="team-item-title">
                 <?php if ( ! empty( $instance['name'] ) ) { 
-                    echo $instance['name']; 
+                    echo esc_html($instance['name']); 
                 } ?>            	
             </h4>
-            <img class="img-responsive center-block" src="<?php if ( ! empty( $instance['imgurl184sq'] ) ) { echo $instance['imgurl184sq']; } ?>" />
+            <img class="img-responsive center-block" src="<?php if ( ! empty( $instance['imgurl184sq'] ) ) { echo esc_url($instance['imgurl184sq']); } ?>" />
 
             <h5 class="team-item-sub-title">
                 <?php if ( ! empty( $instance['title'] ) ) { 
-                    echo $instance['title']; 
+                    echo esc_html($instance['title']); 
                 } ?> 
             </h5>
             <p class="team-social-icons">
             	<?php if (!empty( $instance['social1']) && !empty( $instance['faclass1'])) { ?>
-            		<a href="<?php echo $instance['social1']; ?>"><i class="fa <?php echo $instance['faclass1']; ?>"></i></a>
+            		<a href="<?php echo esc_url($instance['social1']); ?>"><i class="fa <?php echo esc_attr($instance['faclass1']); ?>"></i></a>
             	<?php } ?>
             	<?php if (!empty( $instance['social2']) && !empty( $instance['faclass2'])) { ?>
-            		<a href="<?php echo $instance['social2']; ?>"><i class="fa <?php echo $instance['faclass2']; ?>"></i></a>
+            		<a href="<?php echo esc_url($instance['social2']); ?>"><i class="fa <?php echo esc_attr($instance['faclass2']); ?>"></i></a>
             	<?php } ?>
             	<?php if (!empty( $instance['social3']) && !empty( $instance['faclass3'])) { ?>
-            		<a href="<?php echo $instance['social3']; ?>"><i class="fa <?php echo $instance['faclass3']; ?>"></i></a>
+            		<a href="<?php echo esc_url($instance['social3']); ?>"><i class="fa <?php echo esc_attr($instance['faclass3']); ?>"></i></a>
             	<?php } ?>
             </p>  
 		<?php
@@ -166,54 +166,54 @@ class nimbus_team_content_widget extends WP_Widget {
     
     // Create widget form
 	public function form( $instance ) {
-		$imgurl184sq = ! empty( $instance['imgurl184sq'] ) ? $instance['imgurl184sq'] : __( '', 'nimbus' );
-		$name = ! empty( $instance['name'] ) ? $instance['name'] : __( '', 'nimbus' );
-		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( '', 'nimbus' );
-		$social1 = ! empty( $instance['social1'] ) ? $instance['social1'] : __( '', 'nimbus' );
-		$faclass1 = ! empty( $instance['faclass1'] ) ? $instance['faclass1'] : __( '', 'nimbus' );
-		$social2 = ! empty( $instance['social2'] ) ? $instance['social2'] : __( '', 'nimbus' );
-		$faclass2 = ! empty( $instance['faclass2'] ) ? $instance['faclass2'] : __( '', 'nimbus' );
-		$social3 = ! empty( $instance['social3'] ) ? $instance['social3'] : __( '', 'nimbus' );
-		$faclass3 = ! empty( $instance['faclass3'] ) ? $instance['faclass3'] : __( '', 'nimbus' );
+		$imgurl184sq = ! empty( $instance['imgurl184sq'] ) ? $instance['imgurl184sq'] : __( '', 'wp-simple' );
+		$name = ! empty( $instance['name'] ) ? $instance['name'] : __( '', 'wp-simple' );
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( '', 'wp-simple' );
+		$social1 = ! empty( $instance['social1'] ) ? $instance['social1'] : __( '', 'wp-simple' );
+		$faclass1 = ! empty( $instance['faclass1'] ) ? $instance['faclass1'] : __( '', 'wp-simple' );
+		$social2 = ! empty( $instance['social2'] ) ? $instance['social2'] : __( '', 'wp-simple' );
+		$faclass2 = ! empty( $instance['faclass2'] ) ? $instance['faclass2'] : __( '', 'wp-simple' );
+		$social3 = ! empty( $instance['social3'] ) ? $instance['social3'] : __( '', 'wp-simple' );
+		$faclass3 = ! empty( $instance['faclass3'] ) ? $instance['faclass3'] : __( '', 'wp-simple' );
 		
 		
 		
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'imgurl184sq' ); ?>"><?php _e( 'Headshot Image (262x262px):', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'imgurl184sq' ); ?>" name="<?php echo $this->get_field_name( 'imgurl184sq' ); ?>" type="text" value="<?php echo esc_attr( $imgurl184sq ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'imgurl184sq' )); ?>"><?php _e( 'Headshot Image (262x262px):', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'imgurl184sq' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'imgurl184sq' )); ?>" type="text" value="<?php echo esc_url( $imgurl184sq ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e( 'Name:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'name' ); ?>" name="<?php echo $this->get_field_name( 'name' ); ?>" type="text" value="<?php echo esc_attr( $name ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'name' )); ?>"><?php _e( 'Name:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'name' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'name' )); ?>" type="text" value="<?php echo esc_html( $name ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'title' )); ?>"><?php _e( 'Title:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'title' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'title' )); ?>" type="text" value="<?php echo esc_html( $title ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'social1' ); ?>"><?php _e( 'Social Media Link #1:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'social1' ); ?>" name="<?php echo $this->get_field_name( 'social1' ); ?>" type="text" value="<?php echo esc_attr( $social1 ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'social1' )); ?>"><?php _e( 'Social Media Link #1:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'social1' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'social1' )); ?>" type="text" value="<?php echo esc_url( $social1 ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'faclass1' ); ?>"><?php _e( 'FontAwesome Class #1:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'faclass1' ); ?>" name="<?php echo $this->get_field_name( 'faclass1' ); ?>" type="text" value="<?php echo esc_attr( $faclass1 ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'faclass1' )); ?>"><?php _e( 'FontAwesome Class #1:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'faclass1' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'faclass1' )); ?>" type="text" value="<?php echo esc_attr( $faclass1 ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'social2' ); ?>"><?php _e( 'Social Media Link #2:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'social2' ); ?>" name="<?php echo $this->get_field_name( 'social2' ); ?>" type="text" value="<?php echo esc_attr( $social2 ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'social2' )); ?>"><?php _e( 'Social Media Link #2:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'social2' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'social2' )); ?>" type="text" value="<?php echo esc_url( $social2 ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'faclass2' ); ?>"><?php _e( 'FontAwesome Class #2:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'faclass2' ); ?>" name="<?php echo $this->get_field_name( 'faclass2' ); ?>" type="text" value="<?php echo esc_attr( $faclass2 ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'faclass2' )); ?>"><?php _e( 'FontAwesome Class #2:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'faclass2' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'faclass2' )); ?>" type="text" value="<?php echo esc_attr( $faclass2 ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'social3' ); ?>"><?php _e( 'Social Media Link #3:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'social3' ); ?>" name="<?php echo $this->get_field_name( 'social3' ); ?>" type="text" value="<?php echo esc_attr( $social3 ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'social3' )); ?>"><?php _e( 'Social Media Link #3:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'social3' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'social3' )); ?>" type="text" value="<?php echo esc_url( $social3 ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'faclass3' ); ?>"><?php _e( 'FontAwesome Class #3:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'faclass3' ); ?>" name="<?php echo $this->get_field_name( 'faclass3' ); ?>" type="text" value="<?php echo esc_attr( $faclass3 ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'faclass3' )); ?>"><?php _e( 'FontAwesome Class #3:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'faclass3' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'faclass3' )); ?>" type="text" value="<?php echo esc_attr( $faclass3 ); ?>">
 		</p>
 
 
@@ -258,8 +258,8 @@ class nimbus_social_content_widget extends WP_Widget {
     function __construct() {
         parent::__construct(
           'nimbus-social-content-widget', // Base ID
-          'Nimbus - Social Media Content Widget', // Name
-          array( 'description' => __('Display social content boxes on the frontpage', 'nimbus' ))  // Description
+          __('Nimbus - Social Media Content Widget', 'wp-simple' ), // Name
+          array( 'description' => __('Display social content boxes on the frontpage', 'wp-simple' ))  // Description
         );
     }
     
@@ -268,16 +268,16 @@ class nimbus_social_content_widget extends WP_Widget {
 		echo $args['before_widget'];
 		?>
 			<div data-sr="wait 0.2s, scale up 25%">
-	            <a href="<?php if ( ! empty( $instance['url'] ) ) { echo $instance['url']; } ?>">
-	            	<i class="fa <?php if ( ! empty( $instance['faclass'] ) ) { echo $instance['faclass']; } ?>"></i><br>
+	            <a href="<?php if ( ! empty( $instance['url'] ) ) { echo esc_url($instance['url']); } ?>" target="_blank">
+	            	<i class="fa <?php if ( ! empty( $instance['faclass'] ) ) { echo esc_attr($instance['faclass']); } ?>"></i><br>
 	            	<span class="social-item-title h5">
 		                <?php if ( ! empty( $instance['title'] ) ) { 
-		                    echo $instance['title']; 
+		                    echo esc_html($instance['title']); 
 		                } ?> 	
 	            	</span><br>
 	            	<span class="social-item-sub-title h5">
 		                <?php if ( ! empty( $instance['sub-title'] ) ) { 
-		                    echo $instance['sub-title']; 
+		                    echo esc_html($instance['sub-title']); 
 		                } ?>
 	            	</span>
 	            </a>  
@@ -288,26 +288,26 @@ class nimbus_social_content_widget extends WP_Widget {
     
     // Create widget form
 	public function form( $instance ) {
-		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'New title', 'nimbus' );
-		$sub_title = ! empty( $instance['sub-title'] ) ? $instance['sub-title'] : __( '', 'nimbus' );
-		$faclass = ! empty( $instance['faclass'] ) ? $instance['faclass'] : __( 'fa-star', 'nimbus' );
-		$url = ! empty( $instance['url'] ) ? $instance['url'] : __( '', 'nimbus' );
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'New title', 'wp-simple' );
+		$sub_title = ! empty( $instance['sub-title'] ) ? $instance['sub-title'] : __( '', 'wp-simple' );
+		$faclass = ! empty( $instance['faclass'] ) ? $instance['faclass'] : __( 'fa-star', 'wp-simple' );
+		$url = ! empty( $instance['url'] ) ? $instance['url'] : __( '', 'wp-simple' );
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'title' )); ?>"><?php _e( 'Title:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'title' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'title' )); ?>" type="text" value="<?php echo esc_html( $title ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'sub-title' ); ?>"><?php _e( 'Sub-title:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'sub-title' ); ?>" name="<?php echo $this->get_field_name( 'sub-title' ); ?>" type="text" value="<?php echo esc_attr( $sub_title ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'sub-title' )); ?>"><?php _e( 'Sub-title:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'sub-title' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'sub-title' )); ?>" type="text" value="<?php echo esc_html( $sub_title ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'faclass' ); ?>"><?php _e( 'FontAwesome Class:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'faclass' ); ?>" name="<?php echo $this->get_field_name( 'faclass' ); ?>" type="text" value="<?php echo esc_attr( $faclass ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'faclass' )); ?>"><?php _e( 'FontAwesome Class:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'faclass' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'faclass' )); ?>" type="text" value="<?php echo esc_attr( $faclass ); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'url' ); ?>"><?php _e( 'URL:', 'nimbus' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'url' ); ?>" name="<?php echo $this->get_field_name( 'url' ); ?>" type="text" value="<?php echo esc_attr( $url ); ?>">
+		<label for="<?php echo esc_attr($this->get_field_id( 'url' )); ?>"><?php _e( 'URL:', 'wp-simple' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'url' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'url' )); ?>" type="text" value="<?php echo esc_url( $url ); ?>">
 		</p>
 		<?php 
 	}

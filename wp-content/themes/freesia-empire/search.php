@@ -7,8 +7,7 @@
  * @since Freesia Empire 1.0
  */
 get_header();
-	$freesiaempire_settings = freesiaempire_get_theme_options();
-	global $post;	
+	$freesiaempire_settings = freesiaempire_get_theme_options();	
 	global $freesiaempire_content_layout;
 	if( $post ) {
 		$layout = get_post_meta( $post->ID, 'freesiaempire_sidebarlayout', true );
@@ -23,22 +22,11 @@ get_header();
 	<?php }
 	}?>
 	<div id="main">
-	<?php global $post;
+	<?php
 	if( have_posts() ) {
 		while( have_posts() ) {
-			the_post(); ?>
-	<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<article class="post-format">
-			<header class="entry-header">
-				<h2 class="entry-title"> <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>">
-				<?php the_title(); ?> </a> </h2> <!-- .entry-title -->
-			</header>
-			<div class="entry-content clearfix">
-				<?php the_excerpt(); ?>
-			</div>
-		</article>
-	</section>
-	<?php
+			the_post();
+			get_template_part( 'content', get_post_format() );
 		}
 	}
 	else { ?>
@@ -57,4 +45,4 @@ if( 'default' == $layout ) { //Settings from customizer
 <?php endif;
 }
 get_sidebar();
-get_footer(); ?>
+get_footer();

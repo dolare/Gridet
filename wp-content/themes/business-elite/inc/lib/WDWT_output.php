@@ -25,6 +25,14 @@ function WDWT_field_callback( $option, $context = 'option', $opt_val ='', $meta 
   if(isset($option['mod']) && $option['mod']){
     $context = 'mod';
   }
+
+  if($context == 'option'){
+    $option = apply_filters('wdwt_admin_setting_output_opt_'.$option['name'], $option );
+  }
+  elseif($context == 'meta'){
+    $option = apply_filters('wdwt_admin_setting_output_meta_'.$option['name'], $option );
+  }
+  
   $fieldtype = $option['type'];
 
   switch($fieldtype){
@@ -46,6 +54,10 @@ function WDWT_field_callback( $option, $context = 'option', $opt_val ='', $meta 
     }
     case 'checkbox_open' : { 
       echo $wdwt_admin_elements->checkbox_open($option, $context, $opt_val, $meta);
+      break;
+    }
+    case 'diagram' : {
+      echo $wdwt_admin_elements->diagram($option, $context, $opt_val, $meta);
       break;
     }
     case 'text' : {
@@ -96,6 +108,11 @@ function WDWT_field_callback( $option, $context = 'option', $opt_val ='', $meta 
         echo $wdwt_admin_elements->text_preview($option, $context, $opt_val, $meta);
       break;
     }
+    case 'text_diagram' : {
+      /*this element is shown with slider*/
+      return false;
+      break;
+    }
     case 'text_slider' : { 
       /*this element is shown with slider*/
       return false;
@@ -118,10 +135,13 @@ function WDWT_field_callback( $option, $context = 'option', $opt_val ='', $meta 
       echo __("Such element type does not exist!", "business-elite");
     }    
   }
-  // Output the setting description
-  if(isset($option['description']) && $option['description'] != '' ){ ?>
-   <span class="description"><?php echo esc_html($option['description']); ?></span>
-  <?php 
+  global $wp_customize;
+  if ( !isset( $wp_customize ) ) {
+    /* Output the setting description */
+    if(isset($option['description']) && $option['description'] != '' ){ ?>
+      <span class="description"><?php echo esc_html($option['description']); ?></span>
+      <?php
+    }
   }
   /*echo "fieldend";*/
 }
@@ -151,7 +171,7 @@ function wdwt_admin_options_page_tabs() {
 
   foreach( $tabs as $tab ) {
     $tabname = $tab['name'];
-    if( $tabname == 'licensing'){
+    if( $tabname == 'licensing' || $tabname == 'themes_support'){
       $tabtitle = $tab['title'];
       if ( $tabname == $current ) {
         $links[] = "<li><a class='nav-tab nav-tab-active' href='?page=".WDWT_SLUG."&tab=".$tabname."'>".esc_html($tabtitle)."</a></li>";
@@ -171,79 +191,92 @@ function wdwt_admin_options_page_tabs() {
 
 /*------------*//*------------*/
 function wdwt_section_descr($wdwt_tab='general') {
-  /*ttt!!! this get is not working in case of customizer*/
+
   switch($wdwt_tab){
     case 'seo':{
       $tab = '1';
       $text = __('This section allows you to add meta keywords, metatags, titles. ', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/configuring-seo.html";
     break;
     }
     case 'layout_editor':{
       $tab = '2';
       $text = __('This section allows you to make changes in default layout of the theme.', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/configuring-appearance/selecting-layout.html";
     break;
     }
     case 'general':{
       $tab = '3';
       $text = __('This section allows you to make changes in your site and customize it in accordance to personal preferences.', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/configuring-appearance/configuring-general.html";
     break;
     }
     case 'homepage':{
       $tab = '4';
       $text = __('This section allows you to make changes in post styles and customize your homepage appearance. ', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/configuring-appearance/appearance-homepage.html";
     break;
     }
     case 'integration':{
       $tab = '5';
       $text = __('This section allows you to add integration codes in various areas of the site.', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/advanced-configuration/integration.html";
     break;
     }
     case 'color_control':{
       $tab = '6';
       $text = __('This section allows you customizing certain color features in the theme. ', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/advanced-configuration/configuring-color-scheme.html";
     break;
     }
     case 'typography':{
       $tab = '7';
       $text = __('This section allows you to change the font styles.', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/advanced-configuration/configuring-fonts.html";
     break;
     }
     case 'slider':{
       $tab = '8';
       $text = __('This section allows you customize the slider. ', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/configuring-appearance/configuring-slider.html";
     break;
     }
     case 'install_sample_data':{
       $tab = '9';
       $text = __('This section allows to add sample data.', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/installing-theme/demo-content.html";
     break;
     }
     case 'featured_plugins':{
       $tab = '10';
       $text = __('This section displays plugins, which will help to increase the theme functionality', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/introduction.html";
     break;
     }
     case 'lightbox':{
       $tab = '11';
       $text = __('This section allows you customize the lightbox. ', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/configuring-appearance.html";
     break;
     }
     case 'themes_updates':{
       $tab = '12';
       $text = __('Available updates for the theme.', "business-elite");
+      $url = WDWT_HOMEPAGE . "/theme-guide/theme-maintenance/theme-updates.html";
     break;
     }
     default :{
       $tab = '';
       $text = '';
+      $url = WDWT_HOMEPAGE . "/theme-guide/introduction.html";
     } 
   }
   $text = 
   '<span class="user_manual">
         <span style="float:left;">
-          <a href="'.WDWT_HOMEPAGE.'/wordpress-themes-guide-step-1.html" target="_blank" class="user_title">'. __("User Manual.", "business-elite").'</a>
+          <a href="'.WDWT_HOMEPAGE . "/theme-guide/introduction.html".'" target="_blank" class="user_title">'. __("User Manual.", "business-elite").'</a>
           <br /><span style="font-size:1.2em;">'.esc_html($text) .'</span>
-          <a href="'.WDWT_HOMEPAGE.'/wordpress-theme-options/3-'.$tab.'.html" target="_blank" class="user_more">' . __('More', "business-elite"). '... </a>
+          <a href="'.$url.'" target="_blank" class="user_more">' . __('More', "business-elite"). '... </a>
         </span>'.wdwt_pro_banner().
     '</span>';
   return $text;

@@ -5,10 +5,9 @@ define("WDWT_TITLE", "Business Elite");
 define("WDWT_SLUG", "business-elite");
 define("WDWT_VAR", "business_elite");
 /*translation text domain*/
-
 define("WDWT_META", "_".WDWT_SLUG."_meta");
 define("WDWT_OPT", WDWT_VAR."_options");
-define("WDWT_VERSION", wp_get_theme()->get( 'Version' ) );
+define("WDWT_VERSION", wp_get_theme(WDWT_SLUG)->get( 'Version' ) );
 define("WDWT_LOGO_SHOW", true);
 define("WDWT_HOMEPAGE", "https://web-dorado.com");
 /*directories*/
@@ -39,10 +38,6 @@ add_action('widgets_init', 'wdwt_widgets_init');
 add_filter('body_class', 'wdwt_multisite_body_classes');
 /* add_theme_support , textdomain etc */
 add_action('after_setup_theme', 'wdwt_setup_elements');
-/* excerpt more */
-add_filter('excerpt_more', array(WDWT_VAR.'_frontend_functions', 'excerpt_more'));
-/*   remove more in posts and pages   */
-add_filter('the_content_more_link', array(WDWT_VAR.'_frontend_functions', 'remove_more_jump_link'));
 
 add_action('wp_ajax_wdwt_front_top_posts', 'wdwt_front_pages');
 add_action('wp_ajax_nopriv_wdwt_front_top_posts', 'wdwt_front_pages');
@@ -73,12 +68,18 @@ function wdwt_front_init(){
 	if ( !isset( $wp_customize ) ) {
 		$wdwt_front =  new Business_elite_front($wdwt_options);  
 	}
+	/* excerpt more */
+	add_filter('excerpt_more', array(WDWT_VAR.'_frontend_functions', 'excerpt_more'));
+	/*   remove more in posts and pages   */
+	add_filter('the_content_more_link', array(WDWT_VAR.'_frontend_functions', 'remove_more_jump_link'));
+
 }
 
 function wdwt_include_head(){
 	global $wdwt_front;
 
 	$wdwt_front->layout();
+	$wdwt_front->order();
 	$wdwt_front->menu_size();
 	$wdwt_front->typography();
 	$wdwt_front->color_control();
@@ -97,6 +98,13 @@ function wdwt_scripts_front(){
 	$stop_on_hover = ($stop_on_hover == 'false' || $stop_on_hover == '' ) ? '0' : '1';
 	$slideshow_interval = $wdwt_front->get_param('slideshow_interval');
 	$hide_slider = $wdwt_front->get_param('hide_slider');
+	$show_slider_wd = $wdwt_front->get_param('show_slider_wd');
+
+	$slider_plugin = false;
+	if (is_plugin_active('slider-wd/slider-wd.php') && $show_slider_wd && function_exists("wd_slider")){
+		$slider_plugin = true;
+	}
+
 	$imgs_url = $wdwt_front->get_param('slider_head');
 	$imgs_url = explode('||wd||',$imgs_url); 
 
@@ -112,7 +120,7 @@ function wdwt_scripts_front(){
     $wdwt_front->frontpage_content_posts();
   }
 	
-	if(($hide_slider[0]!="Hide Slider" && ((is_home() && $hide_slider[0]=="Only on Homepage") || (is_front_page() && $hide_slider[0]=="Only on Front Page") || $hide_slider[0]=="On all the pages and posts")) && count($imgs_url) && is_array($imgs_url)){
+	if(($hide_slider[0]!="Hide Slider" && ((is_home() && $hide_slider[0]=="Only on Homepage") || (is_front_page() && $hide_slider[0]=="Only on Front Page") || $hide_slider[0]=="On all the pages and posts")) && count($imgs_url) && is_array($imgs_url) && !$slider_plugin){
 		wp_enqueue_script('business_elite_slider_js',get_template_directory_uri().'/inc/js/slider.js',array('jquery'), WDWT_VERSION);
 		wp_localize_script('business_elite_slider_js', 'business_elite_slider_options', $business_elite_slider_options);
 	}
@@ -130,8 +138,8 @@ function wdwt_scripts_front(){
 	
 	wp_localize_script( 'wdwt_custom_js', 'business_elite_admin_ajax', admin_url('admin-ajax.php') );
 	wp_localize_script( 'wdwt_custom_js', 'business_elite_effects', $effects_array );
-	wp_localize_script( 'wdwt_custom_js', 'business_elite_site_url', trailingslashit(site_url()) );
-	wp_localize_script( 'wdwt_custom_js', 'business_elite_is_front', is_front_page() ? '1' : '0' );
+	wp_localize_script( 'wdwt_custom_js', 'business_elite_site_url', trailingslashit(home_url()) );
+	wp_localize_script( 'wdwt_custom_js', 'business_elite_is_front', (is_front_page() && is_home()) ? '1' : '0' );
 
 	
 	wp_enqueue_script('jquery-scrollto', WDWT_URL.'/inc/js/jquery.scrollTo-min.js',array('jquery'), WDWT_VERSION);
@@ -158,8 +166,9 @@ function wdwt_scripts_front(){
  	wp_enqueue_script( 'comment-reply' );
 
 	// Styles/Scripts for popup.
-	wp_enqueue_style('font-awesome', WDWT_URL . '/inc/css/font-awesome/font-awesome.css', array(), WDWT_VERSION);
-	wp_enqueue_script('jquery-mobile', WDWT_URL . '/inc/js/jquery.mobile.min.js', array('jquery'), WDWT_VERSION);
+  wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), '4.7.0');
+
+  wp_enqueue_script('jquery-mobile', WDWT_URL . '/inc/js/jquery.mobile.min.js', array('jquery'), WDWT_VERSION);
 	wp_enqueue_script('jquery-mCustomScrollbar', WDWT_URL . '/inc/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), WDWT_VERSION);
 	wp_enqueue_style('mCustomScrollbar', WDWT_URL . '/inc/css/jquery.mCustomScrollbar.css', array(), WDWT_VERSION);
 	wp_enqueue_script('jquery-fullscreen', WDWT_URL . '/inc/js/jquery.fullscreen-0.4.1.js', array('jquery'), WDWT_VERSION);
@@ -271,6 +280,11 @@ function wdwt_setup_elements(){
 
 /*------- LIGTHBOX --------*/
 function wdwt_lightbox (){
+	/* reset from user to site locale*/
+	if(function_exists('switch_to_locale')){
+		switch_to_locale( get_locale() );
+	}
+
   $action = $_POST['action'];
   if($action == "wdwt_lightbox"){
     require_once('inc/front/WDWT_lightbox.php');
@@ -283,10 +297,19 @@ function wdwt_lightbox (){
 
 function wdwt_front_pages(){
 
+	/* reset from user to site locale*/
+	if(function_exists('switch_to_locale')){
+		switch_to_locale( get_locale() );
+	}
+
 	global $wdwt_options;
 	global $wdwt_front;
   require_once('inc/front/front_params_output.php');
   $wdwt_front = new Business_elite_front($wdwt_options);
+
+	/* excerpt more */
+	add_filter('excerpt_more', array(WDWT_VAR.'_frontend_functions', 'excerpt_more'));
+	add_filter('the_content_more_link', array(WDWT_VAR.'_frontend_functions', 'remove_more_jump_link'));
 
 	$action = $_REQUEST['action'];
 	$paged = isset($_REQUEST['paged']) ? intval($_REQUEST['paged']) : 0;
@@ -302,8 +325,9 @@ function wdwt_front_pages(){
 	if($action == "wdwt_front_wd_tabs_dynamic"){
 		$cat_id = isset($_REQUEST['cat']) ? intval($_REQUEST['cat']) : 0;
 		$key = isset($_REQUEST['key']) ? intval($_REQUEST['key']) : 0;
+		$lang = isset($_REQUEST['lang']) ? (string) ($_REQUEST['lang']) : false;
 		require_once('inc/front/front_functions.php');
-		Business_elite_frontend_functions::category_tab_ajax($paged, $cat_id, $key);
+		Business_elite_frontend_functions::category_tab_ajax($paged, $cat_id, $key, $lang);
 	}
 	if($action == "wdwt_front_content_posts"){
     require_once('inc/front/front_functions.php');
@@ -319,5 +343,3 @@ function wdwt_front_pages(){
 
 
 
-
-?>

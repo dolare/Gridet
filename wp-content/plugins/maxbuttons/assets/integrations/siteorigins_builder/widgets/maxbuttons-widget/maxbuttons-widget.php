@@ -1,4 +1,6 @@
 <?php
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
 /*
 Widget Name: MaxButtons
 Description: MaxButtons widget
@@ -6,9 +8,12 @@ Author: Max Foundry
 Author URI: https://maxbuttons.com
 */
 
-class Widget_MaxButtons_Widget extends SiteOrigin_Widget {
+//use \SiteOrigin_Widget as SiteOrigin_Widget;
+
+class Widget_MaxButtons_Widget extends \SiteOrigin_Widget {
 	function __construct() {
 
+		
 		parent::__construct(
 			'sow-maxbutton',
 			__('MaxButtons', 'maxbuttons'),
@@ -45,12 +50,18 @@ class Widget_MaxButtons_Widget extends SiteOrigin_Widget {
 			plugin_dir_path(__FILE__)
 		);
 
+ 
+
 	}
 	
 	function get_template_name($instance) {
 		return 'base';
 	}
+	
+    function get_style_name($instance) {
+        return '';
+    }	
 		
 }
 
-siteorigin_widget_register('sow-maxbutton', __FILE__, 'Widget_MaxButtons_Widget');
+siteorigin_widget_register('sow-maxbutton', __FILE__, maxUtils::namespaceit('Widget_MaxButtons_Widget') );

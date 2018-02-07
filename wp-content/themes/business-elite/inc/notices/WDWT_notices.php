@@ -4,10 +4,10 @@ if (!defined('ABSPATH')) {
 }
 
 class WDWT_Notices {
-  protected $prefix = WDWT_VAR;
+	protected $prefix = WDWT_VAR;
 
-  protected $plugin_version = WDWT_VERSION;
-  protected $plugin_name = WDWT_TITLE;
+	protected $plugin_version = WDWT_VERSION;
+	protected $plugin_name = WDWT_TITLE;
 
 	public $notice_spam = 0;
 	public $notice_spam_max = 1;
@@ -23,7 +23,7 @@ class WDWT_Notices {
 
 	// Checks to ensure notices aren't disabled and the user has the correct permissions.
 	public function wd_admin_notice() {
-	
+
 		$settings = get_theme_mod('admin_notice');
 		if (!isset($settings['disable_admin_notices']) || (isset($settings['disable_admin_notices']) && $settings['disable_admin_notices'] == 0)) {
 			if (current_user_can('manage_options')) {
@@ -35,31 +35,31 @@ class WDWT_Notices {
 
 	// Primary notice function that can be called from an outside function sending necessary variables
 	public function admin_notice($admin_notices) {
-		
+
 		// Check options
 		if (!$this->wd_admin_notice()) {
 			return false;
 		}
-		
+
 		foreach ($admin_notices as $slug => $admin_notice) {
 			// Call for spam protection
 
 			if ($this->anti_notice_spam()) {
 				return false;
 			}
-			
+
 			// Check for proper page to display on
 			if (isset( $admin_notices[$slug]['pages']) && is_array( $admin_notices[$slug]['pages'])) {
-				
+
 				if (!$this->admin_notice_pages($admin_notices[$slug]['pages'])) {
 					return false;
 				}
-				
+
 			}
-			
+
 			// Check for required fields
 			if (!$this->required_fields($admin_notices[$slug])) {
-				
+
 				// Get the current date then set start date to either passed value or current date value and add interval
 				$current_date = current_time("n/j/Y");
 				$start = (isset($admin_notices[$slug]['start']) ? $admin_notices[$slug]['start'] : $current_date);
@@ -87,9 +87,9 @@ class WDWT_Notices {
 				$admin_display_link = (isset($admin_notices[$slug]['link']) ? $admin_notices[$slug]['link'] : '');
 				$output_css = false;
 				// Ensure the notice hasn't been hidden and that the current date is after the start date
-        if ($admin_display_check == 0 && strtotime($admin_display_start) <= strtotime($current_date)) {
+				if ($admin_display_check == 0 && strtotime($admin_display_start) <= strtotime($current_date)) {
 					// Get remaining query string
-					
+
 					$query_str = ( isset( $admin_notices[ $slug ]['later_link'] ) ? $admin_notices[ $slug ]['later_link'] : esc_url( add_query_arg( $this->prefix . '_admin_notice_ignore', $slug ) ));
 					// Admin notice display output
 					echo '<div class="update-nag wdwt-admin-notice">
@@ -106,7 +106,7 @@ class WDWT_Notices {
 					wp_enqueue_style($this->prefix . '-admin-notices', WDWT_URL . '/inc/notices/notices.css', array(), WDWT_VERSION);
 				}
 			}
-		
+
 		}
 	}
 
@@ -159,19 +159,19 @@ class WDWT_Notices {
 				}
 			}
 
-      else {
-      	
+			else {
+
 				if ($page == 'all') {
 					return true;
 				}
 				if (get_current_screen()->id === $page) {
 					return true;
 				}
-				
+
 				if (isset($_GET['page']) && $_GET['page'] == $page) {
 					return true;
 				}
-				
+
 			}
 		}
 		return false;
@@ -193,29 +193,29 @@ class WDWT_Notices {
 		// Intentionally left blank
 	}
 
-  public function wd_admin_notices() {
-  	$two_week_review_ignore = add_query_arg(array($this->prefix . '_admin_notice_ignore' => 'two_week_review'));
-    $two_week_review_temp = add_query_arg(array($this->prefix . '_admin_notice_temp_ignore' => 'two_week_review', 'wd_int' => 14));
-    
-    $notices['two_week_review'] = array(
-      'title' => __('Leave A Review?', "business-elite"),
-      'msg' => sprintf(__('We hope you\'ve enjoyed using WordPress %s! Would you consider leaving us a review on WordPress.org?', "business-elite"), $this->plugin_name),
-      'link' => '<li><span class="dashicons dashicons-external"></span><a href="https://wordpress.org/support/view/theme-reviews/'. WDWT_SLUG .'?filter=5" target="_blank">' . __('Sure! I\'d love to!', "business-elite") . '</a></li>
+	public function wd_admin_notices() {
+		$two_week_review_ignore = add_query_arg(array($this->prefix . '_admin_notice_ignore' => 'two_week_review'));
+		$two_week_review_temp = add_query_arg(array($this->prefix . '_admin_notice_temp_ignore' => 'two_week_review', 'wd_int' => 14));
+
+		$notices['two_week_review'] = array(
+			'title' => __('Leave A Review?', "business-elite"),
+			'msg' => sprintf(__('We hope you\'ve enjoyed using WordPress %s! Would you consider leaving us a review on WordPress.org?', "business-elite"), $this->plugin_name),
+			'link' => '<li><span class="dashicons dashicons-external"></span><a href="https://wordpress.org/support/view/theme-reviews/'. WDWT_SLUG .'?filter=5" target="_blank">' . __('Sure! I\'d love to!', "business-elite") . '</a></li>
                  <li><span class="dashicons dashicons-smiley"></span><a href="' . $two_week_review_ignore . '"> ' . __('I\'ve already left a review', "business-elite") . '</a></li>
                  <li><span class="dashicons dashicons-calendar-alt"></span><a href="' . $two_week_review_temp . '">' . __('Maybe Later', "business-elite") . '</a></li>
                  <li><span class="dashicons dashicons-dismiss"></span><a href="' . $two_week_review_ignore . '">' . __('Never show again', "business-elite") . '</a></li>',
-       'later_link' => $two_week_review_temp,
-      'int' => 14
-    );
-    $one_week_support = add_query_arg(array($this->prefix . '_admin_notice_ignore' => 'one_week_support'));
-    $notices['one_week_support'] = array(
-      'title' => __('Hey! How\'s It Going?', "business-elite"),
-      'msg' => sprintf(__('Thank you for using WordPress %s! We hope that you\'ve found everything you need, but if you have any questions:', "business-elite"), $this->plugin_name),
-      'link' => '<li><span class="dashicons dashicons-media-text"></span><a target="_blank" href="https://web-dorado.com/wordpress-themes-guide-step-1.html">' . __('Check out User Guide', "business-elite") . '</a></li>
+			'later_link' => $two_week_review_temp,
+			'int' => 14
+		);
+		$one_week_support = add_query_arg(array($this->prefix . '_admin_notice_ignore' => 'one_week_support'));
+		$notices['one_week_support'] = array(
+			'title' => __('Hey! How\'s It Going?', "business-elite"),
+			'msg' => sprintf(__('Thank you for using WordPress %s! We hope that you\'ve found everything you need, but if you have any questions:', "business-elite"), $this->plugin_name),
+			'link' => '<li><span class="dashicons dashicons-media-text"></span><a target="_blank" href="'.  WDWT_HOMEPAGE . '/theme-guide/introduction.html">' . __('Check out User Guide', "business-elite") . '</a></li>
                 <li><span class="dashicons dashicons-sos"></span><a target="_blank" href="https://web-dorado.com/forum/themes.html">' . __('Get Some Help', "business-elite") . '</a></li>
                 <li><span class="dashicons dashicons-dismiss"></span><a href="' . $one_week_support . '">' . __('Never show again', "business-elite") . '</a></li>',
-      'int' => 7
-    );
-    $this->admin_notice($notices);
+			'int' => 7
+		);
+		$this->admin_notice($notices);
 	}
 }

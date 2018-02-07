@@ -1,3 +1,24 @@
+v2.0.9  - Fixed mobile menu issue ofter scrollto
+
+v2.0.8  - Fixed prefixing of scripts
+
+v2.0.6  - Added prefixing to scripts and css
+        - Added jquery dependency to all dependent scripts
+        - Moved conditional scripts to wp_script_add_data model
+        - Wrapped update migration code in function
+
+v2.0.5  - Added inc and assets dirs
+        - Escaped all user data
+        - Updated readme.txt
+        - Fixed function prefixing
+        - Removed scrollto js in footer
+        - Updated enqueue of css and js
+        - Updated credit link format
+        - Migrated all settings to kirki
+        - Updated tags
+        - Updated licence
+        - Sanatized meta_box input
+
 v2.0.4  - Fixed issue with menu on iphone6+
         - Added better support for scrollto on form submits
         
@@ -42,7 +63,7 @@ v1.0.3  - Move global content_width outside of conditional
 v1.0.2  - Fixed missing global var $content_width in after_setup_theme
 
 v1.0.1  - Added core color picker to theme options panel
-        - Fixed namespace issue with n_clear to nimbus_clear
+        - Fixed namespace issue with n_clear to simple_business_wp_clear
         - Removed menu attribute from wp_nav_menu
         - Remove scripts settings
         - Updated Bebas font licence info in readme.txt

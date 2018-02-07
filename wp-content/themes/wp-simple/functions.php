@@ -1,16 +1,5 @@
 <?php
 
-
-
-/* **************************************************************************************************** */
-// Load Admin Panel
-/* **************************************************************************************************** */
-
-
-require get_template_directory() . '/admin/admin-init.php';
-require_once(get_template_directory() . '/meta_boxes.php');
-
-
 /* **************************************************************************************************** */
 // Setup Theme
 /* **************************************************************************************************** */
@@ -21,11 +10,10 @@ if (!function_exists('nimbus_setup')){
 
     function nimbus_setup() {
 
-
        // Localization
 
         $lang_local = get_template_directory() . '/lang';
-        load_theme_textdomain('nimbus', $lang_local);
+        load_theme_textdomain('wp-simple', $lang_local);
 
         // Register Thumbnail Sizes
 
@@ -53,54 +41,81 @@ if (!function_exists('nimbus_setup')){
 
         // Register Menus
 
-        register_nav_menu('primary', __('Primary Menu', 'nimbus'));
-        
+        register_nav_menu('primary', __('Primary Menu', 'wp-simple' ));
+
+        // Support title tag
+
+        add_theme_support( "title-tag" );
+
         // Woo Support
-        
+
         add_theme_support( 'woocommerce' );
-        
+
     }
 }
 
 
-// #################################################
+/* **************************************************************************************************** */
+// Load Admin Panel
+/* **************************************************************************************************** */
+
+
+require_once(get_template_directory() . '/inc/kirki/kirki.php' );
+require_once(get_template_directory() . '/inc/options.php' );
+require_once(get_template_directory() . '/inc/pro/class-customize.php' );
+
+// Duplicate and import any theme options from <= 2.0.4
+
+add_action( 'wp_loaded', 'wp_simple_update_migration' );
+
+function wp_simple_update_migration() {
+    $mod=get_option( 'theme_mods_wp-simple' );
+    if ($mod) {
+        if (isset( $mod['nimbus_simple_options'] )) {
+        	$newmod = array();
+        	foreach ($mod['nimbus_simple_options'] as $key => $value) {
+        		if (isset($value['url'])){
+        			$value = $value['url'];
+        		}
+        		$newmod[$key] = $value;
+        	}
+        	add_option( 'theme_mods_wp-simple_backup', $mod, '', 'yes');
+        	delete_option( 'theme_mods_wp-simple' );
+            add_option( 'theme_mods_wp-simple', $newmod, '', 'yes');
+        } 
+    }
+}
+
+// Get Options
+    
+function nimbus_get_option($optionID, $default_data = false) {
+    if (get_theme_mod( $optionID )) {
+        return get_theme_mod( $optionID );   
+    } else {
+        return NULL;
+    }
+}
+
+
+/* **************************************************************************************************** */
+// Meta Boxes
+/* **************************************************************************************************** */
+
+require_once(get_template_directory() . '/inc/meta_boxes.php');
+
+
+/* **************************************************************************************************** */
 // Custom Widgets
-// #################################################
+/* **************************************************************************************************** */
  
 require_once(get_template_directory() . '/inc/widgets.php');
 
 
-// #################################################
+/* **************************************************************************************************** */
 // Custom NavWalker
-// #################################################
+/* **************************************************************************************************** */
  
 require_once(get_template_directory() . '/inc/wp_bootstrap_navwalker.php');
-
-
-/* **************************************************************************************************** */
-// Do Title 
-/* **************************************************************************************************** */
-
-add_action('wp_title', 'nimbus_title');
-  
-function nimbus_title() {
-    global $wp_query;
-    $title = get_bloginfo('name');
-    $seporate = ' | ';
-    if (is_front_page()) {
-        $title = get_bloginfo('name');
-    } else if (is_feed()) {
-        $title = '';
-    } else if (is_page() || is_single()) {
-        $postid = $wp_query->post->ID;
-        $title = the_title('','',false) . $seporate . get_bloginfo('name');
-    }
-    wp_reset_query();
-    return $title;
-}
-
-
-
 
 
 /* **************************************************************************************************** */
@@ -115,7 +130,7 @@ if (!function_exists('nimbus_modify_search_form')){
         } else {
             $form .='<input type="text" value="Search" name="s" id="s"  onfocus="if(this.value==this.defaultValue)this.value=\'\';" onblur="if(this.value==\'\')this.value=this.defaultValue;"/>';
         }
-        $form .= '<input type="image" id="searchsubmit" src="' . get_template_directory_uri() . '/images/search_icon.png" />
+        $form .= '<input type="image" id="searchsubmit" src="' . get_template_directory_uri() . '/assets/images/search_icon.png" />
                 </form>';
         return $form;
     }
@@ -145,7 +160,7 @@ if (!function_exists('nimbus_register_sidebars')){
     // frontpage - about
     register_sidebar(array(
         'id' => 'frontpage-about-left',
-        'name' => __('Frontpage About Left', 'nimbus' ),
+        'name' => __('Frontpage About Left', 'wp-simple' ),
         'before_widget' => '<div class="col-sm-4" data-sr="wait 0.3s, enter right and move 50px after 1s">',
         'after_widget' => '</div>',
         'before_title' => '<h4>',
@@ -154,7 +169,7 @@ if (!function_exists('nimbus_register_sidebars')){
     
     register_sidebar(array(
         'id' => 'frontpage-about-center',
-        'name' => __('Frontpage About Center', 'nimbus' ),
+        'name' => __('Frontpage About Center', 'wp-simple' ),
         'before_widget' => '<div class="col-sm-4" data-sr="wait 0.3s, enter right and move 50px after 1s">',
         'after_widget' => '</div>',
         'before_title' => '<h4>',
@@ -164,7 +179,7 @@ if (!function_exists('nimbus_register_sidebars')){
     
     register_sidebar(array(
         'id' => 'frontpage-about-right',
-        'name' => __('Frontpage About Right', 'nimbus' ),
+        'name' => __('Frontpage About Right', 'wp-simple' ),
         'before_widget' => '<div class="col-sm-4" data-sr="wait 0.3s, enter right and move 50px after 1s">',
         'after_widget' => '</div>',
         'before_title' => '<h4>',
@@ -174,7 +189,7 @@ if (!function_exists('nimbus_register_sidebars')){
     // frontpage - team - left
     register_sidebar(array(
         'id' => 'frontpage-team-left',
-        'name' => __('Frontpage Team Left', 'nimbus' ),
+        'name' => __('Frontpage Team Left', 'wp-simple' ),
         'before_widget' => '<div class="team-item" data-sr="wait 0.3s, enter right and move 50px after 1s">',
         'after_widget' => '</div>',
         'before_title' => '<h4 class="team-item-title">',
@@ -184,7 +199,7 @@ if (!function_exists('nimbus_register_sidebars')){
     // frontpage - team - center left
     register_sidebar(array(
         'id' => 'frontpage-team-center-left',
-        'name' => __('Frontpage Team Center Left', 'nimbus' ),
+        'name' => __('Frontpage Team Center Left', 'wp-simple' ),
         'before_widget' => '<div class="team-item" data-sr="wait 0.3s, enter right and move 50px after 1s">',
         'after_widget' => '</div>',
         'before_title' => '<h4 class="team-item-title">',
@@ -194,7 +209,7 @@ if (!function_exists('nimbus_register_sidebars')){
     // frontpage - team - center right
     register_sidebar(array(
         'id' => 'frontpage-team-center-right',
-        'name' => __('Frontpage Team Center Right', 'nimbus' ),
+        'name' => __('Frontpage Team Center Right', 'wp-simple' ),
         'before_widget' => '<div class="team-item" data-sr="wait 0.3s, enter right and move 50px after 1s">',
         'after_widget' => '</div>',
         'before_title' => '<h4 class="team-item-title">',
@@ -204,7 +219,7 @@ if (!function_exists('nimbus_register_sidebars')){
     // frontpage - team - right
     register_sidebar(array(
         'id' => 'frontpage-team-right',
-        'name' => __('Frontpage Team Right', 'nimbus' ),
+        'name' => __('Frontpage Team Right', 'wp-simple' ),
         'before_widget' => '<div class="team-item" data-sr="wait 0.3s, enter right and move 50px after 1s">',
         'after_widget' => '</div>',
         'before_title' => '<h4 class="team-item-title">',
@@ -214,7 +229,7 @@ if (!function_exists('nimbus_register_sidebars')){
     // frontpage - social
     register_sidebar(array(
         'id' => 'frontpage-social-media',
-        'name' => __('Frontpage Social Media', 'nimbus' ),
+        'name' => __('Frontpage Social Media', 'wp-simple' ),
         'before_widget' => '',
         'after_widget' => '',
         'before_title' => '',
@@ -222,9 +237,9 @@ if (!function_exists('nimbus_register_sidebars')){
     ));
         
     register_sidebar(array(
-        'name' => __('Default Page Sidebar', 'nimbus'),
+        'name' => __('Default Page Sidebar', 'wp-simple' ),
         'id' => 'sidebar_pages',
-        'description' => __('Widgets in this area will be displayed in the sidebar on the pages.', 'nimbus'),
+        'description' => __('Widgets in this area will be displayed in the sidebar on the pages.', 'wp-simple' ),
         'before_widget' => '<div id="%1$s" class="widget %2$s widget sidebar_widget">',
         'after_widget' => '</div>',
         'before_title' => '<h3 class="widget_title">',
@@ -232,9 +247,9 @@ if (!function_exists('nimbus_register_sidebars')){
     ));
 
     register_sidebar(array(
-        'name' => __('Default Blog Sidebar', 'nimbus'),
+        'name' => __('Default Blog Sidebar', 'wp-simple' ),
         'id' => 'sidebar_blog',
-        'description' => __('Widgets in this area will be displayed in the sidebar on the blog and posts.', 'nimbus'),
+        'description' => __('Widgets in this area will be displayed in the sidebar on the blog and posts.', 'wp-simple' ),
         'before_widget' => '<div id="%1$s" class="widget %2$s widget sidebar_widget">',
         'after_widget' => '</div>',
         'before_title' => '<h3 class="widget_title">',
@@ -245,9 +260,9 @@ if (!function_exists('nimbus_register_sidebars')){
         $i = 1;
         while ($i <= 10) {
             register_sidebar(array(
-                'name' => __('Alternate Sidebar #', 'nimbus') . $i,
+                'name' => __('Alternate Sidebar #', 'wp-simple' ) . $i,
                 'id' => 'sidebar_' . $i,
-                'description' => __('Widgets in this area will be displayed in the sidebar for any posts, pages or portfolio items that are taged with sidebar', 'nimbus') . $i . '.',
+                'description' => __('Widgets in this area will be displayed in the sidebar for any posts, pages or portfolio items that are taged with sidebar', 'wp-simple' ) . $i . '.',
                 'before_widget' => '<div class="widget">',
                 'after_widget' => '</div>',
                 'before_title' => '<h3 class="widget_title">',
@@ -328,13 +343,13 @@ if (!function_exists('nimbus_comment')){
                 <?php echo get_avatar($comment, $size = '75'); ?>
                 <div class="comment_content">
                     <p class="left"><strong><?php comment_author_link(); ?></strong><br />
-                    <?php echo(get_comment_date()) ?> <?php edit_comment_link(__('(Edit)', 'nimbus'), '  ', '') ?></p>
-                    <p class="right"><?php comment_reply_link(array_merge($args, array('reply_text' => __('Leave a Reply', 'nimbus'), 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?></p>
+                    <?php echo(get_comment_date()) ?> <?php edit_comment_link(__('(Edit)', 'wp-simple' ), '  ', '') ?></p>
+                    <p class="right"><?php comment_reply_link(array_merge($args, array('reply_text' => __('Leave a Reply', 'wp-simple' ), 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?></p>
                     <div class="clear"></div>
                     <?php
                     if ($comment->comment_approved == '0') {
                     ?>
-                        <em><?php _e('Your comment is awaiting moderation.', 'nimbus') ?></em>
+                        <em><?php _e('Your comment is awaiting moderation.', 'wp-simple' ) ?></em>
                     <?php
                     }
                     ?>
@@ -374,9 +389,9 @@ if (!function_exists('nimbus_comment_fields')){
         $req = get_option('require_name_email');
         $aria_req = ( $req ? " aria-required='true'" : '' );
 
-        $fields['author'] = '<div class="row"><div class="col-md-4 comment_fields"><p class="comment-form-author">' . '<label for="author">' . __('Name', 'nimbus') . '</label> ' . ( $req ? '<span class="required">*</span><br />' : '' ) . '<input id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' /></p>';
-        $fields['email'] = '<p class="comment-form-email"><label for="email">' . __('Email', 'nimbus') . '</label> ' . ( $req ? '<span class="required">*</span><br />' : '' ) . '<input id="email" name="email" type="text" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' /></p>';
-        $fields['url'] = '<p class="comment-form-url"><label for="url">' . __('Website', 'nimbus') . '</label><br />' . '<input id="url" name="url" type="text" value="' . esc_attr($commenter['comment_author_url']) . '" size="30" /></p></div> ';
+        $fields['author'] = '<div class="row"><div class="col-md-4 comment_fields"><p class="comment-form-author">' . '<label for="author">' . __('Name', 'wp-simple' ) . '</label> ' . ( $req ? '<span class="required">*</span><br />' : '' ) . '<input id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' /></p>';
+        $fields['email'] = '<p class="comment-form-email"><label for="email">' . __('Email', 'wp-simple' ) . '</label> ' . ( $req ? '<span class="required">*</span><br />' : '' ) . '<input id="email" name="email" type="text" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' /></p>';
+        $fields['url'] = '<p class="comment-form-url"><label for="url">' . __('Website', 'wp-simple' ) . '</label><br />' . '<input id="url" name="url" type="text" value="' . esc_attr($commenter['comment_author_url']) . '" size="30" /></p></div> ';
 
         return $fields;
     }
@@ -453,32 +468,18 @@ add_action('wp_enqueue_scripts', 'nimbus_public_scripts');
 if (!function_exists('nimbus_public_scripts')){
     function nimbus_public_scripts() {
         if (!is_admin()) {
-            wp_enqueue_script('bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '2.2.2', true);
-            wp_enqueue_script('waypoints', get_template_directory_uri() . '/js/jquery.waypoints.min.js', array('jquery'), '2.2.2', true);
-            wp_enqueue_script('nicescroll', get_template_directory_uri() . '/js/nicescroll.min.js', array('jquery'), '3.6.0', true);
-            wp_enqueue_script('parallax',get_template_directory_uri() . '/js/parallax.min.js','','1.3.1',true);
-            wp_enqueue_script('scrollreveal',get_template_directory_uri() . '/js/scrollReveal.min.js','','2.3.2',true);
-            wp_enqueue_script('easing',get_template_directory_uri() . '/js/jquery.easing.min.js','','1.3.0',true);
-            wp_enqueue_script('public', get_template_directory_uri() . '/js/public.js', array(), '2.0.0', true);
+            wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '2.2.2', true);
+            wp_enqueue_script('jquery-waypoints', get_template_directory_uri() . '/assets/js/jquery.waypoints.min.js', array('jquery'), '2.2.2', true);
+            wp_enqueue_script('nicescroll', get_template_directory_uri() . '/assets/js/nicescroll.min.js', array('jquery'), '3.6.0', true);
+            wp_enqueue_script('parallax',get_template_directory_uri() . '/assets/js/parallax.min.js',array('jquery'),'1.3.1',true);
+            wp_enqueue_script('scrollreveal',get_template_directory_uri() . '/assets/js/scrollReveal.min.js',array('jquery'),'2.3.2',true);
+            wp_enqueue_script('jquery-easing',get_template_directory_uri() . '/assets/js/jquery.easing.min.js',array('jquery'),'1.3.0',true);
+            wp_enqueue_script('wp_simple_public', get_template_directory_uri() . '/assets/js/public.js', array('jquery'), '2.0.0', true);
+            wp_enqueue_script('html5shiv',get_template_directory_uri() . '/assets/js/html5shiv.js',array(),'3.6.2',false);
+            wp_script_add_data( 'html5shiv', 'conditional', 'lt IE 9' );
+            wp_enqueue_script('respond',get_template_directory_uri() . '/assets/js/respond.min.js',array(),'1.3.0',false);
+            wp_script_add_data( 'respond', 'conditional', 'lt IE 9' );
         }
-    }
-}
-
-
-/* **************************************************************************************************** */
-// Load Public Scripts in Conditional
-/* **************************************************************************************************** */
-
-add_action('wp_head', 'nimbus_public_scripts_conditional');
-
-if (!function_exists('nimbus_public_scripts_conditional')){
-    function nimbus_public_scripts_conditional() {
-    ?>
-        <!--[if lt IE 9]>
-            <script src="<?php echo get_template_directory_uri(); ?>/js/html5shiv.js"></script>
-            <script src="<?php echo get_template_directory_uri(); ?>/js/respond.min.js"></script>
-        <![endif]-->
-    <?php
     }
 }
 
@@ -487,21 +488,16 @@ if (!function_exists('nimbus_public_scripts_conditional')){
 // Load Public CSS
 /* **************************************************************************************************** */
 
-add_action('wp_print_styles', 'nimbus_public_styles');
+add_action('wp_enqueue_scripts', 'nimbus_public_styles', 1 );
 
 if (!function_exists('nimbus_public_styles')){
     function nimbus_public_styles() {
         if (!is_admin()) {
-            wp_register_style("bootstrap", get_template_directory_uri() . "/css/bootstrap.min.css", array(), "1.0", "all");
-            wp_enqueue_style('bootstrap');
-            wp_register_style("bootstrap_fix", get_template_directory_uri() . "/css/bootstrap-fix.css", array(), "1.0", "all");
-            wp_enqueue_style('bootstrap_fix');
-            wp_register_style( 'font-awesome', get_template_directory_uri() . "/css/font-awesome.min.css", array(), "1.0", "all");
-            wp_enqueue_style( 'font-awesome' );
-            wp_register_style( 'font-lato', "//fonts.googleapis.com/css?family=Lato:300,400,700,900", array(), "1.0", "all");
-            wp_enqueue_style( 'font-lato' );
-            wp_register_style( 'nimbus-style', get_bloginfo( 'stylesheet_url' ), false, get_bloginfo('version') );
-            wp_enqueue_style( 'nimbus-style' );
+            wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '1.0', 'all');
+            wp_enqueue_style( 'wp_simple_bootstrap_fix', get_template_directory_uri() . '/assets/css/bootstrap-fix.css', array(), '1.0', 'all');
+            wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '1.0', 'all');
+            wp_enqueue_style( 'wp_simple_font-lato', '//fonts.googleapis.com/css?family=Lato:300,400,700,900', array(), '1.0', 'all');
+            wp_enqueue_style( 'wp_simple_nimbus-style', get_bloginfo( 'stylesheet_url' ), false, get_bloginfo('version') );
         }
     }
 }
@@ -546,11 +542,11 @@ add_action('wp_footer', 'nimbus_contact_js', 99);
 
 function nimbus_contact_js() {
     global $post;
-    if(isset($_POST['submitted']) && isset($_POST['scrolltoform'])) { ?>
+    if(isset($_POST['submitted'])) { ?>
     	<script>
-    	    var offset = jQuery("#<?php echo $_POST['scrolltoform']; ?>").height();
+    	    var offset = jQuery("#<?php if (nimbus_get_option('fp-contact-slug')=='') {echo 'contact';} else {echo esc_attr(nimbus_get_option('fp-contact-slug'));} ?>").height();
             jQuery('html, body').delay( 1000 ).stop().animate({
-                scrollTop: jQuery("#<?php echo $_POST['scrolltoform']; ?>").offset().top + offset
+                scrollTop: jQuery("#<?php if (nimbus_get_option('fp-contact-slug')=='') {echo 'contact';} else {echo esc_attr(nimbus_get_option('fp-contact-slug'));} ?>").offset().top + offset
             }, 1000, 'easeInOutQuad');
         </script>
     <?php }

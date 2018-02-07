@@ -1,19 +1,33 @@
-<div id="slides_full" class="NovelLite_slider"> 
-<input type="hidden" id="txt_slidespeed" value="<?php if (get_theme_mod('NovelLite_slider_speed','') != '') { echo stripslashes(get_theme_mod('NovelLite_slider_speed')); } else { ?>3000<?php } ?>"/>
-    <ul class="slides-container">
-        <li>
-            <?php if (get_theme_mod('first_slider_image','') != '') { ?>
-                <a href="<?php
-                if (get_theme_mod('first_slider_link','') != '') {
-                    echo get_theme_mod('first_slider_link');
-                }
-                ?>" >
-                    <img  src="<?php echo get_theme_mod('first_slider_image'); ?>" alt="Slide Image 1"/></a>
-            <?php } else { ?>
-                <img  src="<?php echo get_template_directory_uri(); ?>/images/slider1.jpg" alt="Slide Image 1"/>
-            <?php } ?>
-            <div class="slider_overlay"></div>
-            <div class="container container_caption wow fadeInDown" data-wow-duration="2s">
+<input type="hidden" id="txt_slidespeed" value="<?php if (get_theme_mod('NovelLite_slider_speed','') != '') { echo esc_html((get_theme_mod('NovelLite_slider_speed'))); } else { ?>3000<?php } ?>"/>
+<?php $i=0; 
+$bnt_style = get_theme_mod('slidr_button','default');
+$prlx = get_theme_mod('slider_parallax_option','on');
+$prlx_class = '';
+$prlx_data_center = '';
+$prlx_top_bottom =''; 
+if($prlx=='on'){
+$prlx_class = 'parallax-lite';
+$prlx_data_center = 'background-position: 50% 0px';
+$prlx_top_bottom = 'background-position: 50% -100px;';
+}else{
+$prlx_class = ''; 
+$prlx_data_center = '';
+$prlx_top_bottom =''; 
+}
+?>
+<div id="slides_full" class="NovelLite_slider">
+<div class="flexslider novelpro_slider <?php echo $prlx_class;?> <?php echo $bnt_style;?>">
+<ul class="slides slides-container">
+<!-- first-slide -->
+<?php if (get_theme_mod('first_slider_image','') != '') { $i++; ?>     
+<li data-center="<?php echo $prlx_data_center;?>"
+  data-top-bottom="<?php echo $prlx_top_bottom;?>" style="background:url('<?php echo get_theme_mod('first_slider_image'); ?>')">
+<?php } else { ?>
+<li data-center="<?php echo $prlx_data_center;?>"
+  data-top-bottom="<?php echo $prlx_top_bottom;?>" style="background:url('<?php echo get_template_directory_uri(); ?>/images/slider1.jpg')">
+    <?php } ?>     
+    <div class="slider_overlay"></div>
+            <div class="container slider1 container_caption wow fadeInDown" data-wow-duration="2s">
                 <?php if (get_theme_mod('first_slider_heading','') != '') { ?>
                     <h1><a href="<?php
                         if (get_theme_mod('first_slider_link','') != '') {
@@ -29,7 +43,7 @@
                         <?php echo get_theme_mod('first_slider_desc'); ?>
                     </p>
                 <?php } else { ?>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br/>Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                 <?php } ?>
                 
                 
@@ -44,28 +58,20 @@
                                 }
                                 ?>" class="theme-slider-button">
                 <?php echo stripslashes(get_theme_mod('first_button_text')); ?>
-                
                 </a>
                 <?php } else { ?>
                 <a href="#" class="theme-slider-button">Buy Now!</a>
                 <?php } ?>
                 </div>  
             </div>
-        </li>
-        <?php if (get_theme_mod('second_slider_image','') != '') { ?>
-            <li>
-                <?php if (get_theme_mod('second_slider_image','') != '') { ?>
-                    <a href="<?php
-                    if (get_theme_mod('second_slider_link','') != '') {
-                        echo get_theme_mod('second_slider_link');
-                    }
-                    ?>" >
-                        <img  src="<?php echo get_theme_mod('second_slider_image'); ?>" alt="Slide Image 2"/></a>
-                <?php } else { ?>
-                <?php } ?>
+        </li> 
+ <!-- second-slide-->
+ <?php if (get_theme_mod('second_slider_image','')) { $i++; ?>
+              <li data-center="<?php echo $prlx_data_center;?>"
+  data-top-bottom="<?php echo $prlx_top_bottom;?>" style="background:url('<?php echo get_theme_mod('second_slider_image'); ?>')">
                 <div class="slider_overlay"></div>
                 <?php if (get_theme_mod('second_slider_heading','') != '') { ?>
-                    <div class="container container_caption">
+                    <div class="container slider2 container_caption">
                         <?php if (get_theme_mod('second_slider_heading','') != '') { ?>
                             <h1><a href="<?php
                                 if (get_theme_mod('second_slider_link','') != '') {
@@ -73,45 +79,62 @@
                                 }
                                 ?>"><?php echo stripslashes(get_theme_mod('second_slider_heading')); ?></a></h1>
                                 <div class="clearfix"></div>
-                                <?php
-                            } else {
-                                
-                            }
-                            ?>
-                            <?php if (get_theme_mod('second_slider_desc','') != '') { ?>
+                                <?php } ?>
                             <p>                    
                                 <?php echo stripslashes(get_theme_mod('second_slider_desc')); ?>
                             </p>
-                            <?php
-                        } else {
-                            
-                        }
-                        ?>  
-<div class="clearfix"></div>
+                <div class="clearfix"></div>
                 <div class="main-slider-button">
             <?php if (get_theme_mod('second_button_text','') != '') { ?>
-                <a href="<?php
-                                if (get_theme_mod('second_button_link','') != '') {
+                <a href="<?php  if (get_theme_mod('second_button_link','') != '') {
                                     echo stripslashes(get_theme_mod('second_button_link'));
-                                } else {
-                                    echo "#";
-                                }
+                                } else { echo "#"; }
                                 ?>" class="theme-slider-button">
                 <?php echo stripslashes(get_theme_mod('second_button_text')); ?>
-                
                 </a>
                 <?php } else { ?>
                 <a href="#" class="theme-slider-button">Buy Now!</a>
                 <?php } ?>
                 </div>
- </div>
+                </div>
                 <?php } ?>
-                <div class="slider_overlay"></div>
             </li>
         <?php } ?>
-    </ul>
-    <nav class="slides-navigation">
-        <a href="#" class="next">Next</a>
-        <a href="#" class="prev">Previous</a>
-    </nav>
+<!-- Third Slider -->
+<?php if (get_theme_mod('third_slider_image','') != '') { $i++; ?>
+<li data-center="<?php echo $prlx_data_center;?>"
+  data-top-bottom="<?php echo $prlx_top_bottom;?>" style="background:url('<?php echo get_theme_mod('third_slider_image'); ?>')"> 
+                <div class="slider_overlay"></div>
+                <?php if (get_theme_mod('third_slider_heading','') != '') { ?>
+                    <div class="container slider3 container_caption" >
+                        <?php if (get_theme_mod('third_slider_heading','') != '') { ?>
+                            <h1><a href="<?php
+                                if (get_theme_mod('third_slider_link','') != '') {
+                                    echo get_theme_mod('third_slider_link');
+                                }
+                                ?>"><?php echo stripslashes(get_theme_mod('third_slider_heading')); ?></a></h1>
+                                <div class="clearfix"></div>
+                                <?php } ?>
+                            <p>                    
+                                <?php echo stripslashes(get_theme_mod('third_slider_desc')); ?>
+                            </p>
+                <div class="clearfix"></div>
+                <div class="main-slider-button">
+            <?php if (get_theme_mod('third_button_text','') != '') { ?>
+                <a href="<?php  if (get_theme_mod('third_button_link','') != '') {
+                                    echo stripslashes(get_theme_mod('third_button_link'));
+                                } else { echo "#"; }
+                                ?>" class="theme-slider-button">
+                <?php echo stripslashes(get_theme_mod('third_button_text')); ?>
+                </a>
+                <?php } else { ?>
+                <a href="#" class="theme-slider-button">Buy Now!</a>
+                <?php } ?>
+                </div>
+                </div>
+                <?php } ?>
+            </li>
+        <?php } ?>
+</ul> 
+</div>
 </div>

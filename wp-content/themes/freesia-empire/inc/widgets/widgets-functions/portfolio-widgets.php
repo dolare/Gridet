@@ -76,11 +76,11 @@ class freesiaempire_portfolio_widget extends WP_Widget {
 	}
 
 	function widget($args, $instance) {
+		global $post;
 		$freesiaempire_settings = freesiaempire_get_theme_options();
 		extract($args);
 		extract($instance);
 		$number = empty( $instance['number'] ) ? 7 : $instance['number'];
-		global $post;
 		$page_array = array();
 		$title               = isset($instance['title'])?$instance['title']:'';
 		$text                = apply_filters('widget_text', empty($instance['text'])?'':$instance['text'], $instance);
@@ -123,13 +123,16 @@ class freesiaempire_portfolio_widget extends WP_Widget {
     <h3><a href="<?php the_permalink();?>" title="<?php echo esc_attr($page_title); ?>"><?php echo esc_attr($page_title); ?></a></h3>
     <?php if(get_the_excerpt() != ''): ?>
     <p>
-      <?php 
-					if(strlen(get_the_excerpt()) >70){
-						$excerpt_length = substr(get_the_excerpt(), 0 , 70);
-						echo $excerpt_length .'...';
-					}else{
-						echo get_the_excerpt();
-					}?>
+    <?php if($freesiaempire_settings['freesiaempire_crop_excerpt_length'] ==1){ 
+    	if(strlen(get_the_excerpt()) >70){
+			$excerpt_length = substr(get_the_excerpt(), 0 , 70);
+			echo $excerpt_length .'...';
+		}else{
+			echo get_the_excerpt();
+		}
+	}else{?>
+      <?php the_excerpt();
+     } ?>
     </p>
     <?php endif; ?>
     <?php $freesiaempire_tag_text = $freesiaempire_settings['freesiaempire_tag_text'];
@@ -156,4 +159,4 @@ endwhile;
 		echo '</div> <!-- end .container -->';
 		echo $after_widget .'<!-- end .widget_portfolio -->';
 	}
-} ?>
+}

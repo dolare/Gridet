@@ -1,5 +1,6 @@
 <?php 
-
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
 // Maxbutton field class 
 
 class Shortcake_Field_MaxButton
@@ -66,8 +67,8 @@ class Shortcake_Field_MaxButton
 	 */
 	private function maxbutton_attribute_present() {
 
-		foreach ( Shortcode_UI::get_instance()->get_shortcodes() as $shortcode ) {
-//exit('to find your');
+		foreach ( \Shortcode_UI::get_instance()->get_shortcodes() as $shortcode ) {
+
 			if ( empty( $shortcode['attrs'] ) ) {
 				continue;
 			}

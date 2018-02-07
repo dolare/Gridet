@@ -13,28 +13,28 @@
 				<div id="weblizar_form"> 
 					<form role="form" method="POST"  action="#">	
 						<div class="enigma_contact_group col-md-6 scrollimation scale-in">
-							<label for="exampleInputEmail1">Name<small>*</small></label>
+							<label for="exampleInputEmail1"><?php _e('Name','enigma-parallax');?><small>*</small></label>
 							<input type="name" name="user_name" id="user_name" placeholder="Name" class="enigma_con_input_control">
-							<span id="contact_name_error" style="display:none;color:red;">Fill your name</span>
+							<span id="contact_name_error" style="display:none;color:red;"><?php _e('Fill your name','enigma-parallax');?></span>
 						</div>
 						<div class="enigma_contact_group col-md-6 scrollimation scale-in">
-							<label for="exampleInputPassword1">Email<small>*</small></label>
+							<label for="exampleInputPassword1"><?php _e('Email','enigma-parallax');?><small>*</small></label>
 							<input type="email" id="user_email" name="user_email" class="enigma_con_input_control" placeholder="Email">
-							<span id="contact_email_error" style="display:none;color:red;"> Fill your email</span>
+							<span id="contact_email_error" style="display:none;color:red;"><?php _e('Fill your email','enigma-parallax');?> </span>
 						</div>
 						
 						<div class="enigma_form_textarea col-md-12 scrollimation scale-in">
-							<label for="exampleInputPassword1">Message<small>*</small></label>
+							<label for="exampleInputPassword1"><?php _e('Message','enigma-parallax');?><small>*</small></label>
 							<textarea class="enigma_con_textarea_control" name="user_message"  rows="10"></textarea>
-							<span id="contact_user_massage_error" style="display:none;color:red;">Fill your Text massage</span>
+							<span id="contact_user_massage_error" style="display:none;color:red;"><?php _e('Fill your Text massage','enigma-parallax');?></span>
 						</div>
-						<div class="col-md-12"><button class="enigma_send_button scrollimation scale-in" type="submit" name="query_submit" id="query_submit">Send Message</button></div>
+						<div class="col-md-12"><button class="enigma_send_button scrollimation scale-in" type="submit" name="query_submit" id="query_submit"><?php _e('Send Message','enigma-parallax');?></button></div>
 					</form>
 				</div>
 				<div id="enquiry_send_massage" style="display:none;">
 					<div class="callout-box callout-box2 clearfix">
 						<div class="callout-content">
-							<h2>Query successfully submit</h2>							
+							<h2><?php _e('Query successfully submit','enigma-parallax');?></h2>							
 						</div>    
 					</div>
 				</div>
@@ -70,7 +70,7 @@
 				<?php if($wl_theme_options['contact_number'] !=''){ ?>
 					<li class="col-md-3">
 						<i class="fa fa-phone"></i><span class="text">
-						<span class="desc">Phone Number</span>
+						<span class="desc"><?php _e('Phone Number','enigma-parallax');?></span>
 						<?php echo $wl_theme_options['contact_number']; ?>
 						</span>
 					</li>
@@ -78,7 +78,7 @@
 					<?php if($wl_theme_options['contact_mail'] !=''){ ?>
 					<li class="col-md-3">
 						<i class="fa fa-envelope"></i><span class="text">
-						<span class="desc">Email</span>
+						<span class="desc"><?php _e('Email','enigma-parallax');?></span>
 						<?php echo $wl_theme_options['contact_mail']; ?>
 						</span>
 					</li>
@@ -86,7 +86,7 @@
 					<?php if($wl_theme_options['contact_time'] !=''){ ?>
 					<li class="col-md-3">
 						<i class="fa fa-clock-o"></i><span class="text">
-						<span class="desc">Work Time</span>
+						<span class="desc"><?php _e('Work Time','enigma-parallax');?></span>
 						<?php echo $wl_theme_options['contact_time']; ?> 
 						</span>
 					</li>
@@ -94,7 +94,7 @@
 					<?php if($wl_theme_options['contact_location'] !=''){ ?>
 					<li class="col-md-3">
 						<i class="fa fa-map-marker"></i><span class="text">
-						<span class="desc">Where We Are</span> 
+						<span class="desc"><?php _e('Where We Are','enigma-parallax');?></span> 
 						<?php echo $wl_theme_options['contact_location']; ?>
 						</span>
 					</li>

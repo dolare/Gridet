@@ -1,5 +1,5 @@
 <?php
-function gmwd_update($version){
+function gmwd_update(){
     global $wpdb;
     $api_key = $wpdb->get_var('SELECT id FROM ' . $wpdb->prefix . 'gmwd_options WHERE name="map_api_key"');
     if(!$api_key){
@@ -15,7 +15,13 @@ function gmwd_update($version){
     if(!$enable_searchbox){
         $wpdb->query("ALTER TABLE ".$wpdb->prefix . "gmwd_maps ADD  `enable_searchbox`   TINYINT(1) NOT NULL ");
         $wpdb->query("ALTER TABLE ".$wpdb->prefix . "gmwd_maps ADD  `searchbox_position`  INT(16) NOT NULL ");
-    }     
+    } 
+    $info_window_info = $wpdb->get_var("SHOW COLUMNS FROM ".$wpdb->prefix . "gmwd_maps LIKE 'info_window_info'");
+    if(!$info_window_info){
+        $wpdb->query("ALTER TABLE ".$wpdb->prefix . "gmwd_maps ADD  `info_window_info`  VARCHAR(32) NOT NULL ");
+        $wpdb->query("UPDATE  `" . $wpdb->prefix . "gmwd_maps` SET info_window_info='title,address,desc,pic'");   
+    
+    }    
 }
 
 

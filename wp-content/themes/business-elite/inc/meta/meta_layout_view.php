@@ -10,7 +10,7 @@ class Business_elite_meta_layout_view {
     global $wdwt_options;
 
     //$meta = get_post_meta($post->ID, WDWT_META , true);
-    $meta = $mt;
+    $meta = ( ($mt != "") ? $mt : array() );
 
     foreach ($this->model->params as $key => $value) {
       if(!isset($meta[$key])){

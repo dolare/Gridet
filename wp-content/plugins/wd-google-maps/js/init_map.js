@@ -22,7 +22,7 @@ function gmwdInitMainMap(el, excludeOverlays, key){
 		minZoom: gmwdmapData["minZoom" + key],
 		scrollwheel: gmwdmapData["mapWhellScrolling" + key],
 		draggable: gmwdmapData["mapDragable" + key],
-    disableDoubleClickZoom: gmwdmapData["mapDbClickZoom" + key],
+        disableDoubleClickZoom: gmwdmapData["mapDbClickZoom" + key],
 		zoomControl: gmwdmapData["enableZoomControl" + key],
 		mapTypeControl: gmwdmapData["enableMapTypeControl" + key],
 		scaleControl: gmwdmapData["enableScaleControl" + key],
@@ -64,6 +64,14 @@ function gmwdInitMainMap(el, excludeOverlays, key){
         gmwdSetMapPolylines(key);
     }
 
+    jQuery(document).on("click",".gm-fullscreen-control",function(){
+        setTimeout(function(){ 
+            gmwdmapData["main_map" + key].setCenter({lat: Number(gmwdmapData["centerLat" + key]), lng: Number(gmwdmapData["centerLng" + key])});
+            gmwdmapData["main_map" + key].setZoom(gmwdmapData["zoom" + key]);
+        }, 300);
+
+    });  
+
 }
 
 function gmwdSetMapMarkers(_key){
@@ -79,12 +87,18 @@ function gmwdSetMapMarkers(_key){
 
             var infoWindow;
             if(mapMarker.enable_info_window == 1){
-                contentString =  mapMarker.pic_url ? '<img src="' + mapMarker.pic_url + '"  style="float:right; margin-left: 10px; max-width:100px">' : '';
-                contentString += (mapMarker.title + "<br>" + mapMarker.address) ;
+                contentString = '';
+
+                if(gmwdmapData["infoWindowInfo" + _key].indexOf("title") != -1){
+                    contentString += '<div class="gmwd-infowindow-title">' + mapMarker.title + '</div>';
+                }
+                if(gmwdmapData["infoWindowInfo" + _key].indexOf("address") != -1){
+                    contentString += '<div class="gmwd-infowindow-address">' +  mapMarker.address + '</div>';
+                } 
 
                 infoWindow = new google.maps.InfoWindow({
                     content: contentString,
-                    disableAutoPan: true
+                    disableAutoPan: false
                 });
                 if(mapMarker.info_window_open == 1){
                     infoWindow.open(gmwdmapData["main_map" + _key], marker);

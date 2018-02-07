@@ -18,7 +18,7 @@ jQuery( document ).ready( function($) {
 
 	// Smooth Scroll Anchors
 	function smoothScrollAnchors() {
-		$('a[href*="#"]:not([href="#"])').on('click', function() {
+		$('body:not(.single-product) a[href*="#"]:not([href="#"])').on('click', function() {
 			if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
 				var target = $(this.hash);
 				target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -70,22 +70,13 @@ jQuery( document ).ready( function($) {
 			$( '#team .section-content .person' ).each( function() {
 				var person = $( this );
 				var dataPersonColor = $( person ).data( 'person-color' );
-				var personPosition = $( person ).children( '.person-content' ).children( 'h5' );
+				var personPosition = $( person ).children( '.person-content' ).children( '.person-position' );
 				var personContentSocial = $( person ).children( '.person-content' ).children( '.person-content-social.clearfix' ).children( 'li' ).children( 'a' );
 
 				$( personPosition ).css( 'color', dataPersonColor );
-				$( personContentSocial ).css( 'background-color', dataPersonColor );
+				$( personContentSocial ).css( {'border-color': dataPersonColor, "color" : dataPersonColor} );
 			});
 		}
-	}
-
-	// Sub Menu
-	function subMenu() {
-		$( '#header .top-header .header-navigation ul li.menu-item-has-children' ).hover( function() {
-			$( this ).children( 'ul' ).css( 'visibility', 'visible' ).fadeIn();
-		}, function() {
-			$( this ).children( 'ul' ).css( 'visibility', 'hidden' ).fadeOut();
-		});
 	}
 
 	// Align Sub Sub Menu
@@ -94,35 +85,11 @@ jQuery( document ).ready( function($) {
 			var subSubMenu = $( '#header .top-header .header-navigation ul li.menu-item-has-children ul' );
 
 			$( subSubMenu ).each( function() {
-				if( ( windowWidth - $( this ).offset()['left'] ) < 250 ) {
-					$( this ).css( 'left', '-250px' );
+				if( ( windowWidth - $( this ).offset()['left'] ) < 200 ) {
+					$( this ).css( 'left', '-200px' );
 				}
 			});
 		}
-	}
-
-	// WooCommerce Tabs
-	function woocommerceTabs() {
-		var descriptionTab = $( 'li.description_tab' );
-		var descriptionTabLink = $( 'li.description_tab a' );
-		var reviewsTab = $( 'li.reviews_tab' );
-		var reviewsTabLink = $( 'li.reviews_tab a' );
-		var panelDescription = $( '.panel#tab-description' );
-		var panelReviews = $( '.panel#tab-reviews' );
-
-		$( descriptionTabLink ).click( function() {
-			$( this ).parent().addClass( 'active' );
-			$( reviewsTab ).removeClass( 'active' );
-			$( panelDescription ).show();
-			$( panelReviews ).hide();
-		});
-
-		$( reviewsTabLink ).click( function() {
-			$( this ).parent().addClass( 'active' );
-			$( descriptionTab ).removeClass( 'active' );
-			$( panelReviews ).show();
-			$( panelDescription ).hide();
-		});
 	}
 
 	// Called Functions
@@ -133,9 +100,7 @@ jQuery( document ).ready( function($) {
 		addHeightToFrontPageProject();
 		setColorOnFrontPageService();
 		setColorOnFrontPagePerson();
-		subMenu();
 		alignSubSubMenu();
-		woocommerceTabs();
 	});
 
 	// Window Resize

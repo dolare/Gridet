@@ -74,7 +74,7 @@ class WDWT_frontend {
   /*---------------Main Integration----------------*/ 
   public function integration_head(){
     $integrate_header_enable = $this->get_param('integrate_header_enable');
-    $integration_head = stripslashes($this->get_param('integration_head'));
+    $integration_head =  html_entity_decode(stripcslashes($this->get_param('integration_head')));
     
     if($integrate_header_enable){
       echo $integration_head;
@@ -82,7 +82,7 @@ class WDWT_frontend {
   }
   public function integration_body(){
     $integrate_body_enable = $this->get_param('integrate_body_enable');
-    $integration_body = stripslashes($this->get_param('integration_body'));  
+    $integration_body =  html_entity_decode(stripcslashes($this->get_param('integration_body')));
     
     if($integrate_body_enable){
       echo $integration_body;
@@ -90,14 +90,14 @@ class WDWT_frontend {
   }
   public function integration_top() {
     $integrate_singletop_enable = $this->get_param('integrate_singletop_enable', false);
-    $integration_single_top = stripslashes($this->get_param('integration_single_top', false));
+    $integration_single_top =  html_entity_decode(stripcslashes($this->get_param('integration_single_top', false)));
 
     if($integrate_singletop_enable)
       echo $integration_single_top;
   }
   public function integration_bottom() {
     $integrate_singlebottom_enable = $this->get_param('integrate_singlebottom_enable', false);
-    $integration_single_bottom = stripslashes($this->get_param('integration_single_bottom', false));
+    $integration_single_bottom =  html_entity_decode(stripcslashes($this->get_param('integration_single_bottom', false)));
 
     if($integrate_singlebottom_enable)
       echo $integration_single_bottom;
@@ -105,7 +105,7 @@ class WDWT_frontend {
   
   public function bottom_advertisment(){
     $ads_type = $this->get_param('ads_type');
-    $integration_bottom_adsense = stripslashes($this->get_param('integration_bottom_adsense'));
+
     $integration_bottom_advertisment_url = esc_url($this->get_param('integration_bottom_advertisment_url'));    
     $integration_bottom_advertisment_picture = esc_url($this->get_param('integration_bottom_advertisment_picture'));
     $integration_bottom_advertisment_alt = esc_attr(stripslashes($this->get_param('integration_bottom_advertisment_alt')));
@@ -114,7 +114,9 @@ class WDWT_frontend {
     switch($ads_type){
       case 'adsens':  ?>
         <div class="advertismnet" id="bottom-advertismnet">
-          <?php echo $integration_bottom_adsense; ?>
+          <?php
+          $integration_bottom_adsense =  html_entity_decode(stripcslashes($this->get_param('integration_bottom_adsense')));
+          echo $integration_bottom_adsense; ?>
         </div>
       <?php 
       break;

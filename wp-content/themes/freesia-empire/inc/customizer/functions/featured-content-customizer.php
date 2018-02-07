@@ -51,4 +51,3 @@ for ( $i=1; $i <= $freesiaempire_settings['freesiaempire_slider_no'] ; $i++ ) {
 		'type' => 'dropdown-pages',
 	));
 }
-?>

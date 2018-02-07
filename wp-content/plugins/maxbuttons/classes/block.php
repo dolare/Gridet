@@ -1,4 +1,5 @@
 <?php
+namespace MaxButtons; 
 defined('ABSPATH') or die('No direct access permitted');
 
 /** A block is a combination of related settings. 
@@ -22,16 +23,16 @@ abstract class maxBlock
 	{
 		
 		// filters for save_post, display etc. Buttons class will the filters. 
-		add_filter('mb-save-fields', array($this, 'save_fields'),10,2); 
-		add_action('mb-admin-fields', array($this,'admin_fields' ) );
-		add_action('mb-data-load', array($this,'set') );
+		//add_filter('mb-save-fields', array($this, 'save_fields'),10,2); 
+		//add_action('mb-admin-fields', array($this,'admin_fields' ) );
+		//add_action('mb-data-load', array($this,'set') );
 		
-		add_filter('mb-parse-button', array($this, 'parse_button'),10,2 ); 
-		add_filter('mb-js-blocks', array($this, 'parse_js'), 10, 2); 
+		//add_filter('mb-parse-button', array($this, 'parse_button'),10,2 ); 
+		//add_filter('mb-js-blocks', array($this, 'parse_js'), 10, 2); 
 		//add_filter('mb-parse-element-preview', array($this,'parse_element'), 10,2); 
 		
-		add_filter('mb-css-blocks', array($this, 'parse_css'),10,2 ); 
-		add_filter('mb-field-map', array($this, 'map_fields') ); 
+		//add_filter('mb-css-blocks', array($this, 'parse_css'),10,2 ); 
+		//add_filter('mb-field-map', array($this, 'map_fields') ); 
 		
 
 		$this->fields = apply_filters($this->blockname. "-block-fields",$this->fields); 
@@ -56,8 +57,6 @@ abstract class maxBlock
 		foreach($this->fields as $field => $options) 
 		{
 			$default = (isset($options["default"])) ? $options["default"] : ''; 
-			
-			//$block[$field] = (isset($post[$field])) ? $post[$field] : $default; 
 			if (is_string($default) && strpos($default,"px") !== false)
 				$block[$field] = (isset($post[$field]) ) ? intval($post[$field]) : $default; 
 			elseif( isset($post[$field]) && is_array($post[$field])) 
@@ -229,120 +228,5 @@ abstract class maxBlock
 		$this->data = $dataArray;
 	}
  
-	/* CSS POST PROCESSOR 
-	   This function will gather certain CSS elements and combine them. These element generally don't fix into the regular CSS scheme. 
-	   
-	   It loads the same data as parse_css, but *after* every other function. 
-	   
-	   @param $css Array
-	   @param $mode [normal|preview]
-	   @return $css Array 
-	*/
-	function post_process_css($css, $mode)  //DEPRECATED in favor of scss
-	{		
- 		$raw_css = $css;
- 		return $css; 
- 
-		foreach($css as $part => $styles)
-		{
-			/* Hover part doesn't boost all settings - these are set from normal part */
- 
-			if ( strpos($part,':hover') !== false ) 
-			{
-
-				if (! isset($styles["gradient-start-opacity"])) 
-					$styles["gradient-start-opacity"] = $raw_css["normal"]["gradient-start-opacity"];
-				if (! isset($styles["gradient-end-opacity"])) 
-					$styles["gradient-end-opacity"] = $raw_css["normal"]["gradient-end-opacity"];
-				if (! isset($styles["gradient-stop"])) 
-					$styles["gradient-stop"] = $raw_css["normal"]["gradient-stop"];
-			
-				if (! isset($styles["box-shadow-width"])) 
-					$styles["box-shadow-width"] = $raw_css["normal"]["box-shadow-width"];
-				if (! isset($styles["box-shadow-offset-left"])) 
-					$styles["box-shadow-offset-left"] = $raw_css["normal"]["box-shadow-offset-left"];	
-				if (! isset($styles["box-shadow-offset-top"])) 
-					$styles["box-shadow-offset-top"] = $raw_css["normal"]["box-shadow-offset-top"];	
-
-	 			 
-	 			if (! isset($styles["text-shadow-width"])) 
-					$styles["text-shadow-width"] = $raw_css["-mb-text"]["text-shadow-width"];
-				if (! isset($styles["text-shadow-left"])) 
-					$styles["text-shadow-left"] = $raw_css["-mb-text"]["text-shadow-left"];	
-				if (! isset($styles["text-shadow-top"])) 
-					$styles["text-shadow-top"] = $raw_css["-mb-text"]["text-shadow-top"];	
-				
- 			}
- 
- 
-			/* End Hover fix */
-			
-			if (isset($styles["gradient-start-color"])) 
-			{
-				$start = isset($styles["gradient-start-color"]) ? $styles["gradient-start-color"] : '';
-				$end = isset(  $styles["gradient-end-color"]  ) ?  $styles["gradient-end-color"] : ''; 
-				$start_opacity = isset(  $styles["gradient-start-opacity"]  ) ?  $styles["gradient-start-opacity"] : ''; 
-				$end_opacity = isset(  $styles["gradient-end-opacity"]  ) ?  $styles["gradient-end-opacity"] : ''; 		
-				
-				$start = maxbuttons_hex2rgba($start, $start_opacity);
-				$end = maxbuttons_hex2rgba($end, $end_opacity);		
-				$stop =  isset( $styles["gradient-stop"]) ?  $styles["gradient-stop"] : ''; 
-		
-				$css[$part]["background-color"] = $start; 
-				if ( ( $start != '' && $end != '' && $stop != '' ) )
-				{
-				 $css[$part]["background"] = "linear-gradient( $start $stop%, $end);";  
-				 $css[$part]["background"] .= "background: -moz-linear-gradient($start $stop%, $end);";  
-				 $css[$part]["background"] .= "background: -webkit-gradient(linear, left top, left bottom, color-stop($stop%, $start), 
-				 								color-stop(1, $end));";  			 			 				
-		 		 $css[$part]["background"] .= "background: -o-linear-gradient($start $stop%, $end);";  
-		 		 $css[$part]["-pie-background"] = "linear-gradient($start $stop%, $end)";
-				 
-				}							
-			
-				unset($css[$part]["gradient-start-color"]); 
-				unset($css[$part]["gradient-end-color"]); 
-				unset($css[$part]["gradient-stop"]); 
-				unset($css[$part]["gradient-start-opacity"]); 
-				unset($css[$part]["gradient-end-opacity"]); 
-			}
-		
- 
-			if (isset($styles["box-shadow-width"])) 
-			{
-				$width = $styles["box-shadow-width"]; 
-				$left = $styles["box-shadow-offset-left"]; 
-				$top = $styles["box-shadow-offset-top"]; 
-				$color = isset($styles["box-shadow-color"]) ? $styles["box-shadow-color"] : ''; 
-				
-				if ($color != '') 
-					$css[$part]["box-shadow"] = "$left $top $width $color"; 
-				unset($css[$part]["box-shadow-width"]); 
-				unset($css[$part]["box-shadow-offset-left"]); 
-				unset($css[$part]["box-shadow-offset-top"]); 
-				unset($css[$part]["box-shadow-color"]); 
-			
-			}
-			if (isset($styles["text-shadow-width"]) ) 
-			{
-				$width = $styles["text-shadow-width"]; 
-				$left = $styles["text-shadow-left"]; 
-				$top = $styles["text-shadow-top"]; 
-				$color = isset($styles["text-shadow-color"]) ? $styles["text-shadow-color"] : ''; 
-				
-				if ($color != '')
-					$css[$part]["text-shadow"] = "$left $top $width $color"; 
-				unset($css[$part]["text-shadow-width"]); 
-				unset($css[$part]["text-shadow-left"]); 
-				unset($css[$part]["text-shadow-top"]); 
-				unset($css[$part]["text-shadow-color"]); 
-			
-			}		
-		
-		}				
-		
-		return $css; 
-			
-	}
 }
 ?>

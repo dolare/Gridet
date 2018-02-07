@@ -14,6 +14,115 @@ https://web-dorado.com/wordpress-themes-guide-step-1.html
 
 == Changelog ==
 
+=1.1.32=
+change: update jquery.scrollTo.js version
+fixed: notices in meta boxes on PHP 7
+
+=1.1.31=
+new: customizable order of sections in homepage template
+new: reset in media uploader settings fields
+
+=1.1.30=
+new: option to add slider WD instead of theme slider (activate plugin before)
+
+=1.1.29=
+change: TGM Plugin Activation library updated to 2.6.1 version
+
+=1.1.28=
+new: 'wdwt_more_google_fonts' filter hook
+fixed: conflict of slider and lightbox with some plugins
+fixed: deleted menu when uninstalling demo (PRO)
+
+
+=1.1.27=
+fixed: styles of thumbs in posts index templates
+change: performance improvement in posts index templates
+change: other minor style fixes
+
+=1.1.26=
+fixed: structured data markup in blog, search results and archive templates
+change: improved design of posts list in archive.php and home.php templates
+change: semantic headings
+
+=1.1.25=
+fixed: clicking homepage content posts and portfolio posts on iOS devices
+fixed: minor bugs in menu
+fixed: single post/page styles, conflict with some plugins
+fixed: escaping of custom JS and integration parameters (PRO)
+fixed: update notifications if child theme installed (PRO)
+change: submenu opening styles
+
+=1.1.24=
+fixed: posts pagination if page template is displayed on front page (PRO)
+fixed: minor styling issues
+change: thumbnails sizes in categories posts widget
+
+=1.1.23=
+fixed: menu item without link having submenu caused error on mobile
+fixed: minor bugs in excerpts
+change: shortcodes removed  for new users (PRO)
+
+=1.1.22=
+new: adminbar menu (PRO)
+fixed: bug in related posts shortcode (PRO)
+change: theme tags updated
+change: User guide links updated
+change: WP 4.7 compatibility - language of frontend content in AJAX response
+
+=1.1.21=
+fixed: shortcodes in excerpts removed
+fixed: aspect ratios of dynamically sized iframes
+fixed: error in lightbox if post excerpt contains new line character
+fixed: reset query after gallery posts and widgets containing loop
+change: font-awesome updated to version 4.7.0 and loaded from CDN
+
+=1.1.20=
+new: option to keep transparent header and menu when they are sticked to page top
+change: recommended plugins logos
+change: Two brand new plugins: Google Analytics WD and MailChimp Forms WD added to recommended plugins list
+
+=1.1.19=
+new: settings for sorting homepage top posts, content posts and portfolio posts
+new: maintenance mode (PRO)
+
+=1.1.18=
+new: slider settings are now translatable
+
+=1.1.17=
+new: display WooCommerce categories and products on homepage (activate WooCommerce first)
+new: display WooCommerce categories and products in custom page templates (PRO)
+change: improvements in masonry layouts of custom page templates (PRO) and font colors
+
+=1.1.16=
+new: faster, more SEO friendly and stable front-end with media queries
+new: content width option in percents instead of pixels, better responsivity for larger screens
+change: controls of some settings changed from text input to number
+change: minor style changes
+
+=1.1.15=
+fixed: scrolling menu if home_url and site_url are different
+fixed: many small fixes in frontend font and color styles: !important declarations and some hardcoded colors removed
+fixed: images in posts and boolean values of parameters in sample data (PRO)
+change: three brand new plugins added to recommended plugins list
+change: colors of some buttons changed, font sizes decreased
+change: more attributes in slider description and footer text tags allowed
+
+=1.1.14=
+new: system information tab in theme admin page for debugging
+new: TGM Plugin activator instead of featured plugins
+fixed: custom page templates set as the front page (PRO)
+fixed: layout in footer
+fixed: missing diagram controls in diagram page admin metabox (PRO)
+fixed: sidebars and comments alignment in some templates
+fixed: styles of featured post background image, categories tabs on tablet and content posts
+fixed: javascript error when commenting static front page
+change: front-page.php template removed
+
+=1.1.13=
+new: google maps API key option (PRO)
+fixed: translations of homepage featured post, categories tabs and text settings for WPML compatibility
+fixed: click on paginated post in homepage category tabs
+
 =1.1.12=
 new: meta tags for facebook and twitter sharing in SEO settings (PRO)
 fixed: translations of settings controls

@@ -3,8 +3,7 @@
  * The template for displaying Author pages.
  *
  */
-?>
-<?php get_header(); ?>
+ get_header(); ?>
 <div class="clear"></div>
 <div class="page_content">
     <div class="heading_container">
@@ -24,8 +23,7 @@
                  */
                 if (have_posts())
                     the_post();
-                ?>
-                <?php
+                
 // If a user has filled out their description, show a bio on their entries.
                 if (get_the_author_meta('description')) :
                     ?>
@@ -39,8 +37,7 @@
                         <!-- #author-description	-->
                     </div>
                     <!-- #entry-author-info -->
-                <?php endif; ?>
-                <?php
+                <?php endif; 
                 /* Since we called the_post() above, we need to
                  * rewind the loop back to the beginning that way
                  * we can run the loop properly, in full.

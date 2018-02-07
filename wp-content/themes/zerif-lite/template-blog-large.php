@@ -1,13 +1,18 @@
 <?php
 /**
- * Template Name: Blog template with large images
+ * The template used for Blog with Larger images ( The template header was removed, but the file is still here for compatibility with older versions )
+ *
+ * @package zerif-lite
  */
-get_header(); ?>
+
+get_header();
+global $wp_query;
+global $paged;?>
 
 <div class="clear"></div>
 
 </header> <!-- / END HOME SECTION  -->
-
+<?php zerif_after_header_trigger(); ?>
 <div id="content" class="site-content">
 
 	<div class="container">
@@ -16,30 +21,55 @@ get_header(); ?>
 
 			<div id="primary" class="content-area">
 
-				<main id="main" class="site-main" role="main">
+				<main id="main" class="site-main" itemscope itemtype="http://schema.org/Blog">
 
-					<?php 
-				
-					query_posts( array( 'post_type' => 'post', 'posts_per_page' => 6, 'paged' => ( get_query_var('paged') ? get_query_var('paged') : 1 ) ) );
+					<?php
+					// Define custom query parameters
+					$zerif_posts_per_page = ( get_option( 'posts_per_page' ) ) ? get_option( 'posts_per_page' ) : '6';
 
-					if ( have_posts() ) :
+					$zerif_custom_query_args = array(
+						/* Parameters go here */
+						'post_type'      => 'post',
+						'posts_per_page' => $zerif_posts_per_page,
+					);
 
-						while ( have_posts() ) : the_post();
-						
+					// Get current page and append to custom query parameters array
+					$zerif_custom_query_args['paged'] = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : ( get_query_var( 'page' ) ? get_query_var( 'page' ) : 1 ) );
+					$paged                            = $zerif_custom_query_args['paged'];
+
+					// Instantiate custom query
+					$zerif_custom_query = new WP_Query( apply_filters( 'zerif_template_blog_large_parameters', $zerif_custom_query_args ) );
+
+					// Pagination fix
+					$zerif_temp_query = $wp_query;
+					$wp_query         = null;
+					$wp_query         = $zerif_custom_query;
+
+					// Output custom query loop
+					if ( $zerif_custom_query->have_posts() ) :
+						while ( $zerif_custom_query->have_posts() ) :
+							$zerif_custom_query->the_post();
+							// Loop output goes here
 							get_template_part( 'content-large' );
-						
-						endwhile; 
-						
-						zerif_paging_nav();
-					
-					else : 
-					
+						endwhile;
+					else :
 						get_template_part( 'content', 'none' );
-						
 					endif;
-					
-					wp_reset_postdata(); 
-					
+					// Reset postdata
+					wp_reset_postdata();
+
+					echo get_the_posts_navigation(
+						array(
+							/* translators: Newer posts navigation arrow */
+							'next_text' => sprintf( __( 'Newer posts %s', 'zerif-lite' ), '<span class="meta-nav">&rarr;</span>' ),
+							/* translators: Older posts navigation arrow */
+							'prev_text' => sprintf( __( '%s Older posts', 'zerif-lite' ), '<span class="meta-nav">&larr;</span>' ),
+						)
+					);
+
+					// Reset main query object
+					$wp_query = null;
+					$wp_query = $zerif_temp_query;
 					?>
 
 				</main><!-- #main -->
@@ -48,11 +78,7 @@ get_header(); ?>
 
 		</div><!-- .content-left-wrap -->
 
-		<div class="sidebar-wrap col-md-3 content-left-wrap">
-
-			<?php get_sidebar(); ?>
-
-		</div><!-- .sidebar-wrap -->
+		<?php zerif_sidebar_trigger(); ?>
 
 	</div><!-- .container -->
 <?php get_footer(); ?>

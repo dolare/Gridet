@@ -1,27 +1,27 @@
 <?php 
 $section_bg=nimbus_get_option('fp-contact-background-image');
-if (!empty($section_bg['url'])) {
-    $nimbus_parallax="data-parallax='scroll' data-image-src='" . $section_bg['url'] . "' style='background: transparent;padding:220px 0 200px;background: rgba(0, 0, 0, 0.3);'";
+if (!empty($section_bg)) {
+    $nimbus_parallax="data-parallax='scroll' data-image-src='" . esc_url($section_bg) . "' style='background: transparent;padding:220px 0 200px;background: rgba(0, 0, 0, 0.3);'";
     $parallax_active="parallax_active";
 } 
 if (nimbus_get_option('contact-toggle') == '1') { ?>
-    <section id="<?php if (nimbus_get_option('fp-contact-slug')=='') {echo "contact";} else {echo nimbus_get_option('fp-contact-slug');} ?>" class="frontpage-row frontpage-contact <?php if(isset($parallax_active)){echo $parallax_active;} ?>" <?php if(isset($nimbus_parallax)){echo $nimbus_parallax;} ?>>
+    <section id="<?php if (nimbus_get_option('fp-contact-slug')=='') {echo "contact";} else {echo esc_attr(nimbus_get_option('fp-contact-slug'));} ?>" class="frontpage-row frontpage-contact <?php if(isset($parallax_active)){echo $parallax_active;} ?>" <?php if(isset($nimbus_parallax)){echo $nimbus_parallax;} ?>>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <?php if (nimbus_get_option('fp-contact-title') != '') { ?>
-                        <div class="contact-title h1"><?php echo nimbus_get_option('fp-contact-title'); ?></div>
+                        <div class="contact-title h1"><?php echo esc_html(nimbus_get_option('fp-contact-title')); ?></div>
                     <?php } ?>
                     <?php if (nimbus_get_option('fp-contact-sub-title') != '') { ?>
-                        <div class="contact-sub-title h4"><?php echo nimbus_get_option('fp-contact-sub-title'); ?></div>
+                        <div class="contact-sub-title h4"><?php echo esc_html(nimbus_get_option('fp-contact-sub-title')); ?></div>
                     <?php } ?>
                     <?php 
                     if(isset($_POST['submitted'])) { 
                         if(isset($_POST['myname']) && isset($_POST['email'])) {
                             if((trim($_POST['myname']) != "" ) && (trim($_POST['email']) != "" )) { ?>
-                                <p class="bg-success"><?php echo _e('Thanks for contacting us!', 'nimbus_venture' ); ?></p>
+                                <p class="bg-success"><?php _e('Thanks for contacting us!', 'wp-simple' ); ?></p>
                             <?php } else { ?>
-                                <p class="bg-danger"><?php echo _e('Please enter your name and email address.', 'nimbus_venture' ); ?></p>
+                                <p class="bg-danger"><?php _e('Please enter your name and email address.', 'wp-simple' ); ?></p>
                             <?php 
                             }
                         }
@@ -57,9 +57,9 @@ if (nimbus_get_option('contact-toggle') == '1') { ?>
                                 </div>
                                 <br />
                                 <div class="text-center">
-                                    <input type="hidden" name="scrolltoform" value="<?php if (nimbus_get_option('fp-contact-slug')=='') {echo "contact";} else {echo nimbus_get_option('fp-contact-slug');} ?>">
+                                    <input type="hidden" name="scrolltoform" value="<?php if (nimbus_get_option('fp-contact-slug')=='') {echo "contact";} else {echo esc_attr(nimbus_get_option('fp-contact-slug'));} ?>">
                                     <input type="hidden" name="submitted" id="submitted" value="true" />
-                                    <input data-sr="wait 0.3s, enter right and move 50px after 1s" type="submit" name="submit_button" id="submit_button" value="Submit" class="contact-submit" />
+                                    <input data-sr="wait 0.3s, enter right and move 50px after 1s" type="submit" name="submit_button" id="submit_button" value="<?php _e('Submit', 'wp-simple' ); ?>" class="contact-submit" />
                                 </div>
                             </form>
                         </div>
@@ -71,19 +71,19 @@ if (nimbus_get_option('contact-toggle') == '1') { ?>
 <?php } else if (nimbus_get_option('contact-toggle') == '3') {
     // Don't do anything
 } else { ?>  
-    <section id="<?php if (nimbus_get_option('fp-contact-slug')=='') {echo "contact";} else {echo nimbus_get_option('fp-contact-slug');} ?>" class="frontpage-row frontpage-contact preview parallax_active" data-parallax='scroll' data-image-src='<?php echo get_template_directory_uri(); ?>/images/preview/chairs.jpg' style='background: transparent;padding:220px 0 200px;background: rgba(0, 0, 0, 0.3);'>
+    <section id="<?php if (nimbus_get_option('fp-contact-slug')=='') {echo "contact";} else {echo esc_attr(nimbus_get_option('fp-contact-slug'));} ?>" class="frontpage-row frontpage-contact preview parallax_active" data-parallax='scroll' data-image-src='<?php echo get_template_directory_uri(); ?>/assets/images/preview/chairs.jpg' style='background: transparent;padding:220px 0 200px;background: rgba(0, 0, 0, 0.3);'>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="contact-title h1">Contact Us</div>
-                    <div class="contact-sub-title h4">Let us know what you are thinking.</div>
+                    <div class="contact-title h1"><?php _e('Contact Us','wp-simple'); ?></div>
+                    <div class="contact-sub-title h4"><?php _e('Let us know what you are thinking.','wp-simple'); ?></div>
                     <?php 
                     if(isset($_POST['submitted'])) { 
                         if(isset($_POST['myname']) && isset($_POST['email'])) {
                             if((trim($_POST['myname']) != "" ) && (trim($_POST['email']) != "" )) { ?>
-                                <p class="bg-success"><?php echo _e('Thanks for contacting us!', 'nimbus_venture'); ?></p>
+                                <p class="bg-success"><?php _e('Thanks for contacting us!', 'wp-simple' ); ?></p>
                             <?php } else { ?>
-                                <p class="bg-danger"><?php echo _e('Please enter your name and email address.', 'nimbus_venture'); ?></p>
+                                <p class="bg-danger"><?php _e('Please enter your name and email address.', 'wp-simple' ); ?></p>
                             <?php 
                             }
                         }
@@ -107,7 +107,7 @@ if (nimbus_get_option('contact-toggle') == '1') { ?>
                                 </div>
                                 <br />
                                 <div class="text-center">
-                                    <input type="hidden" name="scrolltoform" value="<?php if (nimbus_get_option('fp-contact-slug')=='') {echo "contact";} else {echo nimbus_get_option('fp-contact-slug');} ?>">
+                                    <input type="hidden" name="scrolltoform" value="<?php if (nimbus_get_option('fp-contact-slug')=='') {echo "contact";} else {echo esc_attr(nimbus_get_option('fp-contact-slug'));} ?>">
                                     <input type="hidden" name="submitted" id="submitted" value="true" />
                                     <input data-sr="wait 0.3s, enter right and move 50px after 1s" type="submit" name="submit_button" id="submit_button" value="Submit" class="contact-submit" />
                                 </div>

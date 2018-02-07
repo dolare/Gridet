@@ -1,4 +1,5 @@
 <?php 
+namespace maxButtons; 
 defined('ABSPATH') or die('No direct access permitted');
 
 abstract class collectionBlock

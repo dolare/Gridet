@@ -132,11 +132,18 @@ background: #fff !important;
 .sticky-head #topHeader{
 	display:none;
 }
+@media (min-width:1680px){
 .logged-in .sticky-head{
 	top: 32px !important;
+}
 }
 @media (max-width:480px){
 .logged-in .sticky-head {
     top: 0px !important;
+}
+}
+@media (max-width:768px){
+.logged-in .sticky-head {
+    top: 46px !important;
 }
 }

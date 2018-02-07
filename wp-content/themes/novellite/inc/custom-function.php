@@ -1,7 +1,5 @@
 <?php
 function NovelLite_theme_support() {
-    add_theme_support('title-tag');
-    add_theme_support('post-thumbnails');
     add_theme_support('post-thumbnails');
     add_image_size('post_thumbnail', 250, 160, true);
     add_image_size('post_thumbnail_front', 340, 250, true);
@@ -9,7 +7,6 @@ function NovelLite_theme_support() {
     add_theme_support('custom-background', array(
         'default-image' => '',
     ));
-    add_theme_support('automatic-feed-links');
 }
 add_action('after_setup_theme', 'NovelLite_theme_support');
 
@@ -46,5 +43,8 @@ function NovelLite_pagination($pages = '', $range = 2) {
             echo "<li><a href='" . get_pagenum_link($pages) . "'>&raquo;</a></li>";
         echo "</ul>\n";
     }
+}
+function NovelLite_isMobile() {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
 ?>

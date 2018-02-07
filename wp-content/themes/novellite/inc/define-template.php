@@ -60,4 +60,8 @@ define('CONTACT_SUBJECT',__('Subject', 'novellite'));
 define('CONTACT_SUBMIT',__('Submit Message', 'novellite'));
 define('HOME_MENU',__('Main Menu', 'novellite'));
 define('FRONT_MENU',__('Front Menu', 'novellite'));
+define('TESTIMONIAL_BG_IMAGE',get_template_directory_uri().'/images/testimonial-back.jpg');
+define('PRICING_BG_IMAGE',get_template_directory_uri().'/images/pricing.jpg');
+define('CONTACT_BG_IMAGE',get_template_directory_uri().'/images/contact-back.jpg');
+
 ?>

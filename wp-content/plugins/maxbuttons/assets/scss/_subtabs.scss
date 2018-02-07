@@ -64,7 +64,7 @@ h2.sub-tabs, h2.submit-tab {
 		button { top: 0; } 
 		.right { float: right; }
 	}	
-	.inside {
+	> .inside {
 		border: 1px solid #e5e5e5;
 	}
 }

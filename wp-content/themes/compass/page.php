@@ -9,8 +9,7 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  */
-?>
-<?php get_header(); ?>
+ get_header(); ?>
 <div class="clear"></div>
 <div class="page_content">
     <div class="heading_container">
@@ -19,8 +18,8 @@
     <div class="grid_17 alpha">
         <div class="content_bar">
             <h1><?php the_title(); ?></h1>
-            <?php if (have_posts()) : the_post(); ?>
-                <?php the_content(); ?>	
+            <?php if (have_posts()) : the_post(); 
+            the_content(); ?>	
             <?php endif; ?>		
         </div>
     </div>

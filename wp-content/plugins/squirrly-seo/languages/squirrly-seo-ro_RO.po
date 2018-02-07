@@ -1,22 +1,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: squirrly_seo\n"
-"POT-Creation-Date: 2014-12-15 11:36+0200\n"
-"PO-Revision-Date: 2014-12-15 11:40+0200\n"
+"POT-Creation-Date: 2017-12-16 14:55+0200\n"
+"PO-Revision-Date: 2017-12-16 14:55+0200\n"
 "Last-Translator: Squirrly <contact@squirrly.co>\n"
 "Language-Team: Squirrly UK <support@squirrly.co>\n"
 "Language: ro_RO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.8.2\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: D:\\pagini_net\\se_lucreaza\\github\\wordpress\\wp-content"
-"\\plugins\\squirrly-seo\n"
+"X-Poedit-Basepath: d:/Work/localhost/wordpress/wp/wp-content/plugins/"
+"squirrly-seo\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/SQ_Error.php:16
+#: classes/Error.php:16
 msgid ""
 "Function get_class does not exists! Is required for Squirrly to work "
 "properly."
@@ -24,7 +24,7 @@ msgstr ""
 "Functia get_class nu exista! E necesara pentru a functiona corect pluginul "
 "Squirrly"
 
-#: classes/SQ_Error.php:19
+#: classes/Error.php:19
 msgid ""
 "Function file_exists does not exists! Is required for Squirrly to work "
 "properly."
@@ -32,51 +32,71 @@ msgstr ""
 "Functia file_exists nu exista! E necesara pentru a functiona corect pluginul "
 "Squirrly"
 
-#: classes/SQ_Error.php:23
+#: classes/Error.php:23
 msgid "The home directory is not set!"
 msgstr "Directorul home nu este setat!"
 
-#: classes/SQ_Error.php:27
+#: classes/Error.php:27
 msgid "The PHP version has to be greater then 4.0"
 msgstr "Versiunea PHP trebuie sa fie mai mare de 4.0"
 
-#: classes/SQ_Error.php:62
-msgid "Turn off warnings!"
-msgstr "Opreste avertizarile"
+#: classes/Error.php:70 classes/Error.php:81
+msgid "Don't bother me!"
+msgstr ""
 
-#: classes/SQ_Error.php:63
-msgid "Notice: "
-msgstr "Atentie:"
-
-#: classes/SQ_Error.php:67
-msgid "Note: "
-msgstr "Atentie:"
-
-#: classes/SQ_Tools.php:59 controllers/SQ_Menu.php:117
+#: classes/Tools.php:59
 msgid "Getting started"
 msgstr "Ajutor"
 
-#: classes/SQ_Tools.php:62 controllers/SQ_Menu.php:126
-msgid "Dashboard"
-msgstr "Dashboard"
+#: classes/Tools.php:247
+msgid "Format"
+msgstr ""
 
-#: classes/SQ_Tools.php:358
+#: classes/Tools.php:255 classes/Tools.php:271
+msgid "Category"
+msgstr ""
+
+#: classes/Tools.php:263 classes/Tools.php:279
+msgid "Tag"
+msgstr ""
+
+#: classes/Tools.php:287
+msgid "Shipping Option"
+msgstr ""
+
+#: classes/Tools.php:295
+msgid "Author at"
+msgstr ""
+
+#: classes/Tools.php:327
+msgid "You searched for"
+msgstr ""
+
+#: classes/Tools.php:343
+msgid "Page not found"
+msgstr ""
+
+#: classes/Tools.php:868
 msgid "Fix it for me!"
 msgstr "Repara-l"
 
-#: classes/SQ_Tools.php:366
-msgid "Let Squirrly optimize your SEO automatically (recommended)"
-msgstr "Lasa Squirrly sa optimizeze SEO automat (recomandat)"
-
-#: classes/SQ_Tools.php:379
-msgid ""
-"You have META Description Duplicates. Disable the Squirrly SEO Description "
-"or disable the other SEO Plugins"
+#: classes/Tools.php:874
+msgid "Activate the Squirrly SEO for your blog (recommended)"
 msgstr ""
-"Aveti duplicate in META Descriere. Opriti Squirrly Seo Description sau "
-"dezactivati alte plugin-uri de SEO"
 
-#: classes/SQ_Tools.php:387
+#: classes/Tools.php:885
+msgid ""
+"You have META Title Duplicates. Disable the Squirrly Title Optimization or "
+"disable the other SEO Plugins"
+msgstr ""
+
+#: classes/Tools.php:893
+msgid ""
+"You have META Description Duplicates. Disable the Squirrly Description "
+"Optimization or disable the other SEO Plugins"
+msgstr ""
+
+#: classes/Tools.php:901
 msgid ""
 "You have Open Graph META Duplicates. Disable the Squirrly SEO Open Graph or "
 "disable the other SEO Plugins"
@@ -84,7 +104,7 @@ msgstr ""
 "Aveti duplicate in META Open Graph. Opriti Squirrly Seo  Open Graph sau "
 "dezactivati alte plugin-uri de SEO"
 
-#: classes/SQ_Tools.php:395
+#: classes/Tools.php:909
 msgid ""
 "You have Twitter Card META Duplicates. Disable the Squirrly SEO Twitter Card "
 "or disable the other SEO Plugins"
@@ -92,11 +112,11 @@ msgstr ""
 "Aveti duplicate in META Twitter Card. Opriti Squirrly Seo Twitter Card sau "
 "dezactivati alte plugin-uri de SEO"
 
-#: classes/SQ_Tools.php:406
+#: classes/Tools.php:918
 msgid "You're blocking google from indexing your site!"
 msgstr "Blochezi accesul la google spre indexarea site-ului"
 
-#: classes/SQ_Tools.php:413
+#: classes/Tools.php:925
 msgid ""
 "It is highly recommended that you include the %postname% variable in the "
 "permalink structure. <br />Go to Settings > Permalinks and add /%postname%/ "
@@ -106,139 +126,533 @@ msgstr ""
 ">Mergi la Setari > Legaturi permanente si adauga  /%postname%/ in campul "
 "Structură personalizată"
 
-#: controllers/SQ_Menu.php:97
+#: classes/Tools.php:932
 msgid ""
-"Check out your SEO Audit and the Performance Analytics section. <a href="
-"\"admin.php?page=sq_dashboard\" title=\"Squirrly Dashboard\">Click here</a>"
+"It is highly recommended to change or remove the default Wordpress Tagline. "
+"<br />Go to Settings > General > Tagline"
 msgstr ""
 
-#: controllers/SQ_Menu.php:116
-msgid " getting started"
-msgstr "ajutor"
+#: classes/Tools.php:938
+msgid "Great! We didn't find any issue in your site."
+msgstr ""
 
-#: controllers/SQ_Menu.php:125
-msgid " dashboard"
-msgstr "dashboard"
+#: classes/Tools.php:1083
+msgid "Just another WordPress site"
+msgstr ""
 
-#: controllers/SQ_Menu.php:133
+#: config/config.php:43
+msgid "Displays the date of the post/page once it's published"
+msgstr ""
+
+#: config/config.php:44
+msgid "Adds the title of the post/page once it’s published"
+msgstr ""
+
+#: config/config.php:45
+msgid "Displays the number of the current page (i.e. 1 of 6)"
+msgstr ""
+
+#: config/config.php:46
+msgid "Adds the title of a page's parent page"
+msgstr ""
+
+#: config/config.php:47
+msgid "Adds the site's name to the post description"
+msgstr ""
+
+#: config/config.php:48
+msgid "Adds the tagline/description of your site"
+msgstr ""
+
+#: config/config.php:49
+msgid ""
+"Will display an excerpt from the post/page (if not customized, the excerpt "
+"will be auto-generated)"
+msgstr ""
+
+#: config/config.php:50
+msgid "Will display an excerpt from the post/page (no auto-generation)"
+msgstr ""
+
+#: config/config.php:51
+msgid "Adds the current tag(s) to the post description"
+msgstr ""
+
+#: config/config.php:52
+msgid "Adds the post category (several categories will be comma-separated)"
+msgstr ""
+
+#: config/config.php:53
+msgid "Adds the primary category of the post/page"
+msgstr ""
+
+#: config/config.php:54
+msgid "Adds the category description to the post description"
+msgstr ""
+
+#: config/config.php:55
+msgid "Adds the tag description"
+msgstr ""
+
+#: config/config.php:56
+msgid "Adds the term description"
+msgstr ""
+
+#: config/config.php:57
+msgid "Adds the term name"
+msgstr ""
+
+#: config/config.php:58
+msgid "Displays the search phrase (if it appears in the post)"
+msgstr ""
+
+#: config/config.php:59
+msgid "Places a separator between the elements of the post description"
+msgstr ""
+
+#: config/config.php:60
+msgid "Replaces the publication date of a post/page with the modified one"
+msgstr ""
+
+#: config/config.php:61
+msgid "Displays the author's nicename"
+msgstr ""
+
+#: config/config.php:62
+msgid "Adds the author's biographical info to the post description"
+msgstr ""
+
+#: config/config.php:63
+msgid "Displays the current date of a post/page"
+msgstr ""
+
+#: config/config.php:64
+msgid "Adds the post's keyword to the post description"
+msgstr ""
+
+#: controllers/Api.php:40
+msgid "Connection expired. Please try again"
+msgstr ""
+
+#: controllers/Api.php:54 controllers/Api.php:57 controllers/Api.php:60
+msgid "Author not found"
+msgstr ""
+
+#: controllers/FrontMenu.php:32
+msgid "You don't have enough pemission to edit this article"
+msgstr ""
+
+#: controllers/Menu.php:41 controllers/Menu.php:52
+#, php-format
+msgid ""
+"Good news, %s is integrated in Squirrly SEO now and you don't have to run 2 "
+"plugins anymore"
+msgstr ""
+
+#: controllers/Menu.php:97
+msgid "See Your Rank on Google"
+msgstr ""
+
+#: controllers/Menu.php:156
+msgid "Custom SEO"
+msgstr ""
+
+#: controllers/Menu.php:199
+#, php-format
+msgid "Check out the Squirrly Analytics section. %sClick here%s"
+msgstr ""
+
+#: controllers/Menu.php:199 view/BlockPostsAnalytics.php:46
 #, fuzzy
-msgid " post list"
-msgstr "Vezi in "
+msgid "Squirrly Analytics"
+msgstr "Optiuni Squirrly"
 
-#: controllers/SQ_Menu.php:134
+#: controllers/Menu.php:208
+#, php-format
+msgid "Go back and complete the Squirrly Tasks for today %sContinue%s"
+msgstr ""
+
+#: controllers/Menu.php:230
+msgid " Dashboard"
+msgstr ""
+
+#: controllers/Menu.php:231
+msgid "First Step"
+msgstr ""
+
+#: controllers/Menu.php:231
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: controllers/Menu.php:240
+msgid " Advanced Analytics (Business Level)"
+msgstr ""
+
+#: controllers/Menu.php:241
+msgid "Advanced Analytics"
+msgstr ""
+
+#: controllers/Menu.php:248
+msgid " Performance Analytics"
+msgstr ""
+
+#: controllers/Menu.php:249
 msgid "Performance <br />Analytics"
 msgstr ""
 
-#: controllers/SQ_Menu.php:141
-msgid " account info"
+#: controllers/Menu.php:257
+msgid " Keyword Research"
 msgstr ""
 
-#: controllers/SQ_Menu.php:142
-msgid "Account Info"
+#: controllers/Menu.php:258
+msgid "Keyword Research"
 msgstr ""
 
-#: controllers/SQ_Menu.php:149
-msgid " settings"
-msgstr "setari"
+#: controllers/Menu.php:265
+msgid " Briefcase"
+msgstr ""
 
-#: controllers/SQ_Menu.php:150
+#: controllers/Menu.php:266
+msgid "Briefcase"
+msgstr ""
+
+#: controllers/Menu.php:273
+msgid " Live Assistant"
+msgstr ""
+
+#: controllers/Menu.php:274
+msgid "Live Assistant"
+msgstr ""
+
+#: controllers/Menu.php:280
+msgid " Copywriting"
+msgstr ""
+
+#: controllers/Menu.php:281
+msgid "Copywriting"
+msgstr ""
+
+#: controllers/Menu.php:289
+msgid " SEO Audit"
+msgstr ""
+
+#: controllers/Menu.php:290
+msgid "Site Audit"
+msgstr ""
+
+#: controllers/Menu.php:298
+msgid " SEO Settings"
+msgstr ""
+
+#: controllers/Menu.php:299 view/BlockToolbar.php:4
 #, fuzzy
 msgid "SEO Settings"
 msgstr "Setari"
 
-#: controllers/SQ_Menu.php:158
-msgid "Make money with "
-msgstr "Castiga bani cu"
+#: controllers/Menu.php:307
+msgid " Advanced Settings"
+msgstr ""
 
-#: controllers/SQ_Menu.php:159
-msgid "Make money"
-msgstr "Castiga Bani"
+#: controllers/Menu.php:308 view/BlockSettings.php:22
+msgid "Advanced Settings"
+msgstr ""
 
-#: controllers/SQ_PostsList.php:95
+#: controllers/Menu.php:315
+msgid " SEO Patterns"
+msgstr ""
+
+#: controllers/Menu.php:316 view/BlockToolbar.php:14
+msgid "Patterns"
+msgstr ""
+
+#: controllers/Menu.php:323
+msgid " Account Info"
+msgstr ""
+
+#: controllers/Menu.php:324
+msgid "Account Info"
+msgstr ""
+
+#: controllers/Menu.php:331
+msgid " Support"
+msgstr ""
+
+#: controllers/Menu.php:332 view/BlockSupport.php:18
+msgid "Support"
+msgstr "Suport"
+
+#: controllers/Menu.php:339
+msgid "Become an Affiliate with "
+msgstr ""
+
+#: controllers/Menu.php:340
+msgid "Become an Affiliate"
+msgstr ""
+
+#: controllers/Menu.php:348
+msgid "Import SEO "
+msgstr ""
+
+#: controllers/Menu.php:349 view/BlockImport.php:77
+msgid "Import SEO"
+msgstr ""
+
+#: controllers/Menu.php:383
+msgid "SEO Snippet"
+msgstr ""
+
+#: controllers/PostsList.php:81
 msgid "Squirrly"
 msgstr "Squirrly"
 
-#: controllers/SQ_PostsList.php:130
+#: controllers/PostsList.php:107
 msgid "Custom description: "
 msgstr "Descrierea:"
 
-#: controllers/SQ_PostsList.php:130
+#: controllers/PostsList.php:107
 msgid "Custom title: "
 msgstr "Titlul"
 
-#: controllers/SQ_PostsList.php:163
+#: controllers/PostsList.php:143
 msgid "SEO Analytics, by Squirrly"
 msgstr "SEO Analytics, de la Squirrly"
 
-#: controllers/SQ_PostsList.php:164 core/SQ_Blockseo/SQ_Blockseo.php:25
+#: controllers/PostsList.php:144 controllers/SerpChecker.php:174
+#: core/BlockBriefcaseKeywords.php:173 models/SerpCheckerTable.php:646
+#: view/Blockseo.php:10
 msgid "Update"
 msgstr "Update"
 
-#: controllers/SQ_PostsList.php:168
+#: controllers/PostsList.php:148 controllers/SerpChecker.php:178
 msgid "Not Public"
 msgstr "Ciorna"
 
-#: controllers/SQ_PostsList.php:169
+#: controllers/PostsList.php:149 controllers/SerpChecker.php:179
 msgid "Could not process"
 msgstr "Nu s-a putut verifica"
 
-#: controllers/SQ_PostsList.php:311 controllers/SQ_PostsList.php:325
-#: models/SQ_BlockPostsAnalytics.php:391
-msgid "Could not receive data from google (Err: blocked IP)"
-msgstr "Nu s-au putut lua informatii de la google (IP Blocat)"
-
-#: controllers/SQ_PostsList.php:313 models/SQ_BlockPostsAnalytics.php:393
-msgid "> 100"
+#: controllers/PostsList.php:314 controllers/PostsList.php:332
+#, php-format
+msgid "Not in top 100 for: %s"
 msgstr ""
 
-#: controllers/SQ_PostsList.php:315 models/SQ_BlockPostsAnalytics.php:395
-#, fuzzy
-msgid "URL Indexed"
-msgstr "Indexare Google"
+#: controllers/PostsList.php:316 controllers/PostsList.php:334
+msgid "The URL is Indexed"
+msgstr ""
 
-#: controllers/SQ_PostsList.php:317 models/SQ_BlockPostsAnalytics.php:397
+#: controllers/PostsList.php:318 controllers/PostsList.php:336
+#: models/BlockPostsAnalytics.php:438
 #, php-format
 msgid "%s"
 msgstr ""
 
-#: core/SQ_BlockAffiliate/SQ_BlockAffiliate.php:34
+#: controllers/SerpChecker.php:23 core/BlockPostsAnalytics.php:28
+#, php-format
+msgid ""
+"To get back to the Advanced Analytics and see rankings for all the keywords "
+"in Briefcase upgrade to %sBusiness Plan%s."
+msgstr ""
+
+#: controllers/SerpChecker.php:77 controllers/SerpChecker.php:91
+#: controllers/SerpChecker.php:134 core/BlockBriefcaseKeywords.php:79
+#: core/BlockBriefcaseKeywords.php:98 core/BlockBriefcaseKeywords.php:116
+#: core/BlockBriefcaseKeywords.php:140 core/BlockSerpKeywords.php:66
+#: core/BlockSerpKeywords.php:74 core/BlockSerpKeywords.php:97
+#: core/BlockSettingsSeo.php:63
+msgid "You don't have enough pemission to activate this feature"
+msgstr ""
+
+#: controllers/SerpChecker.php:115 controllers/SerpChecker.php:125
+#: core/BlockBriefcaseKeywords.php:169
+msgid "Last checked"
+msgstr ""
+
+#: controllers/SerpChecker.php:129
+msgid "Invalid Request"
+msgstr ""
+
+#: controllers/SerpChecker.php:142
+msgid "Removed successfully! The ranks were updated from Squirry Server"
+msgstr ""
+
+#: core/BlockAffiliate.php:38
 #, php-format
 msgid "Error: %s"
 msgstr "Eroare: %s"
 
-#: core/SQ_BlockAffiliate/SQ_BlockAffiliate.php:37
-#: core/SQ_Blocklogin/SQ_Blocklogin.php:86
+#: core/BlockAffiliate.php:41
 msgid "An error occured. Mabe a network error :("
 msgstr "A aparut o eroare. Probabil o eroare de retea :("
 
-#: core/SQ_BlockSupport/SQ_BlockSupport.php:22
+#: core/BlockBriefcaseKeywords.php:31 core/BlockPostsAnalytics.php:24
+#, php-format
+msgid ""
+"%sYou activated the  Business Plan with Advanced Analytics. %sStart Here%s %s"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:33 core/BlockPostsAnalytics.php:26
+#, php-format
+msgid ""
+"%sStart a FREE Trial of the Business Plan with Advanced Analytics for 7 "
+"days. No credit card required. %sSee details%s %s"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:59
+msgid "No keyword found in the briefcase."
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:90 core/Loading.php:50
+#: view/FrontMenu.php:38
+msgid "Saved!"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:92 core/BlockBriefcaseKeywords.php:133
+#: core/BlockBriefcaseKeywords.php:202
+msgid "Invalid Keyword!"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:109
+msgid "Deleted!"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:111
+msgid "Invalid params!"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:129
+msgid "Keyword Research limit exceeded."
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:129 core/Loading.php:71
+msgid "Add 20 Keyword Researches"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:161
+msgid "Check Ranks"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:172 models/BlockPostsAnalytics.php:393
+#: models/SerpCheckerTable.php:565
+msgid "Edit"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:178
+msgid "Deleted Post"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:188
+msgid "Article title"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:189 models/SerpCheckerTable.php:359
+msgid "Google Rank"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:190 models/SerpCheckerTable.php:362
+msgid "Optimized"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:191
+msgid "Option"
+msgstr ""
+
+#: core/BlockBriefcaseKeywords.php:196
+msgid "There are no articles found"
+msgstr ""
+
+#: core/BlockImport.php:32
+msgid "All the Plugin settings were imported successfuly!"
+msgstr ""
+
+#: core/BlockImport.php:34
+msgid "No settings found for this plugin/theme."
+msgstr ""
+
+#: core/BlockImport.php:56
+#, php-format
+msgid ""
+"%s SEO records were imported successfuly! You can now deactivate the %s "
+"plugin"
+msgstr ""
+
+#: core/BlockImport.php:58
+#, php-format
+msgid ""
+"There are no SEO records with this plugin. You can now deactivate the %s "
+"plugin"
+msgstr ""
+
+#: core/BlockSerpKeywords.php:46
+msgid "No keyword found yet."
+msgstr ""
+
+#: core/BlockSerpKeywords.php:50
+msgid "No connection with Squirrly Server"
+msgstr ""
+
+#: core/BlockSerpKeywords.php:132
+msgid "Could not find the Article in your Website"
+msgstr ""
+
+#: core/BlockSettingsSeo.php:26
+#, php-format
+msgid "You can now import into Squirrly SEO all the SEO Settings from %s"
+msgstr ""
+
+#: core/BlockSettingsSeo.php:35 core/Blockseo.php:13
+msgid "Too short"
+msgstr "Prea scurt"
+
+#: core/BlockSettingsSeo.php:36 core/Blockseo.php:14
+msgid "Too long"
+msgstr "Prea lung"
+
+#: core/BlockSettingsSeo.php:462
+msgid "Great! The backup is restored."
+msgstr ""
+
+#: core/BlockSettingsSeo.php:464 core/BlockSettingsSeo.php:467
+#: core/BlockSettingsSeo.php:512 core/BlockSettingsSeo.php:515
+msgid "Error! The backup is not valid."
+msgstr ""
+
+#: core/BlockSettingsSeo.php:470 core/BlockSettingsSeo.php:518
+msgid "Error! You have to enter a previous saved backup file."
+msgstr ""
+
+#: core/BlockSettingsSeo.php:509
+msgid "Great! The SEO backup is restored."
+msgstr ""
+
+#: core/BlockSettingsSeo.php:525
+msgid "Great! Squirrly Data Settings is up to date now."
+msgstr ""
+
+#: core/BlockSupport.php:22
 msgid "Plugin Feedback"
 msgstr "Feedback Squirrly"
 
-#: core/SQ_BlockSupport/SQ_BlockSupport.php:58
+#: core/BlockSupport.php:58
 msgid "Thank you for your feedback"
 msgstr "Multumesc pentru feedback"
 
-#: core/SQ_BlockSupport/SQ_BlockSupport.php:61
-#: core/SQ_BlockSupport/SQ_BlockSupport.php:99
+#: core/BlockSupport.php:61 core/BlockSupport.php:99
 msgid "Could not send the email..."
 msgstr "Nu s-a putut trimite email ..."
 
-#: core/SQ_BlockSupport/SQ_BlockSupport.php:65
-#: core/SQ_BlockSupport/SQ_BlockSupport.php:103
+#: core/BlockSupport.php:65 core/BlockSupport.php:103
 msgid "No message."
 msgstr "Nici un mesaj."
 
-#: core/SQ_BlockSupport/SQ_BlockSupport.php:85
+#: core/BlockSupport.php:85
 msgid "Plugin Support"
 msgstr "Suport la plugin"
 
-#: core/SQ_BlockSupport/SQ_BlockSupport.php:96
-#, fuzzy
+#: core/BlockSupport.php:96
 msgid "Message sent. Thank you!"
 msgstr "Mesajul a fost trimis..."
 
-#: core/SQ_Blocklogin/SQ_Blocklogin.php:81
+#: core/Blocklogin.php:82
 #, php-format
 msgid ""
 "We found your email, so it means you already have a Squirrly.co account. "
@@ -249,168 +663,49 @@ msgstr ""
 "Conecteaza-te cu contul tau de Squirrly. Daca ai uitat parola atunci apasa "
 "%saici%s"
 
-#: core/SQ_Blocklogin/SQ_Blocklogin.php:89
+#: core/Blocklogin.php:85
+msgid "Your email is not valid. Please enter a valid email"
+msgstr ""
+
+#: core/Blocklogin.php:88
+msgid "We could not create your account. Please enter a valid email "
+msgstr ""
+
+#: core/Blocklogin.php:93
+msgid ""
+"Error: Couldn't connect to host :( . Please contact your site's webhost (or "
+"webmaster) and request them to add http://api.squirrly.co/ to their  IP "
+"whitelist."
+msgstr ""
+
+#: core/Blocklogin.php:96
 #, php-format
 msgid ""
 "Could not send your informations to squirrly. Please register %smanually%s."
 msgstr ""
 "Nu s-a putut trimite informatia la Squirrly. Inregistreaza-te %smanual%s."
 
-#: core/SQ_Blocklogin/SQ_Blocklogin.php:129
+#: core/Blocklogin.php:137
 msgid "Wrong email or password!"
 msgstr "Email sau Parola gresita!"
 
-#: core/SQ_Blocklogin/SQ_Blocklogin.php:132
+#: core/Blocklogin.php:140
 msgid "You can use this account only for the URL you registered first!"
 msgstr "Poti folosi acest cont doar pentru URL-ul inregistrat la inceput!"
 
-#: core/SQ_Blocklogin/SQ_Blocklogin.php:137
+#: core/Blocklogin.php:145
 msgid "An error occured."
 msgstr "A aparut o eroare."
 
-#: core/SQ_Blocklogin/SQ_Blocklogin.php:139
+#: core/Blocklogin.php:147
 msgid "Both fields are required."
 msgstr "Ambele campuri sunt obligatorii!"
 
-#: core/SQ_Blockresearch/SQ_Blockresearch.php:13
-msgid "Recent discussions:"
-msgstr "Discutii recente:"
-
-#: core/SQ_Blockresearch/SQ_Blockresearch.php:13
-msgid "Exact search:"
-msgstr "Cautari exacte:"
-
-#: core/SQ_Blockresearch/SQ_Blockresearch.php:13
-msgid "Competition:"
-msgstr "Competitia:"
-
-#: core/SQ_Blockresearch/SQ_Blockresearch.php:13
-msgid "Trend:"
-msgstr "Trend:"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "date"
-msgstr "data"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Read it!"
-msgstr "Citeste!"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Insert it!"
-msgstr "Adauga!"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Reference"
-msgstr "Referinta"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Insert as box"
-msgstr "Adauga"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Not relevant?"
-msgstr "Nu e ce doresti?"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Insert in your article"
-msgstr "Adauga paragraf in articol"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "For Squirrly to work, you have to have tinymce editor installed!"
-msgstr ""
-"Pentru ca Squirrly sa functioneze, trebuie sa ai editorul TinyMCE instalat"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid ":( I lost my squirrel. Please reload the page."
-msgstr ":( Am pierdut veverita. Te rog sa dai refresh la pagina."
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "No results found!"
-msgstr "Nu s-a gasit nimic ..."
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Switch to Visual editor!"
-msgstr "Schimba in Editor Vizual!"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Use more words in one keyword"
-msgstr "Am mai multe cuvinte"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Takes too long to check this keyword ..."
-msgstr "Ia prea mult timp sa verifice cuvantul ..."
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Do a research!"
-msgstr "Mai multe detalii!"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Do more research!"
-msgstr "Mai multe detalii!"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-#, php-format
-msgid "[ ATTRIBUTE: Please check: %s to find out how to attribute this image ]"
-msgstr ""
-"[ ATTRIBUTE: Verificati: %s pentru a vedea conditile de atribuire a "
-"imaginii ]"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "Has creative commons attributes"
-msgstr "Are conditii de atribuire"
-
-#: core/SQ_Blocksearch/SQ_Blocksearch.php:50
-msgid "No known copyright restrictions"
-msgstr "Nu sunt restrictii de copyright cunoscute"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:15
-msgid "Save changes"
-msgstr "Salveaza"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:16
-msgid "Cancel"
-msgstr "Renunta"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:17
-msgid "Reset"
-msgstr "Resetare"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:19
-#, fuzzy
-msgid "Customize Meta"
-msgstr "Modificare META"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:20
-msgid "manage keywords"
-msgstr "administrare cuvinte cheie"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:21 themes/default/SQ_Menu.php:521
-msgid "Too short"
-msgstr "Prea scurt"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:22 themes/default/SQ_Menu.php:522
-msgid "Too long"
-msgstr "Prea lung"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:24 themes/default/SQ_Menu.php:231
-msgid "Squirrly Snippet"
-msgstr "Snipet Squirrly"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:26
+#: core/Blockseo.php:15
 msgid "snippet"
 msgstr ""
 
-#: core/SQ_Blockseo/SQ_Blockseo.php:28
-msgid ""
-"Click the Update button (to the right) to see the snippet from your website."
-msgstr "Click pe butonul Update pentru a vedea snipetul site-ului"
-
-#: core/SQ_Blockseo/SQ_Blockseo.php:29
-msgid "Enter a title above for the snippet to get data."
-msgstr "Adauga un titlu pentru a putea vedea datele in snipet"
-
-#: core/SQ_Loading/SQ_Loading.php:21
+#: core/Loading.php:21
 msgid ""
 "For Squirrly to work properly you have to use a higher version of Internet "
 "Explorer. <br /> We recommend you to use Chrome or Mozilla."
@@ -418,7 +713,102 @@ msgstr ""
 "Pentru a functiona Squirrly, trebui sa folosesti o versiune mai noua de "
 "Internet explorer. <br /> Recomandam sa folosesti Chrome sau Mozilla."
 
-#: core/SQ_Loading/SQ_Loading.php:29
+#: core/Loading.php:47
+msgid "Recent discussions:"
+msgstr "Discutii recente:"
+
+#: core/Loading.php:47
+msgid "SEO Search Volume:"
+msgstr ""
+
+#: core/Loading.php:47
+msgid "Competition:"
+msgstr "Competitia:"
+
+#: core/Loading.php:47
+msgid "Trend:"
+msgstr "Trend:"
+
+#: core/Loading.php:48
+msgid "Keyword:"
+msgstr "Cuvant cheie:"
+
+#: core/Loading.php:49
+msgid "date"
+msgstr "data"
+
+#: core/Loading.php:51
+msgid "Read it!"
+msgstr "Citeste!"
+
+#: core/Loading.php:52
+msgid "Insert it!"
+msgstr "Adauga!"
+
+#: core/Loading.php:53
+msgid "Reference"
+msgstr "Referinta"
+
+#: core/Loading.php:54
+msgid "Insert as box"
+msgstr "Adauga"
+
+#: core/Loading.php:55
+msgid "Insert Link"
+msgstr ""
+
+#: core/Loading.php:56
+msgid "Not relevant?"
+msgstr "Nu e ce doresti?"
+
+#: core/Loading.php:57
+msgid "Insert in your article"
+msgstr "Adauga paragraf in articol"
+
+#: core/Loading.php:58
+msgid ":( An error occurred while processing your request. Please try again"
+msgstr ""
+
+#: core/Loading.php:59
+msgid "Keyword Research takes too long to get the results. Click to try again"
+msgstr ""
+
+#: core/Loading.php:60
+msgid "No results found!"
+msgstr "Nu s-a gasit nimic ..."
+
+#: core/Loading.php:61
+msgid "Enter one more word to find relevant results"
+msgstr ""
+
+#: core/Loading.php:62
+msgid "Takes too long to check this keyword ..."
+msgstr "Ia prea mult timp sa verifice cuvantul ..."
+
+#: core/Loading.php:63
+msgid "Do a research!"
+msgstr "Mai multe detalii!"
+
+#: core/Loading.php:64
+msgid "Do more research!"
+msgstr "Mai multe detalii!"
+
+#: core/Loading.php:65
+#, php-format
+msgid "[ ATTRIBUTE: Please check: %s to find out how to attribute this image ]"
+msgstr ""
+"[ ATTRIBUTE: Verificati: %s pentru a vedea conditile de atribuire a "
+"imaginii ]"
+
+#: core/Loading.php:66
+msgid "Has creative commons attributes"
+msgstr "Are conditii de atribuire"
+
+#: core/Loading.php:67
+msgid "No known copyright restrictions"
+msgstr "Nu sunt restrictii de copyright cunoscute"
+
+#: core/Loading.php:68
 msgid ""
 "You haven`t used Squirrly SEO to optimize your article. Do you want to "
 "optimize for a keyword before publishing?"
@@ -426,390 +816,531 @@ msgstr ""
 "Nu ai folosit Squirrly SEO pentru a optimiza articolul. Vrei sa il "
 "optimizezi inainte de publicare?"
 
-#: models/SQ_BlockPostsAnalytics.php:270
+#: core/Loading.php:69
+msgid "Keyword Research limit exceeded"
+msgstr ""
+
+#: core/Loading.php:70
+msgid "Your Subscription has Expired"
+msgstr ""
+
+#: core/Loading.php:72
+msgid "There are no keywords saved in briefcase yet"
+msgstr ""
+
+#: core/Loading.php:73
+#, php-format
+msgid "Congratulations! Your article is 100% optimized!"
+msgstr ""
+
+#: core/Loading.php:74
+#, php-format
+msgid "appears too many times. Try to remove %s of them"
+msgstr "apare de prea multe ori. Sterge %s cuvint(e) cheie"
+
+#: core/Loading.php:75
+#, php-format
+msgid "write %s more words"
+msgstr "mai adauga %s cuvinte"
+
+#: core/Loading.php:76
+#, php-format
+msgid "Add the keyword in the %s of your article"
+msgstr "Adauga cuvantul cheie  la %s articolului"
+
+#: core/Loading.php:77
+msgid "Click to keep the highlight on"
+msgstr ""
+
+#: core/Loading.php:78
+msgid "introduction"
+msgstr ""
+
+#: core/Loading.php:79
+#, php-format
+msgid "Write more words after the %s keyword"
+msgstr "Scrie mai multe cuvinte dupa %s cuvant cheie"
+
+#: core/Loading.php:80
+msgid "or use synonyms"
+msgstr "sau foloseste sinonime"
+
+#: core/Loading.php:81
+#, php-format
+msgid "add %s more word(s)"
+msgstr "Mai adauga %s cuvinte"
+
+#: core/Loading.php:82
+#, php-format
+msgid "or remove %s word(s)"
+msgstr "sau sterge %s cuvinte"
+
+#: core/Loading.php:83
+#, php-format
+msgid "add %s  more keyword(s)"
+msgstr "mai adauga %s  cuvint(e) cheie"
+
+#: core/Loading.php:84
+#, php-format
+msgid "write %s  more words to start calculating"
+msgstr "Scrie %s cuvinte pentru a se putea verifica"
+
+#: core/Loading.php:85
+msgid "Add to Briefcase"
+msgstr ""
+
+#: core/Loading.php:86
+msgid "Add Keyword to Briefcase"
+msgstr ""
+
+#: core/Loading.php:87 view/BlockBriefcaseKeywords.php:132
+msgid "Use Keyword"
+msgstr ""
+
+#: models/BlockPostsAnalytics.php:292 models/SerpCheckerTable.php:376
 msgid "Type"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:273
+#: models/BlockPostsAnalytics.php:295 models/SerpCheckerTable.php:374
+#: view/FrontMenu.php:364
 msgid "Author"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:276
-#, fuzzy
+#: models/BlockPostsAnalytics.php:298
 msgid "Keywords"
 msgstr "Cuvinte cheie:"
 
-#: models/SQ_BlockPostsAnalytics.php:278
+#: models/BlockPostsAnalytics.php:300
 #, php-format
 msgid "Google.%s Position"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:279
-msgid "Monthly Traffic"
-msgstr "Trafic lunar"
-
-#: models/SQ_BlockPostsAnalytics.php:280
+#: models/BlockPostsAnalytics.php:303 view/BlockAudit.php:48
 msgid "Date"
 msgstr "Data"
 
-#: models/SQ_BlockPostsAnalytics.php:293
+#: models/BlockPostsAnalytics.php:317
 msgid "Reset Filters"
 msgstr "Resetare Filtre"
 
-#: models/SQ_BlockPostsAnalytics.php:352
+#: models/BlockPostsAnalytics.php:322
+msgid "Search Posts"
+msgstr ""
+
+#: models/BlockPostsAnalytics.php:390 models/SerpCheckerTable.php:562
 #, php-format
 msgid "Edit &#8220;%s&#8221;"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:355
+#: models/BlockPostsAnalytics.php:393 models/SerpCheckerTable.php:565
 msgid "Edit this item"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:355
-msgid "Edit"
-msgstr ""
-
-#: models/SQ_BlockPostsAnalytics.php:360
+#: models/BlockPostsAnalytics.php:398 models/SerpCheckerTable.php:570
 #, php-format
 msgid "Preview &#8220;%s&#8221;"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:360
+#: models/BlockPostsAnalytics.php:398 models/SerpCheckerTable.php:570
 msgid "Preview"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:362
+#: models/BlockPostsAnalytics.php:400 models/SerpCheckerTable.php:572
 #, php-format
 msgid "View &#8220;%s&#8221;"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:362
+#: models/BlockPostsAnalytics.php:400 models/SerpCheckerTable.php:572
 msgid "View"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:383
+#: models/BlockPostsAnalytics.php:422
 msgid "No Tags"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:399
+#: models/BlockPostsAnalytics.php:432
+msgid "Could not receive data from google (Err: blocked IP)"
+msgstr "Nu s-au putut lua informatii de la google (IP Blocat)"
+
+#: models/BlockPostsAnalytics.php:434
+msgid "Not in top 100 for: <br /> \""
+msgstr ""
+
+#: models/BlockPostsAnalytics.php:436
+msgid "The URL is indexed"
+msgstr ""
+
+#: models/BlockPostsAnalytics.php:440
 msgid "Force recheck"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:401
+#: models/BlockPostsAnalytics.php:442
 msgid "Not yet verified"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:414
+#: models/BlockPostsAnalytics.php:442
+msgid "Check now"
+msgstr ""
+
+#: models/BlockPostsAnalytics.php:445
+#, php-format
+msgid "Enable Ranking in %sAdvanced Settings%s"
+msgstr ""
+
+#: models/BlockPostsAnalytics.php:457 models/SerpCheckerTable.php:654
 msgid "Unpublished"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:423
+#: models/BlockPostsAnalytics.php:466 models/SerpCheckerTable.php:663
 #, php-format
 msgid "%s ago"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:425
+#: models/BlockPostsAnalytics.php:468 models/SerpCheckerTable.php:665
 msgid "Y/m/d"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:430
+#: models/BlockPostsAnalytics.php:473 models/SerpCheckerTable.php:670
 msgid "Published"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:433
+#: models/BlockPostsAnalytics.php:476 models/SerpCheckerTable.php:673
 msgid "Missed schedule"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:435
+#: models/BlockPostsAnalytics.php:478 models/SerpCheckerTable.php:675
 msgid "Scheduled"
 msgstr ""
 
-#: models/SQ_BlockPostsAnalytics.php:437
+#: models/BlockPostsAnalytics.php:480 models/SerpCheckerTable.php:677
 msgid "Last Modified"
 msgstr ""
 
-#: models/SQ_BlockStatus.php:128
-#, php-format
-msgid "%s More Traffic for you!"
-msgstr ""
-
-#: models/SQ_BlockStatus.php:128
-msgid "[close this box]"
-msgstr ""
-
-#: models/SQ_BlockStatus.php:133
-msgid "CONGRATULATIONS!!"
-msgstr ""
-
-#: models/SQ_BlockStatus.php:136
-msgid "Your Traffic Increased by:"
-msgstr ""
-
-#: models/SQ_BlockStatus.php:141
-#, php-format
-msgid ""
-"the articles you’ve optimized with Squirrly SEO bring you %s more traffic "
-"than the other ones."
-msgstr ""
-
-#: models/SQ_Frontend.php:375 models/SQ_Frontend.php:389
-#: models/SQ_Frontend.php:396 models/SQ_Frontend.php:533
-#: models/SQ_Frontend.php:551 models/SQ_Frontend.php:563
-msgid "Page"
-msgstr ""
-
-#: models/SQ_Frontend.php:386
-msgid "About"
-msgstr ""
-
-#: models/SQ_Menu.php:145
+#: models/BlockSettingsSeo.php:71
 msgid "The code for Google Webmaster Tool is incorrect."
 msgstr "Codul google pentru Webmaster Tool este gresit."
 
-#: models/SQ_Menu.php:172
+#: models/BlockSettingsSeo.php:98
 msgid "The code for Google Analytics is incorrect."
 msgstr "Codul Google Analytics este incorect."
 
-#: models/SQ_Menu.php:198
+#: models/BlockSettingsSeo.php:144
 msgid "The code for Facebook is incorrect."
 msgstr "Codul Facbook este gresit."
 
-#: models/SQ_Menu.php:223
-#, fuzzy
+#: models/BlockSettingsSeo.php:169
 msgid "The code for Pinterest is incorrect."
-msgstr "Codul Bing este gresit."
+msgstr "Codul Pinterest este gresit."
 
-#: models/SQ_Menu.php:248
+#: models/BlockSettingsSeo.php:194
 msgid "The code for Bing is incorrect."
 msgstr "Codul Bing este gresit."
 
-#: models/SQ_Menu.php:281
-#, fuzzy
+#: models/BlockSettingsSeo.php:320
 msgid "File type error: Only ICO, JPEG, JPG, GIF or PNG files are allowed."
-msgstr "Eroare fisier: Doar fisierele JPEG,JPG,GIF sau PNG sunt permise"
+msgstr "Eroare fisier: Doar fisierele JPEG, JPG, GIF sau PNG sunt permise"
 
-#: models/SQ_Menu.php:287
+#: models/BlockSettingsSeo.php:326
 msgid "GD error: The GD library must be installed on your server."
 msgstr ""
 "Eroare librarie GD: Trebuie sa instalezi libraria GD pe server pentru a "
 "putea adauga imaginea"
 
-#: models/SQ_Menu.php:293
+#: models/BlockSettingsSeo.php:332
 msgid "Delete error: Could not delete the old favicon."
 msgstr "Eroare Stergere: Nu se poate sterge icoana veche"
 
-#: models/SQ_Menu.php:300
+#: models/BlockSettingsSeo.php:339
 msgid "Upload error: Could not upload the favicon."
 msgstr "Eroare Upload: Nu se poate urca pe server imaginea"
 
-#: models/SQ_Menu.php:306
+#: models/BlockSettingsSeo.php:345
 msgid "Permission error: Could not change the favicon permissions."
 msgstr "Eroare Fisier: Nu se poate schimba permisiunea fisierului"
 
-#: models/SQ_Menu.php:332
+#: models/BlockSettingsSeo.php:367
 msgid ""
 "ICO Error: Could not create the ICO from file. Try with another file type."
 msgstr "Eroare ICO: Nu se poate transforma imaginea in fisier ICO"
 
-#: models/SQ_Menu.php:338
+#: models/BlockSettingsSeo.php:386
 msgid "The favicon has been updated."
 msgstr "Icoana a fost adaugata pe server"
 
-#: models/SQ_Post.php:69
+#: models/Post.php:69
 msgid "Squirrly could not find any results for: "
 msgstr "Squirrly nu a putut gasi rezultate pentru: "
 
-#: models/SQ_Post.php:132
+#: models/Post.php:138
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini."
 msgstr ""
 
-#: models/SQ_Post.php:133
+#: models/Post.php:139
 msgid ""
 "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
 "the HTML form."
 msgstr ""
 
-#: models/SQ_Post.php:134
+#: models/Post.php:140
 msgid "The uploaded file was only partially uploaded."
 msgstr ""
 
-#: models/SQ_Post.php:135
+#: models/Post.php:141
 msgid "No file was uploaded."
 msgstr ""
 
-#: models/SQ_Post.php:137
+#: models/Post.php:143
 msgid "Missing a temporary folder."
 msgstr ""
 
-#: models/SQ_Post.php:138
+#: models/Post.php:144
 msgid "Failed to write file to disk."
 msgstr ""
 
-#: models/SQ_Post.php:139
+#: models/Post.php:145
 msgid "File upload stopped by extension."
 msgstr ""
 
-#: models/SQ_Post.php:156
+#: models/Post.php:162
 msgid "Invalid form submission."
 msgstr ""
 
-#: models/SQ_Post.php:166
+#: models/Post.php:172
 msgid "File is empty. Please upload something more substantial."
 msgstr ""
 
-#: models/SQ_Post.php:168
+#: models/Post.php:174
 msgid ""
 "File is empty. Please upload something more substantial. This error could "
 "also be caused by uploads being disabled in your php.ini or by post_max_size "
 "being defined as smaller than upload_max_filesize in php.ini."
 msgstr ""
 
-#: models/SQ_Post.php:174
+#: models/Post.php:180
 msgid "Specified file failed upload test."
 msgstr ""
 
-#: models/SQ_Post.php:187
+#: models/Post.php:193
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
 
-#: models/SQ_Post.php:212
+#: models/Post.php:218
 #, php-format
 msgid "The uploaded file could not be moved to %s."
 msgstr ""
 
-#: models/SQ_PostsList.php:30 themes/default/SQ_BlockAnalytics.php:234
-msgid "Visits"
-msgstr "Vizite"
-
-#: models/SQ_PostsList.php:34
-msgid "monthly traffic"
+#: models/PostsList.php:27
+msgid "Optimized:"
 msgstr ""
 
-#: models/SQ_PostsList.php:37
+#: models/PostsList.php:28
 msgid "See Analytics"
 msgstr ""
 
-#: models/SQ_PostsList.php:39
+#: models/PostsList.php:30
 msgid "Optimize it with Squirrly to see the Analytics"
 msgstr ""
 
-#: models/SQ_PostsList.php:91
+#: models/PostsList.php:83
 msgid "This post's current position in Google"
 msgstr ""
 
-#: models/SQ_PostsList.php:94
+#: models/PostsList.php:86
 msgid "The total traffic for the last 30 days, for the current post"
 msgstr ""
 
-#: models/SQ_PostsList.php:97
+#: models/PostsList.php:89
 msgid "The total number of shares on social media channels for this post"
 msgstr ""
 
-#: models/SQ_PostsList.php:100
-#, fuzzy
+#: models/PostsList.php:92
 msgid "The total authority for this post"
 msgstr "Nu sunt suficiente informatii pentru acest post"
 
-#: models/SQ_PostsList.php:103
+#: models/PostsList.php:95
 msgid "The total number of inbound links to this post"
 msgstr ""
 
-#: squirrly.php:52
+#: models/SerpCheckerTable.php:353 view/BlockPatterns.php:86
+#: view/FrontMenu.php:134
+msgid "Title"
+msgstr ""
+
+#: models/SerpCheckerTable.php:356 view/BlockBriefcaseKeywords.php:41
+#: view/BlockBriefcaseKeywords.php:60 view/BlockSerpKeywords.php:25
+#: view/BlockSerpKeywords.php:53
+msgid "Keyword"
+msgstr "Cuvant cheie:"
+
+#: models/SerpCheckerTable.php:371
+msgid "Social Shares"
+msgstr ""
+
+#: models/SerpCheckerTable.php:378
+msgid "Post Date"
+msgstr ""
+
+#: models/SerpCheckerTable.php:399 view/BlockBriefcaseKeywords.php:21
+msgid "Search Keyword"
+msgstr ""
+
+#: models/SerpCheckerTable.php:599
+#, php-format
+msgid "Squirrly Optimization for: '%s'"
+msgstr ""
+
+#: models/SerpCheckerTable.php:632
+msgid "Facebook"
+msgstr ""
+
+#: models/SerpCheckerTable.php:633 view/Blocksearch.php:61
+msgid "Twitter"
+msgstr "Twitter"
+
+#: models/SerpCheckerTable.php:634
+msgid "Google+"
+msgstr ""
+
+#: models/SerpCheckerTable.php:635
+msgid "LinkedIn"
+msgstr ""
+
+#: models/SerpCheckerTable.php:636
+msgid "Reddit"
+msgstr ""
+
+#: models/SerpCheckerTable.php:637
+msgid "Stumble"
+msgstr ""
+
+#: models/SerpCheckerTable.php:638
+msgid "Pinterest"
+msgstr ""
+
+#: models/SerpCheckerTable.php:642
+#, php-format
+msgid "Google Rank for keyword '%s' on '%s'"
+msgstr ""
+
+#: models/SerpCheckerTable.php:702
+msgid "In queue"
+msgstr ""
+
+#: models/SerpCheckerTable.php:705
+msgid "Not indexed"
+msgstr ""
+
+#: models/domain/Patterns.php:214
+msgid "Page"
+msgstr ""
+
+#: models/domain/Patterns.php:215
+msgid "of"
+msgstr ""
+
+#: models/services/Robots.php:13
+msgid "Squirrly SEO Robots"
+msgstr ""
+
+#: models/services/Robots.php:16
+msgid ""
+"Your blog is not public. Please see Site Visibility on Settings > Reading."
+msgstr ""
+
+#: models/services/Robots.php:31
+msgid "No Squirrly SEO Robots found."
+msgstr ""
+
+#: squirrly.php:75
 msgid ""
 "For Squirrly to work, the PHP version has to be equal or greater then 5.1"
 msgstr "Versiunea PHP trebuie sa fie mai mare de 5.1"
 
-#: themes/default/SQ_BlockAccount.php:7
-#, fuzzy
+#: view/BlockAccount.php:7 view/BlockAffiliate.php:7 view/BlockAudit.php:7
+#: view/BlockDashboard.php:6 view/BlockImport.php:7
+#: view/BlockKeywordResearch.php:7 view/BlockPatterns.php:7
+#: view/BlockPostsAnalytics.php:7 view/BlockSettings.php:7
+#: view/BlockSettingsSeo.php:7 view/SerpChecker.php:7
+msgid "Connect to Squirrly Data Cloud"
+msgstr ""
+
+#: view/BlockAccount.php:13 view/BlockAffiliate.php:13 view/BlockAudit.php:13
+#: view/BlockDashboard.php:28 view/BlockImport.php:13
+#: view/BlockKeywordResearch.php:13 view/BlockPatterns.php:13
+#: view/BlockPostsAnalytics.php:12 view/BlockSettings.php:13
+#: view/BlockSettingsSeo.php:13 view/Blocklogin.php:38 view/SerpChecker.php:13
+msgid "START HERE"
+msgstr ""
+
+#: view/BlockAccount.php:23
 msgid "Squirrly account information"
-msgstr "Vezi Squirrly in actiune"
+msgstr "Informatii cont Squirrly"
 
-#: themes/default/SQ_BlockAccount.php:11
-msgid "Hey,"
-msgstr ""
-
-#: themes/default/SQ_BlockAccount.php:13
-msgid ""
-"Thanks for joining Squirrly. We love our users and we like it when they "
-"reach out to us."
-msgstr ""
-
-#: themes/default/SQ_BlockAccount.php:14
-msgid ""
-"If you wouldn’t mind, I’d love it if you answered one quick question: why "
-"did you sign up for Squirrly?"
-msgstr ""
-
-#: themes/default/SQ_BlockAccount.php:18
-#, fuzzy
-msgid "[stop showing this message]"
-msgstr "u afisa aceasta pagina"
-
-#: themes/default/SQ_BlockAccount.php:18
-msgid "Send Reply"
-msgstr ""
-
-#: themes/default/SQ_BlockAccount.php:34 themes/default/SQ_Menu.php:7
-#, fuzzy
+#: view/BlockAccount.php:25 view/BlockAffiliate.php:23
 msgid "Go to dashboard"
-msgstr "dashboard"
+msgstr "Mergi la Dashboard"
 
-#: themes/default/SQ_BlockAffiliate.php:5
-#: themes/default/SQ_BlockAffiliate.php:16
-msgid "Join Squirrly today!"
-msgstr "Alatura-te lui Squirrly!"
+#: view/BlockAccount.php:26
+msgid "See ALL of Your Activity so Far"
+msgstr ""
 
-#: themes/default/SQ_BlockAffiliate.php:17
+#: view/BlockAffiliate.php:21 view/BlockAffiliate.php:33
+msgid "Join our affiliate program"
+msgstr ""
+
+#: view/BlockAffiliate.php:34
 #, php-format
 msgid "%sHow I Started Making Money With the Squirrly Affiliate Program%s"
 msgstr ""
 
-#: themes/default/SQ_BlockAffiliate.php:20
+#: view/BlockAffiliate.php:37
 msgid "Affiliate Benefits"
 msgstr "Beneficii afiliere"
 
-#: themes/default/SQ_BlockAffiliate.php:25
+#: view/BlockAffiliate.php:42
 #, php-format
-msgid "- Recurring 45%s commission"
-msgstr "- Comision 45%s din abonament"
+msgid "- Up to recurring 45%s commission"
+msgstr ""
 
-#: themes/default/SQ_BlockAffiliate.php:30
+#: view/BlockAffiliate.php:47
 msgid "- No cost"
 msgstr "- Fara costuri"
 
-#: themes/default/SQ_BlockAffiliate.php:35
+#: view/BlockAffiliate.php:52
 msgid "- Monthly payments in your Paypal account"
 msgstr "- Platy lunare in contul tau de Paypal"
 
-#: themes/default/SQ_BlockAffiliate.php:46
+#: view/BlockAffiliate.php:61
+#, php-format
+msgid ""
+"Before joining our affiliate program, please read the Terms of Use %shttps://"
+"www.squirrly.co/terms/%s."
+msgstr ""
+
+#: view/BlockAffiliate.php:69
 msgid ""
 "To redirect users to your site, just change \"squirrly.co\" with your domain."
 msgstr ""
 "Pentru a redirecta userii spre site-ul tau, schimba doar \"squirrly.co\" cu "
 "domeniul tau"
 
-#: themes/default/SQ_BlockAffiliate.php:48
+#: view/BlockAffiliate.php:72
 msgid "Generate affiliate link"
 msgstr "Generare link de afiliat"
 
-#: themes/default/SQ_BlockAffiliate.php:56
+#: view/BlockAffiliate.php:81
 msgid ""
 "Your affiliate account is set and ready to go. Above you have the affiliate "
 "link. "
 msgstr ""
 "Linkul tau de afiliere e gata. Mai sus aveti link-ul care il puteti folosi"
 
-#: themes/default/SQ_BlockAffiliate.php:58
+#: view/BlockAffiliate.php:83
 #, php-format
 msgid "Check your affiliate page: %sAffiliate page%s"
 msgstr "Verifica pagina ta de afiliat: %sAffiliate page%s"
 
-#: themes/default/SQ_BlockAffiliate.php:60
-#, php-format
-msgid "%sTerms of Use for our Affiliate Program%s"
-msgstr "%sTermeni si conditii de afiliere%s"
-
-#: themes/default/SQ_BlockAffiliate.php:63
+#: view/BlockAffiliate.php:86
 msgid ""
 "After you connect to Squirrly you can begin to use your free Squirrly "
 "affiliate link immediately!"
@@ -817,1053 +1348,1751 @@ msgstr ""
 "Dupa ce te conectezi la Squirrly vei putea incepe sa folosesti link-ul tau "
 "de afiliat"
 
-#: themes/default/SQ_BlockAffiliate.php:72
+#: view/BlockAffiliate.php:96
 msgid "Squirrly banners you can use"
 msgstr "Bannere Squirrly"
 
-#: themes/default/SQ_BlockAffiliate.php:96
-msgid "Go to settings"
-msgstr "Mergi la setari"
-
-#: themes/default/SQ_BlockAffiliate.php:97
-msgid "See dashboard"
-msgstr "Vezi Dashboard"
-
-#: themes/default/SQ_BlockAffiliate.php:100 themes/default/SQ_BlockHelp.php:34
+#: view/BlockAffiliate.php:121
 msgid "<< START HERE >>"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:53
+#: view/BlockAnalytics.php:55
 msgid "Moz Inbound Links"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:64
+#: view/BlockAnalytics.php:62
+msgid "Ahrefs Inbound Links"
+msgstr ""
+
+#: view/BlockAnalytics.php:74
 msgid "Moz Authority"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:69
+#: view/BlockAnalytics.php:79
 msgid "Moz Rank"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:76
-#, fuzzy
+#: view/BlockAnalytics.php:86
 msgid "Google Page Rank"
-msgstr "URL Google Plus:"
+msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:83
-#, fuzzy
-msgid "Squirrly Audit Score"
-msgstr "Squirrly article rank"
+#: view/BlockAnalytics.php:92
+msgid "Ahrefs Rank"
+msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:99
+#: view/BlockAnalytics.php:109
 msgid "Facebook shares"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:104
+#: view/BlockAnalytics.php:114
 msgid "Facebook likes"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:109
-#, fuzzy
+#: view/BlockAnalytics.php:119
 msgid "Twitter shares"
-msgstr "Twitter"
+msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:114
-#, fuzzy
+#: view/BlockAnalytics.php:124
 msgid "Google+ shares"
-msgstr "Rezultate Google pentru:"
+msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:119
+#: view/BlockAnalytics.php:129
 msgid "LinkedIn Shares"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:124
+#: view/BlockAnalytics.php:134
 msgid "StumbleUpon shares"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:129
+#: view/BlockAnalytics.php:139
 msgid "Reddit shares"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:161
+#: view/BlockAnalytics.php:144
+msgid "Pinterest shares"
+msgstr ""
+
+#: view/BlockAnalytics.php:176
 msgid "Nicely done! Now you can focus on the other tasks"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:161
+#: view/BlockAnalytics.php:176
 msgid ""
 "I know you can improve this. Please follow the documentation for a quicker "
 "progress"
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:247
-#, fuzzy
+#: view/BlockAnalytics.php:249
+msgid "Visits"
+msgstr "Vizite"
+
+#: view/BlockAnalytics.php:262
 msgid "Current: "
 msgstr "Pozitia curenta"
 
-#: themes/default/SQ_BlockAnalytics.php:248
+#: view/BlockAnalytics.php:263
 msgid "Lowest: "
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:249
+#: view/BlockAnalytics.php:264
 msgid "Highest: "
 msgstr ""
 
-#: themes/default/SQ_BlockAnalytics.php:253
-#, fuzzy
+#: view/BlockAnalytics.php:268
 msgid "last 30 days"
 msgstr "Ultimele 30 zile"
 
-#: themes/default/SQ_BlockAudit.php:2
+#: view/BlockAudit.php:24
+msgid "Squirrly Site Audit"
+msgstr ""
+
+#: view/BlockAudit.php:31
+msgid "What the Audit offers:"
+msgstr ""
+
+#: view/BlockAudit.php:32
+#, php-format
 msgid ""
-"Your site audit is not yet ready. It may take up to 7 days to audit your "
-"blog."
+"%sTracks all the areas of your Content Marketing Strategy:%s: Blogging, "
+"Traffic, SEO, Social Signals, Links, Authority. Every single week, you get a "
+"new report by email."
 msgstr ""
 
-#: themes/default/SQ_BlockDashboard.php:3
-msgid "Squirrly dashboard"
-msgstr "Dashboard Squirrly"
-
-#: themes/default/SQ_BlockDashboard.php:4
+#: view/BlockAudit.php:33
+#, php-format
 msgid ""
-"from this menu, you can start using all the great features of Squirrly (that "
-"you won’t find in any other seo plugins for wordpress)"
+"%sIt gives you professional advice on how to fix issues in those 6 areas%s. "
+"You can easily find out how to improve your content marketing strategy."
 msgstr ""
 
-#: themes/default/SQ_BlockDashboard.php:43
+#: view/BlockAudit.php:34
+#, php-format
 msgid ""
-"To see the analytics for your posts, you have to start optimizing your "
-"articles using Squirrly. That will enable tracking, and we'll be able to "
-"send you valuable data about your post."
+"%sMonitors your progress, week by week.%s You’ll get to see if your site "
+"audit has improved since you last checked it. "
 msgstr ""
 
-#: themes/default/SQ_BlockHelp.php:3
-#, fuzzy
-msgid "Connect to Squirrly.co"
-msgstr "Inregistreaza-te la Squirrly.co"
+#: view/BlockAudit.php:35
+#, php-format
+msgid "%sAnalyze any single article.%s See how it improves over time."
+msgstr ""
 
-#: themes/default/SQ_BlockHelp.php:25
+#: view/BlockAudit.php:36
+#, php-format
+msgid "%sLearn More About The Site Audit%s"
+msgstr ""
+
+#: view/BlockAudit.php:37
+#, php-format
+msgid "%sRequest an Audit Now%s"
+msgstr ""
+
+#: view/BlockAudit.php:43
+msgid "\"Your current site audit score:"
+msgstr ""
+
+#: view/BlockAudit.php:47
+msgid "Score"
+msgstr ""
+
+#: view/BlockAudit.php:50
+msgid "See the Audit"
+msgstr ""
+
+#: view/BlockAudit.php:53
 msgid ""
-"Get Excellent SEO with Better Content and SEO Stats. For Both Humans and "
-"Search Bots."
+"It seems that no audit has been generated yet. You can request an audit down "
+"below. It should be ready in 5-10 minutes."
 msgstr ""
 
-#: themes/default/SQ_BlockHelp.php:28
-msgid "Squirrly SEO Plugin is for the NON-SEO expert. "
+#: view/BlockAudit.php:55
+msgid "Request an Audit Now"
 msgstr ""
 
-#: themes/default/SQ_BlockHelp.php:29
-#, fuzzy
-msgid "See all the Squirrly SEO features at: "
+#: view/BlockAudit.php:62
+msgid "This is an example of a Site Audit"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:9 view/SerpChecker.php:49
+msgid "Show All"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:13
+msgid "Briefcase Keywords (Beta)"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:24 view/BlockSerpKeywords.php:12
+msgid "Add new keyword"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:27
+msgid "See the Google Ranks for these Keywords"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:30
+msgid "Go to  Analytics"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:42 view/BlockSerpKeywords.php:26
+msgid "Enter a Keyword (2-4 words)"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:44 view/BlockSerpKeywords.php:34
+msgid "Add Keyword"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:61
+msgid "Used"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:62
+msgid "Data"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:89 view/BlockBriefcaseKeywords.php:90
+msgid "Competition"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:90 view/BlockBriefcaseKeywords.php:98
+#: view/BlockBriefcaseKeywords.php:106 view/BlockBriefcaseKeywords.php:114
+msgid "-"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:97 view/BlockBriefcaseKeywords.php:98
+msgid "SEO Search Volume"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:105 view/BlockBriefcaseKeywords.php:106
+msgid "Recent discussions"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:113 view/BlockBriefcaseKeywords.php:114
+msgid "Trending"
+msgstr ""
+
+#: view/BlockBriefcaseKeywords.php:123 view/Blocksearch.php:48
+msgid "Do a research"
+msgstr "Mai multe detalii"
+
+#: view/BlockBriefcaseKeywords.php:135
+msgid "Delete"
+msgstr ""
+
+#: view/BlockCopyright.php:9
+msgid "Squirrly Copywriting Options"
+msgstr ""
+
+#: view/BlockCopyright.php:11
+msgid ""
+"Referencing other articles, ideas, and relevant Tweets adds value to your "
+"original content. This established journalist practice makes the content "
+"more trustworthy and helps readers shape a well-rounded understanding of the "
+"subject."
+msgstr ""
+
+#: view/BlockCopyright.php:20
+msgid ""
+"The toolkit's intended purpose is to help you save time and find the best "
+"sources to include in your articles. "
+msgstr ""
+
+#: view/BlockCopyright.php:24
+msgid ""
+"Squirrly has never encouraged and will never encourage users to create "
+"duplicate content."
+msgstr ""
+
+#: view/BlockCopyright.php:25
+msgid ""
+"Squirrly will not take responsibility if an user copies an entire article "
+"from another source."
+msgstr ""
+
+#: view/BlockCopyright.php:27
+msgid "Best Practices for Using the Inspiration Box from Squirrly: "
+msgstr ""
+
+#: view/BlockCopyright.php:31
+msgid ""
+"Focus on creating original content. Citing sources should complement your "
+"original ideas"
+msgstr ""
+
+#: view/BlockCopyright.php:32
+msgid "Try to limit yourself to 2 or 3 quotes per article"
+msgstr ""
+
+#: view/BlockCopyright.php:33
+msgid "Always include a link to your sources"
+msgstr ""
+
+#: view/BlockCopyright.php:39 view/BlockCopyright.php:50
+msgid "Use Squirrly's Inspiration box"
+msgstr ""
+
+#: view/BlockCopyright.php:42 view/BlockCopyright.php:47
+msgid ""
+"I've read and understood how to correctly use the Inspiration Box from "
+"Squirrly."
+msgstr ""
+
+#: view/BlockCustomerService.php:5
+msgid "Squirrly Customer Service"
+msgstr ""
+
+#: view/BlockCustomerService.php:12
+msgid "Support Channels"
+msgstr ""
+
+#: view/BlockCustomerService.php:13
+#, php-format
+msgid ""
+"%sHowto.squirrly.co%s > Knowledge Base. Find out how to get the most out of "
+"Squirrly SEO"
+msgstr ""
+
+#: view/BlockCustomerService.php:14
+#, php-format
+msgid ""
+"%sPlugin.squirrly.co%s >> Case studies, ideas on how to better use Squirrly "
+"SEO for Content Marketing"
+msgstr ""
+
+#: view/BlockCustomerService.php:15
+#, php-format
+msgid ""
+"%sFacebook page%s >> You can send us your support requests in private "
+"messages"
+msgstr ""
+
+#: view/BlockCustomerService.php:16
+#, php-format
+msgid "%sSupport Community%s >> Join us on Google Plus"
+msgstr ""
+
+#: view/BlockCustomerService.php:17
+#, php-format
+msgid "%sLive Chat%s >> on Youtube. Thursday 4 PM"
+msgstr ""
+
+#: view/BlockCustomerService.php:18
+#, php-format
+msgid "%sNew Lessons%s >> Mon. and Tue. on Twitter"
+msgstr ""
+
+#: view/BlockCustomerService.php:19
+#, php-format
+msgid "%sEmail Support%s >> 8 AM to 4 PM (London Time): Mon-Fri.."
+msgstr ""
+
+#: view/BlockCustomerService.php:25 view/BlockSupport.php:21
+msgid "Need Help with Squirrly SEO?"
 msgstr "Ai nevoie de ajutor cu Squirrly SEO?"
 
-#: themes/default/SQ_BlockHelp.php:32
+#: view/BlockCustomerService.php:33 view/BlockSupport.php:27
+msgid "Send Question"
+msgstr "Trimite"
+
+#: view/BlockDashboard.php:11
+msgid "Restore Squirrly Settings"
+msgstr ""
+
+#: view/BlockDashboard.php:16 view/BlockImport.php:110
+msgid "Upload the file with the saved Squirrly Settings"
+msgstr ""
+
+#: view/BlockDashboard.php:21 view/BlockImport.php:115
+#: view/BlockImport.php:137
+msgid "Restore Backup"
+msgstr ""
+
+#: view/BlockDashboard.php:27
 msgid "Connect to Squirrly and start optimizing your site"
 msgstr ""
 
-#: themes/default/SQ_BlockPostsAnalytics.php:3
-#, fuzzy
-msgid "Squirrly Analytics"
-msgstr "Optiuni Squirrly"
+#: view/BlockDashboard.php:35
+msgid "Squirrly dashboard"
+msgstr "Dashboard Squirrly"
 
-#: themes/default/SQ_BlockPostsAnalytics.php:4
+#: view/BlockDashboard.php:44
+#, php-format
+msgid ""
+"%sHelp Center%s - learn more about Squirrly SEO features and unhinge your "
+"SEO potential"
+msgstr ""
+
+#: view/BlockDashboard.php:47 view/BlockDashboard.php:150
+msgid "Next Feature"
+msgstr ""
+
+#: view/BlockDashboard.php:48 view/BlockDashboard.php:151
+msgid "Previous Feature"
+msgstr ""
+
+#: view/BlockImport.php:22 view/BlockPatterns.php:22
+msgid "SEO Patterns"
+msgstr ""
+
+#: view/BlockImport.php:34
+msgid "Import SEO settings from other SEO plugins or themes"
+msgstr ""
+
+#: view/BlockImport.php:35
+msgid ""
+"If you were already using an SEO plugin, then you can import all the SEO "
+"settings in Squirrly. Just follow the steps presented on the right side."
+msgstr ""
+
+#: view/BlockImport.php:42
+msgid "Select the plugin or theme you want to import the Settings from."
+msgstr ""
+
+#: view/BlockImport.php:56
+msgid "Import Settings"
+msgstr ""
+
+#: view/BlockImport.php:58 view/BlockImport.php:79
+msgid "We couldn't find any SEO plugin or theme to import from."
+msgstr ""
+
+#: view/BlockImport.php:65
+msgid "Select the plugin or theme you want to import the SEO settings from."
+msgstr ""
+
+#: view/BlockImport.php:86
+msgid ""
+"Note! If you import the SEO settings from other plugins or themes, you will "
+"lose all the settings that you had in Squirrly SEO. Make sure you backup "
+"your settings from the panel below before you do this. "
+msgstr ""
+
+#: view/BlockImport.php:91
+msgid "Backup & Restore Squirrly SEO Settings"
+msgstr ""
+
+#: view/BlockImport.php:92
+msgid ""
+"You can now download your Squirrly settings in an sql file before you go "
+"ahead and import the SEO settings from another plugin. That way, you can "
+"always go back to your Squirrly settings. "
+msgstr ""
+
+#: view/BlockImport.php:99
+msgid "Backup & Restore Squirrly Settings"
+msgstr ""
+
+#: view/BlockImport.php:103
+msgid "Backup Settings"
+msgstr ""
+
+#: view/BlockImport.php:104
+msgid "Restore Settings"
+msgstr ""
+
+#: view/BlockImport.php:115 view/BlockImport.php:137
+msgid "Are you sure you want to restore your settings?"
+msgstr ""
+
+#: view/BlockImport.php:120
+msgid "Backup & Restore all the pages optimized with Squirrly SEO"
+msgstr ""
+
+#: view/BlockImport.php:124
+msgid "Backup SEO"
+msgstr ""
+
+#: view/BlockImport.php:125
+msgid "Restore SEO"
+msgstr ""
+
+#: view/BlockImport.php:131
+msgid "Upload the file with the saved Squirrly SEO SQL file"
+msgstr ""
+
+#: view/BlockImport.php:152
+msgid "Click to reset all the saved setting to default."
+msgstr ""
+
+#: view/BlockImport.php:156
+msgid "Are you sure you want to remove all the saved settings?"
+msgstr ""
+
+#: view/BlockImport.php:156
+msgid "Reset Settings"
+msgstr ""
+
+#: view/BlockImport.php:162
+msgid ""
+"Note! Make sure you backup your data first in case you change your mind."
+msgstr ""
+
+#: view/BlockKeywordResearch.php:27
+msgid "Squirrly Keyword Research"
+msgstr " Cercetare cuvinte cheie"
+
+#: view/BlockLiveAssistant.php:9 view/Blockseo.php:7
+msgid "Squirrly Live Assistant"
+msgstr ""
+
+#: view/BlockLiveAssistant.php:11
+#, php-format
+msgid ""
+"Using the Live Assistant from Squirrly SEO is like having a consultant "
+"sitting right next to you. It helps you get a 100% optimized page for both "
+"Humans and Search Engines."
+msgstr ""
+
+#: view/BlockLiveAssistant.php:20
+msgid ""
+"You just have to type in the keyword you want the page to be optimized for."
+msgstr ""
+
+#: view/BlockLiveAssistant.php:25
+msgid "Use Squirrly Live Assistant"
+msgstr ""
+
+#: view/BlockPatterns.php:36
+msgid ""
+"Control how post types are displayed on your site and within search engine "
+"results and social media feeds."
+msgstr ""
+
+#: view/BlockPatterns.php:37
+msgid ""
+"In Squirrly, each post type in your site comes with a predefined posting "
+"pattern when displayed onto your website. However, based on your site's "
+"purpose and needs, you can also decide what information these patterns will "
+"include."
+msgstr ""
+
+#: view/BlockPatterns.php:38
+msgid ""
+"Once you set up a pattern for a particular post type, only the content "
+"required by your custom sequence will be displayed."
+msgstr ""
+
+#: view/BlockPatterns.php:39
+#, php-format
+msgid ""
+"Squirrly lets you see how the customized patterns will apply when posts/"
+"pages are shared across social media or search engine feeds. You just need "
+"to go to the %sSquirrly SEO Snippet%s box, press <strong>Edit Snippet</"
+"strong> and you'll get a live preview after you customize the meta "
+"information."
+msgstr ""
+
+#: view/BlockPatterns.php:43
+msgid "Set the custom patterns for each post type"
+msgstr ""
+
+#: view/BlockPatterns.php:51
+msgid "+ Add Post Type"
+msgstr ""
+
+#: view/BlockPatterns.php:51
+msgid "Add a post type from your Wordpress website"
+msgstr ""
+
+#: view/BlockPatterns.php:54
+msgid "Add Post Type"
+msgstr ""
+
+#: view/BlockPatterns.php:71
+msgid "Add"
+msgstr ""
+
+#: view/BlockPatterns.php:81
+#, php-format
+msgid "Are you sure you want to remove the post type: %s"
+msgstr ""
+
+#: view/BlockPatterns.php:81
+msgid "Remove Post Type"
+msgstr ""
+
+#: view/BlockPatterns.php:92 view/FrontMenu.php:182
+msgid "Description"
+msgstr ""
+
+#: view/BlockPatterns.php:98
+msgid "Separator"
+msgstr ""
+
+#: view/BlockPatterns.php:113
+msgid "Let Google Index it"
+msgstr ""
+
+#: view/BlockPatterns.php:118 view/BlockPatterns.php:132
+#: view/BlockPatterns.php:149 view/BlockSettings.php:135
+#: view/BlockSettings.php:146 view/BlockSettings.php:157
+#: view/BlockSettings.php:168 view/BlockSettings.php:179
+#: view/BlockSettings.php:191 view/BlockSettings.php:203
+#: view/BlockSettings.php:368 view/BlockSettingsSeo.php:53
+#: view/BlockSettingsSeo.php:95 view/BlockSettingsSeo.php:112
+#: view/BlockSettingsSeo.php:128 view/BlockSettingsSeo.php:144
+#: view/BlockSettingsSeo.php:160 view/BlockSettingsSeo.php:176
+#: view/BlockSettingsSeo.php:192 view/BlockSettingsSeo.php:220
+#: view/BlockSettingsSeo.php:236 view/BlockSettingsSeo.php:252
+#: view/BlockSettingsSeo.php:271 view/BlockSettingsSeo.php:546
+#: view/BlockSettingsSeo.php:578 view/BlockSettingsSeo.php:586
+#: view/BlockSettingsSeo.php:684 view/BlockSettingsSeo.php:1016
+#: view/FrontMenu.php:49 view/FrontMenu.php:508 view/FrontMenu.php:521
+#: view/FrontMenu.php:534
+msgid "Yes"
+msgstr "Da"
+
+#: view/BlockPatterns.php:120 view/BlockPatterns.php:134
+#: view/BlockPatterns.php:151 view/BlockSettings.php:137
+#: view/BlockSettings.php:148 view/BlockSettings.php:159
+#: view/BlockSettings.php:170 view/BlockSettings.php:181
+#: view/BlockSettings.php:193 view/BlockSettings.php:205
+#: view/BlockSettings.php:370 view/BlockSettingsSeo.php:55
+#: view/BlockSettingsSeo.php:97 view/BlockSettingsSeo.php:114
+#: view/BlockSettingsSeo.php:130 view/BlockSettingsSeo.php:146
+#: view/BlockSettingsSeo.php:162 view/BlockSettingsSeo.php:178
+#: view/BlockSettingsSeo.php:194 view/BlockSettingsSeo.php:222
+#: view/BlockSettingsSeo.php:238 view/BlockSettingsSeo.php:254
+#: view/BlockSettingsSeo.php:273 view/BlockSettingsSeo.php:548
+#: view/BlockSettingsSeo.php:580 view/BlockSettingsSeo.php:588
+#: view/BlockSettingsSeo.php:686 view/BlockSettingsSeo.php:1018
+#: view/FrontMenu.php:51 view/FrontMenu.php:510 view/FrontMenu.php:523
+#: view/FrontMenu.php:536
+msgid "No"
+msgstr "Nu"
+
+#: view/BlockPatterns.php:127
+msgid "Pass Link Juice"
+msgstr ""
+
+#: view/BlockPatterns.php:141
+msgid "Do SEO"
+msgstr ""
+
+#: view/BlockPatterns.php:185 view/BlockSettingsSeo.php:29
+#: view/BlockSettingsSeo.php:1068
+msgid "Save SEO"
+msgstr ""
+
+#: view/BlockPostsAnalytics.php:23
+#, php-format
+msgid ""
+"The IP %s is calling the rank too often and google stopped the calls for %s "
+"mins. Lower the Rank check rate in Squirrly > Advanced > Rank Option. %sMore "
+"details%s"
+msgstr ""
+
+#: view/BlockPostsAnalytics.php:28
+#, php-format
+msgid ""
+"To be able to check the RANK please activate cURL for PHP on your server "
+"%sDetails%s"
+msgstr ""
+
+#: view/BlockPostsAnalytics.php:32
+#, php-format
+msgid ""
+"To be able to check the RANK please set the \"open_basedir\" to NULL on your "
+"server %sDetails%s"
+msgstr ""
+
+#: view/BlockPostsAnalytics.php:37
+#, php-format
+msgid ""
+"To see the Google Ranking for each article you need to select how many pages "
+"to be checked by google rank every hour from %sSquirrly > Advanced > Google "
+"Rank Option%s. "
+msgstr ""
+
+#: view/BlockPostsAnalytics.php:47
 msgid ""
 "Don't see all your pages here? Make sure you optimize them with Squirrly, so "
 "that we can track them, and display you the analytics"
 msgstr ""
 
-#: themes/default/SQ_BlockPostsAnalytics.php:5
-msgid ""
-"If you recheck the google rank, let 10-20 seconds between requests to "
-"prevent google to block your IP for an hour."
+#: view/BlockSerpKeywords.php:7
+msgid "Advanced Analytics Keywords"
 msgstr ""
 
-#: themes/default/SQ_BlockSupport.php:7
-msgid "Go to Profile"
-msgstr "Profilul tau din Squirrly"
-
-#: themes/default/SQ_BlockSupport.php:7
-msgid "Profile"
-msgstr "Profil"
-
-#: themes/default/SQ_BlockSupport.php:17
-msgid "Support"
-msgstr "Suport"
-
-#: themes/default/SQ_BlockSupport.php:20
-msgid "Need Help with Squirrly SEO?"
-msgstr "Ai nevoie de ajutor cu Squirrly SEO?"
-
-#: themes/default/SQ_BlockSupport.php:24
-msgid "Send Question"
-msgstr "Trimite"
-
-#: themes/default/SQ_BlockSupport.php:27 themes/default/SQ_BlockSupport.php:68
-msgid "Go to:"
-msgstr "Mergi la:"
-
-#: themes/default/SQ_BlockSupport.php:27 themes/default/SQ_BlockSupport.php:68
-msgid "support page"
-msgstr "pagina suport"
-
-#: themes/default/SQ_BlockSupport.php:39
-msgid "How was your Squirrly experience today?"
-msgstr "Cum a fost experienta de azi cu Squirrly?"
-
-#: themes/default/SQ_BlockSupport.php:48
-msgid "How was Squirrly today?"
-msgstr "Cum a fost Squirrly azi?"
-
-#: themes/default/SQ_BlockSupport.php:52
-msgid "Angry"
+#: view/BlockSerpKeywords.php:13 view/Blocksearch.php:8
+msgid "Go to Analytics"
 msgstr ""
 
-#: themes/default/SQ_BlockSupport.php:53
-msgid "Sad"
+#: view/BlockSerpKeywords.php:29 view/FrontMenu.php:367
+msgid "Article"
 msgstr ""
 
-#: themes/default/SQ_BlockSupport.php:54
-msgid "Happy"
+#: view/BlockSerpKeywords.php:31
+msgid "Article URL ..."
 msgstr ""
 
-#: themes/default/SQ_BlockSupport.php:55
-msgid "Excited"
+#: view/BlockSerpKeywords.php:54
+msgid "Count"
 msgstr ""
 
-#: themes/default/SQ_BlockSupport.php:56
-msgid "Love it"
+#: view/BlockSerpKeywords.php:55
+msgid "Check the rank for it"
 msgstr ""
 
-#: themes/default/SQ_BlockSupport.php:61
-msgid "Please tell us why?"
-msgstr "De ce?"
-
-#: themes/default/SQ_BlockSupport.php:64
-msgid "Send feedback"
-msgstr "Trimite"
-
-#: themes/default/SQ_BlockSupport.php:73
-msgid "Thank you! You can send us a happy face tomorow too."
-msgstr "Multumim! Ne poti trimite o fata vesela si maine."
-
-#: themes/default/SQ_Blocklogin.php:2
-msgid "Squirrly.co Login"
-msgstr "Conectare la Squirrly"
-
-#: themes/default/SQ_Blocklogin.php:9
-msgid "Email:"
-msgstr "Email:"
-
-#: themes/default/SQ_Blocklogin.php:10
-msgid "Password:"
-msgstr "Parola:"
-
-#: themes/default/SQ_Blocklogin.php:11
-msgid "Login"
-msgstr "Logare"
-
-#: themes/default/SQ_Blocklogin.php:12
-msgid "Register"
-msgstr "Cont nou"
-
-#: themes/default/SQ_Blocklogin.php:12
-msgid "Register to Squirrly.co"
-msgstr "Inregistreaza-te la Squirrly.co"
-
-#: themes/default/SQ_Blocklogin.php:13
-msgid "Lost password?"
-msgstr "Ai uitat parola?"
-
-#: themes/default/SQ_Blocklogin.php:13
-msgid "Lost password"
-msgstr "Am uitat parola"
-
-#: themes/default/SQ_Blocklogin.php:17
-msgid "Enter your email"
-msgstr "Adauga adresa email"
-
-#: themes/default/SQ_Blocklogin.php:18
-msgid "Your E-mail:"
-msgstr "Emailul tau:"
-
-#: themes/default/SQ_Blocklogin.php:19
-msgid "Sign Up"
-msgstr "Sign Up"
-
-#: themes/default/SQ_Blocklogin.php:20
-msgid "I already have an account"
-msgstr "Am deja un cont"
-
-#: themes/default/SQ_Blocklogin.php:21
-msgid "This email connects you to Squirrly.co"
-msgstr "Acest email te conecteaza la Squirrly"
-
-#: themes/default/SQ_Blocklogin.php:30
-msgid "The email address is invalid!"
-msgstr "Adresa de email este invalida!"
-
-#: themes/default/SQ_Blocklogin.php:31
-msgid "Click on Sign Up button and try again ..."
-msgstr "Apasa butonul Sign Up pentru a incerca din nou ..."
-
-#: themes/default/SQ_Blocklogin.php:32
-msgid "An error occured while logging in!"
-msgstr "A aparut o eroare la logare."
-
-#: themes/default/SQ_Blocklogin.php:33
-msgid "Connecting ..."
-msgstr "Conectare ..."
-
-#: themes/default/SQ_Blocklogin.php:42
-msgid "Congratulations! Now write a new article with:"
-msgstr "Felicitari! Acum scrie un nou articol cu:"
-
-#: themes/default/SQ_Blockresearch.php:2
-msgid "Squirrly Keyword Research"
-msgstr " Cercetare cuvinte cheie"
-
-#: themes/default/SQ_Blockresearch.php:3
-msgid "Clear"
-msgstr "Alta cautare"
-
-#: themes/default/SQ_Blockresearch.php:9
-msgid "Keyword:"
-msgstr "Cuvant cheie:"
-
-#: themes/default/SQ_Blockresearch.php:11 themes/default/SQ_Blocksearch.php:27
-msgid "Use this keyword"
-msgstr "Foloseste acest cuvant"
-
-#: themes/default/SQ_Blockresearch.php:20
-msgid "+ Add keyword"
-msgstr "Adauga cuvant cheie"
-
-#: themes/default/SQ_Blockresearch.php:21
-msgid "Do the research"
-msgstr "Trimite >>"
-
-#: themes/default/SQ_Blockresearch.php:24
-msgid "Enter even more keywords."
-msgstr "Adauga mai multe cuvinte"
-
-#: themes/default/SQ_Blockresearch.php:25
-msgid "Let some keywords for the next time as well!"
-msgstr "Mai lasa cuvinte si pentru viitor!"
-
-#: themes/default/SQ_Blocksearch.php:1
-msgid "Waiting for your editor to load .. "
+#: view/BlockSerpKeywords.php:103
+msgid "Save Keywords"
 msgstr ""
 
-#: themes/default/SQ_Blocksearch.php:3
-msgid "Optimize for Keyword"
-msgstr "Optimizare dupa cuvant cheie"
+#: view/BlockSerpKeywords.php:118
+msgid "Show ignored keywords"
+msgstr ""
 
-#: themes/default/SQ_Blocksearch.php:11
-msgid "Enter a keyword"
-msgstr "Adauga cuvant"
+#: view/BlockSerpKeywords.php:133
+msgid "Reload Google Ranks from Squirrly Server"
+msgstr ""
 
-#: themes/default/SQ_Blocksearch.php:11
-msgid "for Squirrly Live SEO optimization"
-msgstr "Pentru optimizare cu  Squirrly SEO"
+#: view/BlockSerpKeywords.php:145
+msgid "Remove Local Ranks"
+msgstr ""
 
-#: themes/default/SQ_Blocksearch.php:26
-msgid "Do a research"
-msgstr "Mai multe detalii"
-
-#: themes/default/SQ_Blocksearch.php:31
-msgid "Enter a keyword above!"
-msgstr "Adauga cuvinte cheie mai sus!"
-
-#: themes/default/SQ_Blocksearch.php:32
-msgid "I have more then one keyword!"
-msgstr "Am mai multe cuvinte!"
-
-#: themes/default/SQ_Blocksearch.php:38
-msgid "Images"
-msgstr "Imagini"
-
-#: themes/default/SQ_Blocksearch.php:39
-msgid "Twitter"
-msgstr "Twitter"
-
-#: themes/default/SQ_Blocksearch.php:40
-msgid "Wiki"
-msgstr "Wiki"
-
-#: themes/default/SQ_Blocksearch.php:41
-msgid "News"
-msgstr "News"
-
-#: themes/default/SQ_Blocksearch.php:42
-msgid "Blogs"
-msgstr "Bloguri"
-
-#: themes/default/SQ_Blocksearch.php:43
-msgid "My articles"
-msgstr "Articolele mele"
-
-#: themes/default/SQ_Blocksearch.php:48
-msgid "Show only Copyright Free images"
-msgstr "Arata doar imagini fara copyright"
-
-#: themes/default/SQ_Blockseo.php:3
-#, fuzzy
-msgid "Squirrly SEO Live Assistant"
-msgstr "Asistent SEO Live"
-
-#: themes/default/SQ_Menu.php:4
-msgid "Squirrly settings"
-msgstr "Setari Squirrly"
-
-#: themes/default/SQ_Menu.php:6 themes/default/SQ_Menu.php:515
+#: view/BlockSettings.php:24 view/BlockSettings.php:450
 msgid "Save settings"
 msgstr "Salveaza setari"
 
-#: themes/default/SQ_Menu.php:12
-msgid "Let Squirrly automatically optimize my blog"
-msgstr "Lasa Squirrly sa imi optimizeze blogul automat"
-
-#: themes/default/SQ_Menu.php:13
-msgid ""
-"<strong>For SEO Setting you can use \"All In One SEO\", \"Wordpress SEO by "
-"Yoast\", or other such plugins.</strong>"
+#: view/BlockSettings.php:41
+msgid "Post/Page Edit"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:15
-msgid ""
-"If you want, you can also use the built-in settings from Squirrly (useful "
-"for beginners), by switching Yes below."
-msgstr ""
-
-#: themes/default/SQ_Menu.php:19 themes/default/SQ_Menu.php:38
-#: themes/default/SQ_Menu.php:55 themes/default/SQ_Menu.php:72
-#: themes/default/SQ_Menu.php:89 themes/default/SQ_Menu.php:122
-#: themes/default/SQ_Menu.php:139 themes/default/SQ_Menu.php:167
-#: themes/default/SQ_Menu.php:183 themes/default/SQ_Menu.php:259
-#: themes/default/SQ_Menu.php:270 themes/default/SQ_Menu.php:281
-#: themes/default/SQ_Menu.php:293 themes/default/SQ_Menu.php:304
-#: themes/default/SQ_Menu.php:424
-msgid "Yes"
-msgstr "Da"
-
-#: themes/default/SQ_Menu.php:21 themes/default/SQ_Menu.php:40
-#: themes/default/SQ_Menu.php:57 themes/default/SQ_Menu.php:74
-#: themes/default/SQ_Menu.php:91 themes/default/SQ_Menu.php:124
-#: themes/default/SQ_Menu.php:141 themes/default/SQ_Menu.php:169
-#: themes/default/SQ_Menu.php:185 themes/default/SQ_Menu.php:261
-#: themes/default/SQ_Menu.php:272 themes/default/SQ_Menu.php:283
-#: themes/default/SQ_Menu.php:295 themes/default/SQ_Menu.php:306
-#: themes/default/SQ_Menu.php:426
-msgid "No"
-msgstr "Nu"
-
-#: themes/default/SQ_Menu.php:28
-msgid "What does Squirrly automatically do for SEO?"
-msgstr "Ce face Squirrly in mod automat pentru SEO?"
-
-#: themes/default/SQ_Menu.php:43
+#: view/BlockSettings.php:42
 #, php-format
-msgid ""
-"Add <strong>%scanonical link%s</strong>, <strong>%srel=\"prev\" and rel="
-"\"next\"%s</strong> metas"
+msgid "%sThe right method in working with Squirrly, SEO plugin%s"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:60
-#, fuzzy, php-format
-msgid "Add the <strong>%sXML Sitemap%s</strong> for search engines"
-msgstr "Adauga <strong>Harta XML</strong> pentru motoarele de cautare"
-
-#: themes/default/SQ_Menu.php:77
-msgid ""
-"Add the required METAs for home page (<strong>icon, author, language, dc "
-"publisher</strong>, etc.)"
-msgstr ""
-"Adauga cerintele META in pagina acasa (<strong>icon, author, language, dc "
-"publisher</strong>, etc.)"
-
-#: themes/default/SQ_Menu.php:94
-msgid ""
-"Add the <strong>favicon</strong> and the <strong>icon for Apple devices</"
-"strong>."
-msgstr ""
-"Adauga <strong>favicon</strong> si <strong>icoana pentru dispozitivele "
-"Apple</strong>."
-
-#: themes/default/SQ_Menu.php:104
-#, fuzzy
-msgid "Social Media Options"
-msgstr "Optiuni Squirrly"
-
-#: themes/default/SQ_Menu.php:105
-#, php-format
-msgid "%sHow to pop out in Social Media with your links%s"
-msgstr ""
-
-#: themes/default/SQ_Menu.php:106
-#, php-format
-msgid "%sGet busy with Facebook’s new Search Engine functions%s"
-msgstr ""
-
-#: themes/default/SQ_Menu.php:107
-#, php-format
-msgid ""
-"%sHow I Added Twitter Cards in My WordPress for Better Inbound Marketing%s"
-msgstr ""
-
-#: themes/default/SQ_Menu.php:112
-#, fuzzy
-msgid "What does Squirrly automatically do for Social Media?"
-msgstr "Ce face Squirrly in mod automat pentru SEO?"
-
-#: themes/default/SQ_Menu.php:127
-#, fuzzy
-msgid ""
-"Add the <strong>Social Open Graph objects</strong> for a good looking share. "
-msgstr ""
-"Adauga <strong>Facebook meta objects</strong> pentru o afisare mai frumoasa "
-"in Facebook"
-
-#: themes/default/SQ_Menu.php:144
-msgid "Add the <strong>Twitter card</strong> in your tweets. "
-msgstr "Adauga <strong>titlul</strong> corect in pagina acasa"
-
-#: themes/default/SQ_Menu.php:147
-msgid "Your twitter account: "
-msgstr "Contul tau de twitter:"
-
-#: themes/default/SQ_Menu.php:155
-#, fuzzy
-msgid "First page optimization"
-msgstr "Optimizare cu Squirrly SEO"
-
-#: themes/default/SQ_Menu.php:156
-#, php-format
-msgid "%sThe best SEO approach to Meta information%s"
-msgstr ""
-
-#: themes/default/SQ_Menu.php:158
-#, fuzzy
-msgid "Add meta <strong>title</strong> in Home Page"
-msgstr "Adauga <strong>titlul</strong> corect in pagina acasa"
-
-#: themes/default/SQ_Menu.php:174
-#, fuzzy
-msgid ""
-"Add meta <strong>description</strong> and <strong>keywords</strong> in Home "
-"Page"
-msgstr ""
-"Aadauga <strong>descrierea</strong> si <strong>cuvintele cheie</strong> "
-"corecte in prima pagina"
-
-#: themes/default/SQ_Menu.php:216
-msgid "Title:"
-msgstr "Titlu:"
-
-#: themes/default/SQ_Menu.php:217
-msgid "Tips: Length 10-75 chars"
-msgstr "Atentie: Lungimea 10-75 caractere"
-
-#: themes/default/SQ_Menu.php:220
-msgid "Description:"
-msgstr "Descrierea:"
-
-#: themes/default/SQ_Menu.php:221
-msgid "Tips: Length 70-165 chars"
-msgstr "Atentie: Lungimea 70-165 caractere"
-
-#: themes/default/SQ_Menu.php:224
-msgid "Keywords:"
-msgstr "Cuvinte cheie:"
-
-#: themes/default/SQ_Menu.php:225
-msgid "Tips: 2-4 keywords"
-msgstr "Atentie: 2-4 cuvinte cheie"
-
-#: themes/default/SQ_Menu.php:229
-#, fuzzy
-msgid "You First Page Preview (Title, Description, Keywords)"
-msgstr "Optimizare prima pagina (Titlu, Descriere, Cuvinte cheie)"
-
-#: themes/default/SQ_Menu.php:237
-msgid "Check with google ..."
-msgstr "Verificat cu google ..."
-
-#: themes/default/SQ_Menu.php:240
-msgid ""
-"If you don't see any changes in custom optimization, check if another SEO "
-"plugin affects Squirrly SEO"
-msgstr ""
-"Daca nu sunt modificari in titlu prin aceasta optimizate, verifica daca nu e "
-"afectat de alte pluginuri instalate."
-
-#: themes/default/SQ_Menu.php:246
-msgid "Squirrly Options"
-msgstr "Optiuni Squirrly"
-
-#: themes/default/SQ_Menu.php:247
-#, php-format
-msgid "%sThe right premises in working with Squirrly, WordPress SEO plugin%s"
-msgstr ""
-
-#: themes/default/SQ_Menu.php:248
+#: view/BlockSettings.php:43
 #, php-format
 msgid "%sGetting inspired with Squirrly WordPress SEO plugin%s"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:250
+#: view/BlockSettings.php:45
 #, php-format
 msgid "%sThere is a New SEO Live Assistant from Squirrly%s"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:251
+#: view/BlockSettings.php:46
 #, php-format
 msgid "%sHow to create Human friendly content with the WordPress SEO plugin?%s"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:264
-msgid "Let Squirrly warn me if there are errors related to SEO settings"
-msgstr "Lasa Squirrly sa ma anunte daca sunt erori SEO in setari"
-
-#: themes/default/SQ_Menu.php:275
-msgid ""
-"Show <strong>\"Enter a keyword\"</strong> bubble when posting a new article."
+#: view/BlockSettings.php:52
+msgid "Inspiration Box G17"
 msgstr ""
-"Afiseaza balonul <strong>\"Adauga un keyword\"</strong>cand se posteaza un "
-"nou articol."
 
-#: themes/default/SQ_Menu.php:286
-msgid ""
-"Always show <strong>Keyword Informations</strong> about the selected keyword."
+#: view/BlockSettings.php:55 view/BlockSettings.php:56
+#: view/BlockSettings.php:69 view/BlockSettings.php:70
+#: view/BlockSettings.php:83 view/BlockSettings.php:84
+#: view/BlockSettingsSeo.php:66 view/BlockSettingsSeo.php:78
+#: view/BlockSettingsSeo.php:287 view/BlockSettingsSeo.php:526
+#: view/BlockSettingsSeo.php:839 view/BlockSettingsSeo.php:933
+#: view/BlockSettingsSeo.php:945 view/BlockSettingsSeo.php:957
+msgid "see how this improved since 2016"
 msgstr ""
-"Afiseaza <strong>Informatii de cuvint cheie</strong> dupa alegerea "
-"cuvantului la postare."
 
-#: themes/default/SQ_Menu.php:298
+#: view/BlockSettings.php:66
+msgid "Keyword Research G17"
+msgstr ""
+
+#: view/BlockSettings.php:80
+msgid "Inner Links G17"
+msgstr ""
+
+#: view/BlockSettings.php:93
+msgid "Load Squirrly Live Assistant for"
+msgstr ""
+
+#: view/BlockSettings.php:97 view/BlockSettingsSeo.php:707
+msgid "Posts"
+msgstr ""
+
+#: view/BlockSettings.php:100 view/BlockSettingsSeo.php:736
+msgid "Pages"
+msgstr ""
+
+#: view/BlockSettings.php:104 view/BlockSettingsSeo.php:721
+msgid "Products"
+msgstr ""
+
+#: view/BlockSettings.php:140
+msgid ""
+"Show <strong>Squirrly Tooltips</strong> when posting a new article (e.g. "
+"\"Enter a keyword\")."
+msgstr ""
+
+#: view/BlockSettings.php:151
+msgid ""
+"Always show <strong>Keyword Research</strong> about the selected keyword."
+msgstr ""
+
+#: view/BlockSettings.php:162
+msgid ""
+"Send optimization data to Squirrly API when the post is saved (don't use "
+"cron)"
+msgstr ""
+
+#: view/BlockSettings.php:173
 msgid "Use <strong> the NEW version of the SEO Live Assistant</strong>."
 msgstr ""
 
-#: themes/default/SQ_Menu.php:309
-msgid "Add the Post tags in meta keyword."
+#: view/BlockSettings.php:184
+msgid "Load <strong>Squirrly SEO Snippet in Frontend</strong> too."
 msgstr ""
 
-#: themes/default/SQ_Menu.php:315
+#: view/BlockSettings.php:196
 msgid ""
-"Select the google extension for which Squirrly will check the google rank"
+"Download <strong>remote images</strong> in your <strong>Media Library</"
+"strong> for the new posts."
 msgstr ""
 
-#: themes/default/SQ_Menu.php:319
+#: view/BlockSettings.php:208
+msgid ""
+"Correct my <strong>feed links</strong> and <strong>images</strong> (convert "
+"from relative to absolute)."
+msgstr ""
+
+#: view/BlockSettings.php:218
+msgid "Google Rank Options"
+msgstr ""
+
+#: view/BlockSettings.php:219
+#, php-format
+msgid "%sCountry targeting%s"
+msgstr ""
+
+#: view/BlockSettings.php:220
+#, php-format
+msgid "%sPowerful SEO Tool For Strong Google Rankings%s"
+msgstr ""
+
+#: view/BlockSettings.php:227
+msgid ""
+"Select the Google country for which Squirrly will check the Google rank."
+msgstr ""
+
+#: view/BlockSettings.php:232
 msgid "Default"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:320
+#: view/BlockSettings.php:233
 msgid "American Samoa"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:321
+#: view/BlockSettings.php:234
 msgid "Anguilla"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:322
+#: view/BlockSettings.php:235
 msgid "Antigua and Barbuda"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:323
+#: view/BlockSettings.php:236
 msgid "Argentina"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:324
+#: view/BlockSettings.php:237
 msgid "Australia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:325
+#: view/BlockSettings.php:238
 msgid "Austria"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:326
+#: view/BlockSettings.php:239
 msgid "Azerbaijan"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:327
+#: view/BlockSettings.php:240
 msgid "Belgium"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:328
+#: view/BlockSettings.php:241
 msgid "Brazil"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:329
+#: view/BlockSettings.php:242
 msgid "British Virgin Islands"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:330
+#: view/BlockSettings.php:243
 msgid "Burundi"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:331
+#: view/BlockSettings.php:244
+msgid "Bulgaria"
+msgstr ""
+
+#: view/BlockSettings.php:245
 msgid "Canada"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:332
+#: view/BlockSettings.php:246
 msgid "Chad"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:333
+#: view/BlockSettings.php:247
 msgid "Chile"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:334
+#: view/BlockSettings.php:248
 msgid "Colombia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:335
+#: view/BlockSettings.php:249
 msgid "Costa Rica"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:336
+#: view/BlockSettings.php:250
 msgid "Côte d'Ivoire"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:337
+#: view/BlockSettings.php:251
 msgid "Cuba"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:338
+#: view/BlockSettings.php:252
 msgid "Czech Republic"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:339
+#: view/BlockSettings.php:253
 msgid "Dem. Rep. of the Congo"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:340
+#: view/BlockSettings.php:254
 msgid "Denmark"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:341
+#: view/BlockSettings.php:255
 msgid "Djibouti"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:342
+#: view/BlockSettings.php:256
 msgid "Dominican Republic"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:343
+#: view/BlockSettings.php:257
 msgid "Ecuador"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:344
+#: view/BlockSettings.php:258
 msgid "El Salvador"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:345
+#: view/BlockSettings.php:259
+msgid "Estonia"
+msgstr ""
+
+#: view/BlockSettings.php:260
 msgid "Federated States of Micronesia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:346
+#: view/BlockSettings.php:261
 msgid "Fiji"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:347
+#: view/BlockSettings.php:262
 msgid "Finland"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:348
+#: view/BlockSettings.php:263
 #, fuzzy
 msgid "France"
 msgstr "Renunta"
 
-#: themes/default/SQ_Menu.php:349
+#: view/BlockSettings.php:264
 msgid "The Gambia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:350
+#: view/BlockSettings.php:265
 msgid "Georgia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:351
+#: view/BlockSettings.php:266
 msgid "Germany"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:352
+#: view/BlockSettings.php:267
 msgid "Gibraltar"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:353
+#: view/BlockSettings.php:268
 msgid "Greece"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:354
+#: view/BlockSettings.php:269
 msgid "Greenland"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:355
+#: view/BlockSettings.php:270
 msgid "Guernsey"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:356
+#: view/BlockSettings.php:271
 msgid "Honduras"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:357
+#: view/BlockSettings.php:272
 msgid "Hong Kong"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:358
+#: view/BlockSettings.php:273
 msgid "Hungary"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:359
+#: view/BlockSettings.php:274
 msgid "India"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:360
+#: view/BlockSettings.php:275
+msgid "Indonesia"
+msgstr ""
+
+#: view/BlockSettings.php:276
 msgid "Ireland"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:361
+#: view/BlockSettings.php:277
 msgid "Isle of Man"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:362
+#: view/BlockSettings.php:278
 msgid "Israel"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:363
+#: view/BlockSettings.php:279
 msgid "Italy"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:364
+#: view/BlockSettings.php:280
 msgid "Jamaica"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:365
+#: view/BlockSettings.php:281
 msgid "Japan"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:366
+#: view/BlockSettings.php:282
 msgid "Jersey"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:367
+#: view/BlockSettings.php:283
 msgid "Kazakhstan"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:368
+#: view/BlockSettings.php:284
 msgid "Korea"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:369
+#: view/BlockSettings.php:285
 msgid "Latvia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:370
+#: view/BlockSettings.php:286
 msgid "Lesotho"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:371
+#: view/BlockSettings.php:287
 msgid "Liechtenstein"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:372
+#: view/BlockSettings.php:288
 msgid "Lithuania"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:373
+#: view/BlockSettings.php:289
 msgid "Luxembourg"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:374
+#: view/BlockSettings.php:290
 msgid "Malawi"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:375
+#: view/BlockSettings.php:291
 msgid "Malaysia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:376
+#: view/BlockSettings.php:292
 msgid "Malta"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:377
+#: view/BlockSettings.php:293
 msgid "Mauritius"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:378
+#: view/BlockSettings.php:294
 msgid "México"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:379
+#: view/BlockSettings.php:295
 msgid "Montserrat"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:380
+#: view/BlockSettings.php:296
 msgid "Namibia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:381
+#: view/BlockSettings.php:297
 msgid "Nepal"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:382
+#: view/BlockSettings.php:298
 msgid "Netherlands"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:383
+#: view/BlockSettings.php:299
 msgid "New Zealand"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:384
+#: view/BlockSettings.php:300
 msgid "Nicaragua"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:385
+#: view/BlockSettings.php:301
 msgid "Norfolk Island"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:386
+#: view/BlockSettings.php:302
+msgid "Norway"
+msgstr ""
+
+#: view/BlockSettings.php:303
 msgid "Pakistan"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:387
+#: view/BlockSettings.php:304
 msgid "Panamá"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:388
+#: view/BlockSettings.php:305
 msgid "Paraguay"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:389
+#: view/BlockSettings.php:306
 msgid "Perú"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:390
+#: view/BlockSettings.php:307
 msgid "Philippines"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:391
+#: view/BlockSettings.php:308
 msgid "Pitcairn Islands"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:392
+#: view/BlockSettings.php:309
 msgid "Poland"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:393
+#: view/BlockSettings.php:310
 msgid "Portugal"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:394
+#: view/BlockSettings.php:311
 msgid "Puerto Rico"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:395
+#: view/BlockSettings.php:312
 msgid "Rep. of the Congo"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:396
+#: view/BlockSettings.php:313
 msgid "Romania"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:397
+#: view/BlockSettings.php:314
 msgid "Russia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:398
+#: view/BlockSettings.php:315
 msgid "Rwanda"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:399
+#: view/BlockSettings.php:316
 msgid "Saint Helena"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:400
+#: view/BlockSettings.php:317
 msgid "San Marino"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:401
+#: view/BlockSettings.php:318
+msgid "Saudi Arabia"
+msgstr ""
+
+#: view/BlockSettings.php:319
 msgid "Singapore"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:402
+#: view/BlockSettings.php:320
 msgid "Slovakia"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:403
+#: view/BlockSettings.php:321
 msgid "South Africa"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:404
+#: view/BlockSettings.php:322
 msgid "Spain"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:405
+#: view/BlockSettings.php:323
+msgid "Sri Lanka"
+msgstr ""
+
+#: view/BlockSettings.php:324
 msgid "Sweden"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:406
+#: view/BlockSettings.php:325
 msgid "Switzerland"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:407
+#: view/BlockSettings.php:326
 msgid "Taiwan"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:408
+#: view/BlockSettings.php:327
 msgid "Thailand"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:409
+#: view/BlockSettings.php:328
 msgid "Trinidad and Tobago"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:410
+#: view/BlockSettings.php:329
 msgid "Turkey"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:411
+#: view/BlockSettings.php:330
 msgid "Ukraine"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:412
+#: view/BlockSettings.php:331
 msgid "United Arab Emirates"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:413
+#: view/BlockSettings.php:332
 msgid "United Kingdom"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:414
+#: view/BlockSettings.php:333
+msgid "United States"
+msgstr ""
+
+#: view/BlockSettings.php:334
 msgid "Uruguay"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:415
+#: view/BlockSettings.php:335
 msgid "Uzbekistan"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:416
+#: view/BlockSettings.php:336
 msgid "Vanuatu"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:417
+#: view/BlockSettings.php:337
 msgid "Venezuela"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:429
+#: view/BlockSettings.php:338
+msgid "Vietnam"
+msgstr ""
+
+#: view/BlockSettings.php:344
+#, php-format
+msgid ""
+"Select how many pages to be checked in the Performance Analytics section "
+"every hour. %s(not recommended for shared hosting plan)%s"
+msgstr ""
+
+#: view/BlockSettings.php:351
+msgid "page"
+msgstr ""
+
+#: view/BlockSettings.php:353
+msgid "pages"
+msgstr ""
+
+#: view/BlockSettings.php:359
+msgid "h"
+msgstr ""
+
+#: view/BlockSettings.php:373
 msgid ""
 "Restricts search results to results originating in the above particular "
 "country."
 msgstr ""
 
-#: themes/default/SQ_Menu.php:438
+#: view/BlockSettings.php:379
+#, php-format
+msgid ""
+"You have the %sBusiness Plan%s active. Rankings are now checked by Squirrly "
+"API and will be shown in  %sAdvanced Analytics%s"
+msgstr ""
+
+#: view/BlockSettings.php:383
+msgid "Select how many rank queries you want Squirrly to do every day. "
+msgstr ""
+
+#: view/BlockSettings.php:388 view/BlockSettings.php:390
+#: view/BlockSettings.php:403
+msgid "queries"
+msgstr ""
+
+#: view/BlockSettings.php:388 view/BlockSettings.php:390
+#: view/BlockSettings.php:403
+msgid "day"
+msgstr ""
+
+#: view/BlockSettings.php:396
+msgid ""
+"Note: if you're on the free trial, you get 35 queries for the 7 days of "
+"trial."
+msgstr ""
+
+#: view/BlockSettings.php:415
+msgid "Robots.txt Editor"
+msgstr ""
+
+#: view/BlockSettings.php:416
+#, php-format
+msgid "%sLearn about robots.txt files%s"
+msgstr ""
+
+#: view/BlockSettings.php:417
+#, php-format
+msgid "%sHow to use Robots.txt%s"
+msgstr ""
+
+#: view/BlockSettings.php:423
+msgid "Edit the Robots.txt data"
+msgstr ""
+
+#: view/BlockSettings.php:436
+msgid ""
+"Does not physically create the robots.txt file. The best option for "
+"Multisites."
+msgstr ""
+
+#: view/BlockSettings.php:441
+msgid "Save Robots"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:27
+msgid "SEO"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:31 view/BlockSettingsSeo.php:204
+msgid "Check for SEO issues in your site"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:46
+msgid "Let Squirrly SEO Optimize This Blog"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:47
+#, php-format
+msgid "%sIs Squirrly SEO better than WordPress SEO by Yoast?%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:49
+msgid ""
+"Activate the built-in SEO settings from Squirrly by switching Yes below. "
+"<strong>Works well with Multisites and Ecommerce.</strong>"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:63
+msgid "New SEO Settings For Google 2017"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:75
+msgid "Fastest SEO Plugin in 2017"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:86
+msgid "What does Squirrly automatically do for SEO?"
+msgstr "Ce face Squirrly in mod automat pentru SEO?"
+
+#: view/BlockSettingsSeo.php:100
+#, php-format
+msgid ""
+"adds <strong>%scanonical link%s</strong>, <strong>%srel=\"prev\" and rel="
+"\"next\"%s</strong> metas in Header"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:117
+msgid "adds the required METAs (<strong>Dublin Core, Language</strong>, etc.)"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:133
+#, php-format
+msgid "adds the <strong>%sXML Sitemap%s</strong> for search engines: %s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:149
+#, php-format
+msgid "adds  <strong>Feed style</strong> to your blog feed (eg. %s/feed)"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:165
+#, php-format
+msgid ""
+"adds the <strong>%sfavicon.ico%s</strong> and the <strong>%sicons for "
+"tablets and smartphones%s</strong>"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:181
+#, php-format
+msgid "adds the <strong>%sJson-LD%s</strong> metas for Semantic SEO"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:197
+#, php-format
+msgid ""
+"adds the <strong>%sNoindex%s</strong>, <strong>%sNofollow%s</strong> metas "
+"for your desired pages"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:201
+msgid ""
+"Note! By switching the  <strong>Json-LD</strong>, <strong>XML Sitemap</"
+"strong> and <strong>Favicon</strong> on, you open new options below"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:210
+msgid "First Page Optimization"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:211
+#, php-format
+msgid "%sThe best SEO approach to Meta information%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:212
+msgid "Optimize the <strong>Titles</strong>"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:227
+#, php-format
+msgid "Optimize %sDescriptions%s "
+msgstr ""
+
+#: view/BlockSettingsSeo.php:243
+#, php-format
+msgid "Optimize %sKeywords%s "
+msgstr ""
+
+#: view/BlockSettingsSeo.php:259
+msgid "SEO for all post/pages"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:260
+#, php-format
+msgid ""
+"To customize the Title and Description for all the Posts and Pages in your "
+"site use the %sSquirrly Snippet Tool%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:262
+msgid "Add the Post tags in <strong>Keyword META</strong>."
+msgstr ""
+
+#: view/BlockSettingsSeo.php:284
+msgid "Squirrly Snippet G17-True Render"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:308
+msgid "First Page Optimization:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:314
+msgid "Title:"
+msgstr "Titlu:"
+
+#: view/BlockSettingsSeo.php:319
+msgid "Tips: Length 10-75 chars"
+msgstr "Atentie: Lungimea 10-75 caractere"
+
+#: view/BlockSettingsSeo.php:323
+msgid "Description:"
+msgstr "Descrierea:"
+
+#: view/BlockSettingsSeo.php:327
+msgid "Tips: Length 70-320 chars"
+msgstr "Atentie: Lungimea 70-320 caractere"
+
+#: view/BlockSettingsSeo.php:330
+msgid "Keywords:"
+msgstr "Cuvinte cheie:"
+
+#: view/BlockSettingsSeo.php:331
+msgid "Tips: use 2-4 keywords"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:334
+msgid "OG Image:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:335
+msgid "Select Open Graph Image"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:340
+msgid "First Page Preview (Title, Description, Keywords)"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:342
+msgid "Squirrly Snippet"
+msgstr "Snipet Squirrly"
+
+#: view/BlockSettingsSeo.php:354
+msgid ""
+"If you don't see any changes in your Google snippet, check if other SEO "
+"themes or plugins affect Squirrly."
+msgstr ""
+
+#: view/BlockSettingsSeo.php:358
+#, php-format
+msgid ""
+"Use the %s<strong>Squirrly Snippet Tool</strong>%s while editing a Post/Page "
+"to customize the Title and the Description."
+msgstr ""
+
+#: view/BlockSettingsSeo.php:367
+msgid "Social Media Options"
+msgstr "Optiuni Social Media"
+
+#: view/BlockSettingsSeo.php:369
+msgid "Select the language you're using on Social Media"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:515
+#, php-format
+msgid "%sHow to pop out in Social Media with your links%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:516
+#, php-format
+msgid "%sGet busy with Facebook’s new Search Engine functions%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:517
+#, php-format
+msgid ""
+"%sHow I Added Twitter Cards in My WordPress for Better Inbound Marketing%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:523
+msgid "Open Graph G17 - 2017 Settings"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:535
+msgid "Squirrly Adds the Best Codes for Open Graph and Twitter Cards"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:551
+#, php-format
+msgid ""
+"Add the Social Open Graph protocol so that your Facebook shares look good. "
+"%sCheck here%s. "
+msgstr ""
+
+#: view/BlockSettingsSeo.php:555
+msgid "Facebook App ID"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:556
+#, php-format
+msgid "Add the %sFacebook App%s ID "
+msgstr ""
+
+#: view/BlockSettingsSeo.php:573
+msgid "You need to add your <strong>Twitter account</strong> below"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:583
+msgid "Add the <strong>Twitter card</strong> in your tweets. "
+msgstr "Adauga <strong>titlul</strong> corect in pagina acasa"
+
+#: view/BlockSettingsSeo.php:591
+#, php-format
+msgid ""
+"Use <strong>Twitter %ssummary_large_image%s</strong> for your Twitter Card. "
+msgstr ""
+
+#: view/BlockSettingsSeo.php:603
+msgid "Social Media Accounts"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:604
+#, php-format
+msgid "%sLink your Google+ profile to the content you create%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:605
+#, php-format
+msgid ""
+"%sTwitter account is mandatory for <strong>Twitter Card Validation</strong>%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:606
+#, php-format
+msgid ""
+"%sAdd all your social accounts for <strong>JSON-LD Semantic SEO</strong>%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:607 view/BlockSettingsSeo.php:830
+#, php-format
+msgid "%sSpecify your social profiles to Google%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:615
+msgid "Your Twitter Account:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:622
+msgid "Google Plus Profile:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:629
+msgid "Facebook Profile:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:636
+msgid "Linkedin Profile:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:643
+msgid "Pinterest Profile:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:650
+msgid "Instagram Profile:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:657
+msgid "Youtube Profile:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:667
+msgid "XML Sitemap for Google"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:668
+msgid ""
+"Squirrly Sitemap is the fastest way to tell Google about the pages on your "
+"site. <strong>Supports Multisites, Google News, Images, Videos, Custom Post "
+"Types, Custom Taxonomies and Ecommerce products</strong>"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:669
+#, php-format
+msgid "%sHow to submit your sitemap.xml in Google Webmaster Tool%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:670
+#, php-format
+msgid ""
+"%s10 Vital To Dos to Feed Your SEO Content Machine After You Post Articles%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:671
+#, php-format
+msgid ""
+"For Google News Sitemap, ensure that your site is included in %sGoogle News%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:680
+msgid "XML Sitemap Options"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:689
+msgid "Ping your sitemap to Google and Bing when a new post is published"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:695
+msgid "Build Sitemaps for"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:703
+msgid "Google News"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:715
+msgid "Categories"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:729
+msgid "Tags"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:741
+msgid "Archive"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:744
+msgid "Custom Taxonomies"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:747
+msgid "Custom Posts"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:750
+#, php-format
+msgid ""
+"Select only the Post Types that have links in them. Your sitemap will be %s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:754
+msgid "Include in Sitemaps"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:757
+msgid "<strong>Images</strong> from posts/pages"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:760
+msgid "<strong>Videos</strong> (embeded and local media)"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:765
+msgid "How often do you update your site?"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:767
+msgid "every day"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:768
+msgid "1-3 times per week"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:769
+msgid "1-3 times per month"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:770
+msgid "1-3 times per year"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:774
+msgid "Feed Pagination: How many Posts per page to show in sitemap?"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:789
 msgid "Change the Website Icon"
 msgstr "Schimba icoana site-ului"
 
-#: themes/default/SQ_Menu.php:439
+#: view/BlockSettingsSeo.php:790
 msgid ""
-"Now even the tablets and smartphone browsers also make use of your icons. "
-"This has led to an increasesd importance to having a good favicon."
+"Now, even tablet & smartphone browsers make use of your icons. This makes "
+"having a good favicon even more important."
 msgstr ""
 
-#: themes/default/SQ_Menu.php:440
+#: view/BlockSettingsSeo.php:791
 #, php-format
 msgid ""
 "You can use %shttp://convertico.com/%s to convert your photo to icon and "
@@ -1872,19 +3101,15 @@ msgstr ""
 "Poti folosi %shttp://convertico.com/%s pentru a converti imaginea in icoana "
 "si poti incarca icoana aici"
 
-#: themes/default/SQ_Menu.php:445
-msgid "File types: JPG, JPEG, GIF and PNG."
-msgstr "Tip fisiere JPEG,JPG,GIF sau PNG "
-
-#: themes/default/SQ_Menu.php:449
+#: view/BlockSettingsSeo.php:797
 msgid "Upload file:"
 msgstr "Urca fisier:"
 
-#: themes/default/SQ_Menu.php:454
+#: view/BlockSettingsSeo.php:810 view/FrontMenu.php:305 view/FrontMenu.php:446
 msgid "Upload"
 msgstr "Upload"
 
-#: themes/default/SQ_Menu.php:458
+#: view/BlockSettingsSeo.php:814
 msgid ""
 "If you don't see the new icon in your browser, empty the browser cache and "
 "refresh the page."
@@ -1892,78 +3117,1077 @@ msgstr ""
 "Daca nu vezi noua icoana in browser, goleste cache-ul din browser si da "
 "refresh la pagina."
 
-#: themes/default/SQ_Menu.php:463
+#: view/BlockSettingsSeo.php:816
+msgid "File types: JPG, JPEG, GIF and PNG."
+msgstr "Tip fisiere JPEG,JPG,GIF sau PNG "
+
+#: view/BlockSettingsSeo.php:818
+msgid ""
+"Does not physically create the favicon.ico file. The best option for "
+"Multisites."
+msgstr ""
+
+#: view/BlockSettingsSeo.php:826
+msgid "JSON-LD for Semantic SEO"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:827
+msgid ""
+"Squirrly will automatically add the JSON-LD Structured Data in your site."
+msgstr ""
+
+#: view/BlockSettingsSeo.php:828
+#, php-format
+msgid "%sJSON-LD's Big Day at Google%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:829
+#, php-format
+msgid "%sGoogle Testing Tool%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:836
+msgid "JSON-LD G17 - 2x More Options"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:853
+msgid "Your site type:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:855
+msgid "Organization"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:856
+msgid "Personal"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:862
+msgid "Your Organization Name:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:863
+msgid "Your Name:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:867
+msgid "Job Title:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:871
+msgid "Logo Url:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:872
+msgid "Image Url:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:873
+msgid "Select Image"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:877
+msgid "Contact Phone:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:881
+msgid "Contact Type:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:883
+msgid "Customer Service"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:884
+msgid "Technical Support"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:885
+msgid "Billing Support"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:886
+msgid "Bill Payment"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:887
+msgid "Sales"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:888
+msgid "Reservations"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:889
+msgid "Credit Card Support"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:890
+msgid "Emergency"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:891
+msgid "Baggage Tracking"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:892
+msgid "Roadside Assistance"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:893
+msgid "Package Tracking"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:898
+msgid "Short Description:"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:906
+msgid "Add your social accounts for Json-LD"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:911
+msgid "How the search results will look like once Google grabs your data."
+msgstr ""
+
+#: view/BlockSettingsSeo.php:920 view/BlockToolbar.php:8
 msgid "Tracking Tools"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:464
-#, php-format
-msgid "%sLink your Google+ profile to the content you create%s"
-msgstr ""
-
-#: themes/default/SQ_Menu.php:465
-#, php-format
-msgid ""
-"%sStarBox, the author box that’s pushing content marketing to the stars%s"
-msgstr ""
-
-#: themes/default/SQ_Menu.php:466
+#: view/BlockSettingsSeo.php:921
 #, php-format
 msgid "%sHow to Get the Most Out of Google Analytics%s"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:467
+#: view/BlockSettingsSeo.php:922
+#, php-format
+msgid "%sWhat is Facebook Pixel?%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:923
 #, php-format
 msgid "%sA Beginner’s Guide to Facebook Insights%s"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:473
-msgid "Google Plus URL:"
-msgstr "URL Google Plus:"
+#: view/BlockSettingsSeo.php:930
+msgid "Google Tracking G17"
+msgstr ""
 
-#: themes/default/SQ_Menu.php:477
-#, fuzzy, php-format
+#: view/BlockSettingsSeo.php:942
+msgid "Facebook Tracking G17"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:954
+msgid "Rich Pins G17"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:971 view/BlockSettingsSeo.php:981
+#: view/BlockSettingsSeo.php:994
+#, php-format
+msgid "Facebook Admin ID (for %sInsights%s ):"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:974 view/BlockSettingsSeo.php:984
+#: view/BlockSettingsSeo.php:997
+msgid "Facebook ID or https://www.facebook.com/YourProfileName"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:989
+msgid "Add more Facebook Admin IDs"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:1003
+#, php-format
 msgid "Google  %sAnalytics ID%s:"
 msgstr "Google %sAnalytics ID%s:"
 
-#: themes/default/SQ_Menu.php:481
-#, fuzzy, php-format
-msgid "Facebook META code (for %sInsights%s ):"
-msgstr "Facebook META code (pentru %sInsights%s):"
-
-#: themes/default/SQ_Menu.php:485
-msgid "Pinterest META code:"
+#: view/BlockSettingsSeo.php:1008
+#, php-format
+msgid "Facebook  %sPixel ID%s:"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:491
-#, fuzzy
-msgid "Search Engines Tools"
-msgstr "Pentru motoare de cautare"
+#: view/BlockSettingsSeo.php:1021
+#, php-format
+msgid ""
+"Load <strong>%sGoogle Analytics AMP%s</strong> and <strong>%sFacebook Pixel "
+"AMP%s</strong> tracking%s(Warning! The tracking works only for AMP Themes.%s)"
+msgstr ""
 
-#: themes/default/SQ_Menu.php:492
+#: view/BlockSettingsSeo.php:1028
+msgid "Measure Your Success"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:1029
+#, php-format
+msgid "%sHow to set the Google Webmaster Tool%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:1030
 #, php-format
 msgid "%sBest practices to help Google find, crawl, and index your site%s"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:493
+#: view/BlockSettingsSeo.php:1031
 #, php-format
 msgid "%sBing Webmaster Tools Help & How-To Center%s"
 msgstr ""
 
-#: themes/default/SQ_Menu.php:499
-#, fuzzy, php-format
+#: view/BlockSettingsSeo.php:1032
+#, php-format
+msgid "%sRich Pins Validator%s"
+msgstr ""
+
+#: view/BlockSettingsSeo.php:1038
+#, php-format
 msgid "Google META verification code for %sWebmaster Tool%s:"
 msgstr "Cod META pentru %sGoogle Webmaster Tool%s"
 
-#: themes/default/SQ_Menu.php:503
-#, fuzzy, php-format
+#: view/BlockSettingsSeo.php:1044
+#, php-format
 msgid "Bing META code (for %sWebmaster Tool%s ):"
 msgstr "Bing META code (pentru %sWebmaster Tool%s):"
 
-#: themes/default/SQ_Menu.php:507
-#, fuzzy, php-format
+#: view/BlockSettingsSeo.php:1051
+#, php-format
 msgid "Alexa META code (for %sAlexa Tool%s ):"
-msgstr "Bing META code (pentru %sWebmaster Tool%s):"
+msgstr "Alexa META code (pentru %sWebmaster Tool%s):"
+
+#: view/BlockSettingsSeo.php:1057
+#, php-format
+msgid "Pinterest Website Validator Code: (validate %sRich Pins%s )"
+msgstr ""
+
+#: view/BlockSupport.php:7
+msgid "Go to Profile"
+msgstr "Profilul tau din Squirrly"
+
+#: view/BlockSupport.php:7 view/BlockSupport.php:8
+msgid "Profile"
+msgstr "Profil"
+
+#: view/BlockSupport.php:32 view/BlockSupport.php:87
+msgid "For more support:"
+msgstr ""
+
+#: view/BlockSupport.php:33 view/BlockSupport.php:88
+#, php-format
+msgid "10 AM to 4 PM (GMT): Mon-Fri %sby email%s."
+msgstr ""
+
+#: view/BlockSupport.php:34 view/BlockSupport.php:90
+#, php-format
+msgid "%sLive Chat%s on Youtube. Thursday 4 PM."
+msgstr ""
+
+#: view/BlockSupport.php:35 view/BlockSupport.php:91
+#, php-format
+msgid "Google Plus %sSupport Community%s."
+msgstr ""
+
+#: view/BlockSupport.php:36 view/BlockSupport.php:92
+#, php-format
+msgid "New Lessons Mon. and Tue. on %sTwitter%s."
+msgstr ""
+
+#: view/BlockSupport.php:48
+msgid "How was your Squirrly experience today?"
+msgstr "Cum a fost experienta de azi cu Squirrly?"
+
+#: view/BlockSupport.php:57
+msgid "How was Squirrly today?"
+msgstr "Cum a fost Squirrly azi?"
+
+#: view/BlockSupport.php:62
+msgid "Angry"
+msgstr ""
+
+#: view/BlockSupport.php:62
+msgid "Annoying"
+msgstr ""
+
+#: view/BlockSupport.php:65
+msgid "Sad"
+msgstr ""
+
+#: view/BlockSupport.php:65
+msgid "Bad"
+msgstr ""
+
+#: view/BlockSupport.php:68
+msgid "Happy"
+msgstr ""
+
+#: view/BlockSupport.php:68
+msgid "Nice"
+msgstr ""
+
+#: view/BlockSupport.php:71
+msgid "Excited"
+msgstr ""
+
+#: view/BlockSupport.php:71
+msgid "Great"
+msgstr ""
+
+#: view/BlockSupport.php:74
+msgid "Love it"
+msgstr ""
+
+#: view/BlockSupport.php:80
+msgid "Please tell us why?"
+msgstr "De ce?"
+
+#: view/BlockSupport.php:83
+msgid "Send feedback"
+msgstr "Trimite"
+
+#: view/BlockSupport.php:89
+#, php-format
+msgid "%sSupport button%s here in WordPress (^^)"
+msgstr ""
+
+#: view/BlockSupport.php:97
+msgid "Thank you! You can send us a happy face tomorow too."
+msgstr "Multumim! Ne poti trimite o fata vesela si maine."
+
+#: view/BlockToolbar.php:5
+msgid "Structured Data"
+msgstr ""
+
+#: view/BlockToolbar.php:6
+msgid "Social Media"
+msgstr ""
+
+#: view/BlockToolbar.php:7
+msgid "Site Icon"
+msgstr ""
+
+#: view/BlockToolbar.php:9
+msgid "Connections"
+msgstr ""
+
+#: view/BlockToolbar.php:10
+msgid "Sitemap XML"
+msgstr ""
+
+#: view/BlockToolbar.php:11
+msgid "Ranking Options"
+msgstr ""
+
+#: view/BlockToolbar.php:12
+msgid "Advanced"
+msgstr "Avansat"
+
+#: view/BlockToolbar.php:13
+msgid "Robots.txt"
+msgstr ""
+
+#: view/BlockToolbar.php:15
+msgid "Import"
+msgstr ""
+
+#: view/Blocklogin.php:2
+msgid "Squirrly.co Login"
+msgstr "Conectare la Squirrly"
+
+#: view/Blocklogin.php:9
+msgid "Email:"
+msgstr "Email:"
+
+#: view/Blocklogin.php:11
+msgid "Password:"
+msgstr "Parola:"
+
+#: view/Blocklogin.php:13
+msgid "Login"
+msgstr "Logare"
+
+#: view/Blocklogin.php:15
+msgid "Register"
+msgstr "Cont nou"
+
+#: view/Blocklogin.php:15
+msgid "Register to Squirrly.co"
+msgstr "Inregistreaza-te la Squirrly.co"
+
+#: view/Blocklogin.php:16
+msgid "Lost password?"
+msgstr "Ai uitat parola?"
+
+#: view/Blocklogin.php:16
+msgid "Lost password"
+msgstr "Am uitat parola"
+
+#: view/Blocklogin.php:21
+msgid "Enter your email"
+msgstr "Adauga adresa email"
+
+#: view/Blocklogin.php:23
+msgid "Your Email:"
+msgstr ""
+
+#: view/Blocklogin.php:31
+#, php-format
+msgid "I Agree with the %sSquirrly Terms%s"
+msgstr ""
+
+#: view/Blocklogin.php:33
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: view/Blocklogin.php:34
+msgid "I already have an account"
+msgstr "Am deja un cont"
+
+#: view/Blocklogin.php:35
+msgid "This email connects you to Squirrly.co"
+msgstr "Acest email te conecteaza la Squirrly"
+
+#: view/Blocklogin.php:46
+msgid "The email address is invalid!"
+msgstr "Adresa de email este invalida!"
+
+#: view/Blocklogin.php:47
+msgid "Click on Sign Up button and try again ..."
+msgstr "Apasa butonul Sign Up pentru a incerca din nou ..."
+
+#: view/Blocklogin.php:48
+msgid "An error occured while logging in!"
+msgstr "A aparut o eroare la logare."
+
+#: view/Blocklogin.php:49
+msgid "Connecting ..."
+msgstr "Conectare ..."
+
+#: view/Blocklogin.php:59
+msgid "Congratulations! You are ready to use all the features from Squirrly"
+msgstr ""
+
+#: view/Blocksearch.php:2
+msgid "Waiting for your editor to load .. "
+msgstr ""
+
+#: view/Blocksearch.php:3
+msgid ""
+"Javascript is disabled! You need to activate the javascript in order to use "
+"Squirrly SEO."
+msgstr ""
+
+#: view/Blocksearch.php:6
+msgid "Optimize for Keyword"
+msgstr "Optimizare dupa cuvant cheie"
+
+#: view/Blocksearch.php:7
+msgid "Squirrly Briefcase (Beta)"
+msgstr ""
+
+#: view/Blocksearch.php:9
+msgid "What is Briefcase?"
+msgstr ""
+
+#: view/Blocksearch.php:15
+msgid "Squirrly Briefcase"
+msgstr ""
+
+#: view/Blocksearch.php:16
+msgid "Refresh the keywords"
+msgstr ""
+
+#: view/Blocksearch.php:18
+msgid "Search in Briefcase ..."
+msgstr ""
+
+#: view/Blocksearch.php:20
+msgid "Go to Briefcase"
+msgstr ""
+
+#: view/Blocksearch.php:32
+msgid "Enter a keyword"
+msgstr "Adauga cuvant"
+
+#: view/Blocksearch.php:33
+msgid "for Squirrly Live SEO optimization"
+msgstr "Pentru optimizare cu  Squirrly SEO"
+
+#: view/Blocksearch.php:49
+msgid "Use this keyword"
+msgstr "Foloseste acest cuvant"
+
+#: view/Blocksearch.php:53
+msgid "Enter a keyword above!"
+msgstr "Adauga cuvinte cheie mai sus!"
+
+#: view/Blocksearch.php:54
+msgid "I have more then one keyword!"
+msgstr "Am mai multe cuvinte!"
+
+#: view/Blocksearch.php:60
+msgid "Images"
+msgstr "Imagini"
+
+#: view/Blocksearch.php:62
+msgid "Wiki"
+msgstr "Wiki"
+
+#: view/Blocksearch.php:63
+msgid "Blogs"
+msgstr "Bloguri"
+
+#: view/Blocksearch.php:64
+msgid "My articles"
+msgstr "Articolele mele"
+
+#: view/Blocksearch.php:72
+msgid "Show only Copyright Free images"
+msgstr "Arata doar imagini fara copyright"
+
+#: view/Blockseo.php:13
+msgid "Split Window"
+msgstr ""
+
+#: view/FrontMenu.php:39
+msgid "Saved! This is how the preview looks like"
+msgstr ""
+
+#: view/FrontMenu.php:45
+msgid "Activate Squirrly SEO for this page"
+msgstr ""
+
+#: view/FrontMenu.php:61
+msgid "META"
+msgstr ""
+
+#: view/FrontMenu.php:64
+msgid "FACEBOOK"
+msgstr ""
+
+#: view/FrontMenu.php:67
+msgid "TWITTER"
+msgstr ""
+
+#: view/FrontMenu.php:70
+msgid "ADVANCED"
+msgstr ""
+
+#: view/FrontMenu.php:83
+msgid "How this page will appear on Search Engines"
+msgstr ""
+
+#: view/FrontMenu.php:88
+msgid "Edit Snippet"
+msgstr ""
+
+#: view/FrontMenu.php:103 view/FrontMenu.php:294 view/FrontMenu.php:434
+msgid "Cancel"
+msgstr "Renunta"
+
+#: view/FrontMenu.php:104 view/FrontMenu.php:295 view/FrontMenu.php:435
+#: view/FrontMenu.php:496
+msgid "Save"
+msgstr ""
+
+#: view/FrontMenu.php:111
+msgid "SEO Title"
+msgstr ""
+
+#: view/FrontMenu.php:114 view/FrontMenu.php:164
+msgid "Pattern: "
+msgstr ""
+
+#: view/FrontMenu.php:119
+msgid "Current Title"
+msgstr ""
+
+#: view/FrontMenu.php:124
+msgid "Default Title"
+msgstr ""
+
+#: view/FrontMenu.php:144 view/FrontMenu.php:191
+msgid "Pattern"
+msgstr ""
+
+#: view/FrontMenu.php:161
+msgid "META Description"
+msgstr ""
+
+#: view/FrontMenu.php:168
+msgid "Current Description"
+msgstr ""
+
+#: view/FrontMenu.php:173
+msgid "Default Description"
+msgstr ""
+
+#: view/FrontMenu.php:207
+msgid "Meta Keywords"
+msgstr ""
+
+#: view/FrontMenu.php:211
+msgid "+ Add keyword"
+msgstr "Adauga cuvant cheie"
+
+#: view/FrontMenu.php:219
+msgid "Canonical link"
+msgstr ""
+
+#: view/FrontMenu.php:222
+msgid "Found: "
+msgstr ""
+
+#: view/FrontMenu.php:228
+msgid "Current"
+msgstr ""
+
+#: view/FrontMenu.php:234
+msgid "Default Link"
+msgstr ""
+
+#: view/FrontMenu.php:245
+msgid ""
+"To edit the snippet, you have to activate Squirrly SEO for this page first"
+msgstr ""
+
+#: view/FrontMenu.php:246 view/FrontMenu.php:389 view/FrontMenu.php:489
+#: view/FrontMenu.php:545
+msgid "or Click here"
+msgstr ""
+
+#: view/FrontMenu.php:254
+msgid "How this page appears on Facebook"
+msgstr ""
+
+#: view/FrontMenu.php:259
+msgid "Edit Open Graph"
+msgstr ""
+
+#: view/FrontMenu.php:267 view/FrontMenu.php:408
+msgid "The image size must be at least 500 pixels wide"
+msgstr ""
+
+#: view/FrontMenu.php:281 view/FrontMenu.php:422
+msgid ""
+"This is the Featured Image. You can changin it if you edit the snippet and "
+"upload anothe image."
+msgstr ""
+
+#: view/FrontMenu.php:301
+msgid "Media Image"
+msgstr ""
+
+#: view/FrontMenu.php:306 view/FrontMenu.php:447
+msgid "Image size must be at least 500 pixels wide"
+msgstr ""
+
+#: view/FrontMenu.php:320
+msgid "OG Title"
+msgstr ""
+
+#: view/FrontMenu.php:333
+msgid "OG Description"
+msgstr ""
+
+#: view/FrontMenu.php:346
+msgid "Author Link"
+msgstr ""
+
+#: view/FrontMenu.php:351
+msgid "if there are more authors, separate their facebook links with commas"
+msgstr ""
+
+#: view/FrontMenu.php:357
+msgid "Page type"
+msgstr ""
+
+#: view/FrontMenu.php:361
+msgid "Website"
+msgstr ""
+
+#: view/FrontMenu.php:370
+msgid "Book"
+msgstr ""
+
+#: view/FrontMenu.php:373
+msgid "Music"
+msgstr ""
+
+#: view/FrontMenu.php:376
+msgid "Product"
+msgstr ""
+
+#: view/FrontMenu.php:379
+msgid "Video"
+msgstr ""
+
+#: view/FrontMenu.php:388
+msgid ""
+"To edit the Open Graph, you have to activate Squirrly SEO for this page first"
+msgstr ""
+
+#: view/FrontMenu.php:397
+msgid "How this page appears on Twitter"
+msgstr ""
+
+#: view/FrontMenu.php:400
+msgid "Edit Twitter Card"
+msgstr ""
+
+#: view/FrontMenu.php:442
+msgid "Twitter Image"
+msgstr ""
+
+#: view/FrontMenu.php:460
+msgid "Twitter Card Title"
+msgstr ""
+
+#: view/FrontMenu.php:473
+msgid "Twitter Card Description"
+msgstr ""
+
+#: view/FrontMenu.php:488
+msgid ""
+"To edit the Twitter Card, you have to activate Squirrly SEO for this page "
+"first"
+msgstr ""
+
+#: view/FrontMenu.php:503
+msgid "Let Google Index This Page"
+msgstr ""
+
+#: view/FrontMenu.php:516
+msgid "Pass Link Juice to This Page"
+msgstr ""
+
+#: view/FrontMenu.php:529
+msgid "Show it in Sitemap.xml"
+msgstr ""
+
+#: view/FrontMenu.php:544
+msgid "To edit, you have to activate Squirrly SEO for this page first."
+msgstr ""
+
+#: view/FrontMenu.php:564
+msgid "post type"
+msgstr ""
+
+#: view/FrontMenu.php:566
+msgid "og type"
+msgstr ""
+
+#: view/FrontMenu.php:588
+msgid "Can't do Custom SEO for this URL"
+msgstr ""
+
+#: view/FrontMenu.php:608
+msgid "Enable Squirrly SEO to load Squirrly Snippet"
+msgstr ""
+
+#: view/FrontMenu.php:632
+#, php-format
+msgid "%sPlease connect to Squirrly first%s"
+msgstr ""
+
+#: view/SerpChecker.php:32
+msgid "Settings"
+msgstr ""
+
+#: view/SerpChecker.php:37
+msgid "Update ranks"
+msgstr ""
+
+#: view/SerpChecker.php:54
+msgid "Advanced Analytics (Business Level)"
+msgstr ""
+
+#: view/SerpChecker.php:77
+msgid "Get Ranks and found Keywords from Squirrly API"
+msgstr ""
+
+#: view/SerpChecker.php:81 view/SerpChecker.php:85
+msgid "Get Ranks from Squirrly API"
+msgstr ""
+
+#: view/SerpChecker.php:92
+msgid "Last Update"
+msgstr ""
+
+#: view/SerpChecker.php:109 view/SerpChecker.php:113
+msgid "Found Keywords"
+msgstr ""
+
+#: view/SerpChecker.php:118
+#, php-format
+msgid "Found Keywords (%sSee all keywords%s)"
+msgstr ""
+
+#: view/SerpChecker.php:118
+msgid "Show the keywords found with Advanced Analytics"
+msgstr ""
+
+#: view/SerpChecker.php:140
+msgid "Show only the ranked articles"
+msgstr ""
+
+#: view/SerpChecker.php:145
+msgid "Today Avg. Ranking"
+msgstr ""
+
+#: view/SerpChecker.php:175
+msgid "Show only the SERP changes"
+msgstr ""
+
+#: view/SerpChecker.php:180
+msgid "Today SERP Changes"
+msgstr ""
+
+#~ msgid "Turn off warnings!"
+#~ msgstr "Opreste avertizarile"
+
+#~ msgid ":( I lost my squirrel. Please reload the page."
+#~ msgstr ":( Am pierdut veverita. Te rog sa dai refresh la pagina."
+
+#~ msgid "Join Squirrly today!"
+#~ msgstr "Alatura-te lui Squirrly!"
+
+#~ msgid "- Recurring 45%s commission"
+#~ msgstr "- Comision 45%s din abonament"
+
+#~ msgid "Tips: 2-4 keywords"
+#~ msgstr "Atentie: 2-4 cuvinte cheie"
+
+#~ msgid ""
+#~ "If you don't see any changes in custom optimization, check if another SEO "
+#~ "plugin affects Squirrly SEO"
+#~ msgstr ""
+#~ "Daca nu sunt modificari in titlu prin aceasta optimizate, verifica daca "
+#~ "nu e afectat de alte pluginuri instalate."
+
+#~ msgid "Add the keyword in the %sintroduction%s of your article"
+#~ msgstr "Adauga keyword-ul in %s "
+
+#~ msgid "Notice: "
+#~ msgstr "Atentie:"
+
+#~ msgid "Note: "
+#~ msgstr "Atentie:"
+
+#~ msgid "Let Squirrly optimize your SEO automatically (recommended)"
+#~ msgstr "Lasa Squirrly sa optimizeze SEO automat (recomandat)"
+
+#~ msgid ""
+#~ "You have META Description Duplicates. Disable the Squirrly SEO "
+#~ "Description or disable the other SEO Plugins"
+#~ msgstr ""
+#~ "Aveti duplicate in META Descriere. Opriti Squirrly Seo Description sau "
+#~ "dezactivati alte plugin-uri de SEO"
+
+#~ msgid " getting started"
+#~ msgstr "ajutor"
+
+#~ msgid " dashboard"
+#~ msgstr "dashboard"
+
+#, fuzzy
+#~ msgid " post list"
+#~ msgstr "Vezi in "
+
+#~ msgid " settings"
+#~ msgstr "setari"
+
+#~ msgid "Make money with "
+#~ msgstr "Castiga bani cu"
+
+#~ msgid "Make money"
+#~ msgstr "Castiga Bani"
+
+#, fuzzy
+#~ msgid "URL Indexed"
+#~ msgstr "Indexare Google"
+
+#~ msgid "Exact search:"
+#~ msgstr "Cautari exacte:"
+
+#~ msgid "For Squirrly to work, you have to have tinymce editor installed!"
+#~ msgstr ""
+#~ "Pentru ca Squirrly sa functioneze, trebuie sa ai editorul TinyMCE instalat"
+
+#~ msgid "Switch to Visual editor!"
+#~ msgstr "Schimba in Editor Vizual!"
+
+#~ msgid "Use more words in one keyword"
+#~ msgstr "Am mai multe cuvinte"
+
+#~ msgid "Save changes"
+#~ msgstr "Salveaza"
+
+#~ msgid "Reset"
+#~ msgstr "Resetare"
+
+#, fuzzy
+#~ msgid "Customize Meta"
+#~ msgstr "Modificare META"
+
+#~ msgid "manage keywords"
+#~ msgstr "administrare cuvinte cheie"
+
+#~ msgid ""
+#~ "Click the Update button (to the right) to see the snippet from your "
+#~ "website."
+#~ msgstr "Click pe butonul Update pentru a vedea snipetul site-ului"
+
+#~ msgid "Enter a title above for the snippet to get data."
+#~ msgstr "Adauga un titlu pentru a putea vedea datele in snipet"
+
+#~ msgid "Monthly Traffic"
+#~ msgstr "Trafic lunar"
+
+#, fuzzy
+#~ msgid "[stop showing this message]"
+#~ msgstr "u afisa aceasta pagina"
+
+#~ msgid "%sTerms of Use for our Affiliate Program%s"
+#~ msgstr "%sTermeni si conditii de afiliere%s"
+
+#~ msgid "Go to settings"
+#~ msgstr "Mergi la setari"
+
+#~ msgid "See dashboard"
+#~ msgstr "Vezi Dashboard"
+
+#, fuzzy
+#~ msgid "Squirrly Audit Score"
+#~ msgstr "Squirrly article rank"
+
+#, fuzzy
+#~ msgid "Connect to Squirrly.co"
+#~ msgstr "Inregistreaza-te la Squirrly.co"
+
+#, fuzzy
+#~ msgid "See all the Squirrly SEO features at: "
+#~ msgstr "Ai nevoie de ajutor cu Squirrly SEO?"
+
+#~ msgid "Go to:"
+#~ msgstr "Mergi la:"
+
+#~ msgid "support page"
+#~ msgstr "pagina suport"
+
+#~ msgid "Your E-mail:"
+#~ msgstr "Emailul tau:"
+
+#~ msgid "Congratulations! Now write a new article with:"
+#~ msgstr "Felicitari! Acum scrie un nou articol cu:"
+
+#~ msgid "Clear"
+#~ msgstr "Alta cautare"
+
+#~ msgid "Do the research"
+#~ msgstr "Trimite >>"
+
+#~ msgid "Enter even more keywords."
+#~ msgstr "Adauga mai multe cuvinte"
+
+#~ msgid "Let some keywords for the next time as well!"
+#~ msgstr "Mai lasa cuvinte si pentru viitor!"
+
+#~ msgid "News"
+#~ msgstr "News"
+
+#, fuzzy
+#~ msgid "Squirrly SEO Live Assistant"
+#~ msgstr "Asistent SEO Live"
+
+#~ msgid "Squirrly settings"
+#~ msgstr "Setari Squirrly"
+
+#~ msgid "Let Squirrly automatically optimize my blog"
+#~ msgstr "Lasa Squirrly sa imi optimizeze blogul automat"
+
+#, fuzzy
+#~ msgid "Add the <strong>%sXML Sitemap%s</strong> for search engines"
+#~ msgstr "Adauga <strong>Harta XML</strong> pentru motoarele de cautare"
+
+#~ msgid ""
+#~ "Add the required METAs for home page (<strong>icon, author, language, dc "
+#~ "publisher</strong>, etc.)"
+#~ msgstr ""
+#~ "Adauga cerintele META in pagina acasa (<strong>icon, author, language, dc "
+#~ "publisher</strong>, etc.)"
+
+#~ msgid ""
+#~ "Add the <strong>favicon</strong> and the <strong>icon for Apple devices</"
+#~ "strong>."
+#~ msgstr ""
+#~ "Adauga <strong>favicon</strong> si <strong>icoana pentru dispozitivele "
+#~ "Apple</strong>."
+
+#, fuzzy
+#~ msgid "What does Squirrly automatically do for Social Media?"
+#~ msgstr "Ce face Squirrly in mod automat pentru SEO?"
+
+#, fuzzy
+#~ msgid ""
+#~ "Add the <strong>Social Open Graph objects</strong> for a good looking "
+#~ "share. "
+#~ msgstr ""
+#~ "Adauga <strong>Facebook meta objects</strong> pentru o afisare mai "
+#~ "frumoasa in Facebook"
+
+#~ msgid "Your twitter account: "
+#~ msgstr "Contul tau de twitter:"
+
+#, fuzzy
+#~ msgid "First page optimization"
+#~ msgstr "Optimizare cu Squirrly SEO"
+
+#, fuzzy
+#~ msgid "Add meta <strong>title</strong> in Home Page"
+#~ msgstr "Adauga <strong>titlul</strong> corect in pagina acasa"
+
+#, fuzzy
+#~ msgid ""
+#~ "Add meta <strong>description</strong> and <strong>keywords</strong> in "
+#~ "Home Page"
+#~ msgstr ""
+#~ "Aadauga <strong>descrierea</strong> si <strong>cuvintele cheie</strong> "
+#~ "corecte in prima pagina"
+
+#, fuzzy
+#~ msgid "You First Page Preview (Title, Description, Keywords)"
+#~ msgstr "Optimizare prima pagina (Titlu, Descriere, Cuvinte cheie)"
+
+#~ msgid "Check with google ..."
+#~ msgstr "Verificat cu google ..."
+
+#~ msgid "Squirrly Options"
+#~ msgstr "Optiuni Squirrly"
+
+#~ msgid "Let Squirrly warn me if there are errors related to SEO settings"
+#~ msgstr "Lasa Squirrly sa ma anunte daca sunt erori SEO in setari"
+
+#~ msgid ""
+#~ "Show <strong>\"Enter a keyword\"</strong> bubble when posting a new "
+#~ "article."
+#~ msgstr ""
+#~ "Afiseaza balonul <strong>\"Adauga un keyword\"</strong>cand se posteaza "
+#~ "un nou articol."
+
+#~ msgid ""
+#~ "Always show <strong>Keyword Informations</strong> about the selected "
+#~ "keyword."
+#~ msgstr ""
+#~ "Afiseaza <strong>Informatii de cuvint cheie</strong> dupa alegerea "
+#~ "cuvantului la postare."
+
+#~ msgid "Google Plus URL:"
+#~ msgstr "URL Google Plus:"
+
+#, fuzzy
+#~ msgid "Facebook META code (for %sInsights%s ):"
+#~ msgstr "Facebook META code (pentru %sInsights%s):"
+
+#, fuzzy
+#~ msgid "Search Engines Tools"
+#~ msgstr "Pentru motoare de cautare"
 
 #~ msgid "Squirrly article rank"
 #~ msgstr "Squirrly article rank"
@@ -2046,17 +4270,11 @@ msgstr "Bing META code (pentru %sWebmaster Tool%s):"
 #~ msgid "Recommended by Squirrly"
 #~ msgstr "Recomandat de Squirrly"
 
-#~ msgid "Keyword"
-#~ msgstr "Cuvant cheie:"
-
 #~ msgid "User level"
 #~ msgstr "Nivel Utilizator"
 
 #~ msgid "Beginner"
 #~ msgstr "Incepator"
-
-#~ msgid "Advanced"
-#~ msgstr "Avansat"
 
 #~ msgid "Select Advanced only if you have SEO knowledge."
 #~ msgstr "Alege Avansat doar daca ai cunostinte SEO"

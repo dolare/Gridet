@@ -151,4 +151,3 @@
 		'hide' => __('Hide Blog Header','freesia-empire'),
 	),
 	));
-?>

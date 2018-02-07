@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Dropcap') ):
 class Magee_Dropcap {
 
 	public static $args;
@@ -33,7 +34,8 @@ class Magee_Dropcap {
 		
 		extract( $defaults );
 		self::$args = $defaults;
-		
+		if(is_numeric($boxed_radius))
+		$boxed_radius = $boxed_radius.'px';
 		
 		$html = sprintf( '<span %s>%s</span>', Magee_Core::attributes( 'dropcap-shortcode' ), do_shortcode( Magee_Core::fix_shortcodes($content)) );
 		
@@ -52,6 +54,9 @@ class Magee_Dropcap {
 			if( self::$args['boxed_radius'] || 
 				self::$args['boxed_radius'] === '0'
 			) {
+			    if(is_numeric(self::$args['boxed_radius']))
+				self::$args['boxed_radius'] = self::$args['boxed_radius'].'px';
+				
 				$attr['style'] = sprintf( 'border-radius:%s;', self::$args['boxed_radius'] );
 			}			
 
@@ -75,3 +80,4 @@ class Magee_Dropcap {
 }
 
 new Magee_Dropcap();
+endif;

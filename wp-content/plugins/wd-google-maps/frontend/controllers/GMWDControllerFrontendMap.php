@@ -20,11 +20,9 @@ class GMWDControllerFrontendMap extends  GMWDControllerFrontend{
 	public function get_ajax_markers(){
 		global $wpdb;
        
-
-        $searched_value = isset($_POST["search"]) && esc_html(stripslashes($_POST["search"])) != "" ? " AND (T_MARKER_CATEGORIES.title LIKE '%".esc_html(stripslashes($_POST["search"]))."%' OR T_MARKERS.title LIKE '%".esc_html(stripslashes($_POST["search"]))."%' OR T_MARKERS.description LIKE '%".esc_html(stripslashes($_POST["search"]))."%' OR T_MARKERS.address LIKE '%".esc_html(stripslashes($_POST["search"]))."%')" : "";
 		$id = (int)$_POST["map_id"];
 		
-		$markers = $wpdb->get_results("SELECT T_MARKERS.*, T_MARKER_CATEGORIES.title AS cat_title FROM (SELECT * FROM " . $wpdb->prefix . "gmwd_markers WHERE published = '1') AS T_MARKERS LEFT JOIN  " . $wpdb->prefix . "gmwd_markercategories AS T_MARKER_CATEGORIES ON T_MARKERS.category = T_MARKER_CATEGORIES.id WHERE T_MARKERS.map_id= '".$id."' ".$searched_value."  ORDER BY id");
+		$markers = $wpdb->get_results("SELECT T_MARKERS.* FROM  " . $wpdb->prefix . "gmwd_markers  AS T_MARKERS WHERE T_MARKERS.published = '1' AND T_MARKERS.map_id= '".$id."'  ORDER BY id");
         $row_all_markers = array();
 		foreach($markers as $marker){
             $row_all_markers[$marker->id] = $marker;			

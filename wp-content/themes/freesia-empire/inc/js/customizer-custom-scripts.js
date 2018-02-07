@@ -1,1 +1,15 @@
-!function(e){e(".preview-notice").prepend('<span id="freesiaempire_upgrade"><a target="_blank" class="button btn-upgrade" href="'+freesiaempire_upgrade_links.upgrade_link+'">'+freesiaempire_upgrade_links.upgrade_text+"</a></span>"),jQuery("#customize-info .btn-upgrade, .misc_links").click(function(e){e.stopPropagation()})}(jQuery);
+( function( api ) {
+
+	// Extends our custom "freesiaempire" section.
+	api.sectionConstructor['freesiaempire'] = api.Section.extend( {
+
+		// No events for this type of section.
+		attachEvents: function () {},
+
+		// Always make the section active.
+		isContextuallyActive: function () {
+			return true;
+		}
+	} );
+
+} )( wp.customize );

@@ -137,6 +137,7 @@ function wdwt_options_customizer_validate($param){
     case 'text':
     case 'textarea':
     case 'upload_single':
+    case 'number':
       $callback_func = "text_" . $param ['sanitize_type'];
       break;
     case 'textarea_slider':

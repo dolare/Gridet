@@ -1,4 +1,5 @@
 <?php
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
 
 // new class for the future. 
@@ -8,15 +9,54 @@ class maxUtils
 	protected static $timings = array();
 	protected static $time_operations = array(); 
 	protected static $timer = 0;
+		
 	
-	static function translit($string) 
+	/** Callback for array filter to prepend namepaces. **/ 
+	public static function array_namespace($var) 
+	{
+		$namespace = __NAMESPACE__ . '\\'; // PHP 5.3 
+		return ($namespace . $var); 
+	}	
+	
+	public static function namespaceit($var)
+	{
+		$namespace = __NAMESPACE__ . '\\'; // PHP 5.3 
+		return $namespace . $var;
+	}
+	
+	// central ajax action handler 
+	public static function ajax_action()
+	{
+		$status = 'error'; 
+
+		$plugin_action = isset($_POST['plugin_action']) ? sanitize_text_field($_POST['plugin_action']) : ''; 
+		$nonce = isset($_POST['nonce']) ? $_POST['nonce'] : false; 
+		$message = __( sprintf("No Handler found for action %s ", $plugin_action), 'maxbuttons'); 
+				
+		if (! wp_verify_nonce($nonce, 'maxajax') )
+		{
+			$message = __('Nonce not verified', 'maxbuttons');
+		}
+		else
+		{
+			do_action('maxbuttons/ajax/' . $plugin_action, $_POST); 			
+		}
+		
+		echo json_encode( array( 'status' => $status, 
+								 'message' => $message, 
+							    )
+						); 
+		wp_die(); 
+	}
+	
+	public static function translit($string) 
 	{
 		require_once(MB()->get_plugin_path() . "assets/libraries/url_slug.php"); 
 		$string = mb_url_slug($string, array("transliterate" => true)); 
 		return $string;
 	}
 
-	static function selectify($name, $array, $selected, $target = '', $class = '')
+	public static function selectify($name, $array, $selected, $target = '', $class = '')
 	{
 		// optional target for js updating
 		if ($target != '' ) 
@@ -245,8 +285,61 @@ class maxUtils
 		{
 			$error = "Database error " . $wpdb->last_error;
 			MB()->add_notice('error', $error); 
+			$install = MB()->getClass('install');
+			$install->create_database_table(); 
 		}
  
+	}
+	
+	/** Function will try to unload any FA scripts other than MB from WP. In case of conflict */ 
+	static function fixFAConflict() 
+	{
+		$forcefa = get_option('maxbuttons_forcefa'); 
+		
+		if ($forcefa != '1') 
+			return;
+	
+		global $wp_styles;
+
+		$our_fa_there = false; 
+		
+		foreach($wp_styles->registered as $script => $details) 
+		{
+ 			if ($script == 'mbpro-font-awesome') 
+ 			{
+ 				$our_fa_there = true; 
+ 				break;
+ 			}			
+		}
+		
+		// fix nothing on pages where we are not loading.
+		if (! $our_fa_there) 
+			return; 
+		
+
+		// Loop through all registered styles and remove any that appear to be Font Awesome.
+		foreach ( $wp_styles->registered as $script => $details ) {
+			$src = isset($details->src) ? $details->src : false;
+
+ 			if ($script == 'mbpro-font-awesome') 
+ 			{
+ 				$mbpro_src = $src;
+ 				continue; // exclude us
+ 			}
+ 			
+			if ( false !== strpos( $script, 'fontawesome' ) || false !== strpos( $script, 'font-awesome' ) ) {
+				wp_dequeue_style( $script );
+			}
+			if ($src && ( false !== strpos($src, 'font-awesome') || false !== strpos($src, 'fontawesome') ) )
+			{
+				wp_dequeue_style( $script );			
+			}
+
+		}
+		
+		// This is a fix specific for NGGallery since they load their scripts weirdly / wrongly, but do check for the presence of a style named 'fontawesome' . 
+		wp_register_style('fontawesome', $src);
+
 	}
 		
 
@@ -258,9 +351,9 @@ class maxUtils
 		self::$timer = microtime(true);
 
 		if (is_admin()) 
-			add_filter("admin_footer",array('maxUtils', "showTime"), 100); 
+			add_filter("admin_footer",array(self::namespaceit('maxUtils'), "showTime"), 100); 
 		else
-			add_action("wp_footer",array('maxUtils', "showTime")); 
+			add_action("wp_footer",array(self::namespaceit('maxUtils'), "showTime")); 
 	
 	}
 
@@ -268,11 +361,7 @@ class maxUtils
 	{
 		if ( ! defined('MAXBUTTONS_BENCHMARK') || MAXBUTTONS_BENCHMARK !== true)
 			return;
-		
-		/*if (count(self::$timings) == 0)
-		{
-			self::timeInit(); 
-		}  */
+
 		
 		self::$timings[] = array("msg" => $msg,"time" => microtime(true)); 
 	}

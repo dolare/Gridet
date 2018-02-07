@@ -2,7 +2,7 @@
 /**
  * The Footer widget areas.
  *
- * @package WordPress
+ * @package ThemeHunk
  */
 ?>
 <?php

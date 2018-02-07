@@ -48,9 +48,11 @@ if(!function_exists('freesiaempire_get_option_defaults_values')):
 			'freesiaempire_menu_position'	=>'middle',
 			'freesiaempire_logo_display'	=>'left',
 			'freesiaempire_blog_content_layout'	=> '',
-			'freesiaempire_blog_header_display'	=> 'show'
+			'freesiaempire_blog_header_display'	=> 'show',
+			'freesiaempire_display_page_featured_image'=>0,
+			'freesiaempire_crop_excerpt_length'=>1,
+
 			);
 		return apply_filters( 'freesiaempire_get_option_defaults_values', $freesiaempire_default_values );
 	}
 endif;
-?>

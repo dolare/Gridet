@@ -1,7 +1,6 @@
 <?php 
 namespace MaxButtons; 
-
-use MaxFoundry\simpleTemplate; 
+defined('ABSPATH') or die('No direct access permitted');
 
 class maxField
 {
@@ -46,17 +45,24 @@ class maxField
 	public $publish = true; 
 	public $output = ''; 
 	
+	public function __construct($template = 'text', $args = array() ) 
+	{
+		self::$position++; 
+		$this->template = $template; 
+		
+		foreach($args as $item => $value) 
+		{
+			$this->{$item} = $value;
+		
+		}
+	}	
+	
 	static function setTemplates($templates) 
 	{
 		self::$templates = $templates; 
 	
 	}
 	
-	public function __construct($template = 'text') 
-	{
-		self::$position++; 
-		$this->template = $template; 
-	}	
 	
 	public function setDefault($default) 
 	{
@@ -64,6 +70,12 @@ class maxField
 	
 	}
  
+ 	/** Output field interface
+ 	* 
+ 	*	@param $start_tpl Prepend a template before this field ( e.g. row defition ) 
+ 	* 	@param $end_tpl   Append a template after this field
+ 	*/
+ 	
 	public function output($start_tpl = '', $end_tpl = '') 
 	{
 		if ($this->esc_function) 
@@ -75,26 +87,31 @@ class maxField
 		if ($start_tpl != '') 
 		{
 			$start_tpl = self::$templates[$start_tpl];
-			$output .= \maxFoundry\simpleTemplate::parse($start_tpl['path'], $this);
+			$output .= simpleTemplate::parse($start_tpl['path'], $this);
 		}
 
 		$template = self::$templates[$this->template]; // template name; 		
 		do_action('mb/editor/before-field-' . $this->id, $this);
 		
-		$output .= \maxFoundry\simpleTemplate::parse($template['path'], $this); 	
+		$output .= simpleTemplate::parse($template['path'], $this); 	
 	
 
 		if ($end_tpl != '') 
 		{
-			$end_tpl = self::$templates[$end_tpl];
-			$output .= \maxFoundry\simpleTemplate::parse($end_tpl['path'], $this);
+			if (! is_array($end_tpl))
+				$end_tpl = array($end_tpl);
+				
+			foreach($end_tpl as $tpl)
+			{
+				$tpl = self::$templates[$tpl];
+				$output .= simpleTemplate::parse($tpl['path'], $this);
+			}
 		}
 				
 		if ($this->publish) 
 			echo $output; 	
 		do_action('mb/editor/after-field-'. $this->id); // hook for extra fields. 		
 
-		
 		$this->output =  $output;
 		return $output; 
 	}

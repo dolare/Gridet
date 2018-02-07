@@ -2,6 +2,7 @@
     $.fn.edsViewportChecker = function(useroptions){
        
         var options = {
+        	classToRemove: 'eds-scroll-hidden',
             classToAdd: 'eds-scroll-visible',
             offset: 75,
             callbackFunction: function(elem){}
@@ -12,9 +13,8 @@
 
         this.checkElements = function(){
             
-            var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
-            	windowHeight = $(window).height(),
-                viewportTop = $(scrollElem).scrollTop(),
+            var	windowHeight = $(window).height(),
+                viewportTop = $(document).scrollTop(),
                 viewportBottom = (viewportTop + windowHeight);
 
             $elem.each(function(){
@@ -35,8 +35,9 @@
                 }
 
                 // Add class if in viewport
-                if ((elemTop < viewportBottom) && (elemBottom > viewportTop)){
-                    $obj.addClass(options.classToAdd);                    
+                if ((elemTop < viewportBottom) && (elemBottom > viewportTop)){                	
+                    $obj.addClass(options.classToAdd);
+                    $obj.removeClass(options.classToRemove);                    
                     options.callbackFunction($obj);
                 }
             });

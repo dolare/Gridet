@@ -1,18 +1,17 @@
 <?php 
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
 
 /* Helper class for uniform elements in admin pages */ 
 
-add_action('mb-display-logo', array('maxAdmin','logo')); 
-add_action('mb-display-title', array("maxAdmin",'rate_us'), 20); 
-add_action('mb-display-tabs', array('maxAdmin','tab_menu')); 
-add_action('mb-display-ads', array('maxAdmin', 'display_ads')); 
-add_action('mb-display-pagination', array('maxAdmin', 'display_pagination'));
-add_action('mb-display-reviewoffer', array('maxAdmin', 'display_reviewoffer')); // page telling about discount on review
+add_action('mb-display-logo', array(maxUtils::namespaceit('maxAdmin'),'logo')); 
+add_action('mb-display-title', array(maxUtils::namespaceit("maxAdmin"),'rate_us'), 20); 
+add_action('mb-display-tabs', array(maxUtils::namespaceit('maxAdmin'),'tab_menu')); 
+add_action('mb-display-ads', array(maxUtils::namespaceit('maxAdmin'), 'display_ads')); 
+add_action('mb-display-pagination', array(maxUtils::namespaceit('maxAdmin'), 'display_pagination'));
 
-//add_action('mb-display-review-notice', array('maxAdmin', 'mb_review_notice')); 
+add_action('mb-display-collection-welcome', array(maxUtils::namespaceit('maxAdmin'), 'displayCollectionWelcome')); 
 
-add_action('mb-display-collection-welcome', array('maxAdmin', 'displayCollectionWelcome')); 
-//add_action('mb-feedback-form', array('maxAdmin', 'displayFeedBack')); 
 
 class maxAdmin 
 {
@@ -22,14 +21,18 @@ class maxAdmin
 	public static function logo()
 	{
 		$version = self::getAdVersion(); 
+		$url = self::getCheckoutURL(); 
+		
+
 	?> 
 			<?php _e('Brought to you by', 'maxbuttons') ?>
-			<a href="http://maxfoundry.com/products/?ref=mbfree" target="_blank"><img src="<?php echo MB()->get_plugin_url() ?>/images/max-foundry.png" alt="Max Foundry" /></a>
-			<?php printf(__('Upgrade to MaxButtons Pro today! %sClick Here%s', 'maxbuttons'), '<a class="simple-btn" href="http://www.maxbuttons.com/pricing/?utm_source=mbf-dash' . $version . '&utm_medium=mbf-plugin&utm_content=click-here&utm_campaign=cart' . $version . '" target="_blank">', '</a>' ) ?>
+			<a href="http://maxfoundry.com/products/?ref=mbfree" target="_blank"><img src="<?php echo MB()->get_plugin_url() ?>images/max-foundry.png" alt="Max Foundry" title="Max Foundry" /></a> 
+			<?php printf(__('Upgrade to MaxButtons Pro today!  %sClick Here%s', 'maxbuttons'), '<a class="simple-btn" href="' . $url . '&utm_source=mbf-dash' . $version . '&utm_medium=mbf-plugin&utm_content=click-here&utm_campaign=cart' . $version . '" target="_blank">', '</a>' ) ?>
 
  			<?php $twitlink = 'https://twitter.com/intent/user?original_referer=http%3A%2F%2Flocal.max%2Fwp-admin%2Fadmin.php%3Fpage%3Dmaxbuttons-controller&amp;ref_src=twsrc%5Etfw&amp;region=count_link&amp;screen_name=maxfoundry&amp;tw_p=followbutton'; 
  			?>
-	 
+<?php
+	 	return; ?> 
 			<!--
 			<div class="twitter-follow">
 
@@ -96,6 +99,11 @@ class maxAdmin
 	
 	}
 	
+	public static function getCheckoutURL() 
+	{
+	 return $url = 'https://maxbuttons.com/checkout/?edd_action=add_to_cart&download_id=24035'; 
+	}
+	
 	public static function display_reviewoffer() 
 	{
 		$current_user_id = get_current_user_id(); 	
@@ -120,13 +128,7 @@ class maxAdmin
 		$local = array(); 
 		$local["ajaxurl"] = admin_url( 'admin-ajax.php' );
 		wp_localize_script('maxbuttons-review-notice', 'mb_ajax_review', $local);
-  				
-		?>
-		<div class="maxbuttons-reviewoffer"><?php _e('Did you know if you purchase MaxButtons Pro and write a review of it on your site you can hit reply on your receipt and email us the link your review and we will refund 50% of your purchase?','maxbuttons'); ?>
-		<a class='dismiss' data-action='reviewoffer-dismiss'><?php _e("Dismiss","maxbuttons"); ?></a>
-		</div>
-		
-		<?php
+
 	}
 	
 	public static function display_ads()
@@ -134,10 +136,11 @@ class maxAdmin
 		$plugin_url = MB()->get_plugin_url();
 		$ad_url = $plugin_url . '/images/ads/'; 
 		$version = self::getAdVersion(); 
+		$url = self::getCheckoutURL(); 
 	?>	   
 
         <div class="ads image-ad">
-		<a  href="https://maxbuttons.com/shop/?add-to-cart=231&direct=1&utm_source=mbf-dash<?php echo $version ?>&utm_medium=mbf-plugin&utm_content=MBF-sidebar&utm_campaign=cart<?php echo $version ?>" target="_blank" >
+		<a  href="<?php echo $url ?>&utm_source=mbf-dash<?php echo $version ?>&utm_medium=mbf-plugin&utm_content=MBF-sidebar&utm_campaign=cart<?php echo $version ?>" target="_blank" >
         	<img src="<?php echo $plugin_url ?>/images/max_ad.png" width="300"> 
             </a>
         </div>
@@ -152,12 +155,6 @@ class maxAdmin
             <img src="<?php echo $plugin_url ?>/images/mg_ad.png" /></a>
         </div>
         
-   <!--     <div class="ads">
-            <h3><i class="fa fa-cogs"></i> <?php _e('Font Awesome Support', 'maxbuttons'); ?></h3>
-            <p><?php _e('With MaxButtons Pro you have access to all 439 Font Awesome icons, ready to add to your buttons.', 'maxbuttons'); ?></p>
-            <p><?php _e('Never upload another icon again, just choose an icon and go about your normal button-making business.', 'maxbuttons'); ?></p>
-            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-99&utm_campaign=plugin"><?php _e('Use Font Awesome!', 'maxbuttons'); ?> <i class="fa fa-arrow-circle-right"></i></a>
-        </div> -->
         <?php
 	}
 	
@@ -304,15 +301,4 @@ class maxAdmin
 	<?php
 	}
 	
-	public static function displayFeedback() 
-	{
-	?>
-		<div id="mbfeedback">
-			<div class='link'><a href='https://www.maxbuttons.com/feedback'><?php _e("Feedback"); ?></a></div>
- 
-		</div> 
-	
-	<?php
-	}
 } // class
-?>

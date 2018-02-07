@@ -1,8 +1,6 @@
 <?php
 /**
  * The template for displaying 404 pages (Not Found).
- *
- * @package WordPress
  */
 ?>
 <?php get_header(); ?>
@@ -24,8 +22,6 @@
             <div class="page-content">
                 <div class="col-md-9">
                     <div class="content-bar">
-                <?php the_content(); ?>	
-				      <header class="entry-header">
             <p>
              <?php echo IT_SEEMS_WE; ?>
             </p>

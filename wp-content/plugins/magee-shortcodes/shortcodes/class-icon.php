@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Icon') ):
 class Magee_Icon {
 
 	public static $args;
@@ -33,12 +34,14 @@ class Magee_Icon {
 		
 		extract( $defaults );
 		self::$args = $defaults;
+		if(is_numeric($size))
+		$size = $size.'px';
+		
 		$html      = '';
 		$css_style = '';
 		$uniqid    = ' magee-fa-icon icon-boxed';
 		if( $size )
 		$css_style .= 'font-size:'.$size.';';
-		
 		if( $icon_box == 'yes'){
 		    $icon .= $uniqid;
 			if( $color )
@@ -58,3 +61,4 @@ class Magee_Icon {
 }
 
 new Magee_Icon();
+endif;

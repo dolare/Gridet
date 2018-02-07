@@ -6,6 +6,8 @@ $wl_theme_options = enigma_parallax_get_options();
 
 function wl_reset_general_setting()
 {
+	$wl_theme_options['upload__blog_image']="";
+	$wl_theme_options['upload__portfolio_image']="";
 	$wl_theme_options['upload_image_logo']="";
 	$wl_theme_options['height']=55;
 	$wl_theme_options['width']=150;
@@ -112,6 +114,8 @@ function wl_reset_social_setting()
 	$wl_theme_options['linkedin_link']="#";
 	$wl_theme_options['youtube_link']="#";
 	$wl_theme_options['dribble_link'] = "#";
+	$wl_theme_options['vk_link'] = "#";
+	$wl_theme_options['qq_link'] = "#";
 	$wl_theme_options['email_id'] ="example@mymail.com";
 	$wl_theme_options['phone_no'] ="0159753586";
 	update_option('enigma_options', $wl_theme_options);

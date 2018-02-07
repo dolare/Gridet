@@ -1,6 +1,6 @@
 <?php
-$nimbus_blog_sidebar_position = nimbus_get_option('nimbus_blog_sidebar_position');
-if ($nimbus_blog_sidebar_position == 'left') {
+$simple_business_wp_blog_sidebar_position = simple_business_wp_get_option('simple_business_wp_blog_sidebar_position');
+if ($simple_business_wp_blog_sidebar_position == 'left') {
     $sidebar_select_aside_classes = 'col-sm-pull-8';
     $sidebar_select_content_classes = 'col-sm-push-4';
 } else {

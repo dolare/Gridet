@@ -1,10 +1,10 @@
-=== Plugin Name ===
+=== Contact Form 7 Multi-Step Forms ===
 Contributors: webheadllc
-Donate Link: http://webheadcoder.com/donate-cf7-multi-step-forms
+Donate Link: https://webheadcoder.com/donate-cf7-multi-step-forms
 Tags: contact form 7, multistep form, form, multiple pages, store form, contact, multi, step
-Requires at least: 4.5
-Tested up to: 4.7.2
-Stable tag: 2.1
+Requires at least: 4.7
+Tested up to: 4.9.1
+Stable tag: 3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,9 +12,11 @@ Enables the Contact Form 7 plugin to create multi-page, multi-step forms.
 
 == Description ==
 
-I needed a contact form that spanned across multiple pages and in the end would send an email with all the info collected.  This plugin does just that.  This plugin requires the Contact Form 7 Wordpress plugin.
+I needed a contact form that spanned across multiple pages and in the end would send an email with all the info collected.  This plugin adds onto the popular Contact Form 7 plugin to do just that.
 
-Sample of this working is at [http://webheadcoder.com/contact-form-7-multi-step-form/](http://webheadcoder.com/contact-form-7-multi-step-form/)
+Sample of this working is at [https://webheadcoder.com/contact-form-7-multi-step-form/](https://webheadcoder.com/contact-form-7-multi-step-form/)
+
+Requires the [Contact Form 7 plugin](https://wordpress.org/plugins/contact-form-7/), version 4.8 or above, by Takayuki Miyoshi.
 
 **Usage**
 
@@ -51,8 +53,9 @@ Sample of this working is at [http://webheadcoder.com/contact-form-7-multi-step-
 
 * This plugin does not load another form on the same page.  It only works when the forms are on separate pages.  Many have asked to make it load via ajax so all forms can reside on one page.  This plugin does not support that.
 
-* This plugin does not support large forms with many steps.  See [http://webheadcoder.com/too-many-cookies/](http://webheadcoder.com/too-many-cookies/) for more details and suggestions.
 
+**PRO Version**
+If you expect to have a lot of data submitted through your multi-step forms, the Pro version may be able to help you better.  The PRO version uses Session Storage so it is able to handle roughly 1,000 times more data for your multiple forms.  In total it can handle about 5MB vs 4KB in the free version.  **Currently the Pro version REQUIRES the WordPress REST API and Contact Form 7 AJAX Submission to be enabled.**   
 
 == Frequently Asked Questions ==
 
@@ -97,6 +100,44 @@ The `multistep` form tag is a hidden field and tries not to add any spacing to y
 
 
 == Changelog ==
+
+= 3.0 =
+changed internal field names to be prefixed with cf7msm.  
+added PRO version to handle long forms.  
+fixed minor issues.  
+
+= 2.26 =  
+updated i18n code.  
+
+= 2.25 =  
+**Contact From 7 version 4.8 or above is required for this version**.  
+fixed incompatible JSON_UNESCAPED_UNICODE for PHP versions < 5.4.  
+
+= 2.24 =  
+**Contact From 7 version 4.8 or above is required for this version**.  
+fixed not redirecting to next step on older iPad browsers.  
+fixed illegal offset exception warning.  
+added JSON_UNESCAPED_UNICODE for czech language.  
+
+= 2.23 =  
+**Contact From 7 version 4.8 or above is required for this version**.  
+fixed back button on firefox.  
+fixed url not displaying correctly when it has the & symbol.  
+
+= 2.22 =  
+**Contact From 7 version 4.8 or above is required for this version**.  
+fixed back button going back more than one step.  
+
+= 2.21 =  
+**Contact From 7 version 4.8 or above is required for this version**.  
+fixed an issue where a notice occurred when using scan_form_tags on servers that displayed PHP notices.  
+
+
+= 2.2 =  
+**Contact From 7 version 4.8 or above is required for this version**.  
+fixed back button not working when using with Contact Form 7 version 4.8.  
+fixed fields from previous steps not showing up when using with Contact Form 7 version 4.8.  
+Thanks to @eddraw, updated deprecated functions.  
 
 = 2.1 =  
 Use Contact Form 7's built-in hidden form tag if version 4.6 or above is present.  
@@ -204,3 +245,12 @@ updated readme.
 
 = 1.0 =
 Initial release.
+
+
+
+== Upgrade Notice ==
+
+= 2.2 =
+As of version 2.2, Contact Form 7 version 4.8 is required.  There were some major changes in version 4.8 that broke a lot of the functionality of this plugin.  Additional Settings "on_sent_ok" is no longer used as of this version, please use the multistep form tag instead.
+
+

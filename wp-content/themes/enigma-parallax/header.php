@@ -19,30 +19,41 @@
 <div>
 	<!-- Header Section -->
 	<div class="top_fix">
-	<div class="header_section affix-top transition">
+	<div class="header_section affix-top transition" <?php if ( has_header_image() ) { ?> style='background-image: url("<?php header_image(); ?>")' <?php  } ?>>
 		<div class="container" id="header">
 			<!-- Logo & Contact Info -->
 			<div class="row ">
+			<?php if($wl_theme_options['title_position']) { ?>
 				<div class="col-md-6 col-sm-12 wl_rtl" >					
-					<div claSS="logo">						
+					<div claSS="logo logocenter">		
 					<a href="<?php echo esc_url(home_url( '/' )); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-					<?php if($wl_theme_options['upload_image_logo']){ ?>
-						<img class="img-responsive" src="<?php echo esc_url($wl_theme_options['upload_image_logo']); ?>" style="height:<?php if($wl_theme_options['height']!='') { echo $wl_theme_options['height']; }  else { "80"; } ?>px; width:<?php if($wl_theme_options['width']!='') { echo $wl_theme_options['width']; }  else { "200"; } ?>px;" />
-						<?php } else {
-							echo get_bloginfo('name');
-						} ?>
+					<?php $custom_logo_id = get_theme_mod( 'custom_logo' );
+						$image = wp_get_attachment_image_src( $custom_logo_id,'full' ); ?>
+					 <?php if (has_custom_logo()) { ?> <img src="<?php echo $image[0]; ?>" height="<?php echo $wl_theme_options['logo_height'] ?>" width="<?php echo $wl_theme_options['logo_width'] ?>"> <?php } else { ?> <h1><?php echo get_bloginfo('name'); } ?></h1>
 					</a>
 					<p><?php bloginfo( 'description' ); ?></p>
 					</div>
 				</div>
-				<?php if($wl_theme_options['header_social_media_in_enabled']=='1') { ?>
-				<div class="col-md-6 col-sm-12">
+				<?php } else { ?>
+					<div class="col-md-6 col-sm-12 wl_rtl" >					
+					<div claSS="logo">						
+					<a href="<?php echo esc_url(home_url( '/' )); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+					<?php $custom_logo_id = get_theme_mod( 'custom_logo' );
+						$image = wp_get_attachment_image_src( $custom_logo_id,'full' ); ?>
+					 <?php if (has_custom_logo()) { ?> <img src="<?php echo $image[0]; ?>" height="<?php echo $wl_theme_options['logo_height'] ?>" width="<?php echo $wl_theme_options['logo_width'] ?>"> <?php } else { ?> <h1><?php echo get_bloginfo('name'); } ?></h1>
+					</a>
+					<p><?php bloginfo( 'description' ); ?></p>
+					</div>
+				</div>
+				<?php } ?>
 				<?php if($wl_theme_options['email_id'] || $wl_theme_options['phone_no'] !='') { ?>
+				<div class="col-md-6 col-sm-12">
 				<ul class="head-contact-info">
 						<?php if($wl_theme_options['email_id'] !='') { ?><li><i class="fa fa-envelope"></i><a href="mailto:<?php echo $wl_theme_options['email_id']; ?>"><?php echo esc_attr($wl_theme_options['email_id']); ?></a></li><?php } ?>
 						<?php if($wl_theme_options['phone_no'] !='') { ?><li><i class="fa fa-phone"></i><a href="tel:<?php echo $wl_theme_options['phone_no']; ?>"><?php echo esc_attr($wl_theme_options['phone_no']); ?></a></li><?php } ?>
 				</ul>
-				<?php } ?>
+				<?php } ?> 
+				<?php if($wl_theme_options['header_social_media_in_enabled']=='1') { ?>
 					<ul class="social">
 					<?php if($wl_theme_options['fb_link']!='') { ?>
 					   <li class="facebook" data-toggle="tooltip" data-placement="bottom" title="Facebook"><a  href="<?php echo esc_url($wl_theme_options['fb_link']); ?>"><i class="fa fa-facebook"></i></a></li>
@@ -56,8 +67,17 @@
 					<li class="twitter" data-toggle="tooltip" data-placement="bottom" title="gplus"><a href="<?php echo esc_url($wl_theme_options['gplus']) ; ?>"><i class="fa fa-google-plus"></i></a></li>
 	                <?php } if($wl_theme_options['instagram']!='') { ?>
 					<li class="facebook" data-toggle="tooltip" data-placement="bottom" title="instagram"><a href="<?php echo esc_url($wl_theme_options['instagram']) ; ?>"><i class="fa fa-instagram"></i></a></li>
-	                <?php } ?>
+	                <?php } if($wl_theme_options['vk_link']!='') { ?>
+					<li class="facebook" data-toggle="tooltip" data-placement="bottom" title="vk"><a href="<?php echo esc_url($wl_theme_options['vk_link']) ; ?>"><i class="fa fa-vk"></i></a></li>
+	                <?php } if($wl_theme_options['qq_link']!='') { ?>
+					<li class="facebook" data-toggle="tooltip" data-placement="bottom" title="qq"><a href="<?php echo esc_url($wl_theme_options['qq_link']) ; ?>"><i class="fa fa-qq"></i></a></li>
+					<?php } ?>
 					</ul>	
+				</div>
+				<?php } ?>
+				<?php if(get_theme_mod('enigma_options_search_box')!='') { ?>
+				<div class="col-md-6 col-sm-12 header_search">
+				 <?php get_search_form(); ?>
 				</div>
 				<?php } ?>
 			</div>
@@ -66,13 +86,16 @@
 	</div>	
 	<!-- /Header Section -->
 	<!-- Navigation  menus -->
+		<?php
+	if(get_theme_mod('side_menu_option')  =="both" || get_theme_mod('side_menu_option') == 'both_id' || get_theme_mod('side_menu_option') =="main"){
+		?>
 	<div class="navigation_menu transition"  data-spy="affix" data-offset-top="95" id="enigma_nav_top">
 		<span id="header_shadow"></span>
+		
 		<div class="container navbar-container" >
 			<nav class="navbar navbar-default " role="navigation">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-					 
 					  <span class="sr-only"><?php _e('Toggle navigation','enigma-parallax');?></span>
 					  <span class="icon-bar"></span>
 					  <span class="icon-bar"></span>
@@ -91,11 +114,48 @@
 			</nav>
 		</div>
 	</div>
+		<?php } ?>
 	</div>
+	<?php
+	if(get_theme_mod('side_menu_option')  =="both" || get_theme_mod('side_menu_option') =="side"){
+	if(has_nav_menu( "SIDEER")){
+	?>
+	
 	<div class="home_menu">
 	<div id="scroll_menu">
+		<div id='cssmenu'>
+	<!--<a href="<?php //echo esc_url(home_url( '/' )); ?>" class="btn " data-toggle="tooltip" title="Home"><i class="fa fa-home"></i></a><br />
+	<a href="<?php //echo esc_url(home_url( '/' )); ?>#myCarousel" class="btn " data-toggle="tooltip" title="Slider"><i class="fa fa-caret-square-o-right"></i></a><br />-->
+	<?php			  
+			wp_nav_menu(array(
+			'theme_location' => 'SIDEER',
+			'menu_class' => 'side-menu',
+		'menu' => 'side', // This will be different for you.
+		'walker' => new CSS_Menu_Maker_Walker()
+		));
+			?>
+		</div>
+	</div>
+	<div class="scroll_toggle">
+	<i class="fa fa-arrow-circle-o-right" id="bt1" onclick="setVisibility('scroll_menu'); "></i>
+	</div>
+	</div><!--class=home_menu-->
 	
-	<a href="<?php echo esc_url(home_url( '/' )); ?>" class="btn " data-toggle="tooltip" title="Home"><i class="fa fa-home"></i></a><br />
+	<?php  } 
+		else {
+			?>
+	<div class="home_menu">
+		<h2><?php _e('Please Select The Side Menu','enigma-parallax');?></h2>
+	</div>
+				<?php
+		}
+	}
+	elseif(get_theme_mod('side_menu_option')  =="side_id" || get_theme_mod('side_menu_option') == 'both_id'){
+		?>
+		<div class="home_menu-2">
+			<div id="scroll_menu-2">
+				
+					<a href="<?php echo esc_url(home_url( '/' )); ?>" class="btn " data-toggle="tooltip" title="Home"><i class="fa fa-home"></i></a><br />
 	<?php if($wl_theme_options['slider_home'] == "1") { ?>
 	<a href="<?php if(!is_home()){ echo esc_url(home_url( '/' )); } ?>#slider" class="btn " data-toggle="tooltip" title="Slider"><i class="fa fa-caret-square-o-right"></i></a><br />
 	<?php } ?>
@@ -105,20 +165,17 @@
 	<?php if($wl_theme_options['portfolio_home'] == "1") { ?>
 	<a href="<?php if(!is_home()){ echo esc_url(home_url( '/' )); } ?>#portfolio" class="btn " data-toggle="tooltip" title="Portfolio"><i class="fa fa-picture-o"></i></a><br />
 	<?php } ?>
-	<?php if($wl_theme_options['show_testimonial'] == "1") { ?>
-	<a href="<?php if(!is_home()){ echo esc_url(home_url( '/' )); } ?>#testimonial" class="btn " data-toggle="tooltip" title="Testimonial"><i class="fa fa-desktop"></i></a><br />
-	<?php } ?>
 	<?php if($wl_theme_options['show_blog'] == "1") { ?>
 	<a href="<?php if(!is_home()){ echo esc_url(home_url( '/' )); } ?>#blog" class="btn" data-toggle="tooltip" title="Blog"><i class="fa fa-book"></i></a><br />
 	<?php } ?>
 	<?php if($wl_theme_options['show_team'] == "1") { ?>
 	<a href="<?php if(!is_home()){ echo esc_url(home_url( '/' )); } ?>#team" class="btn " data-toggle="tooltip" title="Team"><i class="fa fa-users"></i></a><br />
 	<?php } ?>
-	<?php if($wl_theme_options['show_contact'] == "1") { ?>
-	<a href="<?php if(!is_home()){ echo esc_url(home_url( '/' )); } ?>#contact" class="btn " data-toggle="tooltip" title="Contact"><i class="fa fa-phone"></i></a>
-	<?php } ?>
+				
+			</div>	
+		<div class="scroll_toggle-2">
+	<i class="fa fa-arrow-circle-o-right" id="bt1" onclick="setVisibility('scroll_menu-2'); "></i>
 	</div>
-	<div class="scroll_toggle">
-	<img src="<?php echo esc_url(get_template_directory_uri() . '/images/round.png'); ?>" height="50" width="50" id="bt1" onclick="setVisibility('scroll_menu');">
-	</div>
-	</div>
+	</div><!--class=home_menu-->	
+	<?php
+	}

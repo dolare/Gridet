@@ -20,7 +20,6 @@ get_header(); ?>
 			 <div class="row-fluid">
 				  <div class="container_inner clearfix">
 					<h1 class="title"><?php echo esc_attr( get_theme_mod('rational_lite_blogpage_heading', __('Blog', 'rational-lite') ) ); ?></h1>
-					
 				   </div>
 			 </div>
 		</div>

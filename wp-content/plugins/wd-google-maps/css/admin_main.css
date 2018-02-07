@@ -29,23 +29,40 @@ h1, h2, h3, h4{
 }
 .gmwd_upgrade{
     clear: both;
-    padding: 15px 15px 0px 0px;
-}
-.gmwd_upgrade .wd-table{
-    background: #D8D8D8;
-    padding: 1px 10px;
-  
-}
-.gmwd_upgrade .wd-cell:first-child{
-    padding-right: 10px;
-    text-transform: uppercase;
-    color: #236592;
+    padding: 10px 15px;
+    background: #fff;
+    margin: 6px 0px;
+    color: #6e7990;
+    font-size: 14px;
     font-weight: bold;
-    font-size: 11px;
+    line-height: 30px;
+
 }
-.gmwd_upgrade a, .gmwd_upgrade a:hover {
+.wd-upgrade-table{
+    background-color: #D8D8D8;
+    padding: 1px 5px;
+    font-size: 11px;  
+}
+
+.gmwd_upgrade .wd-cell:first-child a{
+    padding-right: 8px;
+    color: #72777c !important;
+}
+.gmwd_upgrade .wd-cell:last-child {
+    background: #45A6B7;
+    padding: 1px 18px;
+}
+.gmwd_upgrade .wd-cell:last-child a{
+    color: #fff !important;
+}
+.gmwd_upgrade a, .ytwd_upgrade a:hover {
     text-decoration: none !important;
 }
+.gmwd_upgrade img {
+    vertical-align: middle;
+}
+
+
 .gmwd_pro_option{
     color:#dd3d36 ;
 }
@@ -905,16 +922,9 @@ a.wd-btn-icon{
 	-webkit-box-shadow: 0 0 5px #aaa;
 	box-shadow: 0 0 5px #aaa;
     border-radius:4px;
-}
-.ui-widget {
-	font-size: 1.1em;
-}
-.ui-widget .ui-widget {
-	font-size: 1em;
-}
-.ui-widget-content {
 	background: rgba(0,0,0,0.8) ;
 	color: #fff;
+	font-size: 1em;
 }
 
 .gmwd_download_markers {
@@ -996,3 +1006,8 @@ a.wd-btn-icon{
 .js .tmce-active .wp-editor-area{
     color:#000 !important;
 }
+.gmwd_help_small{
+    color: #0A7393;
+    font-weight: bold;	
+}
+

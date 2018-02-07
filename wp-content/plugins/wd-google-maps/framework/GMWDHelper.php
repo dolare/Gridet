@@ -256,11 +256,11 @@ class GMWDHelper {
                 break;
            // save as copy     
             case "2":
-                echo '<div style="width:99%"><div class="updated"><p><strong>'.__("Item Succesfully Dublicated.","gmwd").'</strong></p></div></div>';
+                echo '<div style="width:99%"><div class="updated"><p><strong>'.__("Item Succesfully Duplicated.","gmwd").'</strong></p></div></div>';
                 break; 
            // dublicate 
             case "3":
-                echo '<div style="width:99%"><div class="updated"><p><strong>'.__("Item(s) Succesfully Dublicated.","gmwd").'</strong></p></div></div>';
+                echo '<div style="width:99%"><div class="updated"><p><strong>'.__("Item(s) Succesfully Duplicated.","gmwd").'</strong></p></div></div>';
                 break; 
             //remove 
             case "4":
@@ -272,7 +272,7 @@ class GMWDHelper {
                 break;    
             //unpublish 
             case "6":
-                echo '<div style="width:99%"><div class="updated"><p><strong>'.__("Item(s) Succesfully Unublished.","gmwd").'</strong></p></div></div>';
+                echo '<div style="width:99%"><div class="updated"><p><strong>'.__("Item(s) Succesfully Unpublished.","gmwd").'</strong></p></div></div>';
                 break; 
              // one item            
            case "7":
@@ -282,9 +282,9 @@ class GMWDHelper {
            case "8":
                 echo '<div style="width:99%"><div class="updated"><p><strong>'.__("Successfully Imported.","gmwd").'</strong></p></div></div>';
                 break;
-             // unexepted file         
+             // unexpected file         
            case "9":
-                echo '<div style="width:99%"><div class="error"><p><strong>'.__("Unexepted File.","gmwd").'</strong></p></div></div>';
+                echo '<div style="width:99%"><div class="error"><p><strong>'.__("Unexpected File.","gmwd").'</strong></p></div></div>';
                 break; 
                 
            case "10":

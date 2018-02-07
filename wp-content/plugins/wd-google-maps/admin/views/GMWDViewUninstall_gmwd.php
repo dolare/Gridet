@@ -99,6 +99,7 @@ class GMWDViewUninstall_gmwd extends GMWDView{
 	
 		$prefix = $wpdb->prefix;
 		$deactivate_url = wp_nonce_url('plugins.php?action=deactivate&amp;plugin='.GMWD_NAME.'/wd-google-maps.php', 'deactivate-plugin_'.GMWD_NAME.'/wd-google-maps.php');
+			
 		?>
 		<div id="message" class="updated fade">
 			<p><?php _e("The following Database Tables successfully deleted:","gmwd"); ?></p>
@@ -111,9 +112,10 @@ class GMWDViewUninstall_gmwd extends GMWDView{
 		</div>
 		<div class="wrap">
 		  <h2><?php _e("Uninstall Google Maps WD","gmwd"); ?></h2>
-		  <p><strong><a href="<?php echo $deactivate_url; ?>"><?php _e("Click Here","gmwd"); ?></a><?php _e(" To Finish the Uninstallation and Google Maps WD will be Deactivated Automatically.","gmwd"); ?></strong></p>
+		  <p><strong><a href="#" class="gmwd_deactivate_link" data-uninstall="1"><?php _e("Click Here","gmwd"); ?></a><?php _e(" To Finish the Uninstallation and Google Maps WD will be Deactivated Automatically.","gmwd"); ?></strong></p>
 
 		</div>
+	
 		<?php		
 		
 	}

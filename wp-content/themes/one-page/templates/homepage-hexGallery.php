@@ -16,7 +16,7 @@ $args = array(
 );
 // The Query
 $query = new WP_Query( $args );
-
+$gallery = Onepage_Data::get_instance()->gallery();
 // The Loop
 if ( $query->have_posts() ) {
 	?>
@@ -25,9 +25,9 @@ if ( $query->have_posts() ) {
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-center">
-						<h2 class="main_head animated fade_in_up"><?php echo esc_attr( onepage_get_option( 'onepage_portfolio_main_heading', __( 'Our Portfolio Section', 'one-page' ) ) ); ?></h2>
+						<h2 class="main_head animated fade_in_up"><?php echo esc_attr($gallery['onepage_portfolio_main_heading']); ?></h2>
 						<hr class="gallery_sep animated fade_in_up">
-						<p class="main_desc animated fade_in_up"><?php echo esc_attr( onepage_get_option( 'onepage_portfolio_sub_heading', __( 'This is Photoshop\'s version of Lorem Ipsum. Proin gravida', 'one-page' ) ) ); ?></p>
+						<p class="main_desc animated fade_in_up"><?php echo esc_attr($gallery['onepage_portfolio_sub_heading']); ?></p>
 					</div>
 				</div>
 				<div class="row">

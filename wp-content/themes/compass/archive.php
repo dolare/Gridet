@@ -8,8 +8,7 @@
  * different template.
  *
  */
-?>
-<?php get_header(); ?>
+ get_header(); ?>
 <div class="clear"></div>
 <div class="page_content">
     <div class="heading_container">
@@ -19,15 +18,15 @@
         <div class="content_bar gallery">
             <?php if (have_posts()): ?>
                 <h1 class="page_title single-heading">
-                    <?php if (is_day()) : ?>
-                        <?php printf(DAILY_ARCHIVES, get_the_date()); ?>
-                    <?php elseif (is_month()) : ?>
-                        <?php printf(MONTHLY_ARCHIVES, get_the_date('F Y')); ?>
-                    <?php elseif (is_year()) : ?>
-                        <?php printf(YEARLY_ARCHIVES, get_the_date('Y')); ?>
-                    <?php else : ?>
-                        <?php echo BLOG_ARCHIVES; ?>
-                    <?php endif; ?>
+                    <?php if (is_day()) : 
+                        printf(DAILY_ARCHIVES, get_the_date()); 
+                    elseif (is_month()) : 
+                        printf(MONTHLY_ARCHIVES, get_the_date('F Y')); 
+                    elseif (is_year()) : 
+                        printf(YEARLY_ARCHIVES, get_the_date('Y')); 
+                    else : 
+                        echo BLOG_ARCHIVES; 
+                    endif; ?>
                 </h1>
                 <?php
                 /* Since we called the_post() above, we need to

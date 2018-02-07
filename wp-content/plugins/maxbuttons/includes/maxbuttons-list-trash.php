@@ -1,4 +1,7 @@
 <?php
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
+
 $result = '';
 
 exit("Not used"); 

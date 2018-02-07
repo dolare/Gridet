@@ -15,9 +15,6 @@ $freesiaempire_settings = freesiaempire_get_theme_options(); ?>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<!--[if lt IE 9]>
-		<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
-		<![endif]-->
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -71,14 +68,18 @@ $freesiaempire_settings = freesiaempire_get_theme_options(); ?>
 			<?php $args = array(
 				'theme_location' => 'primary',
 				'container'      => '',
-				'items_wrap'     => '<ul class="menu">%3$s</ul>',
+				'items_wrap'     => '<ul id="primary-menu" class="menu nav-menu">%3$s</ul>',
 				); ?>
 			<nav id="site-navigation" class="main-navigation clearfix">
+				<button class="menu-toggle-2" aria-controls="primary-menu" aria-expanded="false"></button>
+					  	<!-- end .menu-toggle -->
 				<?php wp_nav_menu($args);//extract the content from apperance-> nav menu ?>
 			</nav> <!-- end #site-navigation -->
 			<?php } else {// extract the content from page menu only ?>
 			<nav id="site-navigation" class="main-navigation clearfix">
-				<?php	wp_page_menu(array('menu_class' => 'menu')); ?>
+				<button class="menu-toggle-2" aria-controls="primary-menu" aria-expanded="false"></button>
+					  	<!-- end .menu-toggle -->
+				<?php	wp_page_menu(array('menu_class' => 'menu', 'items_wrap'     => '<ul id="primary-menu" class="menu nav-menu">%3$s</ul>')); ?>
 			</nav> <!-- end #site-navigation -->
 			<?php } ?>
 		</div> <!-- end .container -->
@@ -136,4 +137,4 @@ $freesiaempire_settings = freesiaempire_get_theme_options(); ?>
 	}else{?>
 <div class="container clearfix">
 <?php }
-	} ?>
+	}

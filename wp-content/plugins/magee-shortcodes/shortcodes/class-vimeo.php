@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Vimeo') ):
 class Magee_Vimeo {
     
 	
@@ -40,6 +41,12 @@ class Magee_Vimeo {
 	    
 		 extract( $defaults );
 		 self::$args = $defaults;
+		  if(is_numeric($width))
+			$width = $width.'px';
+		 if(is_numeric($height))
+			$height = $height.'px'; 
+		 $sid = '';
+		 $class .= ' magee-vimeo';
 		  if( $autoplay == 'yes'):
 		    $autoplay = '1';
 		 else:
@@ -60,9 +67,11 @@ class Magee_Vimeo {
 		 else:	 
 		    $mute = '0';
 		 endif; 
+		        if($link !== ''){
 				preg_match( '/[0-9]+/',$link,$match);
 				$sid = $match[0];
-				$out = "<div id=\"vimeo\" class=\"vimeo-video " .$position . "\">";
+				}
+				$out = "<div id=\"vimeo\" class=\"vimeo-video " .$position . "\" data-width='".$width."' data-height='".$height."' data-mute='".$mute."'>";
 				if ($mute == 1) {
 					wp_enqueue_script( 'jquery-froogaloop', 'https://f.vimeocdn.com/js/froogaloop2.min.js',
 						array( 'jquery' ),
@@ -70,53 +79,37 @@ class Magee_Vimeo {
 						true 
 					);
 				}
-				if( $width == '100%' || $height == '100%' && $width == '' || $height == ''):
-				$out .= "<iframe id=\"player_" .$sid  ."\" class=\"" .$class ."\"  src=\"http://player.vimeo.com/video/" .$sid ."?api=1&player_id=player_" .$sid ."&title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=d01e2f&amp;amp;&loop=" .$loop. "&autoplay=" .$autoplay. "\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
+				preg_match('/https/',$link,$link_match);
 				
-				if ($mute == 1)
-				{
-					$out .= '<script>';
-					$out .= 'jQuery(function($) {';
-					$out .= 'var vimeo_iframe = $(\'#player_' .$sid .'\')[0];';
-					$out .= 'var player = $f(vimeo_iframe);';
-					$out .= 'player.addEvent(\'ready\', function() {';
-					$out .= 'player.api(\'setVolume\', 0);';
-					$out .= '});';
-					$out .= '});';
-					$out .= '</script>';
-				}
+				if( $width == '100%' || $height == '100%' && $width == '' || $height == ''):
+				if(implode($link_match) == ''){$out .= "<iframe id=\"player_" .$sid  ."\" class=\"" .$class ."\"  src=\"http://player.vimeo.com/video/" .$sid ."?api=1&player_id=player_" .$sid ."&title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=d01e2f&amp;amp;&loop=" .$loop. "&controls=" .$controls. "&autoplay=" .$autoplay. "\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>" ;
+				}else{
+				$out .= "<iframe id=\"player_" .$sid  ."\" class=\"" .$class ."\"  src=\"https://player.vimeo.com/video/" .$sid ."?api=1&player_id=player_" .$sid ."&title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=d01e2f&amp;amp;&loop=" .$loop. "&controls=" .$controls. "&autoplay=" .$autoplay. "\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";}
 				$out .= '</div>';
-				$out .= "<script>					        
-							  var width = document.getElementById('vimeo').clientWidth;
-							  var height = document.getElementById('vimeo').clientHeight;
-							  var newwidth = document.getElementById('player_".$sid."').clientWidth ;
-							  var newheight = document.getElementById('player_".$sid."').clientHeight ;
-							  var op = newheight/newwidth;
-							  newwidth = width;
-							  newheight = op*newwidth;							  
-							  document.getElementById('player_".$sid."').setAttribute('width',newwidth);
-							  document.getElementById('player_".$sid."').setAttribute('height',newheight);												
-					        </script>"; 
+				
 							
 				else:
-				$out .= "<iframe id=\"player_" .$sid  ."\" class=\"" .$class ."\" width=\"" .$width ."\" height=\"" .$height ."\" src=\"http://player.vimeo.com/video/" .$sid ."?api=1&player_id=player_" .$sid ."&title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=d01e2f&amp;amp;&loop=" .$loop. "&autoplay=" .$autoplay. "\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
+				if(implode($link_match) == ''){
+				$out .= "<iframe id=\"player_" .$sid  ."\" class=\"" .$class ."\" width=\"" .$width ."\" height=\"" .$height ."\" src=\"http://player.vimeo.com/video/" .$sid ."?api=1&player_id=player_" .$sid ."&title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=d01e2f&amp;amp;&loop=" .$loop. "&controls=" .$controls. "&autoplay=" .$autoplay. "\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";}else{
+				$out .= "<iframe id=\"player_" .$sid  ."\" class=\"" .$class ."\" width=\"" .$width ."\" height=\"" .$height ."\" src=\"https://player.vimeo.com/video/" .$sid ."?api=1&player_id=player_" .$sid ."&title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=d01e2f&amp;amp;&loop=" .$loop. "&controls=" .$controls. "&autoplay=" .$autoplay. "\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
+				}
 				
+				$out .= '</div>';
+				endif;
 				if ($mute == 1)
 				{
 					$out .= '<script>';
-					$out .= 'jQuery(function($) {';
-					$out .= 'var vimeo_iframe = $(\'#player_' .$sid .'\')[0];';
-					$out .= 'var player = $f(vimeo_iframe);';
-					$out .= 'player.addEvent(\'ready\', function() {';
-					$out .= 'player.api(\'setVolume\', 0);';
-					$out .= '});';
-					$out .= '});';
+					$out .= 'jQuery(function($) {
+					
+						var vimeo_iframe = $(\'#player_' .$sid .'\')[0];
+						var player = $f(vimeo_iframe);
+						player.addEvent(\'ready\', function() {
+						player.api(\'setVolume\', 0);
+						});
+					});';
 					$out .= '</script>';
-				}
-				$out .= '</div>';
-				endif;
+					}	
 				return $out;
-		 
 		
 		 	 
 	 } 
@@ -124,3 +117,4 @@ class Magee_Vimeo {
 }
 
 new Magee_Vimeo();
+endif;

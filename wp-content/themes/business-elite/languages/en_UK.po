@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Business_Elite\n"
-"POT-Creation-Date: 2016-06-08 17:28+0400\n"
-"PO-Revision-Date: 2016-06-08 17:29+0400\n"
+"POT-Creation-Date: 2016-08-11 12:00+0400\n"
+"PO-Revision-Date: 2016-08-11 12:00+0400\n"
 "Last-Translator: dianna <dianna.arakelyan@gmail.com>\n"
 "Language-Team: Business_Elite\n"
 "Language: en_GB\n"
@@ -137,134 +137,380 @@ msgstr ""
 msgid "Second Footer Widget Area"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:169
 #: inc/admin/WDWT_admin_controller.php:173
+#: inc/admin/WDWT_admin_controller.php:177
 msgid "Layout Editor"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:181
 #: inc/admin/WDWT_admin_controller.php:185
+#: inc/admin/WDWT_admin_controller.php:189
 msgid "General"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:190
+#: inc/admin/WDWT_admin_controller.php:194
 msgid "Header"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:198
+#: inc/admin/WDWT_admin_controller.php:202
 msgid "Homepage"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:202 inc/admin/page_homepage.php:17
+#: inc/admin/WDWT_admin_controller.php:206 inc/admin/page_homepage.php:17
 msgid "Top Posts"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:203
+#: inc/admin/WDWT_admin_controller.php:207
 #, php-format
 msgid "Create custom link menu item with URL %s to scroll to top posts."
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:207 inc/admin/page_homepage.php:82
+#: inc/admin/WDWT_admin_controller.php:211 inc/admin/page_homepage.php:82
 msgid "Category Tabs"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:208
+#: inc/admin/WDWT_admin_controller.php:212
 #, php-format
 msgid "Create custom link menu item with URL %s to scroll to category tabs."
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:212 inc/admin/page_homepage.php:108
+#: inc/admin/WDWT_admin_controller.php:216 inc/admin/page_homepage.php:108
 #: inc/admin/page_homepage.php:136
 msgid "Featured Post"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:213
+#: inc/admin/WDWT_admin_controller.php:217
 #, php-format
 msgid "Create custom link menu item with URL %s to scroll to featured post."
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:217 inc/admin/page_homepage.php:161
+#: inc/admin/WDWT_admin_controller.php:221 inc/admin/page_homepage.php:161
 msgid "Content Posts"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:218
+#: inc/admin/WDWT_admin_controller.php:222
 #, php-format
 msgid ""
 "Create custom link menu item with URL %s to scroll to blog content posts."
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:222 inc/admin/page_homepage.php:227
+#: inc/admin/WDWT_admin_controller.php:226 inc/admin/page_homepage.php:227
 msgid "Portfolio"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:223
+#: inc/admin/WDWT_admin_controller.php:227
 #, php-format
 msgid "Create custom link menu item with URL %s to scroll to portfolio posts."
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:227
+#: inc/admin/WDWT_admin_controller.php:231
 msgid "Contact"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:228
+#: inc/admin/WDWT_admin_controller.php:232
 msgid "Frontpage Contact form is disabled in free version."
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:232
+#: inc/admin/WDWT_admin_controller.php:236
 msgid "Links"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:240
+#: inc/admin/WDWT_admin_controller.php:244
 msgid "Typography"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:245
+#: inc/admin/WDWT_admin_controller.php:249
 msgid "Headings"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:250
+#: inc/admin/WDWT_admin_controller.php:254
 msgid "Primary text font"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:255
+#: inc/admin/WDWT_admin_controller.php:259
 msgid "Inputs and text areas"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:262
+#: inc/admin/WDWT_admin_controller.php:266
 msgid "Slider"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:267
+#: inc/admin/WDWT_admin_controller.php:271
 msgid "Slider - General"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:272
+#: inc/admin/WDWT_admin_controller.php:276
 msgid "Slider - Images"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:279
-#: inc/admin/WDWT_admin_controller.php:284 inc/admin/page_homepage.php:245
+#: inc/admin/WDWT_admin_controller.php:283
+#: inc/admin/WDWT_admin_controller.php:288 inc/admin/page_homepage.php:245
 #: inc/admin/page_homepage.php:248
 msgid "Lightbox"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:294
 #: inc/admin/WDWT_admin_controller.php:298
+#: inc/admin/WDWT_admin_controller.php:302
 msgid "Color Control"
 msgstr ""
 
-#: inc/admin/WDWT_admin_controller.php:308
 #: inc/admin/WDWT_admin_controller.php:312
+#: inc/admin/WDWT_admin_controller.php:316
 msgid "Upgrade to PRO"
 msgstr ""
 
-#: inc/admin/WDWT_admin_cpanel.php:84
+#: inc/admin/WDWT_admin_controller.php:325
+msgid "Theme support"
+msgstr ""
+
+#: inc/admin/WDWT_admin_cpanel.php:83
 msgid "Theme settings updated successfully"
 msgstr ""
 
-#: inc/admin/WDWT_admin_cpanel.php:117 inc/customizer/customizer.php:165
+#: inc/admin/WDWT_admin_cpanel.php:118 inc/customizer/customizer.php:165
 #: inc/meta/meta.php:15
 msgid "You cannot delete the last slide! Try to turn off the slider"
+msgstr ""
+
+#: inc/admin/WDWT_support_information.php:19
+msgid "System Information"
+msgstr ""
+
+#: inc/admin/WDWT_support_information.php:20
+msgid "Please include the following information when requesting support"
+msgstr ""
+
+#: inc/admin/WDWT_support_information.php:21
+msgid ""
+"To copy the system info, click below then press Ctrl + C (PC) or Cmd + C "
+"(Mac)."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:333
+msgid "Install Required Plugins"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:334
+msgid "Install Plugins"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:335 inc/admin/plugins.php:221
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:336 inc/admin/plugins.php:222
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:397 inc/admin/plugins.php:283
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:398
+msgid "Return to the dashboard"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:399
+#: inc/admin/class-tgm-plugin-activation.php:3255 inc/admin/plugins.php:285
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:400 inc/admin/plugins.php:286
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:401 inc/admin/plugins.php:287
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:402 inc/admin/plugins.php:288
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:403 inc/admin/plugins.php:289
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:404
+msgid "Dismiss this notice"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:405 inc/admin/plugins.php:290
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:1311
+msgid " and few others"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2371
+msgid "Required"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2374
+msgid "Recommended"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2390
+msgid "WordPress Repository"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2393
+msgid "External Source"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2396
+msgid "Pre-Packaged"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2426
+msgid "Not Installed"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2430
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2432
+msgid "Active"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2438
+msgid "Required Update not Available"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2441
+msgid "Requires Update"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2444
+msgid "Update recommended"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2602
+msgid "Installed:"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2610
+msgid "Minimum required version:"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2622
+msgid "Available:"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2645
+#, php-format
+msgid ""
+"No plugins to install, update or activate. <a href=\"%1$s\">Return to the "
+"Dashboard</a>"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2659
+msgid "Plugin"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2661
+msgid "Thumb"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2663
+msgid "Description"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2668
+msgid "Version"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2669
+msgid "Status"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2829
+msgid "Install"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2835
+msgid "Update"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2838 inc/admin/plugins.php:284
+msgid "Activate"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2869
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2871
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2907
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:2909
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3254
+msgid "Plugin activation failed."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3588
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3590
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3591
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3595
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3596
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3597
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3598
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3601
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3603
+msgid "All installations have been completed."
+msgstr ""
+
+#: inc/admin/class-tgm-plugin-activation.php:3604
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
 #: inc/admin/licensing.php:9
@@ -414,7 +660,7 @@ msgstr ""
 
 #: inc/admin/page_homepage.php:73 inc/admin/page_homepage.php:152
 #: inc/admin/page_homepage.php:298 inc/admin/page_homepage.php:398
-msgid "Select the effect."
+msgid "Select the effect. All effects are available in pro version."
 msgstr ""
 
 #: inc/admin/page_homepage.php:84
@@ -888,6 +1134,14 @@ msgstr ""
 msgid "Style"
 msgstr ""
 
+#: inc/admin/plugins.php:219
+msgid "Install Recommended Plugins"
+msgstr ""
+
+#: inc/admin/plugins.php:220
+msgid "Recommended Plugins"
+msgstr ""
+
 #: inc/front/WDWT_lightbox.php:493
 msgid "The image has been deleted."
 msgstr ""
@@ -939,43 +1193,43 @@ msgstr ""
 msgid "More Info"
 msgstr ""
 
-#: inc/front/front_functions.php:174
+#: inc/front/front_functions.php:191
 msgid "Random Posts"
 msgstr ""
 
-#: inc/front/front_functions.php:179
+#: inc/front/front_functions.php:196
 msgid "Popular Posts"
 msgstr ""
 
-#: inc/front/front_functions.php:184
+#: inc/front/front_functions.php:201
 msgid "Recent Posts"
 msgstr ""
 
-#: inc/front/front_functions.php:445
+#: inc/front/front_functions.php:479
 msgid "Read more"
 msgstr ""
 
-#: inc/front/front_functions.php:471 inc/front/front_functions.php:566
+#: inc/front/front_functions.php:505 inc/front/front_functions.php:600
 msgid "Previous"
 msgstr ""
 
-#: inc/front/front_functions.php:475 inc/front/front_functions.php:570
+#: inc/front/front_functions.php:509 inc/front/front_functions.php:604
 msgid "Next"
 msgstr ""
 
-#: inc/front/front_functions.php:725
+#: inc/front/front_functions.php:759
 msgid "FULL NAME"
 msgstr ""
 
-#: inc/front/front_functions.php:732
+#: inc/front/front_functions.php:766
 msgid "ADDRESS"
 msgstr ""
 
-#: inc/front/front_functions.php:739
+#: inc/front/front_functions.php:773
 msgid "EMAIL"
 msgstr ""
 
-#: inc/front/front_functions.php:794 inc/lib/WDWT_output.php:246 index.php:52
+#: inc/front/front_functions.php:828 inc/lib/WDWT_output.php:258 index.php:52
 msgid "More"
 msgstr ""
 
@@ -1035,68 +1289,68 @@ msgstr ""
 msgid "Add new percent value"
 msgstr ""
 
-#: inc/lib/WDWT_output.php:118
+#: inc/lib/WDWT_output.php:127
 msgid "Such element type does not exist!"
 msgstr ""
 
-#: inc/lib/WDWT_output.php:178
+#: inc/lib/WDWT_output.php:190
 msgid "This section allows you to add meta keywords, metatags, titles. "
 msgstr ""
 
-#: inc/lib/WDWT_output.php:183
+#: inc/lib/WDWT_output.php:195
 msgid "This section allows you to make changes in default layout of the theme."
 msgstr ""
 
-#: inc/lib/WDWT_output.php:188
+#: inc/lib/WDWT_output.php:200
 msgid ""
 "This section allows you to make changes in your site and customize it in "
 "accordance to personal preferences."
 msgstr ""
 
-#: inc/lib/WDWT_output.php:193
+#: inc/lib/WDWT_output.php:205
 msgid ""
 "This section allows you to make changes in post styles and customize your "
 "homepage appearance. "
 msgstr ""
 
-#: inc/lib/WDWT_output.php:198
+#: inc/lib/WDWT_output.php:210
 msgid ""
 "This section allows you to add integration codes in various areas of the "
 "site."
 msgstr ""
 
-#: inc/lib/WDWT_output.php:203
+#: inc/lib/WDWT_output.php:215
 msgid ""
 "This section allows you customizing certain color features in the theme. "
 msgstr ""
 
-#: inc/lib/WDWT_output.php:208
+#: inc/lib/WDWT_output.php:220
 msgid "This section allows you to change the font styles."
 msgstr ""
 
-#: inc/lib/WDWT_output.php:213
+#: inc/lib/WDWT_output.php:225
 msgid "This section allows you customize the slider. "
 msgstr ""
 
-#: inc/lib/WDWT_output.php:218
+#: inc/lib/WDWT_output.php:230
 msgid "This section allows to add sample data."
 msgstr ""
 
-#: inc/lib/WDWT_output.php:223
+#: inc/lib/WDWT_output.php:235
 msgid ""
 "This section displays plugins, which will help to increase the theme "
 "functionality"
 msgstr ""
 
-#: inc/lib/WDWT_output.php:228
+#: inc/lib/WDWT_output.php:240
 msgid "This section allows you customize the lightbox. "
 msgstr ""
 
-#: inc/lib/WDWT_output.php:233
+#: inc/lib/WDWT_output.php:245
 msgid "Available updates for the theme."
 msgstr ""
 
-#: inc/lib/WDWT_output.php:244
+#: inc/lib/WDWT_output.php:256
 msgid "User Manual."
 msgstr ""
 
@@ -1263,80 +1517,3 @@ msgstr ""
 #: search.php:66
 msgid " Nothing was found. Please try another keyword."
 msgstr ""
-
-#~ msgid "Contact Email"
-#~ msgstr "Su correo electrónico "
-
-#~ msgid "Insert Button Shortcode"
-#~ msgstr "Inserte Button Código corto "
-
-#~ msgid "Insert Link Shortcode"
-#~ msgstr "Inserte Enlace Código corto "
-
-#~ msgid "Insert Info Box Shortcode"
-#~ msgstr "Insertar cuadro de información Código corto "
-
-#~ msgid "Insert Quote Box Shortcode"
-#~ msgstr "Insertar Cita de la caja Código corto "
-
-#~ msgid "Insert Contact Form Shortcode"
-#~ msgstr "Inserte Formulario de contacto Código corto "
-
-#~ msgid "Insert Tabs Creator Shortcode"
-#~ msgstr "Inserte aquí Creador Código corto "
-
-#~ msgid "Insert Related Posts Shortcode"
-#~ msgstr "Inserte Related Posts Código corto "
-
-#~ msgid "Insert Columns Layout Shortcode"
-#~ msgstr "Insertar Columnas Código corto Layout "
-
-#~ msgid "The FirstName field is required."
-#~ msgstr "Se requiere que el campo Nombre. "
-
-#~ msgid "The LastName field is required."
-#~ msgstr "Se requiere que el campo Nombre. "
-
-#~ msgid "Categories"
-#~ msgstr "Todas las Categorías: "
-
-#~ msgid ""
-#~ "<span class=\"sep date\"></span><a href=\"%1$s\" title=\"%2$s\" rel="
-#~ "\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a>"
-#~ msgstr ""
-#~ "<span class=\"sep date\"></span><a href=\"%1$s\" title=\"%2$s\" rel="
-#~ "\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a>"
-
-#~ msgid ""
-#~ "<span class=\"sep date\"></span><a href=\"%1$s\" title=\"%2$s\" rel="
-#~ "\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></"
-#~ "a><span class=\"by-author\"> <span class=\"sep author\"></span> <span "
-#~ "class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" "
-#~ "rel=\"author\">%7$s</a></span></span>"
-#~ msgstr ""
-#~ "<span class=\"sep date\"></span><a href=\"%1$s\" title=\"%2$s\" rel="
-#~ "\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></"
-#~ "a><span class=\"by-author\"> <span class=\"sep author\"></span> <span "
-#~ "class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" "
-#~ "rel=\"author\">%7$s</a></span></span>"
-
-#~ msgid "Our facebook page"
-#~ msgstr "Nuestra página de facebook "
-
-#~ msgid "Our RSS"
-#~ msgstr "Nuestro RSS "
-
-#~ msgid "Send"
-#~ msgstr "enviar "
-
-#~ msgid "Static Pages:"
-#~ msgstr "Páginas estáticas: "
-
-#~ msgid "Search..."
-#~ msgstr "Buscar ... "
-
-#~ msgid "SEO Web Business"
-#~ msgstr "SEO Web Business "
-
-#~ msgid "Left"
-#~ msgstr "izquierda "

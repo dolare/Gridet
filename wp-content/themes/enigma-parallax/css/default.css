@@ -535,3 +535,30 @@ color: #fff;
 }
 .enigma_footer_widget_column ul li a ,.enigma_footer_widget_column ul#recentcomments li {color: #f2f2f2;}
 .enigma_footer_widget_column ul li a:hover{color: #5C4B51;}
+
+
+.header_section .hd_sec {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+@media(max-width:768px) {
+.header_section .hd_sec{
+    width: 100% !important;
+    height:100% !important;
+}
+}
+
+@media(max-width:480px){
+.header_section .hd_sec {
+    width: 100% !important;
+    height: 50% !important;
+}
+}
+
+@media(max-width:320px){
+.header_section .hd_sec {
+    width: 100% !important;
+    height: 66% !important;
+}
+}

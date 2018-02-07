@@ -1,4 +1,5 @@
 <?php
+if( !class_exists(' Magee_Button') ):
 class Magee_Button {
 
 	public static $args;
@@ -113,7 +114,11 @@ class Magee_Button {
 		$animated = '';
 		if( $icon_animation_type != '' )
 		$animated = 'animated infinite '.$icon_animation_type;
-		$content  = '<i class="fa '.$icon.' '.$animated.'"></i>  '.$content;
+			if( stristr($icon,'fa-')):
+			$content  = '<i class="fa '.$icon.' '.$animated.'"></i>  '.$content;
+			else:
+			$content = '<img class="image-instead" src="'.esc_attr($icon).'" style="padding-right:10px"/>'.$content;
+		    endif;
 		}
 		
 		if( $text_color !='' ){
@@ -167,7 +172,7 @@ class Magee_Button {
 		
 		$html = '<style type="text/css">'.$css_style.'</style>';		
 		$html .= sprintf( '<a href="%s" target="%s" style="" class="%s" id="%s">%s</a>', esc_url($link),$target, $class,$id, do_shortcode( Magee_Core::fix_shortcodes($content)) );
-		
+
 		return $html;
 	}
 	
@@ -177,3 +182,4 @@ class Magee_Button {
 }
 
 new Magee_Button();
+endif;

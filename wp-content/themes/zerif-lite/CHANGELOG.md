@@ -1,4 +1,232 @@
 
+### 1.8.5.33 - 14/12/2017
+**Changes:** 
+- Fixed Hide/Show mechanism for the frontpage sections
+- Removed duplicated hooks
+- Updated readme file
+
+### 1.8.5.32 - 09/11/2017
+**Changes:** 
+- Fix console error causing scrollreveal to not work properly
+
+### 1.8.5.31 - 07/11/2017
+**Changes:** 
+- Transformed footer icons into links to Google maps, email and telephone
+- Update PHPCS to latest version and fixed all the issues
+- Make all functions from inc/template-tags.php pluggable
+- Fix small translatable issues with some of the strings
+
+### 1.8.5.30 - 30/10/2017
+**Changes:** 
+- Updated Travis and grunt scripts to latest versions
+- Fixed small issue with the Skill circles texts not floating properly in the About section
+- Added recommendations for TranslatePress and Elementor plugins
+- Fixed problem with logo migration for old sites
+
+### 1.8.5.29 - 02/09/2017
+**Changes:** 
+- Fixed issue with images not appearing on the blog page
+
+### 1.8.5.28 - 25/08/2017
+**Changes:** 
+- Recommend Elementor plugin
+- Fixed issue with the preloader not working on the Frontpage
+
+### 1.8.5.27 - 25/08/2017
+**Changes:** 
+- Fixed some strings
+
+### 1.8.5.26 - 25/08/2017
+**Changes:** 
+- Integrated with Grunt and fixed all the errors
+- Fixed issues with main navigation menu not closing on mobile devices when an anchor is clicked
+- Fixed issue with options in Contact section not updating instantly
+
+### 1.8.5.25 - 28/06/2017
+**Changes:** 
+- Fixed conflict with Elementor plugin font size option
+- Added missing strings in wpml-config.xml file
+- Fixed Google Structured Data Test Tool issue The property logo is not recognized by Google for an object of type WPHeader
+- Fixed documentation URL from http to https
+
+### 1.8.5.24 - 15/06/2017
+**Changes:** 
+- Removed timed upsells
+- Removed recommended actions link when no actions are required
+- Fixed Minify Auto bug with W3 Total Cache
+- Added some hooks and filters for child themes
+
+### 1.8.5.23 - 17/05/2017
+**Changes:** 
+- Fixed Our focus widgets for older version of the theme
+
+### 1.8.5.22 - 16/05/2017
+**Changes:** 
+- Added compatibility with Nivo Slider Lite plugin
+
+### 1.8.5.21 - 11/05/2017
+**Changes:** 
+- Development
+
+### 1.8.5.20 - 08/05/2017
+**Changes:** 
+- Make upsells visible after 12 hours after theme activation
+
+### 1.8.5.19 - 03/05/2017
+**Changes:** 
+- Recommend ThemeIsle Companion plugin with TGM
+
+### 1.8.5.18 - 27/04/2017
+**Changes:** 
+- Development
+
+### 1.8.5.17 - 25/04/2017
+**Changes:** 
+- Fixed small CSS alignment issues with WooCommerce 3.0.0
+- Added Install and Activate buttons in Recommended actions and plugins for better use
+
+### 2.0.5 - 05/01/2017
+**Changes:** 
+- Fixed fatal error issues with Themeisle Companion plugin installed
+- Reorganized customizer upsells
+- Added hooks and filters for use in child themes
+- Removed doubled hook trigers from latest news section
+
+### 2.0.4 - 19/10/2016
+**Changes:** 
+- Fixed for sections with widgets not appearing anymore after the hide button is selected for each section
+- Fixed testimonials default widgets style
+
+### 2.0.2 - 11/10/2016
+**Changes:** 
+- Fixed issue with view pro button layout
+
+### 2.0.1 - 11/10/2016
+**Changes:** 
+- Improved user experience by using Selective Refresh for widgets.
+- Improved compatibility with Max Mega Menu plugin for mobile
+- Update Font Awesome to the latest version
+- Improved Customizer layout
+- Improved accessibility options
+- Fixed issue with media image uploader
+
+### 2.0.0 - 14/09/2016
+**Changes:** 
+- Updated license
+
+### 1.8.5.0 - 13/09/2016
+**Changes:** 
+- Added padding to image captions
+- Added dropdown icons to sub-menus
+- Fixed issue with Yoast navigation
+- Fixed issue with vertical line on Samsung Galaxy S6
+- Update tags
+- Improved the blockquote design
+- Fixed issue with Jetpacks Photon module
+
+### 1.8.4.9 - 30/08/2016
+**Changes:** 
+- Use core function for archive title and description
+- Remove wp_title backward compatibility
+- Fixed issue with background image when using a child theme
+- Redo upsell section using Customizer API
+
+### 1.8.4.8 - 29/08/2016
+**Changes:** 
+- NEW option to change the Clients area title
+- Changed the way locked sections link to pro page
+- Add note in readme.txt regarding the background image
+
+### 1.8.4.7 - 26/08/2016
+**Changes:** 
+- Replace back string for template name
+
+### 1.8.4.6 - 26/08/2016
+**Changes:** 
+- Compatibility with SiteOrigin styles
+- Added back the quote mark in Testimonials section
+- Fixed issue with pagebreaks disappearing on mobile devices
+- Fixed issue with navbar links underline after Pirate Forms submission.
+- Fixed issue with navigation when the blog template is used as homepage
+- Fixed issues with menu on mobile devices
+- Improved parts of the code
+
+### 1.8.4.5 - 19/07/2016
+**Changes:** 
+- Added a number of hooks and filter to make child theme creation easier (The whole list can be found in readme.txt)
+- Fixed some escaping issues
+- Fixed alignment issue on mobile devices in About us section
+
+### 1.8.4.4 - 27/05/2016
+**Changes:** 
+- Small fixes to tgmp
+
+### 1.8.4.3 - 27/05/2016
+**Changes:** 
+
+### 1.8.4.2 - 27/05/2016
+**Changes:** 
+- Improved sanitization and validation of data
+- Updated TGMPA
+- Replaced input fields in About us section and Ribbon section to textareas to allow more content
+- Fixed issue with author name displaying on pages
+- Recommend Adblock Notify and Feedzy RSS plugins on the About Zerif page
+
+
+### 1.8.4.1 - 27/04/2016
+
+ Changes: 
+
+
+ * Fixed how change log is displayed.
+ * Fixed #336 Added style for <q> tag
+ * Fixed #337 Google structured data errors
+
+
+### 1.8.3.9 - 29/03/2016
+
+ Changes: 
+
+
+ * Fixed
+ * Fixed #145 #290 Added support for cyrillic fonts
+ * Option to change the template page to full width site-wide #314
+ * Option to have an active home link in the menu #321
+ * Fixed #145 #290 Added option to use safe font
+ * Fixed #320 Reviews stars issue with latest Woocommerce
+ * Fixed uploading images within Our Focus widgets notworking with Page Builder #324
+ * Fixed uploading images within Our Team widgets not working with Page Builder #324
+ * Fixed uploading images within Testimonials and Clients widgets not working with Page Builder #324
+ * Replace not existing doc with new one #322
+
+
+### 1.8.3.7 - 16/03/2016
+
+ Changes: 
+
+
+ * Merge pull request #311 from abaicus/development
+
+!!!Changed CSS selector to more specific ones. Edits added to #309.
+ * Fixed layout issue with pirate forms #313
+ * Fixed google webmaster structure data #187
+ * Fixed small issue with Pirate Forms plugin
+
+
+### 1.8.3.6 - 09/03/2016
+
+ Changes: 
+
+
+ * Added hooks to the theme, using plugin API.
+ * Merge pull request #299 from HardeepAsrani/development
+
+Added hooks to the theme, using plugin API.
+ * #293 New template for a fullwidth page with no title
+ * Merge pull request #309 from abaicus/development
+
+!!!Restyled Contribute tab and fixed responsive and scroll issues.
+
 
 ### 1.8.3.4 - 22/01/2016
 
@@ -210,7 +438,8 @@ Typo
  Changes: 
 
 
- * Changed new line separator to \n from old mac separator \r.
+ * Changed new line separator to 
+ from old mac separator .
  * Updated about us section to be display in col-lg 4, 6 or 12 depending on what texts are set.
  * Fixed closing tag.
  * Updated contact us form style, error and success messages, made field required.

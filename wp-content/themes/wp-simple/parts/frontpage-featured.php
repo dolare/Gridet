@@ -8,20 +8,20 @@ $nimbus_featured = array(
     'nimbus_right_featured'             =>  $nimbus_right_featured,
 );
 $section_bg=nimbus_get_option('fp-featured-background-image');
-if (!empty($section_bg['url'])) {
-    $nimbus_parallax="data-parallax='scroll' data-image-src='" . $section_bg['url'] . "' style='background: transparent;padding:220px 0 200px;background: rgba(0, 0, 0, 0.3);'";
+if (!empty($section_bg)) {
+    $nimbus_parallax="data-parallax='scroll' data-image-src='" . esc_url($section_bg) . "' style='background: transparent;padding:220px 0 200px;background: rgba(0, 0, 0, 0.3);'";
     $parallax_active="parallax_active";
 } 
 if (nimbus_get_option('fp-featured-toggle') == '1') { ?>
-   <section id="<?php if (nimbus_get_option('fp-featured-slug')=='') {echo "featured";} else {echo nimbus_get_option('fp-featured-slug');} ?>" class="frontpage-row frontpage-featured <?php if(isset($parallax_active)){echo $parallax_active;} ?>" <?php if(isset($nimbus_parallax)){echo $nimbus_parallax;} ?>>
+   <section id="<?php if (nimbus_get_option('fp-featured-slug')=='') {echo "featured";} else {echo esc_attr(nimbus_get_option('fp-featured-slug'));} ?>" class="frontpage-row frontpage-featured <?php if(isset($parallax_active)){echo $parallax_active;} ?>" <?php if(isset($nimbus_parallax)){echo $nimbus_parallax;} ?>>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <?php if (nimbus_get_option('fp-featured-title') != '') { ?>
-                        <div class="featured-title h1"><?php echo nimbus_get_option('fp-featured-title'); ?></div>
+                        <div class="featured-title h1"><?php echo esc_html(nimbus_get_option('fp-featured-title')); ?></div>
                     <?php } ?>
                     <?php if (nimbus_get_option('fp-featured-sub-title') != '') { ?>
-                        <div class="featured-sub-title h4"><?php echo nimbus_get_option('fp-featured-sub-title'); ?></div>
+                        <div class="featured-sub-title h4"><?php echo esc_html(nimbus_get_option('fp-featured-sub-title')); ?></div>
                     <?php } ?>
                     <div class="row row-centered">
                     <?php
@@ -65,32 +65,32 @@ if (nimbus_get_option('fp-featured-toggle') == '1') { ?>
 <?php } else if (nimbus_get_option('fp-featured-toggle') == '3') {
     // Don't do anything
 } else { ?>  
-   <section id="<?php if (nimbus_get_option('fp-featured-slug')=='') {echo "featured";} else {echo nimbus_get_option('fp-featured-slug');} ?>" class="frontpage-row frontpage-featured preview">
+   <section id="<?php if (nimbus_get_option('fp-featured-slug')=='') {echo "featured";} else {echo esc_attr(nimbus_get_option('fp-featured-slug'));} ?>" class="frontpage-row frontpage-featured preview">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="featured-title h1">Theme Features</div>
-                    <div class="featured-sub-title h4">Three reasons to choose Simple for your next website project!</div>
+                    <div class="featured-title h1"><?php _e('Theme Features','wp-simple'); ?></div>
+                    <div class="featured-sub-title h4"><?php _e('Three reasons to choose Simple for your next website project!','wp-simple'); ?></div>
                     <div class="row row-centered">
                         <div class="col-sm-4 col-centered featured-item-col" data-sr="wait 0.2s, enter left and move 50px after 1s">
                             <a class="featured-item" href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/preview/750x500-<?php echo rand(1,8); ?>.jpg"class="img-responsive center-block">
-                                <h4 class="featured-item-title">One-Page Layout</h4>
-                                <p class="featured-item-sub-title">Beautiful one-page frontpage with smooth scrolling navigation.</p>
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/preview/750x500-<?php echo rand(1,8); ?>.jpg"class="img-responsive center-block">
+                                <h4 class="featured-item-title"><?php _e('One-Page Layout','wp-simple'); ?></h4>
+                                <p class="featured-item-sub-title"><?php _e('Beautiful one-page frontpage with smooth scrolling navigation.','wp-simple'); ?></p>
                             </a>
                         </div>          
                         <div class="col-sm-4 col-centered featured-item-col" data-sr="wait 0.2s, enter left and move 50px after 1s">
                             <a class="featured-item" href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/preview/750x500-<?php echo rand(1,8); ?>.jpg"class="img-responsive center-block">
-                                <h4 class="featured-item-title">Customizer</h4>
-                                <p class="featured-item-sub-title">Uses the WordPress Core customizer for easy administration.</p>
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/preview/750x500-<?php echo rand(1,8); ?>.jpg"class="img-responsive center-block">
+                                <h4 class="featured-item-title"><?php _e('Customizer','wp-simple'); ?></h4>
+                                <p class="featured-item-sub-title"><?php _e('Uses the WordPress Core customizer for easy administration.','wp-simple'); ?></p>
                             </a>
                         </div> 
                         <div class="col-sm-4 col-centered featured-item-col" data-sr="wait 0.2s, enter left and move 50px after 1s">
                             <a class="featured-item" href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/preview/750x500-<?php echo rand(1,8); ?>.jpg"class="img-responsive center-block">
-                                <h4 class="featured-item-title">Parallax Effects</h4>
-                                <p class="featured-item-sub-title">Graceful scroll-activated parallax effects throughout.</p>
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/preview/750x500-<?php echo rand(1,8); ?>.jpg"class="img-responsive center-block">
+                                <h4 class="featured-item-title"><?php _e('Parallax Effects','wp-simple'); ?></h4>
+                                <p class="featured-item-sub-title"><?php _e('Graceful scroll-activated parallax effects throughout.','wp-simple'); ?></p>
                             </a>
                         </div> 
                     </div>    

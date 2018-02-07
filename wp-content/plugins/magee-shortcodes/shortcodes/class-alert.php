@@ -1,4 +1,5 @@
 <?php
+if( !class_exists(' Magee_Alert') ):
 class Magee_Alert {
 
 	public static $args;
@@ -66,13 +67,16 @@ class Magee_Alert {
 		$class .= ' alert-dismissible';
 		}
 		
-		if( $icon )
+		if( stristr($icon,'fa-')):
 		$icon_str .= '<i class="fa '.esc_attr($icon).'"></i>';
+		else:
+		$icon_str .= '<img class="image-instead" src="'.esc_attr($icon).'" style="padding-right:10px"/>';
 		
+		endif;
 		$styles  = sprintf( '<style type="text/css" scoped="scoped">.%s{%s} </style>', $add_class ,$css_style);		
 		$content = $icon_str.do_shortcode( Magee_Core::fix_shortcodes($content));
 		$html    = sprintf(' %s<div class="alert magee-alert %s " role="alert" id= "%s">%s</div>',$styles,$class,$id,$content);
-
+        
 		
 		return $html;
 	}
@@ -80,3 +84,4 @@ class Magee_Alert {
 }
 
 new Magee_Alert();
+endif;

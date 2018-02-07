@@ -2,13 +2,15 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package WordPress
+ * @package ThemeHunk
  * @subpackage NovelLite
  * @since NovelLite 1.0
  */
 ?>
 <?php get_header(); ?>
-<div class="page_heading_container">
+<div class="page_heading_container" <?php if (get_theme_mod('header_image','') != '') { ?>
+ style="background: url(<?php echo esc_url(get_theme_mod('header_image','')); ?>);"
+ <?php }?> >
     <div class="container">
         <div class="row">
 		<div class="col-md-12">

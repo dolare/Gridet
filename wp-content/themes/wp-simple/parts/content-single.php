@@ -15,9 +15,9 @@ if (empty($sidebar_select) || ($sidebar_select == 'none')) {
                 <div class="col-sm-8">
                     <p> 
                     <?php 
-                    _e('Posted by ', 'nimbus');  
+                    _e('Posted by ', 'wp-simple' );  
                     the_author_posts_link(); 
-                    _e(' on ', 'nimbus');
+                    _e(' on ', 'wp-simple' );
                     the_time(get_option( 'date_format' ));
                     ?></p>
                 </div>
@@ -45,9 +45,9 @@ if (empty($sidebar_select) || ($sidebar_select == 'none')) {
                 <div class="col-sm-8">
                     <p> 
                     <?php 
-                    _e('Posted by ', 'nimbus');  
+                    _e('Posted by ', 'wp-simple' );  
                     the_author_posts_link(); 
-                    _e(' on ', 'nimbus');
+                    _e(' on ', 'wp-simple' );
                     the_time(get_option( 'date_format' ));
                     ?></p>
                 </div>

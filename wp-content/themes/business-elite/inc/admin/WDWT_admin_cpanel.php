@@ -19,8 +19,6 @@ function wdwt_register_settings() {
   
 }
 
-add_action( 'admin_init', 'wdwt_register_settings' );
-
 /*-------------------------------*/
 function wdwt_get_settings_by_tab() {
   $tabs = wdwt_get_tabs();
@@ -58,7 +56,8 @@ function wdwt_get_current_tab() {
 function wdwt_admin_options_page() {
   global $wdwt_options;
   global $wdwt_licensing_page;
-
+  global $wdwt_themes_support_page;
+  
   $currenttab = wdwt_get_current_tab();
   $tabs = wdwt_get_tabs();
   $options = $wdwt_options;
@@ -87,6 +86,8 @@ function wdwt_admin_options_page() {
     if ($currenttab == 'licensing'):
       echo $wdwt_licensing_page->view_licensing();
       /*pages with forms to submit options*/
+    elseif ($currenttab == 'themes_support'):
+      echo $wdwt_themes_support_page->view();
     else : 
       echo $wdwt_licensing_page->view_licensing();
     endif; ?>

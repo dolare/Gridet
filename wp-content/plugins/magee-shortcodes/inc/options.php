@@ -3,16 +3,39 @@
 /*	Default Options
 /*-----------------------------------------------------------------------------------*/
 
-global $magee_shortcodes,$magee_sliders;
-$magee_sliders = Magee_Core::sliders_meta();
+//menus
+function magee_shortcode_menus($name){
+    $menus[''] = 'Default';
+    if( $name !== ''){
+	
+	$menu = wp_get_nav_menus();
+	    
+		foreach ( $menu as $val){
+		if(isset($val->name)){
+			$menus[$val->name] = $val->name;
+			}
+		}	
+		if(isset( $menus)){	
+		return $menus;	
+		}
+    }
 
-$choices = array( 'yes' => 'Yes', 'no' => 'No' );
-$reverse_choices = array( 'no' => 'No', 'yes' => 'Yes' );
-$choices_with_default = array( '' => 'Default', 'yes' => 'Yes', 'no' => 'No' );
-$reverse_choices_with_default = array( '' => 'Default', 'no' => 'No', 'yes' => 'Yes' );
-$leftright = array( 'left' => 'Left', 'right' => 'Right' );
+}
+
+
+global $magee_shortcodes,$magee_sliders,$magee_widget;
+$magee_sliders = Magee_Core::sliders_meta(); 
+$googleFontArray =  Magee_Core::magee_countdowns_get_google_fonts();
+$google_fonts    = array_merge(array('' => __( '-- None --', 'magee-shortcodes' ) ), $googleFontArray['magee_of_family']);
+
+$choices = array( 'yes' => __('Yes', 'magee-shortcodes' ), 'no' => __('No', 'magee-shortcodes')  );
+$reverse_choices = array( 'no' => __('No', 'magee-shortcodes'), 'yes' => __('Yes', 'magee-shortcodes' ) );
+$choices_with_default = array( '' => __('Default', 'magee-shortcodes'), 'yes' => __('Yes', 'magee-shortcodes' ), 'no' => __('No', 'magee-shortcodes') );
+$reverse_choices_with_default = array( '' => __('Default', 'magee-shortcodes'), 'no' => __('No', 'magee-shortcodes'), 'yes' => __('Yes', 'magee-shortcodes' ) );
+$leftright = array( 'left' => __('Left','magee-shortcodes'), 'right' => __( 'Right', 'magee-shortcodes' ) );
 $textalign = array( 'left' => __( 'Left', 'magee-shortcodes' ), 'center' => __( 'Center', 'magee-shortcodes' ), 'right' => __( 'Right', 'magee-shortcodes' ) );
-
+$textalign = array( 'left' => __( 'Left', 'magee-shortcodes' ), 'center' => __( 'Center', 'magee-shortcodes' ), 'right' => __( 'Right', 'magee-shortcodes' ) );
+$opacity = array('0' => '0', '0.1' => '0.1', '0.2' => '0.2', '0.3' => '0.3', '0.4' => '0.4', '0.5' => '0.5', '0.6' => '0.6', '0.7' => '0.7', '0.8' => '0.8', '0.9' => '0.9', '1' => '1');
 $dec_numbers = array( '0.1' => '0.1', '0.2' => '0.2', '0.3' => '0.3', '0.4' => '0.4', '0.5' => '0.5', '0.6' => '0.6', '0.7' => '0.7', '0.8' => '0.8', '0.9' => '0.9', '1' => '1', '2' => '2', '2.5' => '2.5', '3' => '3' );
 $animation_type = array('' => 'None',"bounce" => "bounce", "flash" => "flash", "pulse" => "pulse", "rubberBand" => "rubberBand", "shake" => "shake", "swing" => "swing", "tada" => "tada", "wobble" => "wobble", "bounceIn" => "bounceIn", "bounceInDown" => "bounceInDown", "bounceInLeft" => "bounceInLeft", "bounceInRight" => "bounceInRight", "bounceInUp" => "bounceInUp", "bounceOut" => "bounceOut", "bounceOutDown" => "bounceOutDown", "bounceOutLeft" => "bounceOutLeft", "bounceOutRight" => "bounceOutRight", "bounceOutUp" => "bounceOutUp", "fadeIn" => "fadeIn", "fadeInDown" => "fadeInDown", "fadeInDownBig" => "fadeInDownBig", "fadeInLeft" => "fadeInLeft", "fadeInLeftBig" => "fadeInLeftBig", "fadeInRight" => "fadeInRight", "fadeInRightBig" => "fadeInRightBig", "fadeInUp" => "fadeInUp", "fadeInUpBig" => "fadeInUpBig", "fadeOut" => "fadeOut", "fadeOutDown" => "fadeOutDown", "fadeOutDownBig" => "fadeOutDownBig", "fadeOutLeft" => "fadeOutLeft", "fadeOutLeftBig" => "fadeOutLeftBig", "fadeOutRight" => "fadeOutRight", "fadeOutRightBig" => "fadeOutRightBig", "fadeOutUp" => "fadeOutUp", "fadeOutUpBig" => "fadeOutUpBig", "flip" => "flip", "flipInX" => "flipInX", "flipInY" => "flipInY", "flipOutX" => "flipOutX", "flipOutY" => "flipOutY", "lightSpeedIn" => "lightSpeedIn", "lightSpeedOut" => "lightSpeedOut", "rotateIn" => "rotateIn", "rotateInDownLeft" => "rotateInDownLeft", "rotateInDownRight" => "rotateInDownRight", "rotateInUpLeft" => "rotateInUpLeft", "rotateInUpRight" => "rotateInUpRight", "rotateOut" => "rotateOut", "rotateOutDownLeft" => "rotateOutDownLeft", "rotateOutDownRight" => "rotateOutDownRight", "rotateOutUpLeft" => "rotateOutUpLeft", "rotateOutUpRight" => "rotateOutUpRight", "hinge" => "hinge", "rollIn" => "rollIn", "rollOut" => "rollOut", "zoomIn" => "zoomIn", "zoomInDown" => "zoomInDown", "zoomInLeft" => "zoomInLeft", "zoomInRight" => "zoomInRight", "zoomInUp" => "zoomInUp", "zoomOut" => "zoomOut", "zoomOutDown" => "zoomOutDown", "zoomOutLeft" => "zoomOutLeft", "zoomOutRight" => "zoomOutRight", "zoomOutUp" => "zoomOutUp", "slideInDown" => "slideInDown", "slideInLeft" => "slideInLeft", "slideInRight" => "slideInRight", "slideInUp" => "slideInUp", "slideOutDown" => "slideOutDown", "slideOutLeft" => "slideOutLeft", "slideOutRight" => "slideOutRight", "slideOutUp" => "slideOutUp");
 $columns  = array(""=>"default","1"=>"1/12","2"=>"2/12","3"=>"3/12","4"=>"4/12","5"=>"5/12","6"=>"6/12","7"=>"7/12","8"=>"8/12","9"=>"9/12","10"=>"10/12","11"=>"11/12","12"=>"12/12");
@@ -60,35 +83,82 @@ $magee_shortcodes['accordion'] = array(
 			'type' => 'select',
 			'std' => 'simple',
 			'label' => __( 'Style', 'magee-shortcodes' ),
-			'desc' => '',
+			'desc' => __( 'The "simple" doesn\'t have a border in the whole accordion, and the "boxed" has.','magee-shortcodes'),
 			'options' => array(
 				'simple' => __( 'Simple Style', 'magee-shortcodes' ),
 				'boxed' => __( 'Boxed Style', 'magee-shortcodes' ),
+				'spacing' => __( 'Spacing Style', 'magee-shortcodes' ),
 			)
 		),
 		'type' => array(
 			'type' => 'select',
 			'label' => __( 'Type', 'magee-shortcodes' ),
-			'desc' => '',
+			'desc' => __( 'The differance is in the right of accordion, "1" is a down arrow, and the "2" is a plus in a box','magee-shortcodes'),
 			'std' => '1',
 			'options' => array(
 				'1' => __( 'Type 1', 'magee-shortcodes' ),
 				'2' => __( 'Type 2', 'magee-shortcodes' ),
+				'3' => __( 'None Type', 'magee-shortcodes' ),
 			)
 		),
-		'content' => array(
-			'std' => "\r\n[ms_accordion_item title='Accordion Item 1' icon='fa-flag' status='open']Accordion Item Content 1[/ms_accordion_item]\r\n[ms_accordion_item title='Accordion Item 2' icon='fa-star' status='close']Accordion Item Content 2[/ms_accordion_item]\r\n[ms_accordion_item title='Accordion Item 3' icon='fa-music' status='close']Accordion Item Content 3[/ms_accordion_item]\r\n",
-			'type' => 'textarea',
-			'label' => __( 'Accordion Items', 'magee-shortcodes' ),
-			'desc' => __( 'Insert accordion items shortcode.', 'magee-shortcodes' ),
-		),	
 		
 		),
-	'shortcode' => '[ms_accordion style="{{style}}" type="{{type}}"  class="{{class}}" id="{{id}}"]{{content}}[/ms_accordion]',
+	'child_shortcode' => array(
+		'params' => array(
+						  
+		'title' => array(
+			'std' => 'Title',
+			'type' => 'text',
+			'label' => __( 'Title', 'magee-shortcodes'),
+			'desc' => __( 'Insert the title for the accordion item.', 'magee-shortcodes'),
+		),	
+		'color' => array(
+			'std' => '',
+			'type' => 'colorpicker',
+			'label' => __( 'Title Color', 'magee-shortcodes'),
+			'desc' => __( 'Insert the color for the title.', 'magee-shortcodes'),
+		),	
+		'background_color' => array(
+			'std' => '',
+			'type' => 'colorpicker',
+			'label' => __( 'Title Background Color', 'magee-shortcodes'),
+			'desc' => __( 'Insert the background color for the title.', 'magee-shortcodes'),
+		),	
+		'content' => array(
+			'std' => 'Your Content Goes Here',
+			'type' => 'textarea',
+			'label' => __( 'Text', 'magee-shortcodes'),
+			'desc' => __( 'Insert the content for the accordion item.', 'magee-shortcodes'),
+		),	
+		'status' => array(
+			'std' => 'close',
+			'type' => 'select',
+			'label' => __( 'Status', 'magee-shortcodes'),
+			'desc' =>  __( 'Choose to have the accordion open or close when page loads.', 'magee-shortcodes'),
+			'options' => array("close"=>__('Close','magee-shortcodes'),"open"=>__('Open','magee-shortcodes') )
+		),
+		'close_icon' => array(
+			'type' => 'iconpicker',
+			'label' => __( 'Select Close Status Icon', 'magee-shortcodes'),
+			'desc' => __( 'Click an icon to select, click again to deselect', 'magee-shortcodes'),
+			'options' => $icons
+		),
+		'open_icon' => array(
+			'type' => 'iconpicker',
+			'label' => __( 'Select Open Status Icon', 'magee-shortcodes'),
+			'desc' => __( 'Click an icon to select, click again to deselect', 'magee-shortcodes'),
+			'options' => $icons
+		),
+           )
+		,
+	'shortcode' => "[ms_accordion_item title=\"{{title}}\" color=\"{{color}}\" background_color=\"{{background_color}}\" close_icon=\"{{close_icon}}\" open_icon=\"{{open_icon}}\" status=\"{{status}}\"]{{content}}[/ms_accordion_item]\r\n",	
+		),	
+	'shortcode' => "[ms_accordion style=\"{{style}}\" type=\"{{type}}\"  class=\"{{class}}\" id=\"{{id}}\"]\r\n{{child_shortcode}}[/ms_accordion]",
 	'popup_title' => __( 'Accordion Shortcode', 'magee-shortcodes' ),
-
+    'name' => __('accordions-shortcode/','magee-shortocdes'),
 
 );
+
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -128,29 +198,33 @@ $magee_shortcodes['alert'] = array(
 	
 		
 		'border_width' => array(
-			'std' => '0px',
-			'type' => 'text',
+			'std' => '0',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
 			'label' => __( 'Border Width', 'magee-shortcodes' ),
 			'desc' => __('In pixels (px), eg: 1px.', 'magee-shortcodes')
 		),
 		
 		'border_radius' => array(
-			'std' => '0px',
-			'type' => 'text',
+			'std' => '0',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
 			'label' => __( 'Border Radius', 'magee-shortcodes' ),
 			'desc' => __('In pixels (px), eg: 1px.', 'magee-shortcodes')
 		),
 		
 		'box_shadow' => array(
 			'std' => '',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Box Shadow', 'magee-shortcodes' ),
 			'desc' => __( 'Display a box shadow for alert.', 'magee-shortcodes' ),
 			'options' => $reverse_choices 
 		),	
 		'dismissable' => array(
 			'std' => '',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Dismissable', 'magee-shortcodes' ),
 			'desc' => __( 'The alert box is dismissable.', 'magee-shortcodes' ),
 			'options' =>  $reverse_choices 
@@ -170,10 +244,83 @@ $magee_shortcodes['alert'] = array(
 		),		
 	),
 	'shortcode' => '[ms_alert icon="{{icon}}" background_color="{{background_color}}"  text_color="{{text_color}}"  border_width="{{border_width}}"  border_radius="{{border_radius}}" box_shadow="{{box_shadow}}" dismissable="{{dismissable}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_alert]',
-	'popup_title' => __( 'Alert Shortcode', 'magee-shortcodes' )
+	'popup_title' => __( 'Alert Shortcode', 'magee-shortcodes' ),
+	'name' => __('alert-shortcode/','magee-shortocdes'),
 );
 
-
+/*-----------------------------------------------------------------------------------*/
+/*	Audio Config
+/*-----------------------------------------------------------------------------------*/
+$magee_shortcodes['audio'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-play-circle-o',
+	'params' => array(
+	    'style' => array(
+			'std' => '',
+			'type' => 'select',
+			'label' => __( 'Audio Style', 'magee-shortcodes'),
+			'desc' => __( 'Choose style for audio to show', 'magee-shortcodes'),
+			'options' => array('dark'=>__('Dark Style', 'magee-shortcodes'),'light'=>__('Light Style', 'magee-shortcodes'))
+		),
+	    'mp3' => array(
+			'std' => '',
+			'type' => 'link',
+			'label' => __( 'Mp3 URL', 'magee-shortcodes'),
+			'desc' => __( 'Add the URL of audio in MP3 format.', 'magee-shortcodes')
+		),
+		'ogg' => array(
+			'std' => '',
+			'type' => 'link',
+			'label' => __( 'Ogg URL', 'magee-shortcodes'),
+			'desc' => __( 'Add the URL of audio in OGG format.', 'magee-shortcodes')
+		),
+		'wav' => array(
+			'std' => '',
+			'type' => 'link',
+			'label' => __( 'Wav URL', 'magee-shortcodes'),
+			'desc' => __( 'Add the URL of audio in WAV format.', 'magee-shortcodes')
+		),
+		'mute' => array(
+		    'type' => 'choose',
+		    'label' => __( 'Mute Audio','magee-shortcodes'),
+		    'desc' => __('Choose to mute the audio.','magee-shortcodes'), 
+		    'options' =>  $reverse_choices,
+		),
+		'autoplay' => array(
+		    'type' => 'choose',
+		    'label' => __( 'Autoplay Audio','magee-shortcodes'),
+		    'desc' => __('Choose to autoplay the audio.','magee-shortcodes'), 
+		    'options' =>  $choices,
+		),
+		'loop' => array(
+		    'type' => 'choose',
+		    'label' => __( 'Loop Audio','magee-shortcodes'),
+		    'desc' => __('Choose to loop the audio.','magee-shortcodes'), 
+		    'options' =>  $choices,
+		),
+		'controls' => array(
+		    'type' => 'choose',
+		    'label' => __( 'Controls Audio','magee-shortcodes'),
+		    'desc' => __('Choose to display controls of the audio.','magee-shortcodes'), 
+		    'options' =>  $choices,
+		),
+	    'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+	),   
+    'shortcode' => '[ms_audio style="{{style}}" mp3="{{mp3}}" ogg="{{ogg}}" wav="{{wav}}" mute="{{mute}}" autoplay="{{autoplay}}" loop="{{loop}}" controls="{{controls}}" class="{{class}}" id="{{id}}"]' ,
+	'popup_title' => __( 'Audio Shortcode','magee-shortcodes'),
+	'name' => __('audio-shortcode/','magee-shortcodes'),
+);
 
 /*******************************************************
  *	Button Config
@@ -219,8 +366,10 @@ $magee_shortcodes['button'] = array(
 		),
 		
 		'border_width' => array(
-			'std' => '',
-			'type' => 'text',
+			'std' => '0',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
 			'label' => __('Border Width', 'magee-shortcodes'),
 			'desc' => __('In pixels (px), default: 2px.', 'magee-shortcodes'),
 		),
@@ -237,31 +386,31 @@ $magee_shortcodes['button'] = array(
 			)
 		),
 		'shadow' => array(
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Text Shadow', 'magee-shortcodes' ),
 			'desc' => __( 'Display shadow for button text.', 'magee-shortcodes' ),
 			'options' => $reverse_choices
 		),
 		'gradient' => array(
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Gradient', 'magee-shortcodes' ),
 			'desc' => __( 'Display gradient for button.', 'magee-shortcodes' ),
 			'options' => $reverse_choices
 		),
 		'block' => array(
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Block Button', 'magee-shortcodes' ),
 			'desc' => __( 'Display in full width.', 'magee-shortcodes' ),
 			'options' => $reverse_choices
 		),
 		
 		'target' => array(
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Button Target', 'magee-shortcodes' ),
 			'desc' => __( '_self = open in same window <br />_blank = open in new window.', 'magee-shortcodes' ),
 			'options' => array(
-				'_self' => '_self',
-				'_blank' => '_blank'
+				'_self' => __( '_self', 'magee-shortcodes' ),
+				'_blank' => __( '_blank' , 'magee-shortcodes' ),
 			)
 		),
 	
@@ -314,9 +463,277 @@ $magee_shortcodes['button'] = array(
 		),			
 	),
 	'shortcode' => '[ms_button style="{{style}}" link="{{link}}" size="{{size}}" shape="{{shape}}" shadow="{{shadow}}" block="{{block}}" target="{{target}}" gradient="{{gradient}}" color="{{color}}"  text_color="{{textcolor}}" icon="{{icon}}" icon_animation_type="{{iconanimationtype}}" border_width="{{border_width}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_button]',
-	'popup_title' => __( 'Button Shortcode', 'magee-shortcodes')
+	'popup_title' => __( 'Button Shortcode', 'magee-shortcodes'),
+	'name' => __('buttons-shortcode/','magee-shortocdes'),
 );
 
+/*-----------------------------------------------------------------------------------*/
+/*	Chart Bar Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['chart_bar'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-bar-chart',
+	'params' => array(
+	    'width' => array(
+		    'std' => '600',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0', 
+			'label' => __( 'Canvas Width','magee-shortcodes'),
+			'desc' => '',
+		),
+		'height' => array(
+		    'std' => '400',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0', 
+			'label' => __( 'Canvas Height','magee-shortcodes'),
+			'desc' => '',
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+        'label' => array(
+		    'std' => "'January','February','March','April','May','June'",
+			'type' => 'text',
+			'label' => __('Label For Line','magee-shortcodes') ,
+			'desc' => __( 'separate multiple tags added to chart line with commas','magee-shortcodes')
+		),  
+	),
+	'shortcode' => "[ms_chart_bar width=\"{{width}}\" height=\"{{height}}\" class=\"{{class}}\" id=\"{{id}}\" label=\"{{label}}\"]\r\n{{child_shortcode}}[/ms_chart_bar]",	
+	'popup_title' => __( 'Chart Bar Shortcode', 'magee-shortcodes'),
+	'child_shortcode' => array(
+	'params' => array(		
+	     'data' => array(
+		     'std' => '456,479,324,569,702,600',
+			 'type' => 'text',
+			 'label' => __( 'Data','magee-shortcodes'),
+			 'desc' => __( 'separate values for each set of data with commas','magee-shortcodes')
+		 ),
+		 'fillcolor' => array(
+		     'std' => '#ACC284',  
+		     'type' => 'colorpicker',
+			 'label' => __( 'Fill Color','magee-shortcodes'), 
+			 'desc' => '', 
+		 ),
+		 'fillopacity' => array(
+		      'std' => '0.4',
+			  'type' => 'select',
+			  'label' => __( 'Fill Opacity','magee-shortcodes') ,
+			  'desc' => '',
+			  'options' => $opacity 
+		 ),
+		 'strokecolor' => array(
+		     'std' => '#ACC26D',  
+		     'type' => 'colorpicker',
+			 'label' => __( 'Stroke Color','magee-shortcodes'), 
+			 'desc' => '', 
+		 ),
+		 'strokeopacity' => array(
+		      'std' => '0.4',
+			  'type' => 'select',
+			  'label' => __( 'Stroke Opacity','magee-shortcodes') ,
+			  'desc' => '',
+			  'options' => $opacity 
+		 ),
+	),
+	'shortcode' => "[ms_bar data=\"{{data}}\" fillcolor=\"{{fillcolor}}\" fillopacity=\"{{fillopacity}}\" strokecolor=\"{{strokecolor}}\" strokeopacity=\"{{strokeopacity}}\"][/ms_bar]\r\n",	
+	)
+);
+
+/*-----------------------------------------------------------------------------------*/
+/*	Chart Doughnut Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['chart_doughnut'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-circle-o-notch',
+	'params' => array(
+	    'width' => array(
+		    'std' => '600',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0', 
+			'label' => __( 'Canvas Width','magee-shortcodes'),
+			'desc' => '',
+		),
+		'height' => array(
+		    'std' => '400',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0', 
+			'label' => __( 'Canvas Height','magee-shortcodes'),
+			'desc' => '',
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'content' => array(  
+		    'std' => "[ms_doughnut value=\"20\" color=\"#878BB6\"]\r\n[ms_doughnut value=\"40\" color=\"#4ACAB4\"]\r\n[ms_doughnut value=\"10\" color=\"#FF8153\"]\r\n[ms_doughnut value=\"30\" color=\"#FFEA88\"]\r\n",
+			'type' => 'textarea',
+			'label' => __( 'Content', 'magee-shortcodes'),
+		    'desc' => '', 
+		),
+	),
+	'shortcode' => "[ms_chart_doughnut width=\"{{width}}\" height=\"{{height}}\" class=\"{{class}}\" id=\"{{id}}\"]\r\n{{content}}[/ms_chart_doughnut]",	
+	'popup_title' => __( 'Chart Doughnut Shortcode', 'magee-shortcodes'),
+);
+
+/*-----------------------------------------------------------------------------------*/
+/*	Chart Line Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['chart_line'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-line-chart',
+	'params' => array(
+	    'width' => array(
+		    'std' => '600',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0', 
+			'label' => __( 'Canvas Width','magee-shortcodes'),
+			'desc' => '',
+		),
+		'height' => array(
+		    'std' => '400',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0', 
+			'label' => __( 'Canvas Height','magee-shortcodes'),
+			'desc' => '',
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+        'label' => array(
+		    'std' => "'January','February','March','April','May','June'",
+			'type' => 'text',
+			'label' => __('Label For Line','magee-shortcodes') ,
+			'desc' => ''
+		),  
+	),
+	'shortcode' => "[ms_chart_line width=\"{{width}}\" height=\"{{height}}\" class=\"{{class}}\" id=\"{{id}}\" label=\"{{label}}\"]\r\n{{child_shortcode}}[/ms_chart_line]",	
+	'popup_title' => __( 'Chart Line Shortcode', 'magee-shortcodes'),
+	'child_shortcode' => array(
+	'params' => array(		
+	     'data' => array(
+		     'std' => '203,156,99,251,305,247',
+			 'type' => 'text',
+			 'label' => __( 'Data','magee-shortcodes'),
+			 'desc' => __( 'separate values for each set of data with commas','magee-shortcodes')
+		 ),
+		 'fillcolor' => array(
+		     'std' => '#ACC284',  
+		     'type' => 'colorpicker',
+			 'label' => __( 'Fill Color','magee-shortcodes'), 
+			 'desc' => '', 
+		 ),
+		 'fillopacity' => array(
+		      'std' => '0.4',
+			  'type' => 'select',
+			  'label' => __( 'Fill Opacity','magee-shortcodes') ,
+			  'desc' => '',
+			  'options' => $opacity 
+		 ),
+		 'strokecolor' => array(
+		     'std' => '#ACC26D',  
+		     'type' => 'colorpicker',
+			 'label' => __( 'Stroke Color','magee-shortcodes'), 
+			 'desc' => '', 
+		 ),
+		 'pointcolor' => array(
+		     'std' => '#ffffff',  
+		     'type' => 'colorpicker',
+			 'label' => __( 'Point Color','magee-shortcodes'), 
+			 'desc' => '', 
+		 ),
+		 'pointstrokecolor' => array(
+		     'std' => '#9DB86D',  
+		     'type' => 'colorpicker',
+			 'label' => __( 'Point Stroke Color','magee-shortcodes'), 
+			 'desc' => '', 
+		 ),
+	),
+	'shortcode' => "[ms_line data=\"{{data}}\" fillcolor=\"{{fillcolor}}\" fillopacity=\"{{fillopacity}}\" strokecolor=\"{{strokecolor}}\" pointcolor=\"{{pointcolor}}\" pointstrokecolor=\"{{pointstrokecolor}}\"][/ms_line]\r\n",	
+	)
+);
+	
+/*-----------------------------------------------------------------------------------*/
+/*	Chart Pie Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['chart_pie'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-pie-chart',
+	'params' => array(
+	    'width' => array(
+		    'std' => '600',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0', 
+			'label' => __( 'Canvas Width','magee-shortcodes'),
+			'desc' => ''
+		),
+		'height' => array(
+
+		    'std' => '400',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0', 
+			'label' => __( 'Canvas Height','magee-shortcodes'),
+			'desc' => ''
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'content' => array(  
+		    'std' => "[ms_pie value=\"20\" color=\"#878BB6\"]\r\n[ms_pie value=\"40\" color=\"#4ACAB4\"]\r\n[ms_pie value=\"10\" color=\"#FF8153\"]\r\n[ms_pie value=\"30\" color=\"#FFEA88\"]\r\n",
+			'type' => 'textarea',
+			'label' => __( 'Content', 'magee-shortcodes'),
+		    'desc' => '', 
+		),
+	),
+	'shortcode' => "[ms_chart_pie width=\"{{width}}\" height=\"{{height}}\" class=\"{{class}}\" id=\"{{id}}\"]\r\n{{content}}[/ms_chart_pie]",	
+	'popup_title' => __( 'Chart Pie Shortcode', 'magee-shortcodes')
+);
 
 /*******************************************************
  *	Columns Config
@@ -326,10 +743,17 @@ $magee_shortcodes['column'] = array(
 	'no_preview' => true,
 	'icon' => 'fa-columns',
 	'params' => array(
+	
+	),
+	'shortcode' => "[ms_row]\r\n{{child_shortcode}}[/ms_row]",	
+	'popup_title' => __( 'Column Shortcode', 'magee-shortcodes'),	
+	'name' => __('columns-shortcode/','magee-shortocdes'),
+	'child_shortcode' => array(
+	'params' => array(				  
 		'style' => array(
 			'type' => 'select',
-			'label' => __( 'Column Style', 'magee-shortcodes' ),
-			'desc' => __( 'Select the size of column.', 'magee-shortcodes' ),
+			'label' => __( 'Column Style', 'magee-shortcodes'),
+			'desc' => __( 'Select the size of column.', 'magee-shortcodes'),
 			'options' => array(
 				'1/1' => __('1/1', 'magee-shortcodes'),
 				'1/2' => __('1/2', 'magee-shortcodes'),
@@ -345,28 +769,268 @@ $magee_shortcodes['column'] = array(
 				'5/6' => __('5/6', 'magee-shortcodes'),
 			)
 		),
-	
 		'content' => array(
 			'std' => __('Column Content', 'magee-shortcodes'),
 			'type' => 'textarea',
-			'label' => __( ' Column Content', 'magee-shortcodes' ),
-			'desc' => __( 'Insert the column\'s content', 'magee-shortcodes' ),
-		),		
+			'label' => __( ' Column Content', 'magee-shortcodes'),
+			'desc' => __( 'Insert the column\'s content', 'magee-shortcodes'),
+		),
+		'align' => array(
+			'std' => __('left', 'magee-shortcodes'),
+			'type' => 'select',
+			'label' => __( 'Content Align', 'magee-shortcodes'),
+			'desc' => '',
+			'options' => array(
+			    'left' => __( 'Left', 'magee-shortcodes'),
+			    'center' => __( 'Center', 'magee-shortcodes'),
+				'right' => __( 'Right', 'magee-shortcodes'),
+			),
+		),				
 		'class' => array(
 			'std' => '',
 			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
 			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
 		),
 		'id' => array(
 			'std' => '',
 			'type' => 'text',
-			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
 			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
-		),			
+		),
+	),	
+	'shortcode' => "[ms_column style=\"{{style}}\" align=\"{{align}}\" class=\"{{class}}\" id=\"{{id}}\"]{{content}}[/ms_column]\r\n",
+	)
+	
+);
+
+/*-----------------------------------------------------------------------------------*/
+/*	Countdowns Config
+/*-----------------------------------------------------------------------------------*/
+
+
+$magee_shortcodes['countdowns'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-calendar',
+	'params' => array(
+		
+     
+	'type' => array(
+	      'std' => '',
+		  'type' => 'select',
+		  'label' => __( 'Type', 'magee-shortcodes' ),
+		  'desc' => __('Select type for countdown to show.', 'magee-shortcodes'),
+		  'options' => array(
+		      'normal' => __('Normal','magee-shortcodes'),
+		      'circle' => __('Circle','magee-shortcodes')
+		  )
+	 ),
+	'endtime' => array(
+			'std' => date('d-m-Y H:i',strtotime(' 1 month')),
+			'type' => 'datepicker',
+			'label' => __( 'Set end time for countdown.', 'magee-shortcodes' ),
+			'desc' => '',
+
+		),
+		'day_field_text' => array(
+		    'std' => 'Days',
+			'type' => 'text',
+			'label' => __( 'Day Field Text','magee-shortcodes' ),
+			'desc' => '',   
+		),
+		'hours_field_text' => array(
+		    'std' => 'Hours',
+			'type' => 'text',
+			'label' => __( 'Hours Field Text','magee-shortcodes' ),
+			'desc' => '',   
+		),
+		'minutes_field_text' => array(
+		    'std' => 'Minutes',
+			'type' => 'text',
+			'label' => __( 'Minutes Field Text','magee-shortcodes' ),
+			'desc' => '',   
+		),
+		'seconds_field_text' => array(
+		    'std' => 'Seconds',
+			'type' => 'text',
+			'label' => __( 'Seconds Field Text','magee-shortcodes' ),
+			'desc' => '',   
+		),
+	    'fontcolor' => array(
+		    'std' => '',
+			'type' => 'colorpicker',
+			'label' => __( 'Font Color','magee-shortcodes' ),
+			'desc' => __( 'Set font color for countdown.', 'magee-shortcodes')
+		
+		), 	
+		'backgroundcolor' => array(
+		     'std' => '',
+			 'type' => 'colorpicker',
+			 'label' => __( 'Background Color','magee-shortcodes'),
+			 'desc' => __( 'Set background color for countdown.','magee-shortcodes')
+		
+		),
+		'google_fonts' => array(
+		     'std' => '',
+			 'type' => 'more_select',
+			 'label' => __( 'Google Fonts','magee-shortcodes'),
+			 'desc' => __( 'Choose google fonts for countdown.','magee-shortcodes'),
+			 'options' => $google_fonts,
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
+		),
+		'circle_type_day_color' => array(
+		    'std' => '#1abc9c',
+			'type' => 'colorpicker',
+			'label' => __( 'Circle Type Day Color', 'magee-shortcodes' ),
+			'desc' => __( 'If type is circle,the color to be countdowns day nav.', 'magee-shortcodes' ) 
+		),
+		'circle_type_hours_color' => array(
+		    'std' => '#2980b9',
+			'type' => 'colorpicker',
+			'label' => __( 'Circle Type Hours Color', 'magee-shortcodes' ),
+			'desc' => __( 'If type is circle,the color to be countdowns hours nav.', 'magee-shortcodes' ) 
+		),
+		'circle_type_minutes_color' => array(
+		    'std' => '#8e44ad',
+			'type' => 'colorpicker',
+			'label' => __( 'Circle Type Minutes Color', 'magee-shortcodes' ),
+			'desc' => __( 'If type is circle,the color to be countdowns minutes nav.', 'magee-shortcodes' ) 
+		),
+		'circle_type_seconds_color' => array(
+		    'std' => '#f39c12',
+			'type' => 'colorpicker',
+			'label' => __( 'Circle Type Seconds Color', 'magee-shortcodes' ),
+			'desc' => __( 'If type is circle,the color to be countdowns seconds nav.', 'magee-shortcodes' ) 
+		),
+		
 	),
-	'shortcode' => '[ms_column style="{{style}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_column]',
-	'popup_title' => __( 'Column Shortcode', 'magee-shortcodes')
+	'shortcode' => '[ms_countdowns type="{{type}}" nowtime="'.time().'" endtime="{{endtime}}" day_field_text="{{day_field_text}}" hours_field_text="{{hours_field_text}}" minutes_field_text="{{minutes_field_text}}" seconds_field_text="{{seconds_field_text}}" fontcolor="{{fontcolor}}" backgroundcolor="{{backgroundcolor}}" google_fonts="{{google_fonts}}" class="{{class}}" id="{{id}}" circle_type_day_color="{{circle_type_day_color}}" circle_type_hours_color="{{circle_type_hours_color}}" circle_type_minutes_color="{{circle_type_minutes_color}}" circle_type_seconds_color="{{circle_type_seconds_color}}"]',
+	'popup_title' => __( 'Countdowns Shortcode', 'magee-shortcodes' ),
+	'name' => __('countdowns-shortcode/','magee-shortocdes'),
+);
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	Counter Box Config
+/*-----------------------------------------------------------------------------------*/
+
+
+$magee_shortcodes['counter'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-calculator',
+	'params' => array(
+		
+	),
+	'shortcode' => "[ms_row]\r\n{{child_shortcode}}[/ms_row]",
+	'child_shortcode' => array(
+		'params' => array(	
+		    'box_width' => array(
+			       'std' => '1/4',
+			       'type' => 'select',
+				   'label' => __( 'Box Width', 'magee-shortcodes' ),
+				   'desc' => __( 'Select size of counter box', 'magee-shortcodes' ),
+				   'options' => array(
+						'1/1' => __('1/1', 'magee-shortcodes'),
+						'1/2' => __('1/2', 'magee-shortcodes'),
+						'1/3' => __('1/3', 'magee-shortcodes'),
+						'1/4' => __('1/4', 'magee-shortcodes'),
+						'1/5' => __('1/5', 'magee-shortcodes'),
+						'1/6' => __('1/6', 'magee-shortcodes'),
+						'2/3' => __('2/3', 'magee-shortcodes'),
+						'2/5' => __('2/5', 'magee-shortcodes'),
+						'3/4' => __('3/4', 'magee-shortcodes'),
+						'3/5' => __('3/5', 'magee-shortcodes'),
+						'4/5' => __('4/5', 'magee-shortcodes'),
+						'5/6' => __('5/6', 'magee-shortcodes'),
+					)
+			   ),	
+		    'top_icon' => array(
+					'type' => 'iconpicker',
+					'label' => __( 'Top Icon', 'magee-shortcodes' ),
+					'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
+					'options' => $icons
+				),
+			'top_icon_color' => array(
+					'std' => '',
+					'type' => 'colorpicker',
+					'label' => __( 'Top Icon Color', 'magee-shortcodes'),  
+					'desc' => __( 'Set color for top icon.','magee-shortcodes') 
+			
+				),
+			'middle_left_icon' => array(
+					'type' => 'iconpicker',
+					'label' => __( 'Middle Left Icon', 'magee-shortcodes' ),
+					'desc' =>  __( 'Insert text before the number.', 'magee-shortcodes' ),
+					'options' => $icons
+				),
+				
+				'middle_left_text' => array(
+					'std' => '',
+					'type' => 'text',
+					'label' => __( 'Middle Left Text', 'magee-shortcodes' ),
+					'desc' => __( 'Left text of counter num', 'magee-shortcodes' ),
+				),
+				
+				'counter_num' => array(
+					'std' => '100',
+					'type' => 'number',
+					'max' => '200',
+					'min' => '0',
+					'label' => __( 'Counter Num', 'magee-shortcodes' ),
+					'desc' => __( 'The animated counter number.', 'magee-shortcodes' ),
+				),
+				'middle_right_text' => array(
+					'std' => '',
+					'type' => 'text',
+					'label' => __( 'Middle Right Text', 'magee-shortcodes' ),
+					'desc' =>  __( 'Insert text after the number.', 'magee-shortcodes' ),
+				),
+				
+				'bottom_title' => array(
+					'std' => '',
+					'type' => 'text',
+					'label' => __( 'Bottom Title', 'magee-shortcodes' ),
+					'desc' => __( 'Insert Title for counter.', 'magee-shortcodes' ),
+				),
+				
+				'border' => array(
+					'type' => 'choose',
+					'label' => __( 'Display Border', 'magee-shortcodes' ),
+					'desc' =>  __( 'Choose to display border for counter.', 'magee-shortcodes' ),
+					'options' => array( 
+									   'no' => __('No', 'magee-shortcodes' ),  
+									   'yes' => __('Yes', 'magee-shortcodes' ),  
+									   )
+									   
+				),
+			'class' => array(
+				'std' => '',
+				'type' => 'text',
+				'label' => __( 'CSS Class', 'magee-shortcodes' ),
+				'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
+			),
+			'id' => array(
+				'std' => '',
+				'type' => 'text',
+				'label' => __( 'CSS ID', 'magee-shortcodes' ),
+				'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
+			)
+		),
+		'shortcode' => "[ms_counter box_width=\"{{box_width}}\" top_icon=\"{{top_icon}}\" top_icon_color=\"{{top_icon_color}}\" middle_left_icon=\"{{middle_left_icon}}\" counter_num=\"{{counter_num}}\"  middle_left_text=\"{{middle_left_text}}\" middle_right_text=\"{{middle_right_text}}\" bottom_title=\"{{bottom_title}}\" border=\"{{border}}\" class=\"{{class}}\" id=\"{{id}}\"]\r\n",
+	),	
+	'popup_title' => __( 'Counter Shortcode', 'magee-shortcodes' ),
+	'name' => __('counter-box-shortcode/','magee-shortocdes'),
 );
 
 
@@ -388,9 +1052,35 @@ $magee_shortcodes['custom_box'] = array(
 				'label' => __( 'Background Image', 'magee-shortcodes' ),
 				'desc' => __( 'Upload an image to display in background of custom box.', 'magee-shortcodes' ),
 			), 
+		'fixed_background' => array(
+		        'type' => 'choose',
+			    'std' => 'yes',
+				'label' => __( 'Fixed Background', 'magee-shortcodes' ),
+				'desc' => __( 'Choose to fixed Background Image', 'magee-shortcodes' ),
+				'options' => $choices,
+		   ),	
+		'background_position' => array(
+		    'type' => 'select',    
+		    'std' => 'top left',
+			'label' => __( 'Background Position' , 'magee-shortcodes'), 
+		    'desc' => __( 'Choose the postion of the background image' , 'magee-shortcodes'),
+			'options' => array(
+							  'top left' => __( 'Top Left', 'magee-shortcodes' ),
+							  'top center' => __( 'Top Center', 'magee-shortcodes' ),
+							  'top right' => __( 'Top Right', 'magee-shortcodes' ),
+							  'center left' => __( 'Center Left', 'magee-shortcodes' ),
+							  'center center' => __( 'Center Center', 'magee-shortcodes' ),
+							  'center right' => __( 'Center Right', 'magee-shortcodes' ),
+							  'bottom left' => __( 'Bottom Left', 'magee-shortcodes' ),
+							  'bottom center' => __( 'Bottom Center', 'magee-shortcodes' ),
+							  'bottom right' => __( 'Bottom Right', 'magee-shortcodes' )
+							   )
+		   ),	
 		'padding' => array(
-			'std' => '30px',
-			'type' => 'text',
+			'std' => '30',
+			'type' => 'number',
+			'min' => '0',
+			'max' => '100',
 			'label' => __( 'Padding', 'magee-shortcodes' ),
 			'desc' => __( 'Content Padding. eg:30px', 'magee-shortcodes')
 		),
@@ -407,150 +1097,92 @@ $magee_shortcodes['custom_box'] = array(
 			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
 		),			
 	),
-	'shortcode' => '[ms_custom_box  backgroundimage="{{backgroundimage}}" padding="{{padding}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_custom_box]',
-	'popup_title' => __( ' Custom Box Shortcode', 'magee-shortcodes')
+	'shortcode' => '[ms_custom_box  backgroundimage="{{backgroundimage}}" fixed_background="{{fixed_background}}" background_position="{{background_position}}" padding="{{padding}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_custom_box]',
+	'popup_title' => __( ' Custom Box Shortcode', 'magee-shortcodes'),
+	'name' => __('custom-box-shortcode/','magee-shortocdes'),
 );
 
-
 /*-----------------------------------------------------------------------------------*/
-/*	Countdowns Config
+/*	Dailymotion Config
 /*-----------------------------------------------------------------------------------*/
 
-
-$magee_shortcodes['countdowns'] = array(
-	'no_preview' => true,
-	'icon' => 'fa-calendar',
-	'params' => array(
-		
-     
-	'endtime' => array(
-			'std' => date('Y-m-d H:i:s',strtotime(' 1 month')),
+$magee_shortcodes['dailymotion'] = array(
+    'no_preview' => true,
+	'icon' => 'fa-video-camera',
+    'params' => array(
+	
+		'link' => array(
+			'std' => '',
 			'type' => 'text',
-			'label' => __( 'Set end time for countdown.', 'magee-shortcodes' ),
-			'desc' => '',
-
+			'label' => __( 'Dailymotion URL', 'magee-shortcodes' ),
+			'desc' => __( 'Add the URL the video will link to, ex: http://example.com.', 'magee-shortcodes' ),
 		),
-	    'fontcolor' => array(
+		'width' => array(
+		    'std' => '100%',
+			'type' => 'text',
+			'label' => __('Width','magee-shortcodes'),
+			'desc' => __('In pixels (px), eg:1px.','magee-shortcodes'),
+		),
+	    'height' => array(
+		    'std' => '100%',
+			'type' => 'text',
+			'label' => __('Height','magee-shortcodes'),
+			'desc' => __('In pixels (px), eg:1px.','magee-shortcodes'), 
+		),
+		'mute' => array( 
+		    'std' => '',  
+		    'type' => 'choose',
+			'label' => __('Mute Video' ,'magee-shortcodes'),
+			'desc' => __('Choose to mute the video.','magee-shortcodes'), 
+			'options' => $reverse_choices	 
+		),
+	    'autoplay' =>array(
 		    'std' => '',
-			'type' => 'colorpicker',
-			'label' => __( 'Font Color','magee-shortcodes' ),
-			'desc' => __( 'Set font color for countdown.', 'magee-shortcodes')
-		
-		), 	
-		'backgroundcolor' => array(
-		     'std' => '',
-			 'type' => 'colorpicker',
-			 'label' => __( 'Background Color','magee-shortcodes'),
-			 'desc' => __( 'Set background color for countdown.','magee-shortcodes')
-		
+		    'type' => 'choose',
+			'label' => __('Autoplay Video','magee-shortcodes'),
+			'desc' => __('Choose to autoplay the video.','magee-shortcodes'), 
+			'options' => array(
+			    'yes' => __('Yes','magee-shortcodes'), 
+			    'no' => __('No','magee-shortcodes'),
+			)
 		),
-		'class' => array(
-			'std' => '',
+		'loop' =>array(
+		    'std' => '',
+		    'type' => 'choose',
+			'label' => __('Loop Video','magee-shortcodes'),
+			'desc' => __('Choose to loop the video.','magee-shortcodes'), 
+			'options' => array(
+			    'yes' => __('Yes','magee-shortcodes'), 
+			    'no' => __('No','magee-shortcodes')
+			)
+		),
+		'controls' =>array(
+		    'std' => '',
+		    'type' => 'choose',
+			'label' => __('Show Controls','magee-shortcodes'),
+			'desc' => __('Choose to display controls for the video player.','magee-shortcodes'), 
+			'options' => array(
+			    'yes' => __('Yes','magee-shortcodes'), 
+			    'no' => __('No','magee-shortcodes')
+			)
+		),
+	    'class' =>array(
+		    'std' => '',
 			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
-		),
-		'id' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS ID', 'magee-shortcodes' ),
-			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
-		)
-		
-		
-	),
-	'shortcode' => '[ms_countdowns endtime="{{endtime}}" fontcolor="{{fontcolor}}" backgroundcolor="{{backgroundcolor}}" class="{{class}}" id="{{id}}"]',
-	'popup_title' => __( 'Countdowns Shortcode', 'magee-shortcodes' )
-);
-
-
-/*-----------------------------------------------------------------------------------*/
-/*	Counter Box Config
-/*-----------------------------------------------------------------------------------*/
-
-
-$magee_shortcodes['counter'] = array(
-	'no_preview' => true,
-	'icon' => 'fa-calculator',
-	'params' => array(
-		
-
-	'top_icon' => array(
-			'type' => 'iconpicker',
-			'label' => __( 'Top Icon', 'magee-shortcodes' ),
-			'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
-			'options' => $icons
-		),
-	'top_icon_color' => array(
-	        'std' => '',
-	        'type' => 'colorpicker',
-			'label' => __( 'Top Icon Color', 'magee-shortcodes'),  
-			'desc' => __( 'Set color for top icon.','magee-shortcodes') 
-	
-	    ),
-	'left_icon' => array(
-			'type' => 'iconpicker',
-			'label' => __( 'Left Icon', 'magee-shortcodes' ),
-			'desc' =>  __( 'Insert text before the number.', 'magee-shortcodes' ),
-			'options' => $icons
-		),
-		
-		'left_text' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Left Text', 'magee-shortcodes' ),
-			'desc' => __( 'Left text of counter num', 'magee-shortcodes' ),
-		),
-		
-		'counter_num' => array(
-			'std' => '100',
-			'type' => 'text',
-			'label' => __( 'Counter Num', 'magee-shortcodes' ),
-			'desc' => __( 'The animated counter number.', 'magee-shortcodes' ),
-		),
-		'right_text' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Right Text', 'magee-shortcodes' ),
-			'desc' =>  __( 'Insert text after the number.', 'magee-shortcodes' ),
-		),
-		
-		'title' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Title', 'magee-shortcodes' ),
-			'desc' => __( 'Insert Title for counter.', 'magee-shortcodes' ),
-		),
-		
-		'border' => array(
-			'type' => 'select',
-			'label' => __( 'Display Border', 'magee-shortcodes' ),
-			'desc' =>  __( 'Choose to display border for counter.', 'magee-shortcodes' ),
-			'options' => array( 
-							   '0' => __('No', 'magee-shortcodes' ),  
-							   '1' => __('Yes', 'magee-shortcodes' ),  
-							   )
-							   
-		),
-	
-		'class' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
-		),
-		'id' => array(
+			'label' => __('CSS Class','magee-shortcodes'),
+			'desc' => __('Add a class to the wrapping HTML element.','magee-shortcodes') 
+		),   
+	    'id' => array(
 			'std' => '',
 			'type' => 'text',
 			'label' => __( 'CSS ID', 'magee-shortcodes' ),
-			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
-		)
-		
-		
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
 	),
-	'shortcode' => '[ms_counter top_icon="{{top_icon}}" top_icon_color="{{top_icon_color}}" left_icon="{{left_icon}}" counter_num="{{counter_num}}"  left_text="{{left_text}}" right_text="{{right_text}}" title="{{title}}" border="{{border}}" class="{{class}}" id="{{id}}"]',
-	'popup_title' => __( 'Counter Shortcode', 'magee-shortcodes' )
-);
+	'shortcode' => '[ms_dailymotion link="{{link}}"  width="{{width}}" height="{{height}}" mute="{{mute}}" autoplay="{{autoplay}}" loop="{{loop}}" controls="{{controls}}" class="{{class}}" id="{{id}}"][/ms_dailymotion]',   
+    'popup_title' => __( 'Dailymotion Shortcode', 'magee-shortcodes' ),
+	'name' => __('dailymotion-shortcode/','magee-shortocdes'),
+);       
 
 
 /*******************************************************
@@ -594,25 +1226,32 @@ $magee_shortcodes['divider'] = array(
 			)
 		),
 		'margin_top' => array(
-			'std' => '30px',
-			'type' => 'text',
+			'std' => '30',
+			'type' => 'number',
+			'min' => '0',
+			'max' => '100',
 			'label' => __( 'Margin Top', 'magee-shortcodes' ),
 			'desc' => __( 'Spacing above the separator. In pixels.', 'magee-shortcodes' ),
 		),
 		'margin_bottom' => array(
-			'std' => '30px',
-			'type' => 'text',
+			'std' => '30',
+			'type' => 'number',
+			'max' => '100',
+			'min' => '0',
 			'label' => __( 'Margin Bottom', 'magee-shortcodes' ),
 			'desc' => __( 'Spacing under the separator. In pixels.', 'magee-shortcodes' ),
 		),
 		
 		'border_size' => array(
-				'std' => '',
-				'type' => 'text',
+				'std' => '5',
+				'type' => 'number',
+				'max' => '50',
+				'min' => '0',
 				'label' => __( 'Border Size', 'magee-shortcodes' ),
 				'desc' => __( 'In pixels (px), eg: 1px. ', 'magee-shortcodes' ),
 		 ),
 		'border_color' => array(
+		        'std' => '#f2f2f2',
 				'type' => 'colorpicker',
 				'label' => __( 'Border Color', 'magee-shortcodes' ),
 				'desc' => __( 'Set the border color.', 'magee-shortcodes' )
@@ -638,10 +1277,73 @@ $magee_shortcodes['divider'] = array(
 			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
 		),			
 	),
-	'shortcode' => '[ms_divider style="{{style}}" align="{{align}}"  width="{{width}}"  margin_top="{{margin_top}}" margin_bottom="{{margin_bottom}}" border_size="{{border_size}}" border_color="{{border_color}}" icon="{{icon}}" class="{{class}}" id="{{id}}"]',
-	'popup_title' => __( 'Divider Shortcode', 'magee-shortcodes')
+	'shortcode' => '[ms_divider style="{{style}}" align="{{align}}"  width="{{width}}"  margin_top="{{margin_top}}" margin_bottom="{{margin_bottom}}" border_size="{{border_size}}" border_color="{{border_color}}" icon="{{icon}}" class="{{class}}" id="{{id}}"][/ms_divider]',
+	'popup_title' => __( 'Divider Shortcode', 'magee-shortcodes'),
+	'name' => __('divider-shortcode/','magee-shortocdes'),
 );
 
+/*-----------------------------------------------------------------------------------*/
+/*	Document Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['document'] = array(
+    'no_preview' => true,
+	'icon' => 'fa-file-text-o',
+	'params' => array(
+	    'url' => array(
+		     'std' => '', 
+		     'type' => 'link',
+			 'label' => __( 'Doc URL','magee-shortcodes'), 
+		     'desc' => __( 'Upload document to display. Supported formats: doc, xls, pdf etc.','magee-shortcodes')
+		),
+		'width' => array(
+			'std' => '300',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0',
+			'label' => __( 'Width', 'magee-shortcodes'),
+			'desc' => __( 'Set width for doc.', 'magee-shortcodes')
+		),
+		'height' => array(
+			'std' => '300',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0',
+			'label' => __( 'Height', 'magee-shortcodes'),
+			'desc' => __( 'Set height for doc.', 'magee-shortcodes')
+		),
+		'responsive' => array(
+			'type' => 'choose',
+			'label' => __( 'Responsive','magee-shortcodes'),
+		    'desc' => __( 'Choose to responsive or not', 'magee-shortcodes'),
+			'options' => $choices
+		),
+		'viewer' => array(
+		    'type' => 'select',
+			'label' => __('Viewer','magee-shortcodes'),
+		    'desc' => __( 'Choose viewer for document.','magee-shortocodes'),
+			'options' => array(
+			    'google' => __( 'Google','magee-shortcodes'),
+			    'microsoft' => __( 'Microsoft','magee-shortcodes'),
+			)  
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+	),
+	'shortcode' => '[ms_document url="{{url}}" width="{{width}}" height="{{height}}" responsive="{{responsive}}" viewer="{{viewer}}" class="{{class}}" id="{{id}}"][/ms_document]',
+    'popup_title' => __( 'Document Shortcode','magee-shortcodes'),
+	'name' => __('document-shortcode/','magee-shortocdes'),
+);	
 
 /*-----------------------------------------------------------------------------------*/
 /*	Dropcap Config
@@ -663,14 +1365,16 @@ $magee_shortcodes['dropcap'] = array(
 			'desc' => __( 'Controls the color of the dropcap letter. Leave blank for theme option selection.', 'magee ')
 		),		
 		'boxed' => array(
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Boxed Dropcap', 'magee-shortcodes' ),
 			'desc' => __( 'Choose to get a boxed dropcap.', 'magee-shortcodes' ),
 			'options' => $reverse_choices
 		),
 		'boxedradius' => array(
-			'std' => '8px',
-			'type' => 'text',
+			'std' => '8',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
 			'label' => __( 'Box Radius', 'magee-shortcodes' ),
 			'desc' => __('Choose the radius of the boxed dropcap. In pixels (px), eg: 1px', 'magee-shortcodes')
 		),
@@ -688,7 +1392,186 @@ $magee_shortcodes['dropcap'] = array(
 		),
 	),
 	'shortcode' => '[ms_dropcap color="{{color}}" boxed="{{boxed}}" boxed_radius="{{boxedradius}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_dropcap]',
-	'popup_title' => __( 'Dropcap Shortcode', 'magee-shortcodes' )
+	'popup_title' => __( 'Dropcap Shortcode', 'magee-shortcodes' ),
+	'name' => __('dropcap-shortcode/','magee-shortocdes'),
+);
+
+/*-----------------------------------------------------------------------------------*/
+/*	Dummy_image Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['dummy_image'] = array(
+    'no_preview' => true,
+	'icon' => 'fa-picture-o',
+	'params' => array(
+	    'style' =>array(
+		    'type' => 'select',
+			'label' => __( 'Style','magee-shortcodes'),
+		    'desc' => __( 'Select style for dummy image','magee-shortcodes'),
+			'options' => array(
+			    'any'       => __( 'Any', 'magee-shortcodes' ),
+				'transport' => __( 'Transport', 'magee-shortcodes' ),
+				'technics'  => __( 'Technics', 'magee-shortcodes' ),
+				'people'    => __( 'People', 'magee-shortcodes' ),
+				'sports'    => __( 'Sports', 'magee-shortcodes' ),
+				'cats'      => __( 'Cats', 'magee-shortcodes' ),
+				'city'      => __( 'City', 'magee-shortcodes' ),
+				'food'      => __( 'Food', 'magee-shortcodes' ),
+				'nightlife' => __( 'Night life', 'magee-shortcodes' ),
+				'fashion'   => __( 'Fashion', 'magee-shortcodes' ),
+				'animals'   => __( 'Animals', 'magee-shortcodes' ),
+				'business'  => __( 'Business', 'magee-shortcodes' ),
+				'nature'    => __( 'Nature', 'magee-shortcodes' ),
+				'abstract'  => __( 'Abstract', 'magee-shortcodes' ),
+			)
+		), 
+		'width' => array(
+			'std' => '500',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0' ,
+			'label' => __( 'Width', 'magee-shortcodes'),
+			'desc' => __( 'Set width for image.', 'magee-shortcodes')
+		),
+		'height' => array(
+			'std' => '300',
+			'type' => 'number',
+			'max' => '1000',
+			'min' => '0',
+			'label' => __( 'Height', 'magee-shortcodes'),
+			'desc' => __( 'Set height for image.', 'magee-shortcodes')
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+	
+	),
+	'shortcode' => '[ms_dummy_image style="{{style}}" width="{{width}}" height="{{height}}" class="{{class}}" id="{{id}}"][/ms_dummy_image]' ,
+    'popup_title' => __( 'Dummy Image Shortcode','magee-shortcodes'),
+	'name' => __('dummy-image-shortcode/','magee-shortocdes'),
+);
+	
+
+/*-----------------------------------------------------------------------------------*/
+/*	Dummy_text Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['dummy_text'] = array(
+    'no_preview' => true,
+	'icon' => 'fa-text-height',
+	'params' => array(
+	    'style' =>array(
+		    'type' => 'select',
+			'label' => __( 'Style','magee-shortcodes'),
+		    'desc' => __( 'Select text type.','magee-shortcodes'),
+			'options' => array(
+			    'paras' => __( 'Paragraphs', 'magee-shortcodes' ),
+				'words' => __( 'Words', 'magee-shortcodes' ),
+				'bytes' => __( 'Bytes', 'magee-shortcodes' ),
+			)
+		), 
+		'amount' => array(
+		    'std' => '3',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Amount','magee-shortcodes'),
+			'desc' => __( 'Choose how many paragraphs or words to show','magee-shortcodes')
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+	),
+	'shortcode' => '[ms_dummy_text style="{{style}}" amount="{{amount}}" class="{{class}}" id="{{id}}"][/ms_dummy_text]' ,
+    'popup_title' => __( 'Dummy Text Shortcode','magee-shortcodes'),
+	'name' => __('dummy-text-shortcode/','magee-shortocdes'),
+);
+	
+
+/*-----------------------------------------------------------------------------------*/
+/*	Expand Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['expand'] = array(
+    'no_preview' => true,
+	'icon' => 'fa-sort-amount-asc',
+	'params' => array(
+	    'more_icon' => array(
+			'type' => 'iconpicker',
+			'label' => __('More Icon' ,'magee-shortcodes'),
+			'desc' => __('Set icon for expand title. Click an icon to select, click again to deselect.','magee-shortcodes'),
+			'options' => $icons
+		),
+		'more_icon_color' => array(
+		    'std' => '', 
+			'type' => 'colorpicker',
+			'label' => __('More Icon Color' ,'magee-shortcodes'),
+			'desc' => __('Set color for more icon.','magee-shortcodes'),			
+		),
+	    'more_text' => array(
+		    'std' => '',
+			'type' => 'text',
+			'label' => __( 'More Text', 'magee-shortcodes'),
+			'desc' => __( 'Set text for expand title.', 'magee-shortcodes'),
+		),
+		'less_icon' => array(
+			'type' => 'iconpicker',
+			'label' => __('Less Icon' ,'magee-shortcodes'),
+			'desc' => __('Set icon for fold title. Click an icon to select, click again to deselect.','magee-shortcodes'),
+			'options' => $icons
+		),
+		'less_icon_color' => array(
+		    'std' => '', 
+			'type' => 'colorpicker',
+			'label' => __('Less Icon Color' ,'magee-shortcodes'),
+			'desc' => __('Set color for less icon.','magee-shortcodes'),			
+		),
+	    'less_text' => array(
+		    'std' => '',
+			'type' => 'text',
+			'label' => __( 'Less Text', 'magee-shortcodes'),
+			'desc' => __( 'Set text for fold title. ', 'magee-shortcodes'),
+		), 
+	    'content' => array(
+			'std' => '',
+			'type' => 'textarea',
+			'label' => __( 'Content', 'magee-shortcodes'),
+			'desc' => __( 'This text block can be expanded.', 'magee-shortcodes')
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+	),
+    'shortcode' => '[ms_expand class="{{class}}" id="{{id}}" more_icon="{{more_icon}}" more_icon_color="{{more_icon_color}}" more_text="{{more_text}}" less_icon="{{less_icon}}" less_icon_color="{{less_icon_color}}" less_text="{{less_text}}"]{{content}}[/ms_expand]',
+	'popup_title' => __( 'Expand Shortcode', 'magee-shortcodes'),
+	'name' => __('expand-shortcode/','magee-shortocdes'),
 );
 
 /*-----------------------------------------------------------------------------------*/
@@ -719,8 +1602,10 @@ $magee_shortcodes['featurebox'] = array(
 		 ),
 		
 		'title_font_size' => array(
-				'std' => '18px',
-				'type' => 'text',
+				'std' => '18',
+				'type' => 'number',
+				'max' => '50',
+				'min' => '0',
 				'label' => __( 'Title Font Size', 'magee-shortcodes' ),
 				'desc' => __( 'Set font size for title of feature box.', 'magee-shortcodes' ),
 		 ),
@@ -736,14 +1621,16 @@ $magee_shortcodes['featurebox'] = array(
 			'options' => $animation_type
 		),
 		'icon' => array(
-			'type' => 'iconpicker',
+			'type' => 'icon',
 			'label' => __( 'Icon', 'magee-shortcodes' ),
 			'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
 			'options' => $icons
 			),
 		 'icon_size' => array(
-				'std' => '46px',
-				'type' => 'text',
+				'std' => '46',
+				'type' => 'number',
+				'max' => '100',
+				'min' => '0',
 				'label' => __( 'Icon Size', 'magee-shortcodes' ),
 				'desc' =>  __( 'Set size for icon of feature box.', 'magee-shortcodes' ),
 		 ),
@@ -758,8 +1645,10 @@ $magee_shortcodes['featurebox'] = array(
 			'desc' => __( 'Set border color for icon of feature box.', 'magee-shortcodes' ),
 			),
 		'icon_border_width' => array(
-				'std' => '',
-				'type' => 'text',
+				'std' => '0',
+				'type' => 'number',
+				'max' => '50',
+				'min' => '0',
 				'label' => __( 'Icon Border Width', 'magee-shortcodes' ),
 				'desc' =>  __( 'Set border width for icon of feature box.', 'magee-shortcodes' ),
 		 ),
@@ -778,7 +1667,7 @@ $magee_shortcodes['featurebox'] = array(
 			
 		'spinning_icon' => array(
 			'std' => '',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Spinning Icon', 'magee-shortcodes' ),
 			'desc' => __( 'Choose to spin the icon of feature box.', 'magee-shortcodes' ),
 			'options' => $reverse_choices 
@@ -792,7 +1681,7 @@ $magee_shortcodes['featurebox'] = array(
 		 
 		'alignment' => array(
 			'std' => '',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Icon Alignment', 'magee-shortcodes' ),
 			'desc' => __( 'Set alignment for style2/style3 of feature box.', 'magee-shortcodes' ),
 			'options' => array(
@@ -803,7 +1692,7 @@ $magee_shortcodes['featurebox'] = array(
 		),	
 		'icon_circle' => array(
 			'std' => '',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Icon Circle', 'magee-shortcodes' ),
 			'desc' => __( 'Choose to display icon of feature box in circle.', 'magee-shortcodes' ),
 			'options' => $reverse_choices 
@@ -816,14 +1705,18 @@ $magee_shortcodes['featurebox'] = array(
 				'desc' => __( 'To upload your own icon image, remember to deselect icon above.', 'magee-shortcodes' ),
 		 ),
 		'icon_image_width' => array(
-				'std' => '',
-				'type' => 'text',
+				'std' => '0',
+				'type' => 'number',
+				'max' => '1000',
+				'min' => '0',
 				'label' => __( 'Icon Image Width', 'magee-shortcodes' ),
 				'desc' => __( 'If using custom icon image, set icon image width. In percentage of pixels (px), eg: 1px.', 'magee-shortcodes' ),
 		 ),
 		'icon_image_height' => array(
 				'std' => '',
-				'type' => 'text',
+				'type' => 'number',
+				'max' => '1000',
+				'min' => '0',
 				'label' => __( 'Icon Image Height', 'magee-shortcodes' ),
 				'desc' => __( 'If using custom icon image, set icon image height. In percentage of pixels (px), eg: 1px.', 'magee-shortcodes' ),
 		 ),
@@ -837,7 +1730,7 @@ $magee_shortcodes['featurebox'] = array(
 		),	
 		'link_target' => array(
 			'std' => '',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Link Target', 'magee-shortcodes' ),
 			'desc' => __( '_self = open in same window _blank = open in new window.', 'magee-shortcodes' ),
 			'options' => array(
@@ -888,11 +1781,9 @@ $magee_shortcodes['featurebox'] = array(
 		),
 	),
 	'shortcode' => '[ms_featurebox style="{{style}}" title_font_size="{{title_font_size}}" title_color="{{title_color}}" icon_circle="{{icon_circle}}" icon_size="{{icon_size}}" title="{{title}}" icon="{{icon}}" alignment="{{alignment}}" icon_animation_type="{{icon_animation_type}}" icon_color="{{icon_color}}" icon_background_color="{{icon_background_color}}" icon_border_color="{{icon_border_color}}" icon_border_width="{{icon_border_width}}"  flip_icon="{{flip_icon}}" spinning_icon="{{spinning_icon}}" icon_image="{{icon_image}}" icon_image_width="{{icon_image_width}}" icon_image_height="{{icon_image_height}}" link_url="{{link_url}}" link_target="{{link_target}}" link_text="{{link_text}}" link_color="{{link_color}}" content_color="{{content_color}}" content_box_background_color="{{content_box_background_color}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_featurebox]',
-	'popup_title' => __( 'Feature Box Shortcode', 'magee-shortcodes')
+	'popup_title' => __( 'Feature Box Shortcode', 'magee-shortcodes'),
+	'name' => __('feature-box-shortcode/','magee-shortcodes'),
 );
-
-
-
 
 
 /*******************************************************
@@ -908,13 +1799,23 @@ $magee_shortcodes['flip_box'] = array(
 			'label' => __( 'Direction', 'magee-shortcodes' ),
 			'desc' => __( 'Select flip directioon.', 'magee-shortcodes' ),
 			'options' => array(
-				'horizontal' => __('horizontal', 'magee-shortcodes'),
-				'vertical' => __('vertical', 'magee-shortcodes'),
+				'horizontal' => __('Horizontal', 'magee-shortcodes'),
+				'vertical' => __('Vertical', 'magee-shortcodes'),
+				'flip-left' => __('Flip Left', 'magee-shortcodes'),
+				'flip-right' => __('Flip Right', 'magee-shortcodes'),
+				'flip-top' => __('Flip Top', 'magee-shortcodes'),
+				'flip-bottom' => __('Flip Bottom', 'magee-shortcodes'),
+				'slide-left' => __('Slide Left', 'magee-shortcodes'),
+				'slide-right' => __('Slide Right', 'magee-shortcodes'),
+				'slide-top' => __('Slide Top', 'magee-shortcodes'),
+				'slide-bottom' => __('Slide Bottom', 'magee-shortcodes'),
 			)			
 		),
 		'front_paddings' => array(
-				'std' => '15px',
-				'type' => 'text',
+				'std' => '15',
+				'type' => 'number',
+				'max' => '100',
+				'min' => '0',
 				'label' => __( 'Front Container Paddings', 'magee-shortcodes' ),
 				'desc' => __( 'Set paddings for front container of flip box.', 'magee-shortcodes' ),
 			),
@@ -924,11 +1825,12 @@ $magee_shortcodes['flip_box'] = array(
 			'label' => __( 'Front Background Color', 'magee-shortcodes' ),
 			'desc' => __( 'Set background color for front container of flip box.', 'magee-shortcodes')
 		),
-		/*'front_color' => array(
+		'front_color' => array(
 			'type' => 'colorpicker',
+			'std' =>'#ffffff',
 			'label' => __( 'Front Font Color', 'magee-shortcodes' ),
 			'desc' => __( 'Custom setting only. Set the background color for custom alert boxes.', 'magee-shortcodes')
-		),*/
+		),
 		'front_content' => array(
 			'std' => __('Front Content', 'magee-shortcodes'),
 			'type' => 'textarea',
@@ -936,23 +1838,25 @@ $magee_shortcodes['flip_box'] = array(
 			'desc' => __( 'Insert content for front container of flip box.', 'magee-shortcodes' ),
 		),
 		'back_paddings' => array(
-				'std' => '15px',
-				'type' => 'text',
+				'std' => '15',
+				'type' => 'number',
+				'max' => '100',
+				'min' => '0',
 				'label' => __( 'Back Container Paddings', 'magee-shortcodes' ),
 				'desc' => __( 'Set paddings for back container of flip box.', 'magee-shortcodes' ),
 			),
 		'back_background' => array(
 			'std'=>'',
 			'type' => 'colorpicker',
-			'label' => __( 'Front Background Color', 'magee-shortcodes' ),
+			'label' => __( 'Back Background Color', 'magee-shortcodes' ),
 			'desc' => __( 'Set background color for back container of flip box.', 'magee-shortcodes')
 		),
-		/*'back_color' => array(
+		'back_color' => array(
 			'std' =>'#ffffff',
 			'type' => 'colorpicker',
 			'label' => __( 'Back Font Color', 'magee-shortcodes' ),
 			'desc' => __( 'Custom setting only. Set the background color for custom alert boxes.', 'magee-shortcodes')
-		),*/
+		),
 		'back_content' => array(
 			'std' => __('Back Content', 'magee-shortcodes'),
 			'type' => 'textarea',
@@ -973,57 +1877,13 @@ $magee_shortcodes['flip_box'] = array(
 			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
 		),			
 	),
-	'shortcode' => '[ms_flip_box direction="{{direction}}" front_paddings="{{front_paddings}}"  front_background="{{front_background}}" back_paddings="{{back_paddings}}" back_background="{{back_background}}" class="{{class}}" id="{{id}}"]{{front_content}}|||{{back_content}}[/ms_flip_box]',
-	'popup_title' => __( 'Flip Box Shortcode', 'magee-shortcodes')
+	'shortcode' => '[ms_flip_box direction="{{direction}}" front_paddings="{{front_paddings}}"  front_background="{{front_background}}" front_color="{{front_color}}" back_paddings="{{back_paddings}}" back_background="{{back_background}}" back_color="{{back_color}}" class="{{class}}" id="{{id}}"]{{front_content}}|||{{back_content}}[/ms_flip_box]',
+	'popup_title' => __( 'Flip Box Shortcode', 'magee-shortcodes'),
+	'name' => __('flip-box-shortcode/','magee-shortocdes'),
 );
 
 /*-----------------------------------------------------------------------------------*/
-/*	Highlight Config
-/*-----------------------------------------------------------------------------------*/
-
-$magee_shortcodes['highlight'] = array(
-	'no_preview' => true,
-	'icon' => 'fa-magic',
-	'params' => array(
-
-		'background_color' => array(
-			'type' => 'colorpicker',
-			'label' => __( 'Background Color', 'magee-shortcodes' ),
-			'desc' => __( 'Set background color for highlight item.', 'magee-shortcodes')
-		),
-		'border_radius' => array(
-			'type' => 'text',
-			'std' =>'5px',
-			'label' => __( 'Border Radius', 'magee-shortcodes' ),
-			'desc' => __( 'In pixels (px), eg: 1px.', 'magee-shortcodes' ),
-		),
-		
-		'content' => array(
-			'std' => __('Your Content Goes Here', 'magee-shortcodes'),
-			'type' => 'textarea',
-			'label' => __( 'Content to Higlight', 'magee-shortcodes' ),
-			'desc' => __( 'Insert content to highlight.', 'magee-shortcodes' ),
-		),
-		'class' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
-		),
-		'id' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS ID', 'magee-shortcodes' ),
-			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
-		),			
-
-	),
-	'shortcode' => '[ms_highlight background_color="{{background_color}}" border_radius="{{border_radius}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_highlight]',
-	'popup_title' => __( 'Highlight Shortcode', 'magee-shortcodes' )
-);
-
-/*-----------------------------------------------------------------------------------*/
-/*	Heading, Config
+/*	Heading Config
 /*-----------------------------------------------------------------------------------*/
 
 $magee_shortcodes['heading'] = array(
@@ -1044,11 +1904,11 @@ $magee_shortcodes['heading'] = array(
 			'std' => 'border',
             'desc' => __( 'Choose a heading style. Leave blank as default.', 'magee-shortcodes'),
 			'options' => array(
-			    'none' => 'none',
-				'border' => 'border',
-				'boxed' => 'boxed',
-				'boxed-reverse' => 'boxed-reverse',
-				'doubleline' => 'doubleline',
+			    'none' => __('None', 'magee-shortcodes' ),
+				'border' => __('Border', 'magee-shortcodes' ),
+				'boxed' => __('Boxed', 'magee-shortcodes' ),
+				'boxed-reverse' => __('Boxed-reverse', 'magee-shortcodes' ),
+				'doubleline' => __('Doubleline', 'magee-shortcodes' )
 			)
 		),
 		
@@ -1088,32 +1948,40 @@ $magee_shortcodes['heading'] = array(
 		),
 		
 		'font_size' => array(
-			'std' => '36px',
-			'type' => 'text',
+			'std' => '36',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
 			'label' => __( 'Font Size', 'magee-shortcodes'),
             'desc' => __( 'Set font size for heading text. In pixels (px), eg: 1px.', 'magee-shortcodes'),
 		),
 		'margin_top' => array(
 			'std' => '0',
-			'type' => 'text',
+			'type' => 'number',
+			'max' => '100',
+			'min' => '0',
 			'label' => __( 'Margin Top', 'magee-shortcodes'),
             'desc' => __( 'In pixels (px), eg: 1px.', 'magee-shortcodes'),
 		),
 		'margin_bottom' => array(
 			'std' => '0',
-			'type' => 'text',
+			'type' => 'number',
+			'max' => '100',
+			'min' => '0',
 			'label' => __( 'Margin Bottom', 'magee-shortcodes'),
             'desc' => __( 'In pixels (px), eg: 1px.', 'magee-shortcodes'),
 		),
 		'border_width' => array(
-			'std' => '5px',
-			'type' => 'text',
+			'std' => '5',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
 			'label' => __( 'Border Width', 'magee-shortcodes'),
             'desc' => __( 'In pixels (px), eg: 1px.', 'magee-shortcodes'),
 		),
         'responsive_text' => array(
 		    'std' => '',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Responsive Text','magee-shortcodes'),
             'desc' => __( 'Choose to display responsive text.', 'magee-shortcodes'),
 			'options' => $reverse_choices		
@@ -1135,9 +2003,61 @@ $magee_shortcodes['heading'] = array(
 		),
 	'shortcode' => '[ms_heading style="{{style}}" color="{{color}}" border_color="{{border_color}}" text_align="{{text_align}}" font_weight="{{font_weight}}" font_size="{{font_size}}" margin_top="{{margin_top}}" margin_bottom="{{margin_bottom}}" border_width="{{border_width}}" responsive_text="{{responsive_text}}"  class="{{class}}" id="{{id}}"]{{title}}[/ms_heading]',
 	'popup_title' => __( 'Heading Shortcode', 'magee-shortcodes'),
-
-
+    'name' => __('heading-shortcode/','magee-shortocdes'),  
 );
+
+/*-----------------------------------------------------------------------------------*/
+/*	Highlight Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['highlight'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-magic',
+	'params' => array(
+
+		'background_color' => array(
+			'type' => 'colorpicker',
+			'label' => __( 'Background Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set background color for highlight item.', 'magee-shortcodes')
+		),
+		'border_radius' => array(
+			'type' => 'number',
+			'std' =>'5',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Border Radius', 'magee-shortcodes' ),
+			'desc' => __( 'In pixels (px), eg: 1px.', 'magee-shortcodes' ),
+		),
+		'color' => array(
+			'type' => 'colorpicker',
+			'label' => __( 'Font Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set font color for highlight item.', 'magee-shortcodes')
+		),
+		'content' => array(
+			'std' => __('Your Content Goes Here', 'magee-shortcodes'),
+			'type' => 'textarea',
+			'label' => __( 'Content to Higlight', 'magee-shortcodes' ),
+			'desc' => __( 'Insert content to highlight.', 'magee-shortcodes' ),
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),			
+
+	),
+	'shortcode' => '[ms_highlight background_color="{{background_color}}" border_radius="{{border_radius}}" color="{{color}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_highlight]',
+	'popup_title' => __( 'Highlight Shortcode', 'magee-shortcodes' ),
+	'name' => __('highlight-shortcode/','magee-shortocdes'),
+);
+
 
 /*-----------------------------------------------------------------------------------*/
 /*	Icon Config
@@ -1149,14 +2069,16 @@ $magee_shortcodes['icon'] = array(
 	'params' => array(
 
 	'icon' => array(
-			'type' => 'iconpicker',
+			'type' => 'icon',
 			'label' => __( 'Icon', 'magee-shortcodes'),
 			'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes'),
 			'options' => $icons
 			),
 	'size' => array(
-			'type' => 'text',
-			'std' => '14px',
+			'type' => 'number',
+			'std' => '14',
+			'max' => '50',
+			'min' => '0',
 			'label' => __( 'Icon Size', 'magee-shortcodes'),
 			'desc' => __( 'Set text size for item.', 'magee-shortcodes'),
 			),
@@ -1168,7 +2090,7 @@ $magee_shortcodes['icon'] = array(
 		),
     'icon_box' => array(
 	        'std' => '',  
-	        'type' => 'select',
+	        'type' => 'choose',
 	        'label' => __( 'Icon Box', 'magee-shortcodes'),
             'desc' => __( 'Choose to display boxed icon.', 'magee-shortcodes'),
 			'options' => $reverse_choices
@@ -1188,7 +2110,63 @@ $magee_shortcodes['icon'] = array(
 
 	),
 	'shortcode' => '[ms_icon icon="{{icon}}" size="{{size}}" color="{{color}}" icon_box="{{icon_box}}" class="{{class}}" id="{{id}}"]',
-	'popup_title' => __( 'Icon Shortcode', 'magee-shortcodes')
+	'popup_title' => __( 'Icon Shortcode', 'magee-shortcodes'),
+	'name' => __('icon-shortcode/','magee-shortocdes'),
+);
+
+/*-----------------------------------------------------------------------------------*/
+/*	Image Compare Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['image_compare'] = array(
+    'icon' => 'fa-file-image-o',
+	'no_preview' => true,
+	'params' => array(
+	    'style' => array(
+			'type' => 'select',
+			'std' => 'horizontal',
+			'label' => __( 'Style', 'magee-shortcodes'),
+			'desc' => __( 'Select how the image compare display.', 'magee-shortcodes'),
+			'options' => array(
+				'horizontal' => __('Horizontal', 'magee-shortcodes' ),
+				'vertical' => __('Vertical', 'magee-shortcodes' )
+			)
+		),
+		 'percent' => array(
+			'type' => 'select',
+			'std' => '0.5',
+			'label' => __( 'Percent', 'magee-shortcodes'),
+			'desc' => __( 'Choose default offset pct', 'magee-shortcodes'),
+			'options' => $opacity
+		),
+	    'image_left' => array(
+		    'std' => '',
+			'type' => 'uploader',
+			'label' => __( 'Image Left', 'magee-shortcodes' ),
+			'desc' => __( 'Insert the image displayed in the left.', 'magee-shortcodes')
+		),
+		'image_right' => array(
+		    'std' => '',
+			'type' => 'uploader',
+			'label' => __( 'Image Right', 'magee-shortcodes' ),
+			'desc' => __( 'Insert the image displayed in the right.', 'magee-shortcodes')
+		),
+	    'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+				'std' => '',
+				'type' => 'text',
+				'label' => __( 'CSS ID', 'magee-shortcodes' ),
+				'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),    
+	),
+    'shortcode' => '[ms_image_compare style="{{style}}" percent="{{percent}}" image_left="{{image_left}}" image_right="{{image_right}}" class="{{class}}" id="{{id}}"]',
+	'popup_title' => __( 'Image Compare Shortcode', 'magee-shortcodes' ),
+	'name' => __('image-compare-shortcode/','magee-shortocdes'),
 );
 
 /*-----------------------------------------------------------------------------------*/
@@ -1213,7 +2191,7 @@ $magee_shortcodes['image_frame'] = array(
 		),
 	'link_target' => array(
 			'std' => '',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Link Target', 'magee-shortcodes' ),
 			'desc' => __( '_self = open in same window _blank = open in new window.', 'magee-shortcodes' ),
 			'options' => array(
@@ -1224,13 +2202,15 @@ $magee_shortcodes['image_frame'] = array(
 			),
 	'border_radius' => array(
 			'std' => '0',
-			'type' => 'text',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0' ,
 			'label' => __( 'Border Radius', 'magee-shortcodes' ),
 			'desc' => __( 'Choose the border radius of the image frame. In pixels (px), ex: 1px, or "round".  Leave blank for theme option selection.', 'magee-shortcodes' ), 	         
 	    ),	
 	'light_box' => array(
 	        'std' => '',
-			'type' => 'select' ,
+			'type' => 'choose' ,
 			'label' => __( 'Light Box','magee-shortcodes'),
             'desc' => __( 'Choose to display light box once click.', 'magee-shortcodes'),
 			'options' => $reverse_choices	
@@ -1250,86 +2230,10 @@ $magee_shortcodes['image_frame'] = array(
 
 	),
 	'shortcode' => '[ms_image_frame src="{{src}}" border_radius="{{border_radius}}" link="{{link}}" link_target="{{link_target}}" light_box="{{light_box}}" class="{{class}}" id="{{id}}"]',
-	'popup_title' => __( 'Image Frame Shortcode', 'magee-shortcodes' )
+	'popup_title' => __( 'Image Frame Shortcode', 'magee-shortcodes' ),
+	'name' => __('image-frame-shortcode/','magee-shortocdes'),
 );
 
-
-
-/*******************************************************
- *	List Config
- ********************************************************/
- $magee_shortcodes['list'] = array(
-	'no_preview' => true,
-	'icon' => 'fa-list',
-	'params' => array(
-		'icon' => array(
-			'type' => 'iconpicker',
-			'label' => __( 'Icon', 'magee-shortcodes' ),
-			'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
-			'options' => $icons
-			),
-		'icon_color' => array(
-			'type' => 'colorpicker',
-			'label' => __( 'Icon Color', 'magee-shortcodes' ),
-			'desc' => __( 'Set color fo list icon.', 'magee-shortcodes')
-			),
-		'icon_boxed' => array(
-			'type' => 'select',
-			'label' => __( 'Icon Boxed', 'magee-shortcodes' ),
-			'desc' => __( 'Choose to set icon boxed.', 'magee-shortcodes'),
-			'options' =>array(
-				'no' => __('No','magee-shortcodes'),
-				'yes' => __('Yes','magee-shortcodes'),)
-			),
-		 'background_color' => array(
-			'type' => 'colorpicker',
-			'label' => __( 'Icon Circle Background Color', 'magee-shortcodes' ),
-			'desc' => __( 'Set background color for list icon.', 'magee-shortcodes')
-		),
-		'boxed_shape' => array(
-			'type' => 'select',
-			'label' => __( 'Boxed Shape', 'magee-shortcodes' ),
-			'desc' => __( 'Choose boxed shape for list icon.', 'magee-shortcodes'),
-			'options' =>array(
-				'square' => __('Square','magee-shortcodes'),
-				'circle' => __('Circle','magee-shortcodes'),)
-			),
-		'item_border' => array(
-			'type' => 'select',
-			'label' => __( 'Item Border', 'magee-shortcodes' ),
-			'desc' => __( 'Choose to display item border for list.', 'magee-shortcodes'),
-			'options' =>array(
-				'no' => __('No','magee-shortcodes'),
-				'yes' => __('Yes','magee-shortcodes'),)
-			),
-		'item_size' => array(
-			'type' => 'text',
-			'std'  => '12px',
-			'label' => __( 'Item Size', 'magee-shortcodes' ),
-			'desc' => __( 'Set text font size for item.', 'magee-shortcodes'),
-			),
-		'class' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
-		),
-		'id' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS ID', 'magee-shortcodes' ),
-			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
-		),	
-		'content' => array(
-				'std' => "\r\n[ms_list_item]List item 1[/ms_list_item]\r\n[ms_list_item]List item 2[/ms_list_item]\r\n[ms_list_item]List item 3[/ms_list_item]\r\n",
-				'type' => 'textarea',
-				'label' => __( 'List items', 'magee-shortcodes' ),
-				'desc' => ''
-				),	
-	),
-	'shortcode' => '[ms_list icon="{{icon}}" icon_color="{{icon_color}}" icon_boxed="{{icon_boxed}}" background_color="{{background_color}}" boxed_shape="{{boxed_shape}}" item_border="{{item_border}}" item_size="{{item_size}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_list]',
-	'popup_title' => __( 'List Shortcode', 'magee-shortcodes' )
-);
 
 /*-----------------------------------------------------------------------------------*/
 /*	Label Config
@@ -1354,9 +2258,88 @@ $magee_shortcodes['label'] = array(
 		),
 	),
 	'shortcode' => '[ms_label background_color="{{background_color}}" ]{{content}}[/ms_label]',
-    'popup_title' => __( 'Label Shortcode', 'magee-shortcodes' ) 
+    'popup_title' => __( 'Label Shortcode', 'magee-shortcodes' ),
+	'name' => __('label-shortcode/','magee-shortocdes'), 
 );
- 
+
+/*******************************************************
+ *	List Config
+ ********************************************************/
+ $magee_shortcodes['list'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-list',
+	'params' => array(
+		'icon' => array(
+			'type' => 'iconpicker',
+			'label' => __( 'Icon', 'magee-shortcodes' ),
+			'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
+			'options' => $icons
+			),
+		'icon_color' => array(
+			'type' => 'colorpicker',
+			'label' => __( 'Icon Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set color fo list icon.', 'magee-shortcodes')
+			),
+		'icon_boxed' => array(
+			'type' => 'choose',
+			'label' => __( 'Icon Boxed', 'magee-shortcodes' ),
+			'desc' => __( 'Choose to set icon boxed.', 'magee-shortcodes'),
+			'options' =>array(
+				'no' => __('No','magee-shortcodes'),
+				'yes' => __('Yes','magee-shortcodes'),)
+			),
+		 'background_color' => array(
+			'type' => 'colorpicker',
+			'label' => __( 'Icon Circle Background Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set background color for list icon.', 'magee-shortcodes')
+		),
+		'boxed_shape' => array(
+			'type' => 'select',
+			'label' => __( 'Boxed Shape', 'magee-shortcodes' ),
+			'desc' => __( 'Choose boxed shape for list icon.', 'magee-shortcodes'),
+			'options' =>array(
+				'square' => __('Square','magee-shortcodes'),
+				'circle' => __('Circle','magee-shortcodes'),)
+			),
+		'item_border' => array(
+			'type' => 'choose',
+			'label' => __( 'Item Border', 'magee-shortcodes' ),
+			'desc' => __( 'Choose to display item border for list.', 'magee-shortcodes'),
+			'options' =>array(
+				'no' => __('No','magee-shortcodes'),
+				'yes' => __('Yes','magee-shortcodes'),)
+			),
+		'item_size' => array(
+			'type' => 'number',
+			'std'  => '12',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Item Size', 'magee-shortcodes' ),
+			'desc' => __( 'Set text font size for item.', 'magee-shortcodes'),
+			),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),	
+		'content' => array(
+				'std' => "\r\n[ms_list_item]List item 1[/ms_list_item]\r\n[ms_list_item]List item 2[/ms_list_item]\r\n[ms_list_item]List item 3[/ms_list_item]\r\n",
+				'type' => 'textarea',
+				'label' => __( 'List items', 'magee-shortcodes' ),
+				'desc' => ''
+				),	
+	),
+	'shortcode' => "[ms_list icon=\"{{icon}}\" icon_color=\"{{icon_color}}\" icon_boxed=\"{{icon_boxed}}\" background_color=\"{{background_color}}\" boxed_shape=\"{{boxed_shape}}\" item_border=\"{{item_border}}\" item_size=\"{{item_size}}\" class=\"{{class}}\" id=\"{{id}}\"]\r\n{{content}}[/ms_list]",
+	'popup_title' => __( 'List Shortcode', 'magee-shortcodes' ),
+	'name' => __('list-shortcode/','magee-shortcodes'),
+);
 
 /*******************************************************
  *	Modal Config
@@ -1372,38 +2355,101 @@ $magee_shortcodes['modal'] = array(
 			'label' => __( 'Modal Anchor Text', 'magee-shortcodes' ),
 			'desc' => __( 'Insert anchor text for the modal.', 'magee-shortcodes' ),
 		),
+		'effect' => array(
+		    'std' => 'effect-1',
+			'type' => 'select',
+			'label' => __( 'Modal Show Effect', 'magee-shortcodes' ),
+			'desc' => __( 'Choose one effect to show the modal.', 'magee-shortcodes' ),
+			'options' => array(	    
+				'effect-1' => __('Effect 1 ( Slide Right )','magee-shortcodes'),
+				'effect-2' => __('Effect 2 ( Slide Bottom )','magee-shortcodes'),
+				'effect-3' => __('Effect 3 ( Slide Left )','magee-shortcodes'),
+				'effect-4' => __('Effect 4 ( Slide Top )','magee-shortcodes'),
+				'effect-5' => __('Effect 5 ( Scale Up )','magee-shortcodes'),
+				'effect-6' => __('Effect 6 ( 3D Flip Horizontal )','magee-shortcodes'),
+				'effect-7' => __('Effect 7 ( 3D Flip Vertical )','magee-shortcodes'),
+				'effect-8' => __('Effect 8 ( 3D Sign )','magee-shortcodes'),
+				'effect-9' => __('Effect 9 ( 3D Rotate In Left )','magee-shortcodes'),
+				'effect-10' => __('Effect 10 ( 3D Rotate In Bottom )','magee-shortcodes'),
+				'effect-11' => __('Effect 11 ( 3D Slit )','magee-shortcodes'),
+				'effect-12' => __('Effect 12 ( Newspaper )','magee-shortcodes'),
+				'effect-13' => __('Effect 13 ( Fall )','magee-shortcodes'),
+				'effect-14' => __('Effect 14 ( Side Fall )','magee-shortcodes'),
+				'effect-15' => __('Effect 15 ( Super Scaled )','magee-shortcodes'),
+			),
+		),
 		'title' => array(
 			'std' => '',
 			'type' => 'text',
-			'label' => __( 'Modal Heading', 'magee-shortcodes' ),
-			'desc' => __( 'Insert heading text for the modal.', 'magee-shortcodes' ),
-		),		
-		'size' => array(
-			'type' => 'select',
-			'label' => __( 'Size Of Modal', 'magee-shortcodes' ),
-			'desc' => __( 'Select the modal window size.', 'magee-shortcodes' ),
-			'options' => array(
-				'small' => __('Small', 'magee-shortcodes'),
-				'middle' => __('Middle', 'magee-shortcodes'),
-				'large' => __('Large', 'magee-shortcodes')
-			)
+			'label' => __( 'Modal Heading Title', 'magee-shortcodes' ),
+			'desc' => __( 'Insert heading title for the modal.', 'magee-shortcodes' ),
+		),	
+		'title_color' => array(
+			'std' => '',
+			'type' => 'colorpicker',
+			'label' => __( 'Modal Heading Title Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set color for the modal heading title.', 'magee-shortcodes' ),
+		),	
+		'heading_background' => array(
+			'std' => '',
+			'type' => 'colorpicker',
+			'label' => __( 'Modal Heading Background', 'magee-shortcodes' ),
+			'desc' => __( 'Set background for the modal heading.', 'magee-shortcodes' ),
 		),
-
-		'showfooter' => array(
-			'type' => 'select',
-			'label' => __( 'Show Footer', 'magee-shortcodes' ),
-			'desc' => __( 'Choose to show the modal footer with close button.', 'magee-shortcodes' ),
-			'options' => array(
-				'yes' => __('yes', 'magee-shortcodes'),
-				'no' => __('no', 'magee-shortcodes'),	
-			)
-		),
+		'close_icon' => array(
+		    'std' => 'yes',
+			'type' => 'choose',
+			'label' => __( 'Close Icon', 'magee-shortcodes' ),
+			'desc' => __( 'Choose close icon to show in modal heading.', 'magee-shortcodes' ), 
+			'options' => $choices
+		),	
 		'content' => array(
 			'std' => __('Your Content Goes Here', 'magee-shortcodes'),
 			'type' => 'textarea',
 			'label' => __( 'Contents of Modal', 'magee-shortcodes' ),
 			'desc' => __( 'Add your content to be displayed in modal.', 'magee-shortcodes' ),
-		),		
+		),
+		'background' => array(
+		    'std' => '',
+			'type' => 'colorpicker',
+			'label' => __( 'Modal Background', 'magee-shortcodes' ),
+			'desc' => __( 'Set background for the modal.', 'magee-shortcodes' ),
+		),
+		'color' => array(
+		    'std' => '',
+			'type' => 'colorpicker',
+			'label' => __( 'Modal Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set color for the modal.', 'magee-shortcodes' ),
+		),
+		'width' => 	array(
+		    'std' => '',
+			'type' => 'number',
+			'label' => __( 'Modal Width', 'magee-shortcodes' ),
+			'desc' => '', 
+			'min'  => '0',
+			'max'  => '1000'
+		),	
+		'height' => 	array(
+		    'std' => '',
+			'type' => 'number',
+			'label' => __( 'Modal Height', 'magee-shortcodes' ),
+			'desc' => '', 
+			'min'  => '0',
+			'max'  => '500'
+		),	
+		'overlay_color' => array(
+		    'std' => '',
+			'type' => 'colorpicker',
+			'label' => __( 'Overlay Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set background color for the modal overlay.', 'magee-shortcodes' ),
+		),
+		'overlay_opacity' => array(
+		    'std' => '0',
+			'type' => 'select',
+			'label' => __( 'Overlay Color Opacity', 'magee-shortcodes' ),
+			'desc' => __( 'Choose background color opacity for the modal overlay.', 'magee-shortcodes' ),
+			'options' => $opacity
+		),	
 		'class' => array(
 			'std' => '',
 			'type' => 'text',
@@ -1417,8 +2463,373 @@ $magee_shortcodes['modal'] = array(
 			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
 		),			
 	),
-	'shortcode' => '[ms_modal title="{{title}}" size="{{size}}" showfooter="{{showfooter}}" class="{{class}}" id="{{id}}"][ms_modal_anchor_text]{{modal_anchor_text}}[/ms_modal_anchor_text][ms_modal_content]{{content}}[/ms_modal_content][/ms_modal]',
-	'popup_title' => __( 'Modal Shortcode', 'magee-shortcodes' )
+	'shortcode' => '[ms_modal effect=\"{{effect}}\" title=\"{{title}}\" title_color=\"{{title_color}}\" heading_background=\"{{heading_background}}\"  close_icon =\"{{close_icon}}\" background=\"{{background}}\" color=\"{{color}}\" width=\"{{width}}\" height=\"{{height}}\" overlay_color=\"{{overlay_color}}\" overlay_opacity=\"{{overlay_opacity}}\" class="{{class}}" id="{{id}}"][ms_modal_anchor_text]{{modal_anchor_text}}[/ms_modal_anchor_text][ms_modal_content]{{content}}[/ms_modal_content][/ms_modal]',
+	'popup_title' => __( 'Modal Shortcode', 'magee-shortcodes' ),
+	'name' => __('modal-shortcode/','magee-shortocdes'),
+);
+
+/*-----------------------------------------------------------------------------------*/
+/*	Menu Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['menu'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-bars',
+	'params' => array(
+	    'menu' => array(
+		    'std' => '',
+			'type' => 'select',
+			'label' => __( 'Select a menu','magee-shortcodes'),
+		    'options' =>  magee_shortcode_menus('name') 
+		),
+	    'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+	),
+    'shortcode' => '[ms_menu menu="{{menu}}" class="{{class}}" id="{{id}}"][/ms_menu]' ,
+	'popup_title' => __( 'Menu Shortcode', 'magee-shortcodes'),
+);	
+
+/*-----------------------------------------------------------------------------------*/
+/*	panel Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['panel'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-list-alt',
+	'params' => array(
+		
+		'title' => array(
+			'std' =>  'Panel title',
+			'type' => 'text',
+			'label' => __( 'Title', 'magee-shortcodes' ),
+			'desc' => __( 'Insert title for panel.', 'magee-shortcodes' ),
+		),
+		'content' => array(
+			'std' => __('Panel content.', 'magee-shortcodes'),
+			'type' => 'textarea',
+			'label' => __( 'Panel Content', 'magee-shortcodes' ),
+			'desc' => __( 'Insert content for panel.', 'magee-shortcodes' ),
+		),
+		
+		
+		'title_color' => array(
+			'std' => '#000',
+			'type' => 'colorpicker',
+			'label' => __( 'Title Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set color for panel title.', 'magee-shortcodes' ),
+		),
+		'border_color' => array(
+			'std' => '#ddd',
+			'type' => 'colorpicker',
+			'label' => __( 'Border Color', 'magee-shortcodes' ),
+			'desc' =>  __( 'Set color for panel border.', 'magee-shortcodes' ),
+		),
+		
+		'title_background_color' => array(
+			'std' => '#f5f5f5',
+			'type' => 'colorpicker',
+			'label' => __( 'Title Background Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set background color for panel title.', 'magee-shortcodes' ),
+		),		
+		'border_radius' => array(
+			'std' => '0',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Border Radius', 'magee-shortcodes' ),
+			'desc' => __('In pixels (px), eg: 1px.', 'magee-shortcodes')
+		),				
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),		
+	),
+	'shortcode' => '[ms_panel title="{{title}}" title_color="{{title_color}}" border_color="{{border_color}}"  title_background_color="{{title_background_color}}" border_radius="{{border_radius}}"  class="{{class}}" id="{{id}}"]{{content}}[/ms_panel]',
+	'popup_title' => __( 'Panel Shortcode', 'magee-shortcodes' ),
+	'name' => __('panel-shortcode/','magee-shortcodes'),
+);
+
+/*-----------------------------------------------------------------------------------*/
+/*	Person Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['person'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-user',
+	'params' => array(
+	    'style' => array(
+		    'std' => '',
+		    'type' => 'select',
+			'label' => __( 'Style', 'magee-shortcodes'),
+			'desc' => __( 'Choose to display info below or beside the image.','magee-shortcodes'),
+			'options' => array(
+			    'below' => __('Below', 'magee-shortcodes')  ,
+				'beside' => __('Beside', 'magee-shortcodes'),
+			),
+		),
+		'name' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Name', 'magee-shortcodes' ),
+			'desc' => __( 'Insert the name of the person.', 'magee-shortcodes' ),
+		),
+		'title' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Title', 'magee-shortcodes' ),
+			'desc' => __( 'Insert the title of the person', 'magee-shortcodes' ),
+		),
+		'link_target' => array(
+			'std' => '',
+			'type' => 'choose',
+			'label' => __( 'Link Target', 'magee-shortcodes' ),
+			'desc' => __( '_self = open in same window _blank = open in new window.', 'magee-shortcodes' ),
+			'options' => array(
+				'_blank' => __('_blank', 'magee-shortcodes'),
+				'_self' => __('_self', 'magee-shortcodes'),
+		
+			),
+			),
+		'overlay_color' => array(
+		    'std' => '',
+			'type' => 'colorpicker',
+			'label' => __('Image Overlay Color','magee-shortcodes'),
+			'desc' => __('Select a hover color to show over the image as an overlay.','magee-shortcodes')
+		),	
+		'overlay_opacity' => array(
+		    'std' => '0.5',
+			'type' => 'select',
+			'label' => __('Image Overlay Opacity', 'magee-shortcodes'),
+			'desc' => __('Opacity ranges between 0 (transparent) and 1 (opaque). ex: .5','magee-shortcodes'),
+			'options' => $opacity
+		),
+		'content' => array(
+			'std' => '',
+			'type' => 'textarea',
+			'label' => __( 'Profile Description', 'magee-shortcodes' ),
+			'desc' => __( 'Insert profile description.', 'magee-shortcodes' )
+		),
+		'picture' => array(
+			'type' => 'uploader',
+			'label' => __( 'Picture', 'magee-shortcodes' ),
+			'desc' => __( 'Upload an image to display.', 'magee-shortcodes' ),
+		),
+		'piclink' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Picture Link URL', 'magee-shortcodes' ),
+			'desc' => __( 'Add the URL the picture will link to, ex: http://example.com.', 'magee-shortcodes' ),
+		),
+		'picborder' => array(
+			'std' => '0',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Picture Border Size', 'magee-shortcodes' ),
+			'desc' => __( 'In pixels (px), ex: 1px. Leave blank for theme option selection.', 'magee-shortcodes' ),
+		),
+		'picbordercolor' => array(
+			'type' => 'colorpicker',
+			'label' => __( 'Picture Border Color', 'magee-shortcodes' ),
+			'desc' => __( 'Controls the picture\'s border color. Leave blank for theme option selection.', 'magee-shortcodes' ),
+		),
+		'picborderradius' => array(
+			'std' => '0',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Picture Border Radius', 'magee-shortcodes' ),
+			'desc' => __( 'Choose the border radius of the person image. In pixels (px), ex: 1px, or "round".  Leave blank for theme option selection.', 'magee-shortcodes' ),
+		),				
+		'iconboxedradius' => array(
+			'std' => '4',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Social Icon Box Radius', 'magee-shortcodes' ),
+			'desc' => __( 'Choose the border radius of the boxed icons. In pixels (px), ex: 1px, or "round". Leave blank for theme option selection.', 'magee-shortcodes' ),
+		),		
+		'iconcolor' => array(
+			'std' => '',
+			'type' => 'colorpicker',
+			'label' => __( 'Social Icon Custom Colors', 'magee-shortcodes' ),
+			'desc' => __( 'Controls the Icon\'s border color. Leave blank for theme option selection.', 'magee-shortcodes' ),
+		),
+		'icon1' => array(
+				'type' => 'icon',
+				'label' => __( 'Icon1', 'magee-shortcodes' ),
+				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
+				'options' => $icons
+			),
+		'link1' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Link1 ', 'magee-shortcodes' ),
+			'desc' => __( 'The Icon1 Link ', 'magee-shortcodes' ),
+		),
+		'icon2' => array(
+				'type' => 'icon',
+				'label' => __( 'Icon2', 'magee-shortcodes' ),
+				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
+				'options' => $icons
+			),
+		'link2' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Link2 ', 'magee-shortcodes' ),
+			'desc' => __( 'The Icon2 Link ', 'magee-shortcodes' ),
+		),
+		'icon3' => array(
+				'type' => 'icon',
+				'label' => __( 'Icon3', 'magee-shortcodes' ),
+				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
+				'options' => $icons
+			),
+		'link3' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Link3 ', 'magee-shortcodes' ),
+			'desc' => __( 'The Icon3 Link ', 'magee-shortcodes' ),
+		),
+		'icon4' => array(
+				'type' => 'icon',
+				'label' => __( 'Icon4', 'magee-shortcodes' ),
+				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
+				'options' => $icons
+			),
+		'link4' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Link4', 'magee-shortcodes' ),
+			'desc' => __( 'The Icon4 Link ', 'magee-shortcodes' ),
+		),
+		'icon5' => array(
+				'type' => 'icon',
+				'label' => __( 'Icon5', 'magee-shortcodes' ),
+				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
+				'options' => $icons
+			),
+		'link5' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Link5', 'magee-shortcodes' ),
+			'desc' => __( 'The Icon5 Link ', 'magee-shortcodes' ),
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
+		),
+	),
+	'shortcode' => '[ms_person name="{{name}}" style="{{style}}" title="{{title}}" link_target="{{link_target}}" overlay_color="{{overlay_color}}" overlay_opacity="{{overlay_opacity}}" picture="{{picture}}" piclink="{{piclink}}" picborder="{{picborder}}" picbordercolor="{{picbordercolor}}" picborderradius="{{picborderradius}}" iconboxedradius="{{iconboxedradius}}" iconcolor="{{iconcolor}}" icon1="{{icon1}}" icon2="{{icon2}}" icon3="{{icon3}}" icon4="{{icon4}}" icon5="{{icon5}}" link1="{{link1}}" link2="{{link2}}" link3="{{link3}}" link4="{{link4}}" link5="{{link5}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_person]',
+	'popup_title' => __( 'Person Shortcode', 'magee-shortcodes' ),
+	'name' => __('person-shortcode/','magee-shortcodes'),
+);
+
+/*-----------------------------------------------------------------------------------*/
+/*	Piechart Config
+/*-----------------------------------------------------------------------------------*/
+
+
+$magee_shortcodes['piechart'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-circle-o-notch',
+	'params' => array(
+    'line_cap' => array(
+			'std' => 'round',
+			'type' => 'select',
+			'label' => __( 'Line Cap', 'magee-shortcodes' ),
+			'desc' => __( 'Select how the ending of the bar line looks like.', 'magee-shortcodes' ),
+            'options' => array(
+			    'round' => __( 'Round','magee-shortcodes') ,
+			    'butt' => __( 'Butt','magee-shortcodes') ,
+				'square' => __( 'Square','magee-shortcodes') ,
+			),  
+		),
+	'percent' => array(
+			'std' => '80',
+			'type' => 'number',
+			'max' => '100',
+			'min' => '0',
+			'label' => __( 'Percent', 'magee-shortcodes' ),
+			'desc' => __( 'From 1 to 100.', 'magee-shortcodes' ),
+
+		),
+	
+	'content' => array(
+			'std' => '80%',
+			'type' => 'textarea',
+			'label' => __( 'Title', 'magee-shortcodes' ),
+			'desc' => __( 'Insert title for piechart. It need to be short.', 'magee-shortcodes' ),
+
+		),
+	'size' => array(
+			'std' => '200',
+			'type' => 'number',
+			'max' => '500',
+			'min' => '0',
+			'label' => __( 'Size', 'magee-shortcodes' ),
+			'desc' => __( 'Set size for piechart.', 'magee-shortcodes' ),
+
+		),
+	'font_size' => array(
+			'std' => '40',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Font Size', 'magee-shortcodes' ),
+			'desc' => __( 'Set font size for piechart title.', 'magee-shortcodes' ),
+
+		),
+	'filledcolor' => array(
+			'type' => 'colorpicker',
+			'label' => __( 'Filled Color', 'magee-shortcodes' ),
+			'desc' =>  __( 'Set color for filled area in piechart.', 'magee-shortcodes' ),
+			'std' => '#fdd200'
+		),
+	'unfilledcolor' => array(
+			'type' => 'colorpicker',
+			'label' => __( 'Unfilled Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set color for unfilled area in piechart.', 'magee-shortcodes' ),
+			'std' => '#f5f5f5'
+		),
+	
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
+		),
+	
+	),
+	'shortcode' => '[ms_piechart line_cap="{{line_cap}}" percent="{{percent}}"  filledcolor="{{filledcolor}}" size="{{size}}" font_size="{{font_size}}" unfilledcolor="{{unfilledcolor}}" class="{{class}}" ]{{content}}[/ms_piechart]',
+	'popup_title' => __( 'Piechart Shortcode', 'magee-shortcodes' ),
+	'name' => __('piechart-shortcode/','magee-shortcodes'),
 );
 
 /*-----------------------------------------------------------------------------------*/
@@ -1486,414 +2897,7 @@ $magee_shortcodes['popover'] = array(
 	),
 	'shortcode' => '[ms_popover title="{{title}}" triggering_text="{{triggering_text}}" trigger="{{trigger}}" placement="{{placement}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_popover]', // as there is no wrapper shortcode
 	'popup_title' => __( 'Popover Shortcode', 'magee-shortcodes' ),
-
-);
-
-/*-----------------------------------------------------------------------------------*/
-/*	Person Config
-/*-----------------------------------------------------------------------------------*/
-
-$magee_shortcodes['person'] = array(
-	'no_preview' => true,
-	'icon' => 'fa-user',
-	'params' => array(
-	    'style' => array(
-		    'std' => '',
-		    'type' => 'select',
-			'label' => __( 'Style', 'magee-shortcodes'),
-			'desc' => __( 'Choose to display info below or beside the image.','magee-shortcodes'),
-			'options' => array(
-			    'below' => __('below', 'magee-shortcodes')  ,
-				'beside' => __('beside', 'magee-shortcodes'),
-			),
-		),
-		'name' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Name', 'magee-shortcodes' ),
-			'desc' => __( 'Insert the name of the person.', 'magee-shortcodes' ),
-		),
-		'title' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Title', 'magee-shortcodes' ),
-			'desc' => __( 'Insert the title of the person', 'magee-shortcodes' ),
-		),
-		'link_target' => array(
-			'std' => '',
-			'type' => 'select',
-			'label' => __( 'Link Target', 'magee-shortcodes' ),
-			'desc' => __( '_self = open in same window _blank = open in new window.', 'magee-shortcodes' ),
-			'options' => array(
-				'_blank' => __('_blank', 'magee-shortcodes'),
-				'_self' => __('_self', 'magee-shortcodes'),
-		
-			),
-			),
-		'overlay_color' => array(
-		    'std' => '',
-			'type' => 'colorpicker',
-			'label' => __('Image Overlay Color','magee-shortcodes'),
-			'desc' => __('Select a hover color to show over the image as an overlay.','magee-shortcodes')
-		),	
-		'overlay_opacity' => array(
-		    'std' => '0.5',
-			'type' => 'text',
-			'label' => __('Image Overlay Opacity', 'magee-shortcodes'),
-			'desc' => __('Opacity ranges between 0 (transparent) and 1 (opaque). ex: .5','magee-shortcodes')
-		),
-		'content' => array(
-			'std' => '',
-			'type' => 'textarea',
-			'label' => __( 'Profile Description', 'magee-shortcodes' ),
-			'desc' => __( 'Insert profile description.', 'magee-shortcodes' )
-		),
-		'picture' => array(
-			'type' => 'uploader',
-			'label' => __( 'Picture', 'magee-shortcodes' ),
-			'desc' => __( 'Upload an image to display.', 'magee-shortcodes' ),
-		),
-		'piclink' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Picture Link URL', 'magee-shortcodes' ),
-			'desc' => __( 'Add the URL the picture will link to, ex: http://example.com.', 'magee-shortcodes' ),
-		),
-		'picborder' => array(
-			'std' => '0',
-			'type' => 'text',
-			'label' => __( 'Picture Border Size', 'magee-shortcodes' ),
-			'desc' => __( 'In pixels (px), ex: 1px. Leave blank for theme option selection.', 'magee-shortcodes' ),
-		),
-		'picbordercolor' => array(
-			'type' => 'colorpicker',
-			'label' => __( 'Picture Border Color', 'magee-shortcodes' ),
-			'desc' => __( 'Controls the picture\'s border color. Leave blank for theme option selection.', 'magee-shortcodes' ),
-		),
-		'picborderradius' => array(
-			'std' => '0',
-			'type' => 'text',
-			'label' => __( 'Picture Border Radius', 'magee-shortcodes' ),
-			'desc' => __( 'Choose the border radius of the person image. In pixels (px), ex: 1px, or "round".  Leave blank for theme option selection.', 'magee-shortcodes' ),
-		),				
-		'iconboxedradius' => array(
-			'std' => '4px',
-			'type' => 'text',
-			'label' => __( 'Social Icon Box Radius', 'magee-shortcodes' ),
-			'desc' => __( 'Choose the border radius of the boxed icons. In pixels (px), ex: 1px, or "round". Leave blank for theme option selection.', 'magee-shortcodes' ),
-		),		
-		'iconcolor' => array(
-			'std' => '',
-			'type' => 'colorpicker',
-			'label' => __( 'Social Icon Custom Colors', 'magee-shortcodes' ),
-			'desc' => __( 'Controls the Icon\'s border color. Leave blank for theme option selection.', 'magee-shortcodes' ),
-		),
-		'icon1' => array(
-				'type' => 'iconpicker',
-				'label' => __( 'Icon1', 'magee-shortcodes' ),
-				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
-				'options' => $icons
-			),
-		'link1' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Link1 ', 'magee-shortcodes' ),
-			'desc' => __( 'The Icon1 Link ', 'magee-shortcodes' ),
-		),
-		'icon2' => array(
-				'type' => 'iconpicker',
-				'label' => __( 'Icon2', 'magee-shortcodes' ),
-				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
-				'options' => $icons
-			),
-		'link2' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Link2 ', 'magee-shortcodes' ),
-			'desc' => __( 'The Icon2 Link ', 'magee-shortcodes' ),
-		),
-		'icon3' => array(
-				'type' => 'iconpicker',
-				'label' => __( 'Icon3', 'magee-shortcodes' ),
-				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
-				'options' => $icons
-			),
-		'link3' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Link3 ', 'magee-shortcodes' ),
-			'desc' => __( 'The Icon3 Link ', 'magee-shortcodes' ),
-		),
-		'icon4' => array(
-				'type' => 'iconpicker',
-				'label' => __( 'Icon4', 'magee-shortcodes' ),
-				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
-				'options' => $icons
-			),
-		'link4' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Link4', 'magee-shortcodes' ),
-			'desc' => __( 'The Icon4 Link ', 'magee-shortcodes' ),
-		),
-		'icon5' => array(
-				'type' => 'iconpicker',
-				'label' => __( 'Icon5', 'magee-shortcodes' ),
-				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
-				'options' => $icons
-			),
-		'link5' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Link5', 'magee-shortcodes' ),
-			'desc' => __( 'The Icon5 Link ', 'magee-shortcodes' ),
-		),
-		'class' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
-		),
-		'id' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS ID', 'magee-shortcodes' ),
-			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
-		),
-	),
-	'shortcode' => '[ms_person name="{{name}}" style="{{style}}" title="{{title}}" link_target="{{link_target}}" overlay_color="{{overlay_color}}" overlay_opacity="{{overlay_opacity}}" picture="{{picture}}" piclink="{{piclink}}" picborder="{{picborder}}" picbordercolor="{{picbordercolor}}" picborderradius="{{picborderradius}}" iconboxedradius="{{iconboxedradius}}" iconcolor="{{iconcolor}}" icon1="{{icon1}}" icon2="{{icon2}}" icon3="{{icon3}}" icon4="{{icon4}}" icon5="{{icon5}}" link1="{{link1}}" link2="{{link2}}" link3="{{link3}}" link4="{{link4}}" link5="{{link5}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_person]',
-	'popup_title' => __( 'Person Shortcode', 'magee-shortcodes' )
-);
-
-/*-----------------------------------------------------------------------------------*/
-/* Promo_box Config
-/*-----------------------------------------------------------------------------------*/
-
-$magee_shortcodes['promo_box'] = array(
-	'no_preview' => true,
-	'icon' => 'fa-tag',
-	'params' => array(
-
-		'style' => array(
-			'type' => 'select',
-			'label' => __( 'Style', 'magee-shortcodes' ),
-			'desc' => __( 'Select style for promo box.', 'magee-shortcodes' ),
-			'options' => array(
-				'normal' => __('normal', 'magee-shortcodes'),
-				'boxed' => __('boxed', 'magee-shortcodes'),
-			)
-		),		
-		'border_color' => array(
-			'type' => 'colorpicker',
-			'std' => '#fdd200',
-			'label' => __( 'Border Color', 'magee-shortcodes' ),
-			'desc' =>  __( 'Set color for highlight border of promo box.', 'magee-shortcodes' ),
-		),
-		'border_width' => array(
-			'std' => '1px',
-			'type' => 'text',
-			'label' => __( 'Border Width', 'magee-shortcodes' ),
-			'desc' => __( 'Set width for highlight border of promo box.', 'magee-shortcodes' ),
-		),
-	
-		'border_position' => array(
-			'type' => 'select',
-			'label' => __( 'Border Position', 'magee-shortcodes' ),
-
-			'desc' => __( 'Choose position for highlight border of promo box.', 'magee-shortcodes' ),
-			'options' => array(
-				'left' => __('Left', 'magee-shortcodes'),
-				'right' => __('Right', 'magee-shortcodes'),
-				'top' => __('Top', 'magee-shortcodes'),
-				'bottom' => __('Bottom', 'magee-shortcodes'),
-				
-			)
-		),
-		'background_color' => array(
-			'type' => 'colorpicker',
-			'std' =>'#f5f5f5',
-			'label' => __( 'Icon Circle Background Color', 'magee-shortcodes' ),
-			'desc' => __( 'Set background color for promo box.', 'magee-shortcodes' ),
-		),
-		'button_color' => array(
-			'type' => 'colorpicker',
-			'std' =>'',
-			'label' => __( 'Button Color', 'magee-shortcodes' ),
-			'desc' => '',
-		),
-		
-		'button_text' => array(
-			'std' => 'Download Now',
-			'type' => 'text',
-			'label' => __( 'Button Text', 'magee-shortcodes' ),
-			'desc' => __( 'Inser text for button of promo box.', 'magee-shortcodes' ),
-		),	
-		'button_link' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Button Link URL', 'magee-shortcodes' ),
-			'desc' => __( 'Inser link for button of promo box, eg: http://example.com.', 'magee-shortcodes' ),
-		),	
-		'button_icon' => array(
-				'type' => 'iconpicker',
-				'label' => __( 'Button Icon', 'magee-shortcodes' ),
-				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
-				'options' => $icons
-			),
-		'content' => array(
-			'std' => '',
-			'type' => 'textarea',
-			'label' => __( 'Content', 'magee-shortcodes' ),
-			'desc' => __( 'Insert content for promo box.', 'magee-shortcodes' ),
-		),
-		'class' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
-		),
-		'id' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS ID', 'magee-shortcodes' ),
-			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
-		),
-	),
-	'shortcode' => '[ms_promo_box style="{{style}}" border_color="{{border_color}}" border_width="{{border_width}}"  background_color="{{background_color}}" button_color="{{button_color}}" button_link="{{button_link}}" button_icon="{{button_icon}}" button_text="{{button_text}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_promo_box]',
-	'popup_title' => __( 'Promo Box Shortcode', 'magee-shortcodes' )
-);
-
-/*-----------------------------------------------------------------------------------*/
-/*	Piechart Config
-/*-----------------------------------------------------------------------------------*/
-
-
-$magee_shortcodes['piechart'] = array(
-	'no_preview' => true,
-	'icon' => 'fa-circle-o-notch',
-	'params' => array(
-
-	'percent' => array(
-			'std' => '80',
-			'type' => 'text',
-			'label' => __( 'Percent', 'magee-shortcodes' ),
-			'desc' => __( 'From 1 to 100.', 'magee-shortcodes' ),
-
-		),
-	
-	'content' => array(
-			'std' => '80%',
-			'type' => 'textarea',
-			'label' => __( 'Title', 'magee-shortcodes' ),
-			'desc' => __( 'Insert title for piechart. It need to be short.', 'magee-shortcodes' ),
-
-		),
-	'size' => array(
-			'std' => '200',
-			'type' => 'text',
-			'label' => __( 'Size', 'magee-shortcodes' ),
-			'desc' => __( 'Set size for piechart.', 'magee-shortcodes' ),
-
-		),
-	'font_size' => array(
-			'std' => '40px',
-			'type' => 'text',
-			'label' => __( 'Font Size', 'magee-shortcodes' ),
-			'desc' => __( 'Set font size for piechart title.', 'magee-shortcodes' ),
-
-		),
-	'filledcolor' => array(
-			'type' => 'colorpicker',
-			'label' => __( 'Filled Color', 'magee-shortcodes' ),
-			'desc' =>  __( 'Set color for filled area in piechart.', 'magee-shortcodes' ),
-			'std' => '#fdd200'
-		),
-	'unfilledcolor' => array(
-			'type' => 'colorpicker',
-			'label' => __( 'Unfilled Color', 'magee-shortcodes' ),
-			'desc' => __( 'Set color for unfilled area in piechart.', 'magee-shortcodes' ),
-			'std' => '#f5f5f5'
-		),
-	
-		'class' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
-		),
-	
-	),
-	'shortcode' => '[ms_piechart percent="{{percent}}"  filledcolor="{{filledcolor}}" size="{{size}}" font_size="{{font_size}}" unfilledcolor="{{unfilledcolor}}" class="{{class}}" ]{{content}}[/ms_piechart]',
-	'popup_title' => __( 'Piechart Shortcode', 'magee-shortcodes' )
-);
-
-/*-----------------------------------------------------------------------------------*/
-/*	panel Config
-/*-----------------------------------------------------------------------------------*/
-
-$magee_shortcodes['panel'] = array(
-	'no_preview' => true,
-	'icon' => 'fa-list-alt',
-	'params' => array(
-		
-		'title' => array(
-			'std' =>  'Panel title',
-			'type' => 'text',
-			'label' => __( 'Title', 'magee-shortcodes' ),
-			'desc' => __( 'Insert title for panel.', 'magee-shortcodes' ),
-		),
-		'content' => array(
-			'std' => __('Panel content.', 'magee-shortcodes'),
-			'type' => 'textarea',
-			'label' => __( 'Panel Content', 'magee-shortcodes' ),
-			'desc' => __( 'Insert content for panel.', 'magee-shortcodes' ),
-		),
-		
-		
-		'title_color' => array(
-			'std' => '#000',
-			'type' => 'colorpicker',
-			'label' => __( 'Title Color', 'magee-shortcodes' ),
-			'desc' => __( 'Set color for panel title.', 'magee-shortcodes' ),
-		),
-		'border_color' => array(
-			'std' => '#ddd',
-			'type' => 'colorpicker',
-			'label' => __( 'Border Color', 'magee-shortcodes' ),
-			'desc' =>  __( 'Set color for panel border.', 'magee-shortcodes' ),
-		),
-		
-		'title_background_color' => array(
-			'std' => '#f5f5f5',
-			'type' => 'colorpicker',
-			'label' => __( 'Title Background Color', 'magee-shortcodes' ),
-			'desc' => __( 'Set background color for panel title.', 'magee-shortcodes' ),
-		),
-	
-		
-		'border_radius' => array(
-			'std' => '0px',
-			'type' => 'text',
-			'label' => __( 'Border Radius', 'magee-shortcodes' ),
-			'desc' => __('In pixels (px), eg: 1px.', 'magee-shortcodes')
-		),
-		
-		
-		'class' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
-		),
-		'id' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS ID', 'magee-shortcodes' ),
-			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
-		),		
-	),
-	'shortcode' => '[ms_panel title="{{title}}" title_color="{{title_color}}" border_color="{{border_color}}"  title_background_color="{{title_background_color}}" border_radius="{{border_radius}}"  class="{{class}}" id="{{id}}"]{{content}}[/ms_panel]',
-	'popup_title' => __( 'Panel Shortcode', 'magee-shortcodes' )
+	'name' => __('popover-shortcode/','magee-shortocdes'),
 );
 
 /*-----------------------------------------------------------------------------------*/
@@ -1905,7 +2909,16 @@ $magee_shortcodes['progress'] = array(
 	'no_preview' => true,
 	'icon' => 'fa-tasks',
 	'params' => array(
-		
+'style'   => array(
+			'type' => 'select',
+			'label' => __( 'Style', 'magee-shortcodes' ),
+			'desc' => __( 'Choose the show of progress bar.', 'magee-shortcodes' ),
+			'options' => array( 
+							   'normal' => __( 'Normal Style', 'magee-shortcodes' ),
+							   'circle' => __( 'Circle Style', 'magee-shortcodes' ),
+							   )
+							  
+		), 		
 'striped' => array(
 			'type' => 'select',
 			'label' => __( 'Striped', 'magee-shortcodes' ),
@@ -1928,7 +2941,7 @@ $magee_shortcodes['progress'] = array(
 							  
 		),
 	'number' => array(
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Display  Number', 'magee-shortcodes' ),
 			'desc' => __( 'Choose to diplay number for progress bar.', 'magee-shortcodes' ),
 			'options' =>$choices 
@@ -1937,7 +2950,9 @@ $magee_shortcodes['progress'] = array(
 	
 	'percent' => array(
 			'std' => '50',
-			'type' => 'text',
+			'type' => 'number',
+			'max' => '100',
+			'min' => '0',
 			'label' => __( 'Percent', 'magee-shortcodes' ),
 			'desc' => __( 'Set percentage for progress bar. 0~100.', 'magee-shortcodes' )
 		),
@@ -1951,7 +2966,9 @@ $magee_shortcodes['progress'] = array(
 	
 	'height' => array(
 			'std' => '30',
-			'type' => 'text',
+			'type' => 'number',
+			'max' => '200',
+			'min' => '0',
 			'label' => __( 'Height', 'magee-shortcodes' ),
 			'desc' =>__( 'Set height for progress bar.', 'magee-shortcodes' ),
 		),
@@ -2000,9 +3017,156 @@ $magee_shortcodes['progress'] = array(
 		
 		
 	),
-	'shortcode' => '[ms_progress striped="{{striped}}" rounded="{{rounded}}" number="{{number}}"  percent="{{percent}}" text="{{text}}"  height="{{height}}" color="{{color}}" textalign="{{textalign}}" textposition="{{textposition}}" class="{{class}}" id="{{id}}"]',
-	'popup_title' => __( 'Progress Shortcode', 'magee-shortcodes' )
+	'shortcode' => '[ms_progress style="{{style}}" striped="{{striped}}" rounded="{{rounded}}" number="{{number}}"  percent="{{percent}}" text="{{text}}"  height="{{height}}" color="{{color}}" textalign="{{textalign}}" textposition="{{textposition}}" class="{{class}}" id="{{id}}"]',
+	'popup_title' => __( 'Progress Shortcode', 'magee-shortcodes' ),
+	'name' => __('progress-bar-shortcode/','magee-shortcodes'),
 );
+
+/*-----------------------------------------------------------------------------------*/
+/* Promo_box Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['promo_box'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-tag',
+	'params' => array(
+
+		'style' => array(
+			'type' => 'select',
+			'label' => __( 'Style', 'magee-shortcodes' ),
+			'desc' => __( 'Select style for promo box.', 'magee-shortcodes' ),
+			'options' => array(
+				'normal' => __('Normal', 'magee-shortcodes'),
+				'boxed' => __('Boxed', 'magee-shortcodes'),
+			)
+		),		
+		'border_color' => array(
+			'type' => 'colorpicker',
+			'std' => '#fdd200',
+			'label' => __( 'Border Color', 'magee-shortcodes' ),
+			'desc' =>  __( 'Set color for highlight border of promo box.', 'magee-shortcodes' ),
+		),
+		'border_width' => array(
+			'std' => '1',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Border Width', 'magee-shortcodes' ),
+			'desc' => __( 'Set width for highlight border of promo box.', 'magee-shortcodes' ),
+		),
+	
+		'border_position' => array(
+			'type' => 'select',
+			'label' => __( 'Border Position', 'magee-shortcodes' ),
+			'desc' => __( 'Choose position for highlight border of promo box.', 'magee-shortcodes' ),
+			'options' => array(
+				'left' => __('Left', 'magee-shortcodes'),
+				'right' => __('Right', 'magee-shortcodes'),
+				'top' => __('Top', 'magee-shortcodes'),
+				'bottom' => __('Bottom', 'magee-shortcodes'),
+				
+			)
+		),
+		'background_color' => array(
+			'type' => 'colorpicker',
+			'std' =>'#f5f5f5',
+			'label' => __( 'Icon Circle Background Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set background color for promo box.', 'magee-shortcodes' ),
+		),
+		'button_color' => array(
+			'type' => 'colorpicker',
+			'std' =>'',
+			'label' => __( 'Button Color', 'magee-shortcodes' ),
+		),
+		
+		'button_text' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Button Text', 'magee-shortcodes' ),
+			'desc' => __( 'Inser text for button of promo box.', 'magee-shortcodes' ),
+		),	
+		'button_text_color' => array(
+			'std' => '#ffffff',
+			'type' => 'colorpicker',
+			'label' => __( 'Button Text Color', 'magee-shortcodes' ),
+		),	
+		'button_link' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Button Link URL', 'magee-shortcodes' ),
+			'desc' => __( 'Inser link for button of promo box, eg: http://example.com.', 'magee-shortcodes' ),
+		),	
+		'button_icon' => array(
+				'type' => 'iconpicker',
+				'label' => __( 'Button Icon', 'magee-shortcodes' ),
+				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
+				'options' => $icons
+			),
+		'content' => array(
+			'std' => '',
+			'type' => 'textarea',
+			'label' => __( 'Content', 'magee-shortcodes' ),
+			'desc' => __( 'Insert content for promo box.', 'magee-shortcodes' ),
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
+		),
+	),
+	'shortcode' => '[ms_promo_box style="{{style}}" border_color="{{border_color}}" border_width="{{border_width}}" border_position="{{border_position}}" background_color="{{background_color}}" button_color="{{button_color}}" button_link="{{button_link}}" button_icon="{{button_icon}}" button_text="{{button_text}}" button_text_color="{{button_text_color}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_promo_box]',
+	'popup_title' => __( 'Promo Box Shortcode', 'magee-shortcodes' ),
+	'name' => __('promo-box-shortcode/','magee-shortcodes'),
+);
+
+/*-----------------------------------------------------------------------------------*/
+/*	Pullquote Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['pullquote'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-quote-left',
+	'params' => array(
+	    'align' => array(
+			'type' => 'select',
+			'label' => __('Align', 'magee-shortcodes'),
+			'desc' => __('Set alignment for pullquote.','magee-shortcodes'),
+			'options' => array(
+			    'left' => __('Left', 'magee-shortcodes') ,
+				'right' => __('Right', 'magee-shortcodes'),
+			)
+		),
+		'content' => array(
+			'std' => '',
+			'type' => 'textarea',
+			'label' => __( 'Content', 'magee-shortcodes'),
+			'desc' => __( 'Insert content for pullquote.', 'magee-shortcodes')
+		),
+	    'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		), 
+		
+	),
+    'shortcode' => '[ms_pullquote align="{{align}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_pullquote]',
+	'popup_title' =>__('Pullquote Shortcode','magee-shortcodes'),
+	'name' => __('pullquote-shortcode/','magee-shortocdes'),
+);	
 
 /*-----------------------------------------------------------------------------------*/
 /*	QR Code Config
@@ -2027,13 +3191,15 @@ $magee_shortcodes['QRCode'] = array(
 		),
 		'size' => array(
 		    'std' => '100',
-			'type' => 'text',
+			'type' => 'number',
+			'max' => '200',
+			'min' => '0',
 			'label' => __('Size in pixel','magee-shortcodes'),
 			'desc' => __('Image width and height.','magee-shortcodes'),
 		),
 		'click' => array(
 		    'std' => 'no',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __('QRCode clickable?','magee-shortcodes'),
 			'desc' => __('Choose to make this QR code clickable.','magee-shortcodes'), 
 			'options' => array(
@@ -2055,121 +3221,157 @@ $magee_shortcodes['QRCode'] = array(
 		),
 	),
 	'shortcode' => '[ms_qrcode alt="{{alt}}" size="{{size}}" click="{{click}}" fgcolor="{{fgcolor}}" bgcolor="{{bgcolor}}"]{{content}}[/ms_qrcode]',
-    'popup_title' => __( 'QR Code Shortcode', 'magee-shortcodes' )
+    'popup_title' => __( 'QR Code Shortcode', 'magee-shortcodes' ),
+	'name' => __('qr-code-shortcode/','magee-shortocdes'),
 ); 
 
-
 /*-----------------------------------------------------------------------------------*/
-/* Magee Slider Config
+/*	Quote Config
 /*-----------------------------------------------------------------------------------*/
 
-$magee_shortcodes['ms_slider'] = array(
+$magee_shortcodes['quote'] = array(
 	'no_preview' => true,
-	'icon' => 'fa-sliders',
+	'icon' => 'fa-quote-right',    
 	'params' => array(
-  
-		'id' => array(
-			'std' => '',
-			'type' => 'select',
-			'label' => __( 'Slider', 'magee-shortcodes' ),
-			'desc' => '',
-			'options' => $magee_sliders
-		),		
-		
-		'class' => array(
+	    'cite' => array(
 			'std' => '',
 			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
-		
-	),),
-	'shortcode' => '[ms_slider id="{{id}}" class="{{class}}"]',
-	'popup_title' => __( 'Slider', 'magee-shortcodes' )
-	
-);
-
-
-
-/*-----------------------------------------------------------------------------------*/
-/* Social Config
-/*-----------------------------------------------------------------------------------*/
-
-$magee_shortcodes['social'] = array(
-	'no_preview' => true,
-	'icon' => 'fa-twitter',
-	'params' => array(
-
-		'title' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'Title ', 'magee-shortcodes' ),
-			'desc' => __( 'Insert the title for the social icon.', 'magee-shortcodes' ),
-			),
-		'icon' => array(
-			'type' => 'iconpicker',
-				'label' => __( 'Icon', 'magee-shortcodes' ),
-				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
-				'options' => $icons
-			),
-		'icon_size' => array(
-			'std' => '13px',
-			'type' => 'text',
-			'label' => __( 'Icon Size', 'magee-shortcodes' ),
-			'desc' => __( 'In pixels (px), eg: 13px.', 'magee-shortcodes')
-		),	
-		'iconcolor' => array(
-			'type' => 'colorpicker',
-			'label' => __( 'Icon Color', 'magee-shortcodes' ),
-			'desc' => __( 'Set color for icon.', 'magee-shortcodes')
-			),
-		 'backgroundcolor' => array(
-			'type' => 'colorpicker',
-			'label' => __( 'Icon Circle Background Color', 'magee-shortcodes' ),
-			'desc' => __( 'Set background color for icon.', 'magee-shortcodes')
+			'label' => __( 'Cite', 'magee-shortcodes'),
+			'desc' => __( 'Author name for quote.', 'magee-shortcodes')
 		),
-		 'effect_3d' => array(
-		 	'std'=>'no',
-			'type' => 'select',
-			'label' => __( 'Icon 3D effect' ),
-			'desc' => __( 'Display box shadow for icon.', 'magee-shortcodes'),
-			'options' => array(
-				'yes' => __('Yes', 'magee-shortcodes'),
-				'no' => __('No', 'magee-shortcodes'),
-			)	
-		),		
-		'iconboxedradius' => array(
-			'type' => 'select',
-			'label' => __( 'Icon Box Radius Style', 'magee-shortcodes' ),
-			//'desc' => __( '', 'magee-shortcodes' ),
-			'options' => array(
-				'normal' => __('Normal', 'magee-shortcodes'),
-				'boxed' => __('Boxed', 'magee-shortcodes'),
-				'rounded' => __('Rounded', 'magee-shortcodes'),
-				'circle' => __('Circle ', 'magee-shortcodes'),				
-			)
+		'url' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Cite Link', 'magee-shortcodes'),
+			'desc' => __( 'Insert Url for the quote author. Leave empty to disable hyperlink.', 'magee-shortcodes')
 		),
-		'iconlink' => array(
+		'content' => array(
+			'std' => '',
+			'type' => 'textarea',
+			'label' => __( 'Content', 'magee-shortcodes'),
+			'desc' => __( 'Insert content for the quote.', 'magee-shortcodes')
+		),
+	    'class' => array(
 			'std' => '',
 			'type' => 'text',
-			'label' => __( 'Icon Link URL', 'magee-shortcodes' ),
-			'desc' => __( 'Add the icon\'s url eg: http://example.com.', 'magee-shortcodes' ),
-		),		
-		'class' => array(
-			'std' => '',
-			'type' => 'text',
-			'label' => __( 'CSS Class', 'magee-shortcodes' ),
-			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
 		),
 		'id' => array(
 			'std' => '',
 			'type' => 'text',
-			'label' => __( 'CSS ID', 'magee-shortcodes' ),
-			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
-		),
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		), 
 	),
-	'shortcode' => '[ms_social icon_size="{{icon_size}}" title="{{title}}" icon="{{icon}}" iconcolor="{{iconcolor}}" effect_3d="{{effect_3d}}" backgroundcolor="{{backgroundcolor}}" iconboxedradius="{{iconboxedradius}}" iconlink="{{iconlink}}"  class="{{class}}" id="{{id}}"][/ms_social]',
-	'popup_title' => __( 'Social Shortcode', 'magee-shortcodes' )
-);
+    'shortcode' =>  '[ms_quote cite="{{cite}}" url="{{url}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_quote]',
+	'popup_title' =>__('Quote Shortcode','magee-shortcodes'),
+	'name' => __('quote-shortcode/','magee-shortocdes'),
+);	
+
+/*-----------------------------------------------------------------------------------*/
+/*	RSS Feed Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['rss_feed'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-rss' ,
+	'params' => array(
+	      
+		'url' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Feed URL', 'magee-shortcodes'),
+			'desc' => __( 'Url of RSS Feed.', 'magee-shortcodes')
+		),  
+		'number' => array(
+			'std' => '3',
+			'type' => 'number',
+			'max' => '20',
+			'min' => '0',
+			'label' => __( 'Number to Display', 'magee-shortcodes'),
+			'desc' => __( 'Number of items to show.', 'magee-shortcodes')
+		),  
+	    'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),   
+	),
+	'shortcode' => '[ms_rss_feed url="{{url}}" number="{{number}}" class="{{class}}" id="{{id}}"][/ms_rss_feed]',
+	'popup_title' =>__('RSS Feed Shortcode','magee-shortcodes'),
+	'name' => __('rss-feed-shortcode/','magee-shortocdes'),
+);	
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	Scheduled_content Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['scheduled_content'] = array(
+    'no_preview' => true,
+	'icon' => 'fa-clock-o',
+	'params' => array(
+	    'time' => array(
+			'std' => '6-12,13-16',
+			'type' => 'text',
+			'label' => __( 'Time', 'magee-shortcodes'),
+			'desc' => __( 'Select an random time in one day to show content.</br>Example: 6-12,13-16  show content from  6:00 to 12:00 and from 13:00 to 16:00', 'magee-shortcodes')
+		),
+		'day_week' => array(
+			'std' => '1-5,7',
+			'type' => 'text',
+			'label' => __( 'Days of Week', 'magee-shortcodes'),
+			'desc' => __( 'Select days from one week to show content.</br>1 => Monday </br>2 => Tuesday  </br> 3 => Wednesday</br> 4 => Thursday  </br> 5 => Friday  </br> 6 => Saturday </br>  7 => Sunday </br>Examples:1-5,7 =>show content at Sunday and from Monday to Friday', 'magee-shortcodes')
+		),
+		'day_month' =>array(
+		    'std' => '10-15,20-25',
+			'type' => 'text',
+			'label' => __( 'Days of Month', 'magee-shortcodes'), 
+			'desc' => __('Select days from one month to show content.</br>Examples:</br>1 => show content only at first day of  month </br> 10-25 => show content from 10th to 25th </br> 10-15,20-25 => show content from 10th to 15th and from 20th to 25th','magee-shortcodes')
+		),
+		'months' => array(
+		    'std' => '1,5,8-9',
+			'type' => 'text',
+			'label' => __('Months','magee-shortcodes'),
+			'desc' => __('Select months from a year to show content.</br>Examples:</br>1 => show content in January </br> 3-6 => show content from March to June </br> 1,5,8-9 => show content in January,May and from August to September','magee-shortcodes') 
+		),
+		'years' => array(
+		    'std' => '2016,2017,2345-2666',
+			'type' => 'text',
+			'label' => __('Years','magee-shortcodes'),  
+		    'desc' => __( 'Select years to show content.</br>Examples:</br> 2016 => show content in 2016 </br>2014-2016 => show content from 2014 to 2016 </br> 2016,2017,2345-2666 => show content in 2016,2017 and from 2345 to 2666','magee-shortcodes')
+		),
+	    'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes'),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes')
+		),
+	    'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes'),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		), 
+		'content' => array(
+		    'std' => '',
+			'type' => 'textarea',
+			'label' => __( 'Content', 'magee-shortcodes'),
+			'desc' => __( 'Insert scheduled content.', 'magee-shortcodes') 
+		)   
+	),
+	'shortcode' => '[ms_scheduled_content time="{{time}}" day_week="{{day_week}}" day_month="{{day_month}}" months="{{months}}" years="{{years}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_scheduled_content]',
+	'popup_title' => __( 'Scheduled Shortcode','magee-shortcodes'),
+	'name' => __('scheduled-shortcode/','magee-shortocdes'),
+);	
 
 /*-----------------------------------------------------------------------------------*/
 /*	Section Config
@@ -2199,11 +3401,11 @@ $magee_shortcodes['section'] = array(
 			'desc' =>__( 'Choose repeat style for the background image.', 'magee-shortcodes' ),
 			'std' => '',
 			'options' => array(
-							  'repeat' => __( 'repeat', 'magee-shortcodes' ),
-							  'repeat-x' => __( 'repeat-x', 'magee-shortcodes' ),
-							  'repeat-y' => __( 'repeat-y', 'magee-shortcodes' ),
-							  'no-repeat' => __( 'no-repeat', 'magee-shortcodes' ),
-							  'inherit' => __( 'inherit', 'magee-shortcodes' )
+							  'repeat' => __( 'Repeat', 'magee-shortcodes' ),
+							  'repeat-x' => __( 'Repeat-x', 'magee-shortcodes' ),
+							  'repeat-y' => __( 'Repeat-y', 'magee-shortcodes' ),
+							  'no-repeat' => __( 'No-repeat', 'magee-shortcodes' ),
+							  'inherit' => __( 'Inherit', 'magee-shortcodes' )
 							   )
 		),
 		
@@ -2213,27 +3415,29 @@ $magee_shortcodes['section'] = array(
 			'desc' => __( 'Choose the postion of the background image.', 'magee-shortcodes' ),
 			'std' => '',
 			'options' => array(
-							  'top left' => __( 'top left', 'magee-shortcodes' ),
-							  'top center' => __( 'top center', 'magee-shortcodes' ),
-							  'top right' => __( 'top right', 'magee-shortcodes' ),
-							  'center left' => __( 'center left', 'magee-shortcodes' ),
-							  'center center' => __( 'center center', 'magee-shortcodes' ),
-							  'center right' => __( 'center right', 'magee-shortcodes' ),
-							  'bottom left' => __( 'bottom left', 'magee-shortcodes' ),
-							  'bottom center' => __( 'bottom center', 'magee-shortcodes' ),
-							  'bottom right' => __( 'bottom right', 'magee-shortcodes' )
+							  'top left' => __( 'Top Left', 'magee-shortcodes' ),
+							  'top center' => __( 'Top Center', 'magee-shortcodes' ),
+							  'top right' => __( 'Top Right', 'magee-shortcodes' ),
+							  'center left' => __( 'Center Left', 'magee-shortcodes' ),
+							  'center center' => __( 'Center Center', 'magee-shortcodes' ),
+							  'center right' => __( 'Center Right', 'magee-shortcodes' ),
+							  'bottom left' => __( 'Bottom Left', 'magee-shortcodes' ),
+							  'bottom center' => __( 'Bottom Center', 'magee-shortcodes' ),
+							  'bottom right' => __( 'Bottom Right', 'magee-shortcodes' )
 							   )
 		),
 		'background_parallax' => array(
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Background Parallax', 'magee-shortcodes' ),
 			'desc' => __( 'Choose how the background image scrolls and responds.', 'magee-shortcodes' ),
 			'std' => 'no',
 			'options' => $reverse_choices
 		),
 		'border_size' => array(
-			'std' => '',
-			'type' => 'text',
+			'std' => '0',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
 			'label' => __( 'Border Size', 'magee-shortcodes' ),
 			'desc' =>__( 'In pixels (px), eg: 1px.', 'magee-shortcodes' ),
 		),
@@ -2267,31 +3471,39 @@ $magee_shortcodes['section'] = array(
 		),
 		
 		'padding_top' => array(
-			'std' => '10px',
-			'type' => 'text',
+			'std' => '10',
+			'type' => 'number',
+			'max' => '100',
+			'min' => '0',
 			'label' => __( 'Padding Top', 'magee-shortcodes' ),
 			'desc' =>  __( 'In pixels (px), eg: 1px.', 'magee-shortcodes' ),
 		),
 		'padding_bottom' => array(
-			'std' => '10px',
-			'type' => 'text',
+			'std' => '10',
+			'type' => 'number',
+			'max' => '100',
+			'min' => '0',
 			'label' => __( 'Padding Bottom', 'magee-shortcodes' ),
 			'desc' => __( 'In pixels (px), eg: 1px.', 'magee-shortcodes' ),
 		),
 		'padding_left' => array(
-			'std' => '10px',
-			'type' => 'text',
+			'std' => '10',
+			'type' => 'number',
+			'max' => '100',
+			'min' => '0',
 			'label' => __( 'Padding Left', 'magee-shortcodes' ),
 			'desc' => __( 'In pixels (px), eg: 1px.', 'magee-shortcodes' ),
 		),
 		'padding_right' => array(
-			'std' => '10px',
-			'type' => 'text',
+			'std' => '10',
+			'type' => 'number',
+			'max' => '100',
+			'min' => '0',
 			'label' => __( 'Padding Right', 'magee-shortcodes' ),
 			'desc' => __( 'In pixels (px), eg: 1px.', 'magee-shortcodes' ),
 		),
 		'contents_in_container' => array(
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __( 'Contents in Container ?', 'magee-shortcodes' ),
 			'desc' =>  __( 'Put the content in container.', 'magee-shortcodes' ),
 			'std' => 'no',
@@ -2311,18 +3523,18 @@ $magee_shortcodes['section'] = array(
 			'label' => __( 'Top Separator', 'magee-shortcodes' ),
 			'desc' => '',
 			'options' => array(
-				'' => __('none', 'magee-shortcodes'),
-				'triangle' => __('triangle', 'magee-shortcodes'),
-				'doublediagonal' => __('doublediagonal', 'magee-shortcodes'),
-				'halfcircle' => __('halfcircle', 'magee-shortcodes'),
-				'bigtriangle' => __('bigtriangle', 'magee-shortcodes'),
-				'bighalfcircle' => __('bighalfcircle', 'magee-shortcodes'),
-				'curl' => __('curl', 'magee-shortcodes'),
-				'multitriangles' => __('multitriangles', 'magee-shortcodes'),
-				'roundedsplit' => __('roundedsplit', 'magee-shortcodes'),
-				'boxes' => __('boxes', 'magee-shortcodes'),
-				'zigzag' => __('zigzag', 'magee-shortcodes'),
-				'clouds' => __('clouds', 'magee-shortcodes'),
+				'' => __('None', 'magee-shortcodes'),
+				'triangle' => __('Triangle', 'magee-shortcodes'),
+				'doublediagonal' => __('Doublediagonal', 'magee-shortcodes'),
+				'halfcircle' => __('Halfcircle', 'magee-shortcodes'),
+				'bigtriangle' => __('Bigtriangle', 'magee-shortcodes'),
+				'bighalfcircle' => __('Bighalfcircle', 'magee-shortcodes'),
+				'curl' => __('Curl', 'magee-shortcodes'),
+				'multitriangles' => __('Multitriangles', 'magee-shortcodes'),
+				'roundedsplit' => __('Roundedsplit', 'magee-shortcodes'),
+				'boxes' => __('Boxes', 'magee-shortcodes'),
+				'zigzag' => __('Zigzag', 'magee-shortcodes'),
+				'clouds' => __('Clouds', 'magee-shortcodes'),
 			)
 		),
 		'bottom_separator' => array(
@@ -2331,23 +3543,23 @@ $magee_shortcodes['section'] = array(
 			'label' => __( 'Bottom Separator', 'magee-shortcodes' ),
 			'desc' => '',
 			'options' => array(
-				'' => __('none', 'magee-shortcodes'),
-				'triangle' => __('triangle', 'magee-shortcodes'),
-				'halfcircle' => __('halfcircle', 'magee-shortcodes'),
-				'bigtriangle' => __('bigtriangle', 'magee-shortcodes'),
-				'bighalfcircle' => __('bighalfcircle', 'magee-shortcodes'),
-				'curl' => __('curl', 'magee-shortcodes'),
-				'multitriangles' => __('multitriangles', 'magee-shortcodes'),
-				'roundedcorners' => __('roundedcorners', 'magee-shortcodes'),
-				'foldedcorner' => __('foldedcorner', 'magee-shortcodes'),
-				'boxes' => __('boxes', 'magee-shortcodes'),
-				'zigzag' => __('zigzag', 'magee-shortcodes'),
-				'stamp' => __('stamp', 'magee-shortcodes'),
+				'' => __('None', 'magee-shortcodes'),
+				'triangle' => __('Triangle', 'magee-shortcodes'),
+				'halfcircle' => __('Halfcircle', 'magee-shortcodes'),
+				'bigtriangle' => __('Bigtriangle', 'magee-shortcodes'),
+				'bighalfcircle' => __('Bighalfcircle', 'magee-shortcodes'),
+				'curl' => __('Curl', 'magee-shortcodes'),
+				'multitriangles' => __('Multitriangles', 'magee-shortcodes'),
+				'roundedcorners' => __('Roundedcorners', 'magee-shortcodes'),
+				'foldedcorner' => __('Foldedcorner', 'magee-shortcodes'),
+				'boxes' => __('Boxes', 'magee-shortcodes'),
+				'zigzag' => __('Zigzag', 'magee-shortcodes'),
+				'stamp' => __('Stamp', 'magee-shortcodes'),
 			)
 		),
 		'full_height' => array(
 		    'std' => '',
-			'type' => 'select',
+			'type' => 'choose',
 			'label' => __('Full Height' , 'magee-shortcodes'),
 			'desc' => __('Choose to set the section height same as browser window.' , 'magee-shortcodes'),
 			'options' => $reverse_choices
@@ -2366,50 +3578,114 @@ $magee_shortcodes['section'] = array(
 		),		
 	),
 	'shortcode' => '[ms_section background_color="{{background_color}}" background_image="{{background_image}}" background_repeat="{{background_repeat}}" background_position="{{background_position}}" background_parallax="{{background_parallax}}" border_size="{{border_size}}" border_color="{{border_color}}" border_style="{{border_style}}" padding_top="{{padding_top}}" padding_bottom="{{padding_bottom}}" padding_left="{{padding_left}}" padding_right="{{padding_right}}" contents_in_container="{{contents_in_container}}" top_separator="{{top_separator}}" bottom_separator="{{bottom_separator}}" full_height="{{full_height}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_section]',
-	'popup_title' => __( 'Section Shortcode', 'magee-shortcodes' )
+	'popup_title' => __( 'Section Shortcode', 'magee-shortcodes' ),
+	'name' => __('section-shortcode/','magee-shortcodes'),
 );
 
 /*-----------------------------------------------------------------------------------*/
-/*	Tooltip Config
+/* Magee Slider Config
 /*-----------------------------------------------------------------------------------*/
 
-$magee_shortcodes['tooltip'] = array(
+$magee_shortcodes['ms_slider'] = array(
 	'no_preview' => true,
-	'icon' => 'fa-comment-o',
+	'icon' => 'fa-sliders',
+	'params' => array(
+  
+		'id' => array(
+			'std' => '',
+			'type' => 'select',
+			'label' => __( 'Slider', 'magee-shortcodes' ),
+			'desc' => '',
+			'options' => $magee_sliders
+		),		
+		
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
+		
+	),),
+	'shortcode' => '[ms_slider id="{{id}}" class="{{class}}"]',
+	'popup_title' => __( 'Slider', 'magee-shortcodes' ),
+	'name' => __('slider-shortcode/','magee-shortocdes'),
+);
+
+/*-----------------------------------------------------------------------------------*/
+/* Social Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['social'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-twitter',
 	'params' => array(
 
 		'title' => array(
 			'std' => '',
 			'type' => 'text',
-			'label' => __( 'Tooltip Text', 'magee-shortcodes' ),
-			'desc' => __( 'Insert the text that displays in the tooltip', 'magee-shortcodes' )
+			'label' => __( 'Title ', 'magee-shortcodes' ),
+			'desc' => __( 'Insert the title for the social icon.', 'magee-shortcodes' ),
+			),
+		'icon' => array(
+			'type' => 'iconpicker',
+				'label' => __( 'Icon', 'magee-shortcodes' ),
+				'desc' => __( 'Click an icon to select, click again to deselect.', 'magee-shortcodes' ),
+				'options' => $icons
+			),
+		'icon_size' => array(
+			'std' => '13',
+			'type' => 'number',
+			'max' => '50',
+			'min' => '0',
+			'label' => __( 'Icon Size', 'magee-shortcodes' ),
+			'desc' => __( 'In pixels (px), eg: 13px.', 'magee-shortcodes')
+		),	
+		'iconcolor' => array(
+			'type' => 'colorpicker',
+			'label' => __( 'Icon Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set color for icon.', 'magee-shortcodes')
+			),
+		 'backgroundcolor' => array(
+			'type' => 'colorpicker',
+			'label' => __( 'Icon Circle Background Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set background color for icon.', 'magee-shortcodes')
 		),
-		'placement' => array(
-			'type' => 'select',
-			'label' => __( 'Tooltip Position', 'magee-shortcodes' ),
-			'desc' => __( 'Choose the display position.', 'magee-shortcodes' ),
+		 'effect_3d' => array(
+		 	'std'=>'no',
+			'type' => 'choose',
+			'label' => __( 'Icon 3D effect' ),
+			'desc' => __( 'Display box shadow for icon.', 'magee-shortcodes'),
 			'options' => array(
-				'top' => __('Top', 'magee-shortcodes'),
-				'bottom' => __('Bottom', 'magee-shortcodes'),
-				'left' => __('Left', 'magee-shortcodes'),
-				'right' => __('Right', 'magee-shortcodes'),
+				'yes' => __('Yes', 'magee-shortcodes'),
+				'no' => __('No', 'magee-shortcodes'),
+			)	
+		),		
+		'iconboxedradius' => array(
+			'type' => 'select',
+			'label' => __( 'Icon Box Radius Style', 'magee-shortcodes' ),
+			//'desc' => __( '', 'magee-shortcodes' ),
+			'options' => array(
+				'normal' => __('Normal', 'magee-shortcodes'),
+				'boxed' => __('Boxed', 'magee-shortcodes'),
+				'rounded' => __('Rounded', 'magee-shortcodes'),
+				'circle' => __('Circle ', 'magee-shortcodes'),				
 			)
 		),
-		'trigger' => array(
-			'type' => 'select',
-			'label' => __( 'Tooltip Trigger', 'magee-shortcodes' ),
-			'desc' => __( 'Choose action to trigger the tooltip.', 'magee-shortcodes' ),
-			'options' => array(
-				'hover' => __('Hover', 'magee-shortcodes'),
-				'click' => __('Click', 'magee-shortcodes'),
-			)
-		),			
-		'content' => array(
+		'iconlink' => array(
 			'std' => '',
-			'type' => 'textarea',
-			'label' => __( 'Content', 'magee-shortcodes' ),
-			'desc' => __( 'Insert the text that will activate the tooltip hover', 'magee-shortcodes' )
-		),
+			'type' => 'text',
+			'label' => __( 'Icon Link URL', 'magee-shortcodes' ),
+			'desc' => __( 'Add the icon\'s url eg: http://example.com.', 'magee-shortcodes' ),
+		),	
+		'icontarget' => array(
+			'type' => 'choose',
+			'label' => __( 'Icon Target', 'magee-shortcodes' ),
+			'desc' => __( '_self = open in same window <br />_blank = open in new window.', 'magee-shortcodes' ),
+			'options' => array(
+				'_self' => '_self',
+				'_blank' => '_blank'
+			)
+		),	
 		'class' => array(
 			'std' => '',
 			'type' => 'text',
@@ -2421,10 +3697,11 @@ $magee_shortcodes['tooltip'] = array(
 			'type' => 'text',
 			'label' => __( 'CSS ID', 'magee-shortcodes' ),
 			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
-		),			
+		),
 	),
-	'shortcode' => '[ms_tooltip title="{{title}}" placement="{{placement}}" trigger="{{trigger}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_tooltip]',
-	'popup_title' => __( 'Tooltip Shortcode', 'magee-shortcodes' )
+	'shortcode' => '[ms_social icon_size="{{icon_size}}" title="{{title}}" icon="{{icon}}" iconcolor="{{iconcolor}}" effect_3d="{{effect_3d}}" backgroundcolor="{{backgroundcolor}}" iconboxedradius="{{iconboxedradius}}" iconlink="{{iconlink}}" icontarget="{{icontarget}}" class="{{class}}" id="{{id}}"][/ms_social]',
+	'popup_title' => __( 'Social Shortcode', 'magee-shortcodes' ),
+	'name' => __('social-shortcode/','magee-shortcodes'),
 );
 
 /*-----------------------------------------------------------------------------------*/
@@ -2478,9 +3755,45 @@ $magee_shortcodes['tabs'] = array(
 
 	'shortcode' => '[ms_tabs style="{{style}}" title_color="{{title_color}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_tabs]',
 	'popup_title' => __( 'Tab Shortcode', 'magee-shortcodes' ),
+	'name' => __('tabs-shortcode/','magee-shortcodes'),
 
 );
 
+/*-----------------------------------------------------------------------------------*/
+/*	Targeted_content Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['targeted_content'] = array(
+    'no_preview' => true,
+	'icon' => 'fa-eye' ,
+    'params' => array(
+	    'type' => array(
+		    'type' => 'select',
+			'label' => __( 'Type', 'magee-shortcodes'),
+			'desc' => __( 'Select visible permissions.Private for author only. Members for logged-in users. Guests for users not logged in.', 'magee-shortcodes'),
+			'options' => array(
+			    'private' => __( 'Private','magee-shortcodes'),
+				'members' => __( 'Members','magee-shortcodes'),
+				'guests' => __('Guests','magee-shortcodes'),
+			)
+		),
+		'content' => array(
+			'std' => 'note text',
+			'type' => 'textarea',
+			'label' => __( 'Content', 'magee-shortcodes'),
+			'desc' => __( 'Set content for targeted users.', 'magee-shortcodes')
+		),
+		'alternative' => array(
+			'std' => 'alternative text',
+			'type' => 'textarea',
+			'label' => __( 'Alternative Content', 'magee-shortcodes'),
+			'desc' => __( 'Set content for other users.', 'magee-shortcodes')
+		),
+	),
+    'shortcode' => '[ms_targeted_content type="{{type}}" alternative="{{alternative}}"]{{content}}[/ms_targeted_content]',
+	'popup_title' => __( 'Targeted Shortcode','magee-shortcodes'),
+	'name' => __('targeted-shortcode/','magee-shortocdes'),
+);
 
 /*-----------------------------------------------------------------------------------*/
 /* testimonial Config
@@ -2513,7 +3826,7 @@ $magee_shortcodes['testimonial'] = array(
 			'desc' => __( 'Byline of testimonial\'s author.', 'magee-shortcodes' ),
 			),
 		'avatar' => array(
-				'type' => 'uploader',
+				'type' => 'link',
 				'label' => __( 'Avatar', 'magee-shortcodes' ),
 				'desc' => __( 'Avatar of testimonial\'s author.', 'magee-shortcodes' ),
 			),
@@ -2548,7 +3861,8 @@ $magee_shortcodes['testimonial'] = array(
 		),
 	),
 	'shortcode' => '[ms_testimonial style="{{style}}" name="{{name}}" avatar="{{avatar}}" byline="{{byline}}" alignment="{{alignment}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_testimonial]',
-	'popup_title' => __( 'Testimonial Shortcode', 'magee-shortcodes' )
+	'popup_title' => __( 'Testimonial Shortcode', 'magee-shortcodes' ),
+	'name' => __('testimonial-shortcode/','magee-shortcodes'),
 );
 
 
@@ -2596,8 +3910,81 @@ $magee_shortcodes['timeline'] = array(
 		),
 	'shortcode' => '[ms_timeline columns="{{columns}}"  class="{{class}}" id="{{id}}"]{{content}}[/ms_timeline]',
 	'popup_title' => __( 'Timeline Shortcode', 'magee-shortcodes' ),
+    'name' => __('timeline-shortcode/','magee-shortcodes'),
 
+);
 
+/*-----------------------------------------------------------------------------------*/
+/*	Tooltip Config
+/*-----------------------------------------------------------------------------------*/
+
+$magee_shortcodes['tooltip'] = array(
+	'no_preview' => true,
+	'icon' => 'fa-comment-o',
+	'params' => array(
+
+		'title' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'Tooltip Text', 'magee-shortcodes' ),
+			'desc' => __( 'Insert the text that displays in the tooltip', 'magee-shortcodes' )
+		),
+		'background_color' => array(
+			'type' => 'colorpicker',
+			'std' => '',
+			'label' => __( 'Tooltip Background Color', 'magee-shortcodes' ),
+			'desc' => __( 'Set Background Color for the text.', 'magee-shortcodes' ),
+		),
+		'border_radius' => array(
+			'type' => 'number',
+			'std' => '0',
+			'max' => '100',
+			'min' => '0',
+			'label' => __( 'Tooltip Border Radius', 'magee-shortcodes' ),
+			'desc' => __( 'Set Border Radius for the text.', 'magee-shortcodes' ),
+		),		
+		'placement' => array(
+			'type' => 'select',
+			'label' => __( 'Tooltip Position', 'magee-shortcodes' ),
+			'desc' => __( 'Choose the display position.', 'magee-shortcodes' ),
+			'options' => array(
+				'top' => __('Top', 'magee-shortcodes'),
+				'bottom' => __('Bottom', 'magee-shortcodes'),
+				'left' => __('Left', 'magee-shortcodes'),
+				'right' => __('Right', 'magee-shortcodes'),
+			)
+		),
+		'trigger' => array(
+			'type' => 'select',
+			'label' => __( 'Tooltip Trigger', 'magee-shortcodes' ),
+			'desc' => __( 'Choose action to trigger the tooltip.', 'magee-shortcodes' ),
+			'options' => array(
+				'hover' => __('Hover', 'magee-shortcodes'),
+				'click' => __('Click', 'magee-shortcodes'),
+			)
+		),			
+		'content' => array(
+			'std' => '',
+			'type' => 'textarea',
+			'label' => __( 'Content', 'magee-shortcodes' ),
+			'desc' => __( 'Insert the text that will activate the tooltip hover', 'magee-shortcodes' )
+		),
+		'class' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS Class', 'magee-shortcodes' ),
+			'desc' => __( 'Add a class to the wrapping HTML element.', 'magee-shortcodes' )
+		),
+		'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes' )
+		),			
+	),
+	'shortcode' => '[ms_tooltip title="{{title}}" background_color="{{background_color}}" border_radius="{{border_radius}}" placement="{{placement}}" trigger="{{trigger}}" class="{{class}}" id="{{id}}"]{{content}}[/ms_tooltip]',
+	'popup_title' => __( 'Tooltip Shortcode', 'magee-shortcodes' ),
+	'name' => __('tooltip-shortcode/','magee-shortocdes'),
 );
 
 
@@ -2612,21 +3999,21 @@ $magee_shortcodes['video'] = array(
 	
 	    'mp4_url' => array(
             'std' => '',
-            'type' => 'text',
+            'type' => 'link',
             'label' => __( 'Mp4 Video Url','magee-shortcodes'),
             'desc' => __( 'Add the URL of video in MPEG4 format. WebM and MP4 format must be included to render your video with cross browser compatibility. OGV is optional.', 'magee-shortcodes' ),  
         
         ),  
         'ogv_url' => array(
             'std' => '',
-            'type' => 'text',
+            'type' => 'link',
             'label' => __( 'Ogv Video Url','magee-shortcodes'),
             'desc' => __( 'Add the URL of video in OGV format. WebM and MP4 format must be included to render your video with cross browser compatibility. OGV is optional.', 'magee-shortcodes' ),  
         
         ),
         'webm_url' => array(
             'std' => '',
-            'type' => 'text',
+            'type' => 'link',
             'label' => __( 'Webm Video Url','magee-shortcodes'),
             'desc' => __( 'Add the URL of video in webm format. WebM and MP4 format must be included to render your video with cross browser compatibility. OGV is optional.', 'magee-shortcodes' ),  
         
@@ -2641,25 +4028,25 @@ $magee_shortcodes['video'] = array(
 		'width' => array(
 		    'std' => '100%',
 			'type' => 'text',
-			'label' => __('Width','magee-shortcodes'),
+ 			'label' => __('Width','magee-shortcodes'),
 			'desc' => __('In pixels (px), eg: 1px.','magee-shortcodes'),
 		),
 	    'height' => array(
 		    'std' => '100%',
-			'type' => 'text',
+		    'type' => 'text',
 			'label' => __('Height','magee-shortcodes'),
 			'desc' => __('In pixels (px), eg: 1px.','magee-shortcodes'), 
 		),
 		'mute' => array( 
 		    'std' => '',  
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Mute Video' ,'magee-shortcodes'),
 			'desc' => __('Choose to mute the video.','magee-shortcodes'), 
 			'options' => $reverse_choices	 
 		),
 	    'autoplay' =>array(
 		    'std' => '',
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Autoplay Video','magee-shortcodes'),
 			'desc' => __('Choose to autoplay the video.','magee-shortcodes'), 
 			'options' => array(
@@ -2669,7 +4056,7 @@ $magee_shortcodes['video'] = array(
 		),
 		'loop' =>array(
 		    'std' => '',
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Loop Video','magee-shortcodes'),
 			'desc' => __('Choose to loop the video.','magee-shortcodes'), 
 			'options' => array(
@@ -2679,7 +4066,7 @@ $magee_shortcodes['video'] = array(
 		),
 		'controls' =>array(
 		    'std' => '',
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Show Controls','magee-shortcodes'),
 			'desc' => __('Choose to display controls for the video player.','magee-shortcodes'), 
 			'options' => array(
@@ -2701,7 +4088,8 @@ $magee_shortcodes['video'] = array(
 		),
 	),
 	'shortcode' => '[ms_video mp4_url="{{mp4_url}}" ogv_url="{{ogv_url}}" webm_url="{{webm_url}}" poster="{{poster}}"  width="{{width}}" height="{{height}}" mute="{{mute}}" autoplay="{{autoplay}}" loop="{{loop}}" controls="{{controls}}" class="{{class}}" id="{{id}}"][/ms_video]',   
-    'popup_title' => __( 'Video Shortcode', 'magee-shortcodes' )
+    'popup_title' => __( 'Video Shortcode', 'magee-shortcodes' ),
+	'name' => __('video-shortcode/','magee-shortocdes'),
 );       
        
 
@@ -2713,12 +4101,10 @@ $magee_shortcodes['vimeo'] = array(
     'no_preview' => true,
 	'icon' => 'fa-vimeo-square',    
     'params' => array(
-	    
-		
 		'link' => array(
 			'std' => '',
 			'type' => 'text',
-			'label' => __( 'Video URL', 'magee-shortcodes' ),
+			'label' => __( 'Vimeo URL', 'magee-shortcodes' ),
 			'desc' => __( 'Add the URL the video will link to, ex: http://example.com.', 'magee-shortcodes' ),
 		),
 		'width' => array(
@@ -2735,14 +4121,14 @@ $magee_shortcodes['vimeo'] = array(
 		),
 		'mute' => array( 
 		    'std' => '',  
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Mute Video' ,'magee-shortcodes'),
 			'desc' => __('Choose to mute the video.','magee-shortcodes'), 
 			'options' => $reverse_choices	 
 		),
 	    'autoplay' =>array(
 		    'std' => '',
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Autoplay Video','magee-shortcodes'),
 			'desc' => __('Choose to autoplay the video.','magee-shortcodes'), 
 			'options' => array(
@@ -2752,7 +4138,7 @@ $magee_shortcodes['vimeo'] = array(
 		),
 		'loop' =>array(
 		    'std' => '',
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Loop Video','magee-shortcodes'),
 			'desc' => __('Choose to loop the video.','magee-shortcodes'), 
 			'options' => array(
@@ -2762,7 +4148,7 @@ $magee_shortcodes['vimeo'] = array(
 		),
 		'controls' =>array(
 		    'std' => '',
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Show Controls','magee-shortcodes'),
 			'desc' => __('Choose to display controls for the video player.','magee-shortcodes'), 
 			'options' => array(
@@ -2784,7 +4170,8 @@ $magee_shortcodes['vimeo'] = array(
 		),
 	),
 	'shortcode' => '[ms_vimeo link="{{link}}"  width="{{width}}" height="{{height}}" mute="{{mute}}" autoplay="{{autoplay}}" loop="{{loop}}" controls="{{controls}}" class="{{class}}" id="{{id}}"][/ms_vimeo]',   
-    'popup_title' => __( 'Vimeo Shortcode', 'magee-shortcodes' )
+    'popup_title' => __( 'Vimeo Shortcode', 'magee-shortcodes' ),
+	'name' => __('vimeo-shortcode/','magee-shortocdes'),
 );       
 /*-----------------------------------------------------------------------------------*/
 /*	Youtube Config
@@ -2815,14 +4202,14 @@ $magee_shortcodes['youtube'] = array(
 		),
 		'mute' => array( 
 		    'std' => '',  
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Mute Video' ,'magee-shortcodes'),
 			'desc' => __('Choose to mute the video.','magee-shortcodes'), 
 			'options' => $reverse_choices	 
 		),
 	    'autoplay' =>array(
 		    'std' => '',
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Autoplay Video','magee-shortcodes'),
 			'desc' => __('Choose to autoplay the video.','magee-shortcodes'), 
 			'options' => array(
@@ -2832,7 +4219,7 @@ $magee_shortcodes['youtube'] = array(
 		),
 		'loop' =>array(
 		    'std' => '',
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Loop Video','magee-shortcodes'),
 			'desc' => __('Choose to loop the video.','magee-shortcodes'), 
 			'options' => array(
@@ -2842,7 +4229,7 @@ $magee_shortcodes['youtube'] = array(
 		),
 		'controls' =>array(
 		    'std' => '',
-		    'type' => 'select',
+		    'type' => 'choose',
 			'label' => __('Show Controls','magee-shortcodes'),
 			'desc' => __('Choose to display controls for the video player.','magee-shortcodes'), 
 			'options' => array(
@@ -2864,17 +4251,149 @@ $magee_shortcodes['youtube'] = array(
 		),
 	),
 	'shortcode' => '[ms_youtube link="{{link}}"  width="{{width}}" height="{{height}}" mute="{{mute}}" autoplay="{{autoplay}}" loop="{{loop}}" controls="{{controls}}" class="{{class}}" id="{{id}}"][/ms_youtube]',   
-    'popup_title' => __( 'Youtube Shortcode', 'magee-shortcodes' )
+    'popup_title' => __( 'Youtube Shortcode', 'magee-shortcodes' ),
+	'name' => __('youtube-shortcode/','magee-shortocdes'),
 );       
 
+/*-----------------------------------------------------------------------------------*/
+/*	Weather Config
+/*-----------------------------------------------------------------------------------*/   
 
+$magee_shortcodes['weather'] = array(
+    'no_preview' => true,
+	'icon' => 'fa-skyatlas',    
+    'params' => array(
+	    'api_key' => array(
+		    'std' => '0af9d367c2b965bb80281fab5fdaa44a',
+			'type' => 'text',
+			'label' => __('API Key','magee-shortcodes'),
+			'desc' => __('As of October 2015, OpenWeatherMap requires an APP ID key to access their weather data. <a href="http://openweathermap.org/appid" target="_blank">Get your APPID</a>','magee-shortcodes'),
+		),
+		'location' => array(
+		    'std' => '',
+			'type' => 'text',
+			'label' => __('Location','magee-shortcodes'),
+			'desc' => __('Set city name or ID which will show weather.eg: London or 2643743','magee-shortcodes'),
+		),
+		'units' => array(
+		    'std' => '',
+			'type' => 'select',
+			'label' =>  __('Temperature Units','magee-shortcodes'),
+			'desc' => __( 'Metric: Celsius, Imperial: Fahrenheit.', 'magee-shortcodes'),
+			'options' => array(
+			    'metric' => __( 'Metric','magee-shortcodes'),
+				'imperial' => __( 'Imperial','magee-shortcodes')
+			)
+		),
+		'weather_detail' => array(
+		    'std' => '',
+			'type' => 'choose',
+			'label' =>  __('Disable Weather Detail','magee-shortcodes'),
+			'desc' => __( 'Choose to show current weather detail.', 'magee-shortcodes'),
+			'options' => $choices
+		),
+		'forecast' => array(
+		    'std' => '',
+			'type' => 'choose',
+			'label' =>  __('Forecast','magee-shortcodes'),
+			'desc' => __( 'Choose to show forecast weather.', 'magee-shortcodes'),
+			'options' => $choices
+		),
+		'forecast_cnt' => array(
+		    'std' => '4',
+			'type' => 'number',
+			'max' => '16',
+			'min' => '1',
+			'label' =>  __('Forecast Cnt','magee-shortcodes'),
+			'desc' => __( 'Choose number of days for forecast weather.', 'magee-shortcodes'),	
+		),
+		'background_color' => array(
+		    'std' => '',
+			'type' => 'colorpicker',
+			'label' =>  __('Background Color','magee-shortcodes'),
+			'desc' => __( 'Set background color for weather', 'magee-shortcodes'),
+		),
+		'background_img' => array(
+		    'std' => '',
+			'type' => 'uploader',
+			'label' =>  __('Background Image','magee-shortcodes'),
+			'desc' => __( 'Set background image for weather', 'magee-shortcodes'),
+		),
+		'width' => array(
+		    'std' => '300',
+			'type' => 'number',
+			'max' => '500',
+			'min' => '0',
+			'label' =>  __('Weather Width','magee-shortcodes'),
+		),
+		'height' => array(
+		    'std' => '',
+			'type' => 'number',
+			'max' => '500',
+			'min' => '0',
+			'label' =>  __('Weather Height','magee-shortcodes'),
+		),
+	    'class' =>array(
+		    'std' => '',
+			'type' => 'text',
+			'label' => __('CSS Class','magee-shortcodes'),
+			'desc' => __('Add a class to the wrapping HTML element.','magee-shortcodes') 
+		),   
+	    'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+	),
+    'shortcode' => '[ms_weather api_key="{{api_key}}" location="{{location}}" units="{{units}}" background_color="{{background_color}}" background_img="{{background_img}}" weather_detail="{{weather_detail}}" forecast="{{forecast}}" forecast_cnt="{{forecast_cnt}}" width="{{width}}" height="{{height}}" class="{{class}}" id="{{id}}"]',
+    'popup_title' => __( 'Weather Shortcode', 'magee-shortcodes' ),
 
+);
 
+/*-----------------------------------------------------------------------------------*/
+/*	Widget Area
+/*-----------------------------------------------------------------------------------*/   
 
+$magee_shortcodes['widget_area'] = array(
+    'no_preview' => true,
+	'icon' => 'fa-cog',    
+    'params' => array(
+	    'name' => array(
+		    'std' => '',
+			'type' => 'select',
+			'label' => __('Name','magee-shortcodes'),
+			'desc' => __('Choose widget name to show','magee-shortcodes'),
+			'options' => $magee_widget,
+		),
+		'background_color' => array(
+		    'std' => '',
+			'type' => 'colorpicker',
+			'label' => __('Background Color','magee-shortcodes'),
+			'desc' => __('Set background color for widget area','magee-shortcodes'),
+		),
+		'padding' => array(
+		    'std' => '0',
+			'max' => '200',
+			'min' => '0',
+			'type' => 'number',
+			'label' =>  __('Padding','magee-shortcodes'),
+			'desc' => __( 'Content Padding. eg:30', 'magee-shortcodes')
+		),
+	    'class' =>array(
+		    'std' => '',
+			'type' => 'text',
+			'label' => __('CSS Class','magee-shortcodes'),
+			'desc' => __('Add a class to the wrapping HTML element.','magee-shortcodes') 
+		),   
+	    'id' => array(
+			'std' => '',
+			'type' => 'text',
+			'label' => __( 'CSS ID', 'magee-shortcodes' ),
+			'desc' => __( 'Add an ID to the wrapping HTML element.', 'magee-shortcodes')
+		),
+	),
+    'shortcode' => '[ms_widget_area name="{{name}}"  background_color="{{background_color}}" padding="{{padding}}" class="{{class}}" id="{{id}}"][/ms_widget_area]',
+    'popup_title' => __( 'Widget Area Shortcode', 'magee-shortcodes' ),
 
-
-
-
-
-
-
+);

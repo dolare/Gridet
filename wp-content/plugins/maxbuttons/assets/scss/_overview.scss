@@ -41,8 +41,15 @@
 			overflow: hidden;
 		}
 		.actions { 
-			margin: 10px 15px; 
+			//margin: 10px 15px 10px 0;
+			margin: 10px 0;
+			padding: 10px 0px 10px 8px; 
 			display: inline-block;
+			z-index: 11; 
+			//height: 75px;
+			width: 50%;
+			background-color: #fff; 
+			position: relative;
 		}
 	}
  
@@ -58,9 +65,18 @@
 		width: 60%;
 		//min-width: 50%;
 		overflow: hidden;
+		@include bp(780)
+		{
+			width:70%;
+			margin-right:5%;
+		}
 	}
 	.col_name { 
 		width: 15%; 
+		@include bp(780)
+		{
+			display: none !important;
+		}
 	} 
 	.col_shortcode { 
 		width: 15%;
@@ -95,6 +111,12 @@ p.status
  	.shortcode-container {
 		margin: 10px 0px 10px 2px;
 
+	}
+	.collection_notice {
+		text-align: right;
+		margin: 10px 5px 0 0;
+		padding-top: 10px;
+		float: right;
 	}
 		
 }
@@ -144,15 +166,4 @@ p.status
 	}
 }
 
-
-@media screen and (max-width: 780px) {
-	.ad-wrap {
-		width: 100%;
-		max-width: 100%;
-	}
-	.ads {
-		width: 300px;
-		margin-right: 20px;
-		float: left;
-	}
-}
+ 

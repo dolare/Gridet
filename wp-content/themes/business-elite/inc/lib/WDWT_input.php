@@ -3,20 +3,20 @@ function wdwt_options_validate( $input ) {
   global $wdwt_options;
 
   $valid_input = $wdwt_options;
- 
+
   $settingsbytab = wdwt_get_settings_by_tab();
   $option_parameters = wdwt_get_option_parameters();
   $option_defaults = wdwt_get_option_defaults();
   $tabs = wdwt_get_tabs();
-  
-  $submittype = 'submit'; 
+
+  $submittype = 'submit';
   foreach ( $tabs as $tab ) {
     $resetname = 'reset-' . $tab['name'];
     if ( ! empty( $input[$resetname] ) ) {
       $submittype = 'reset';
     }
   }
-  
+
   foreach ( $tabs as $tab ) {
     $submitname = 'submit-' . $tab['name'];
     $resetname = 'reset-' . $tab['name'];
@@ -36,7 +36,7 @@ function wdwt_options_validate( $input ) {
       switch ($optiondetails['type']) :
         case 'color':
           $valid_input[$setting] = wdwt_param_clean($input[$setting], $valid_input[$setting], 'color', $sanitize_type);
-        break;
+          break;
         case 'colors':
           /*to refresh colors of active theme in themes options*/
           $select_theme = $input[$setting]['select_theme'];
@@ -55,54 +55,55 @@ function wdwt_options_validate( $input ) {
             $input[$setting]['colors'][$color]['default'] = $option_defaults[$select_theme]['colors'][$theme_index][$color]['default'];
           }
           $valid_input[$setting] = $input[$setting];
-        break;
+          break;
         case 'checkbox':
         case 'checkbox_open':
           $valid_input[$setting] = ( isset( $input[$setting] ) && $input[$setting]!=='false' && $input[$setting]!==false ? true : false );
-        break;
+          break;
         case 'radio':
         case 'radio_open':
           $valid_input[$setting] = ( array_key_exists( $input[$setting], $valid_options ) ? $input[$setting] : $valid_input[$setting] );
-        break;
+          break;
         case 'layout' :
         case 'layout_open':
           $valid_input[$setting] = $input[$setting];
-        break;
+          break;
         case 'select':
         case 'select_open':
         case 'select_style':
           $valid_input[$setting] = wdwt_param_clean(isset($input[$setting]) ? $input[$setting] : array(), array(), 'select', $sanitize_type,'', $valid_options);
           break;
         case 'select_theme':
-      /*do nothing, the theme options are saved via color panel input (see case 'colors' in this switch)*/
-        break;
+          /*do nothing, the theme options are saved via color panel input (see case 'colors' in this switch)*/
+          break;
         case 'text':
         case 'textarea':
         case 'upload_single':
+        case 'number':
           $valid_input[$setting] = wdwt_param_clean($input[$setting], '', 'text', $sanitize_type);
-        break;
+          break;
         case 'textarea_slider':
         case 'text_slider':
         case 'upload_multiple':
           $valid_input[$setting] = wdwt_param_clean($input[$setting], '', 'text_slider', $sanitize_type);
-    break;
+          break;
         case 'text_diagram':
           $valid_input[$setting] = wdwt_param_clean($input[$setting], '', 'text_diagram', $sanitize_type);
           break;
         default:
           /*do nothing*/
       endswitch;
-    } 
+    }
     elseif ( 'reset' == $submittype ) {
       $valid_input[$setting] = $option_defaults[$setting];
     }
     /*set background color*/
     if(isset($optiondetails['mod']) && $optiondetails['mod']){
       if($setting == 'background_color'){
-        set_theme_mod($setting, str_replace('#','',$valid_input[$setting]));  
+        set_theme_mod($setting, str_replace('#','',$valid_input[$setting]));
       }
       else{
-        set_theme_mod($setting, $valid_input[$setting]);   
+        set_theme_mod($setting, $valid_input[$setting]);
       }
     }
   }
@@ -140,7 +141,7 @@ function wdwt_param_clean($input, $default = false, $param_type, $sanitize_type 
       /* remove whitespaces and add hash symbol if missed */
       $input = str_replace(' ', '',$input);
       if(substr($input,0,1) != "#"){
-         $input = '#'.$input;
+        $input = '#'.$input;
       }
       $input = substr($input,0,7);
       /*verify color*/
@@ -148,7 +149,7 @@ function wdwt_param_clean($input, $default = false, $param_type, $sanitize_type 
         $input = $matches[0];
       }
       else{/*reset color to default value if wrong input*/
-        $input = $default; 
+        $input = $default;
       }
       break;
 
@@ -175,40 +176,40 @@ function wdwt_param_clean($input, $default = false, $param_type, $sanitize_type 
 
     case 'text_slider' :
 
-        if ( 'sanitize_text_field' == $sanitize_type) {
-          $arr = explode( $delimiter , $input );
-          for ($i=0; $i < sizeof($arr); $i++) { 
-            $arr[$i] = wp_filter_nohtml_kses( str_replace(array("\n", "\r"), "", $arr[$i] ));
-          }
-          $input = implode ( $delimiter , $arr );
+      if ( 'sanitize_text_field' == $sanitize_type) {
+        $arr = explode( $delimiter , $input );
+        for ($i=0; $i < sizeof($arr); $i++) {
+          $arr[$i] = wp_filter_nohtml_kses( str_replace(array("\n", "\r"), "", $arr[$i] ));
         }
-        if ( 'sanitize_html_field' == $sanitize_type ) {
-          $arr = explode( $delimiter , $input );
-          for ($i=0; $i < sizeof($arr); $i++) { 
-            $arr[$i] = wp_kses(stripslashes(str_replace(array("\n", "\r"), "",$arr[$i])),$allowed_slider_desc_html);
-          }
-          $input = implode ( $delimiter , $arr );
+        $input = implode ( $delimiter , $arr );
+      }
+      if ( 'sanitize_html_field' == $sanitize_type ) {
+        $arr = explode( $delimiter , $input );
+        for ($i=0; $i < sizeof($arr); $i++) {
+          $arr[$i] = wp_kses(stripslashes(str_replace(array("\n", "\r"), "",$arr[$i])),$allowed_slider_desc_html);
+        }
+        $input = implode ( $delimiter , $arr );
 
 
+      }
+      if ( 'esc_url_raw' == $sanitize_type) {
+        $arr = explode( $delimiter , $input );
+        for ($i=0; $i < sizeof($arr); $i++) {
+          $arr[$i] = esc_url_raw($arr[$i]);
         }
-        if ( 'esc_url_raw' == $sanitize_type) {
-          $arr = explode( $delimiter , $input );
-          for ($i=0; $i < sizeof($arr); $i++) { 
-            $arr[$i] = esc_url_raw($arr[$i]);
-          }
-          $input = implode ( $delimiter , $arr );
-        }
+        $input = implode ( $delimiter , $arr );
+      }
       break;
-    
+
     case 'text_diagram' :
 
-        if ( 'sanitize_text_field' == $sanitize_type) {
-          $arr = explode( $delimiter , $input );
-          for ($i=0; $i < sizeof($arr); $i++) { 
-            $arr[$i] = wp_filter_nohtml_kses( str_replace(array("\n", "\r"), "", $arr[$i] ));
-          }
-          $input = implode ( $delimiter , $arr );
+      if ( 'sanitize_text_field' == $sanitize_type) {
+        $arr = explode( $delimiter , $input );
+        for ($i=0; $i < sizeof($arr); $i++) {
+          $arr[$i] = wp_filter_nohtml_kses( str_replace(array("\n", "\r"), "", $arr[$i] ));
         }
+        $input = implode ( $delimiter , $arr );
+      }
       break;
     case 'select' :
       $valid_input = $default;
@@ -217,12 +218,12 @@ function wdwt_param_clean($input, $default = false, $param_type, $sanitize_type 
       }
       foreach ($input as $key=> $value) { /*selects are always arrays in admin and meta!*/
         if('sanitize_text_field' == $sanitize_type){
-          $valid_input[$key]  = wp_filter_nohtml_kses( $value);  
+          $valid_input[$key]  = wp_filter_nohtml_kses( $value);
         }
         else{ /*no sanitize*/
-          $valid_input[$key]  = $value;  
+          $valid_input[$key]  = $value;
         }
-        
+
       }
       $input = $valid_input;
       break;
@@ -230,19 +231,19 @@ function wdwt_param_clean($input, $default = false, $param_type, $sanitize_type 
     default :
       break;
   endswitch;
-  
+
   return $input;
 }
 
 /*----------------*//*----------------*//*----------------*/
 class WDWT_customizer_sanitizer {
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function color_($input, $setting){
     $default = '#000000';
     /* remove whitespaces and add hash symbol if missed */
     $input = str_replace(' ', '',$input);
     if(substr($input,0,1) != "#"){
-       $input = '#'.$input;
+      $input = '#'.$input;
     }
     $input = substr($input,0,7);
     /*verify color*/
@@ -250,75 +251,75 @@ class WDWT_customizer_sanitizer {
       $input = $matches[0];
     }
     else{/*reset color to default value if wrong input*/
-      $input = $default; 
+      $input = $default;
     }
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_($input, $setting){
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_sanitize_text_field($input, $setting){
     $input = wp_filter_nohtml_kses( $input);
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_sanitize_html_field($input, $setting){
     $input = wp_filter_kses( $input);
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_sanitize_footer_html_field($input, $setting){
     $allowed_footer_html = apply_filters( 'wp_kses_allowed_html', "", "allowed_footer_html" );
     $input = addslashes(wp_kses(stripslashes($input),$allowed_footer_html));
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_sanitize_head_html_field($input, $setting){
     $allowed_custom_head = apply_filters( 'wp_kses_allowed_html', "", "allowed_custom_head" );
     $input = addslashes(wp_kses(stripslashes($input),$allowed_custom_head));
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_esc_url_raw($input, $setting){
     $input = esc_url_raw( $input);
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_css($input, $setting){
     $input = addslashes( $input );
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_slider_sanitize_text_field($input, $setting){
     $arr = explode( self::delimiter() , $input );
-    for ($i=0; $i < sizeof($arr); $i++) { 
+    for ($i=0; $i < sizeof($arr); $i++) {
       $arr[$i] = wp_filter_nohtml_kses( str_replace(array("\n", "\r"), "", $arr[$i] ));
     }
     $input = implode ( self::delimiter() , $arr );
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_slider_sanitize_html_field($input, $setting){
     $allowed_slider_desc_html = apply_filters( 'wp_kses_allowed_html', "", "allowed_slider_desc_html" );
     $arr = explode( self::delimiter() , $input );
-    for ($i=0; $i < sizeof($arr); $i++) { 
+    for ($i=0; $i < sizeof($arr); $i++) {
       $arr[$i] = addslashes(wp_kses(stripslashes(str_replace(array("\n", "\r"), "",$arr[$i])),$allowed_slider_desc_html));
     }
     $input = implode ( self::delimiter() , $arr );
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function text_slider_esc_url_raw($input, $setting){
     $arr = explode( self::delimiter() , $input );
-    for ($i=0; $i < sizeof($arr); $i++) { 
+    for ($i=0; $i < sizeof($arr); $i++) {
       $arr[$i] = esc_url_raw($arr[$i]);
     }
     $input = implode ( self::delimiter() , $arr );
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function select_($input, $setting){
     $valid_input = array();
     /*if multiple*/
@@ -333,7 +334,7 @@ class WDWT_customizer_sanitizer {
     $input = $valid_input;
     return $input;
   }
-  /*--------*//*---------*/ 
+  /*--------*//*---------*/
   static function select_sanitize_text_field($input, $setting){
     $valid_input = array();
     /*if multiple*/

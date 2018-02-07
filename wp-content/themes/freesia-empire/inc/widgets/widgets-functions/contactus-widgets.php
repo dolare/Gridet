@@ -110,4 +110,3 @@ class freesiaempire_contact_widgets extends WP_Widget {
 	echo $after_widget .'<!-- end .contact_widget -->';
 	}
 }
-?>

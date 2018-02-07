@@ -6,7 +6,7 @@ The exceptions to this license are as follows:
 **** INC *****
 
 * wp_bootstrap_navwalker - GitHub URI: https://github.com/twittem/wp-bootstrap-navwalker - Author: Edward McIntyre - @twittem - License: GPL-2.0+ - License URI: http://www.gnu.org/licenses/gpl-2.0.txt
-* Redux Framework is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version. - Redux Framework Team
+* Kirki Framework (https://github.com/aristath/kirki/blob/master/LICENSE)
 
 **** Scripts *****
 

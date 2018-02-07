@@ -1,4 +1,6 @@
 <?php
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
 /* Class to Parse CSS. Load as array with diffent pseudo-types,
 	ability to add nested and new root blocks 
 	parses via scss
@@ -7,6 +9,9 @@
 	auto-discovery of fields via domobj.
 	
 */
+
+use \Exception as Exception;
+
 class maxCSSParser
 {
 	protected $struct = array(); 
@@ -19,6 +24,8 @@ class maxCSSParser
 	protected $inline = array();
 	protected $responsive = array();
 	
+	public $anchor_class = '.maxbutton'; // used for matching buttons in parse_part 
+	
 	// settings
 	protected $elements_ignore_zero = array(
 		'text-shadow-left',
@@ -27,6 +34,7 @@ class maxCSSParser
 		'box-shadow-offset-left',
 		'box-shadow-offset-top', 
 		'box-shadow-width',
+		'box-shadow-spread', 
 	);  // items to ignore if value is zero, otherwise they become unremovable ( where 0 is still something on display)  
 	
 	protected $important = false;
@@ -51,7 +59,8 @@ class maxCSSParser
  
 		if (count($children) > 0) 
 			$struct[$root->tag] = $this->loadRecursive(array(), $children);
-		
+	
+
 		$this->struct = $struct;
 
 
@@ -97,8 +106,11 @@ class maxCSSParser
  			unset($this->data["settings"]); 
  		}
 
-
 		$elements = array_shift($struct); // first element is a 'stub' root.  
+
+		if ( is_null($elements) )
+			return; 
+
 
 		foreach($elements as $el => $el_data)
 		{
@@ -131,12 +143,12 @@ class maxCSSParser
 	
 	protected function compile($css)
 	{
-		$scss = new scssc();
+		$scss = new \Leafo\ScssPhp\Compiler();
 		$scss->setImportPaths(MB()->get_plugin_path() . "assets/scss");
 		
 		$minify = get_option("maxbuttons_minify", 1); 
 		if ($minify == 1)
-			$scss->setFormatter('scss_formatter_compressed');
+			$scss->setFormatter('\Leafo\ScssPhp\Formatter\Compressed');
 		
 		$compile = " @import '_mixins.scss';  " . $css;
 		//maxUtils::addTime("CSSParser: Compile start ");
@@ -147,7 +159,7 @@ class maxCSSParser
 		} catch (Exception $e) { 
  
 			$css = $this->output_css; 
-		 } 
+		} 
 
 		//maxUtils::addTime("CSSParser: Compile end ");
 
@@ -157,22 +169,22 @@ class maxCSSParser
 	function parse_part($element, $el_data, $el_add = '')
 	{
 		maxUtils::addTime("CSSParser: Parse $element ");
+		
 				
 		$tag = $el_data["tag"]; 
 		$element_data = $this->findData($this->data, $element);
-
+		
 		// not using scss selectors here since there is trouble w/ the :pseudo selector, which should be put on the maxbutton / a tag.  		
 		if ($element != '')
 		{	$el_add .= " ." . $element;
  	
  		}
-
- 		
+		
 	 	if (isset($element_data["responsive"])) 
 	 	{
 	 		$responsive = $element_data["responsive"]; // doing that at the end
 	 		unset($element_data["responsive"]); 
- 
+
 	 		$this->responsive[$el_add] = $responsive;
 	 	}
 	 
@@ -181,8 +193,21 @@ class maxCSSParser
 			
 			if ($pseudo != 'normal') 
 			{
-				// select the maxbutton case, ending with either space or next class -dot. 
-				$ps_selector = preg_replace('/.maxbutton$|.maxbutton([.| ])/i',".maxbutton:$pseudo\$1",$el_add);
+				// select the maxbutton case, ending with either space or next class -dot.  
+				// Anchor class in default situation should be .maxbutton
+				$anchor_class = $this->anchor_class; 
+				
+				$count = 0;  
+				
+			/* If PS Selector replacement doesn't match anchor class selector this probably means the parse is done in a higher level
+			   e.g. container level, so no proper will be set. In case 0 count replacement, just put it on current */ 	
+		$ps_selector = preg_replace('/' . $anchor_class . '$|' . $anchor_class . '([.| ])/i',"$anchor_class:$pseudo\$1",$el_add, -1, $count);
+
+				if ($count === 0)
+				{
+					$ps_selector = $el_add . ":" . $pseudo; 
+				}
+				
 				
 				$this->output_css .= " $ps_selector { "; 
 			}
@@ -196,6 +221,7 @@ class maxCSSParser
 			{
  
 				$statement =  $this->parse_cssline($values, $cssTag,$cssVal); ///"$cssTag $css_sep $cssVal$unit$css_end ";
+
 				if ($statement)
 				{
 					$this->output_css .= $statement ;
@@ -274,6 +300,7 @@ class maxCSSParser
 			}}
 		}
  
+
 	 			
 		foreach($query_array as $query => $vdata):
 
@@ -331,44 +358,6 @@ class maxCSSParser
 				$output = $this->parse_responsive_definition($output, $qdef, $vdata);
 			}
 
-
-			// never write empty media queries
-	/*		if (! isset($qdef) || $qdef == '')  {
-				  
-				continue; 
-			}
-
- 
-			$output .= "@media ". $qdef . " { "; 
-
-	
-		foreach($vdata as $index => $data)
-		{
- 
-			foreach($data as $element => $values) {
-			 //foreach($vdat as $index => $values):
-				$output .= $element . " { "; 
-				$css_end = ';';
-				
-				// same as parse part, maybe merge in future
-				foreach($values as $cssTag => $cssVal)
-				{
-					// unit check - two ways; either unitable items is first or unit declaration.
-					$statement =  $this->parse_cssline($values, $cssTag,$cssVal);
-					if($statement)
-						$output .= $statement;
-					
-				}
-
-				$output .= " } "; 
-			// endforeach;
-			}
-
-		
-		  }
-		  			$output .= " } ";  
-		  			
-		 */
 		endforeach;
  
  
@@ -447,12 +436,15 @@ class maxCSSParser
 		{
 
 			$results = preg_grep("/^$mixin/i",array_keys($values) );
+			if (count($results) === 0) 
+				continue; // no mixins. 
+		
 			$mixin_array = array();
 		 	foreach($results as $result)
 		 	{
 		 		$mixin_array[$result] = $values[$result]; 
 		 	}
-		 	
+
 			if (count($mixin_array) > 0)
 			{
 				switch($mixin)
@@ -483,16 +475,26 @@ class maxCSSParser
 		$start_opacity = isset(  $results["gradient-start-opacity"]  ) ?  $results["gradient-start-opacity"] : ''; 
 		$end_opacity = isset(  $results["gradient-end-opacity"]  ) ?  $results["gradient-end-opacity"] : ''; 		
 		$stop =  (isset( $results["gradient-stop"]) && $results["gradient-stop"] != '') ?  $results["gradient-stop"] . "%" : '45%'; 
+		// default to use ( old situation )
+		$use_gradient = (isset($results['gradient-use-gradient']) && $results['gradient-use-gradient'] != '') ? $results['gradient-use-gradient'] : 1;
 		
 		$start = maxUtils::hex2rgba($start, $start_opacity);
 		$end = maxUtils::hex2rgba($end, $end_opacity);		
 		
 		$important = ($this->is_important()) ? "!important" : "";
+		//$values = $this->add_include($values, "linear-gradient($start,$end,$stop,$important)");		
 
-		
-		$values = $this->add_include($values, "linear-gradient($start,$end,$stop,$important)");			
+		if ($use_gradient == 1)
+		{
+			$values = $this->add_include($values, "linear-gradient($start,$end,$stop,$important)");			
+		}
+		else {
+			$values['background-color'] = $start; 
+		}
+
+		// remove the non-css keys from the value array ( field names ) 
 		$values = array_diff_key($values, $results);
- 
+
 		return $values;
  
 	}
@@ -502,6 +504,7 @@ class maxCSSParser
 		$width = $results["box-shadow-width"]; 
 		$left = $results["box-shadow-offset-left"]; 
 		$top = $results["box-shadow-offset-top"]; 
+		$spread = isset($results['box-shadow-spread']) ? $results['box-shadow-spread'] : 0; 
 		$color = isset($results["box-shadow-color"]) ? $results["box-shadow-color"] : ''; 
 		
 		$important = ($this->is_important()) ? "!important" : ""; 
@@ -509,9 +512,7 @@ class maxCSSParser
 		if ($width == 0 && $left == 0 && $top == 0) 
 			return $values; 
 		
-		//if ($color != '' && $width > 0)		
-			$values = $this->add_include($values, "box-shadow($left, $top, $width, $color $important) ");			
-	
+		$values = $this->add_include($values, "box-shadow($left, $top, $width, $color,$spread, false, $important) ");			
 		$values = array_diff_key($values, $results);
 
 		return $values; 		
@@ -519,17 +520,19 @@ class maxCSSParser
 	
 	function mixin_textshadow($results, $values)
 	{
-		
 		$width = isset($results["text-shadow-width"]) ? $results["text-shadow-width"] : 0; 
 		$left = isset($results["text-shadow-left"]) ? $results["text-shadow-left"] : 0; 
-		$top = isset($results["text-shadow-top"]) ? $results["text-shadow-left"] : 0; 
+		$top = isset($results["text-shadow-top"]) ? $results["text-shadow-top"] : 0; 
 		$color = isset($results["text-shadow-color"]) ? $results["text-shadow-color"] : ''; 
 		$important = ($this->is_important()) ? "!important" : ""; 
-				
+					
  		if ($width == 0 && $left == 0 && $top == 0) 
+		{
+			$values = array_diff_key($values, $results); // remove them from the values, prevent incorrect output.
 			return $values; 
+		}
 		
-			$values = $this->add_include($values, "text-shadow ($left,$top,$width,$color $important)"); 
+		$values = $this->add_include($values, "text-shadow ($left,$top,$width,$color $important)"); 
 		
 		$values = array_diff_key($values, $results);
 		

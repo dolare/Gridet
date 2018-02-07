@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Panel') ):
 class Magee_Panel {
 
 	public static $args;
@@ -46,7 +47,7 @@ class Magee_Panel {
 		if( $border_color )
 		$css_style .= '.'.$add_class.'{border-color:'.esc_attr($border_color).';}';
 		if( $title_background_color )
-		$css_style .= '.'.$add_class.' .panel-heading{background-color:'.esc_attr($title_background_color).';}';
+		$css_style .= '.'.$add_class.' .panel-heading{background-color:'.esc_attr($title_background_color).';over-flow:hidden;}';
 		
 		if( $border_radius )
 		$css_style .= '.'.$add_class.'{border-radius:'.esc_attr($border_radius).';}';
@@ -68,3 +69,4 @@ class Magee_Panel {
 }
 
 new Magee_Panel();
+endif;

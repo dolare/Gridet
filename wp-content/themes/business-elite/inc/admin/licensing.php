@@ -3,7 +3,7 @@ class WDWT_licensing_page_class{
 	
 	function view_licensing(){ ?>
 
-		<div id="main_licensing_page"  class='no_option_content'> 
+		<div   class='no_option_content'>
   
 		  <p><span style="font-weight:bold;">In the FREE version of the theme, theme options can be changed only through the <i>customizer</i>.</span><br/><br/>
 		  <?php echo __( 'This theme is the non-commercial version of the Business Elite theme. You will be able to use it free of charge. It comes with a large number of features. Some of the advanced features are not available for this option. If you want to use those features, you are required to purchase a license.', "business-elite" ); ?></p>
@@ -102,21 +102,16 @@ class WDWT_licensing_page_class{
 						<td class="icon-replace yes">yes</td>
 					</tr>
 					<tr class="alt">
-           <td>Built-in shortcodes for Editor</td>
-           <td class="icon-replace no">no</td>
-           <td class="icon-replace yes">yes</td>
-         </tr>
-					<tr class="">
 						<td>Admin settings control screen.</td>
 						<td class="icon-replace no">no</td>
 						<td class="icon-replace yes">yes</td>
 					</tr>
-					<tr class="alt">
+					<tr class="">
 						<td>Support upon request in 24 hours</td>
 						<td class="icon-replace no">no</td>
 						<td class="icon-replace yes">yes</td>
 					</tr>
-					<tr class="">
+					<tr class="alt">
 						<td>Buy using PayPal or Credit Card</td>
 						<td class="price" style="text-align:center; color:#FF7721; text-shadow: 1px 1px #aaa; font-size:20px;">Free</td>
 						<td>

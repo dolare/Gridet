@@ -4,10 +4,11 @@ Theme URI: http://nimbusthemes.com/free/simple-business/
 Description: A sleek and feature-rich one page template, the Simple Business WordPress Theme offers multiple page layouts and options, FontAwesome icons, responsive design, hundreds of Google Fonts, and more! This is the ultimate theme to build your company's website on. Take your business to the next level with the Simple Business Theme!
 Author: Nimbus Themes
 Author URI: http://nimbusthemes.com/
-Version: 2.0.4
-Tags: black, white, blue, one-column, two-columns, left-sidebar, right-sidebar, fluid-layout, responsive-layout, custom-background, custom-colors, custom-menu, featured-image-header, featured-images, flexible-header, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
-License: GNU General Public License
-License URI: license.txt
+Version: 2.0.9
+Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-menu, featured-image-header, featured-images, flexible-header, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: simple-business-wp
 */
 
 /******************************************************************************************************
@@ -236,7 +237,7 @@ div.content .blog_meta .blog_meta_left { padding-left:40px; }
 div.content .blog_date { width:100%; background:#59a4a0; padding:5px 0; text-align:center; color:#fff; }
 div.content .blog_date .mo { font-size:19px; }
 div.content .blog_date .day { font-size:28px; }
-.nimbus_192_186 { float:right; height:auto; width:185px; }
+.simple_business_wp_192_186 { float:right; height:auto; width:185px; }
 .tax_tags { padding:40px 0; font-size:14px; }
 .single_post_nav { padding-top:40px; }
 div.content .blog_content_row p { margin-bottom:0px; padding-bottom:0px; }
@@ -463,7 +464,7 @@ Responsive
     .menu_sticky.container { position:relative; }
     .line { width:969px; }
     .static_banner, #slideshow  { width:968px; }
-    .nimbus_192_186 { width:140px; }
+    .simple_business_wp_192_186 { width:140px; }
     div.content .blog_date .mo { font-size:16px; }
     div.content .blog_date .day { font-size:28px; }
     #s { width:75%;}
@@ -489,11 +490,10 @@ Responsive
     ol#comments li.depth-2 img.avatar  { margin:0 0 0 0px; }
     .comment-avatar img { width:30px; height:auto; }
     #social_buttons { text-align:center; }
-    html #wpadminbar { display:none; }
     .line { margin-left:0px; }
     header h1.text_logo { margin-top:0px; text-align:center; padding-top:0px; padding-bottom:20px; }
     .frontpage_featured_item { padding-bottom:30px; }
-    .nimbus_192_186 { display:none; }
+    .simple_business_wp_192_186 { display:none; }
     .blog_content_row, .blog_meta , .blog_meta .text-right{ text-align:center; }
     div.content .blog_meta { margin-top: 15px; margin-bottom: 45px; }
     div.content .blog_meta p { padding-bottom:0px; margin-bottom: 0px; }

@@ -1,6 +1,9 @@
 <?php
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
 $collectionBlock["social"] = "socialCollectionBlock"; 
+
+use \simple_html_dom as simple_html_dom;
 
 class socialCollectionBlock extends collectionBlock
 {
@@ -75,7 +78,6 @@ class socialCollectionBlock extends collectionBlock
  		{
  			$button_id = $button->getID(); 
  			  			
-	 		//foreach($this->data[$mf_field_id] as $id => $button_fields)
 	 		if (isset($this->data[$mf_field_id][$index][$button_id]))
 	 		{
 	 			$button_data = $button->get(); 
@@ -88,8 +90,7 @@ class socialCollectionBlock extends collectionBlock
 				$network = $field_data["network"]; 
 				$maxSN = new maxSN($network); 
 				$network_name = $maxSN->getNetworkName(); 
-				
-				
+
 				$display_count = $field_data["display_count"]; 
 				$count_threshold = $field_data["count_threshold"]; 
 				
@@ -114,7 +115,7 @@ class socialCollectionBlock extends collectionBlock
 					
 				if ($network_url)
 				{ 
-					$buttons[$index]->setData("basic",array("url" => $network_url) ); 
+					$buttons[$index]->setData("basic",array("url" => $network_url) );
 				
 				}	
 
@@ -122,11 +123,12 @@ class socialCollectionBlock extends collectionBlock
  				$text = isset($button_data["text"]["text"]) ? $button_data["text"]["text"] : '' ; 
 				$text2 = isset($button_data["text"]["text2"]) ? $button_data["text"]["text2"] : ''; 
 				
-				if ($display_count == 1) 
+				if ($display_count == 1 && $this->is_supported('display_count', $network) ) 
 				{
 					$count = $maxSN->getShareCount(array("url" => $share_url, 
 							"preview" => $this->is_preview,
 					));
+					
 					if ($count === false) // signal for remote check 
 					{
 						$this->social_data["onload"][$document_id] = array("network" => $network, "share_url" => esc_url($share_url), "count_threshold" => $count_threshold, "text" => $text, "text2" => $text2 );
@@ -147,9 +149,7 @@ class socialCollectionBlock extends collectionBlock
 				$text2 = $this->applyVars($text2, $apply_vars); 
 				
 				$button->setData("text",array("text" => $text, "text2" => $text2) );  
-						 					
-				
-				
+
 				// arrange JS stuff
 				if ($maxSN->checkPopup() ) 
 				{
@@ -295,6 +295,7 @@ class socialCollectionBlock extends collectionBlock
  	
  	function applyVars($string, $vars)
  	{
+
  		if (isset($vars["url"])) 
 	 		$string = str_replace("{url}", urlencode(esc_url($vars["url"])), $string);
  		if (isset($vars["count"])) 
@@ -346,22 +347,6 @@ class socialCollectionBlock extends collectionBlock
 		}
 		
 		$mf_field_id = $this->fields["multifields"]["id"];
- 
- 
-	/*	if (isset($data[$this->blockname][$mf_field_id])) 
-		{
-	 		foreach($data[$mf_field_id] as $id => $button_fields)
-	 		{
-	 			foreach($button_fields as $data_btn_id => $field_data)
-				{
-					if (! in_array($data_btn_id, $selection) )
-					{
-						unset($data[$mf_field_id][$id]); // remove buttons that are not in the selection ( I hope ) 
-					}
-				}
-			}
-		}
-	*/	
 
 		return $data;
  	}
@@ -471,6 +456,32 @@ class socialCollectionBlock extends collectionBlock
 	 	
  	}
  	
+ 	/* These two functions to be merged / or do_supports should use this - next rework */ 
+ 	function is_supported ($field_type, $network) 
+ 	{
+ 		switch ($field_type) 
+ 		{
+	 		case "display_count": 
+	 		case "count_threshold": 
+				$networks = array("facebook","google-plus","linkedin","pinterest","reddit","stumbleupon","vkontakte"); 	 		 			
+ 			break;
+ 			case "share_url_setting":
+	 			$networks = array_keys($supported_networks);	 	
+	 			// unset exceptions
+	 			$networks = array_values(array_diff($networks, array("bloglovin", "none") ));  			
+ 			break;
+ 	 		case "blog_url": 
+ 				$networks = array('bloglovin');	 		
+	 		break;		
+ 		}
+ 		
+ 		if (in_array($network, $networks))
+ 		{
+ 			return true;
+ 		}
+ 		return false;
+ 	}
+ 	
  	function do_supports($field, $button_id, $index) 
  	{
  		
@@ -501,7 +512,7 @@ class socialCollectionBlock extends collectionBlock
 	 		break;
  
 	 	}
- 
+
 	 	$conditional = htmlentities(json_encode(array("target" => "network-$button_id-$index", "values" => $networks)));
 	 	return $conditional;
 	 			

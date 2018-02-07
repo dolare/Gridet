@@ -26,7 +26,7 @@ class GMWDViewShortcode_gmwd extends GMWDView{
 		$maps = $this->model->get_maps();
         $whitelist = array( '127.0.0.1', '::1' );
         $is_localhost = in_array( $_SERVER['REMOTE_ADDR'], $whitelist) ? 1 : 0;
-        $map_api_url = "https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&v=3.exp";
+        $map_api_url = "https://maps.googleapis.com/maps/api/js?libraries=places,geometry&v=3.exp";
 
         if(gmwd_get_option("map_language")){
             $map_api_url .= "&language=" . gmwd_get_option("map_language");
@@ -34,12 +34,16 @@ class GMWDViewShortcode_gmwd extends GMWDView{
         
         if(gmwd_get_option("map_api_key")){
             $map_api_url .= "&key=" . gmwd_get_option("map_api_key");
-        }        
+        }
+		else{
+			$api_keys = array("AIzaSyAmYQInD-coq0G5wC_D9h7uHjGeHhSSR4o", "AIzaSyBxiaSJPIRfQWID9j4hCrX3t7z-9IOOjis","	AIzaSyDi6aVWxOVptj9WZZYeAgdAA1xpqAR1mnw", "AIzaSyCzvhE5_lt5l0fYYChF1TpRtfFTjXpYkVI","AIzaSyBMWPhZdxcpwpfXBrGPGmz8zMjwJJt83mc");
+			$map_api_url .= "&key=" . $api_keys[rand(0,4)];
+		}        
 	?>	
 
-		<script language="javascript" type="text/javascript" src="<?php echo site_url(); ?>	/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+		<!--<script language="javascript" type="text/javascript" src="<?php echo site_url(); ?>	/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
 		<script language="javascript" type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
-		<script language="javascript" type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
+		<script language="javascript" type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>-->
 		<script src="<?php echo GMWD_URL . '/js/admin_main.js'; ?>" type="text/javascript"></script>
 		<script src="<?php echo GMWD_URL . '/js/simple-slider.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo $map_api_url; ?>" type="text/javascript"></script>
@@ -62,7 +66,7 @@ class GMWDViewShortcode_gmwd extends GMWDView{
 			
 			<?php
 				if (isset($_POST['tag_text'])) {
-					echo '<script>tinyMCEPopup.close();</script>'; 
+					echo '<script>top.tinyMCE.activeEditor.windowManager.close(window);</script>'; 
 					die();
 				}
 			?>
@@ -89,7 +93,7 @@ class GMWDViewShortcode_gmwd extends GMWDView{
                                 <tr>
                                     <td colspan="2">
                                         <input type="button" id="wd_insert" name="" value="Insert" class="wd-btn wd-btn-primary" onClick="gmwdInsertShortcode();" />
-                                        <input type="button" id="" name="" value="Cancel" class="wd-btn wd-btn-secondary" onClick="tinyMCEPopup.close();" />
+                                        <input type="button" id="" name="" value="Cancel" class="wd-btn wd-btn-secondary" onClick="top.tinyMCE.activeEditor.windowManager.close(window);" />
                                     </td>
                                 </tr>	                            
                             </table>
@@ -116,7 +120,16 @@ class GMWDViewShortcode_gmwd extends GMWDView{
 
             function onSelectMapChange(obj){
                 var mapId = jQuery(obj).val();
-                gmwdInitShortcodeMap(mapId);
+				if(mapId){
+					gmwdInitShortcodeMap(mapId);
+				}
+                else{
+                    map = new google.maps.Map(document.getElementById("wd-map-container"), {
+                        center: {lat: Number(<?php echo gmwd_get_option("center_lat");?>), lng: Number(<?php echo gmwd_get_option("center_lng");?>)},		
+                        zoom: Number(<?php echo gmwd_get_option("zoom_level");?>)      
+                    });                
+                }
+                
             }
             
             function gmwdInitShortcodeMap(mapId){
@@ -128,50 +141,53 @@ class GMWDViewShortcode_gmwd extends GMWDView{
                 data.ajax = 1;
 
                 jQuery.post(ajax_url,  data, function (data){
-                    data = JSON.parse(data);
-                     zoom = Number(data.zoom_level);
-                     mapType = data.type;
-                     maxZoom = Number(data.max_zoom);
-                     minZoom = Number(data.min_zoom);
-                     mapWhellScrolling = Number(data.whell_scrolling) == 1 ? true : false;				
-                     mapDragable = Number(data.map_draggable) == 1 ? true : false;				
-                     mapDbClickZoom = Number(data.map_db_click_zoom) == 1 ? true : false;				
-                     enableZoomControl = Number(data.enable_zoom_control) == 1 ? true : false;
-                     enableMapTypeControl = Number(data.enable_map_type_control) == 1 ? true : false;			
-                     mapTypeControlOptions = {};
-                     enableScaleControl = Number(data.enable_scale_control) == 1 ? true : false;
-                     enableStreetViewControl = Number(data.enable_street_view_control) == 1 ? true : false;
-                     enableFullscreenControl = Number(data.enable_fullscreen_control) == 1 ? true : false;
-                     enableRotateControl = Number(data.enable_rotate_control) == 1 ? true : false;
-                     mapTypeControlPosition = Number(data.map_type_control_position);
-                     fullscreenControlPosition = Number(data.fullscreen_control_position);	
-                     zoomControlPosition = Number(data.zoom_control_position);
-                     streetViewControlPosition = Number(data.street_view_control_position);
-                     mapTypeControlStyle = Number(data.map_type_control_style);
-                     mapBorderRadius = data.border_radius;
-                     enableBykeLayer =  Number(data.enable_bicycle_layer);	
-                     enableTrafficLayer =  Number(data.enable_traffic_layer);				
-                     enableTransitLayer =  Number(data.enable_transit_layer);	
-                     geoRSSURL = data.georss_url;	
-                     KMLURL = data.kml_url;	
-                     fusionTableId = data.fusion_table_id;	
-                     mapMarkers = data.all_markers;
-                     mapCircles = data.all_circles;
-                     mapRectangles = data.all_rectangles;
-                     mapPolygons = data.all_polygons;
-                     mapPolylines = data.all_polylines;
-                     centerLat = Number(data.center_lat);
-                     centerLng = Number(data.center_lng);	                  
-                     mapTheme = htmlspecialchars_decode(data.map_theme_code);
+					data = JSON.parse(data);
+					zoom = Number(data.zoom_level);
+					mapType = data.type;
+					maxZoom = Number(data.max_zoom);
+					minZoom = Number(data.min_zoom);
+					mapWhellScrolling = Number(data.whell_scrolling) == 1 ? true : false;				
+					mapDragable = Number(data.map_draggable) == 1 ? true : false;				
+					mapDbClickZoom = Number(data.map_db_click_zoom) == 1 ? true : false;				
+					enableZoomControl = Number(data.enable_zoom_control) == 1 ? true : false;
+					enableMapTypeControl = Number(data.enable_map_type_control) == 1 ? true : false;			
+					mapTypeControlOptions = {};
+					enableScaleControl = Number(data.enable_scale_control) == 1 ? true : false;
+					enableStreetViewControl = Number(data.enable_street_view_control) == 1 ? true : false;
+					enableFullscreenControl = Number(data.enable_fullscreen_control) == 1 ? true : false;
+					enableRotateControl = Number(data.enable_rotate_control) == 1 ? true : false;
+					mapTypeControlPosition = Number(data.map_type_control_position);
+					fullscreenControlPosition = Number(data.fullscreen_control_position);	
+					zoomControlPosition = Number(data.zoom_control_position);
+					streetViewControlPosition = Number(data.street_view_control_position);
+					mapTypeControlStyle = Number(data.map_type_control_style);
+					mapBorderRadius = data.border_radius;
+					enableBykeLayer =  Number(data.enable_bicycle_layer);	
+					enableTrafficLayer =  Number(data.enable_traffic_layer);				
+					enableTransitLayer =  Number(data.enable_transit_layer);	
+					geoRSSURL = data.georss_url;	
+					KMLURL = data.kml_url;	
+					fusionTableId = data.fusion_table_id;	
+					mapMarkers = data.all_markers;
+					mapCircles = data.all_circles;
+					mapRectangles = data.all_rectangles;
+					mapPolygons = data.all_polygons;
+					mapPolylines = data.all_polylines;
+					infoWindowInfo = data.info_window_info;
 
-                     GMWD_URL = "<?php echo GMWD_URL;?>";
-                     enableDirections = data.enable_directions;
-                     markerListingType = data.marker_listing_type;
-                     markerDefaultIcon = "<?php echo  gmwd_get_option("marker_default_icon");?>"; 
-                     gmwdInitMainMap("wd-map-container", false);                    
+					centerLat = Number(data.center_lat);
+					centerLng = Number(data.center_lng);	                  
+					mapTheme = htmlspecialchars_decode(data.map_theme_code);
+
+					GMWD_URL = "<?php echo GMWD_URL;?>";
+					enableDirections = data.enable_directions;
+					markerListingType = data.marker_listing_type;
+					markerDefaultIcon = "<?php echo  gmwd_get_option("marker_default_icon");?>"; 
+					gmwdInitMainMap("wd-map-container", false);                    
                 });              
             }
-            function gmwdShortcodeEdit(){
+            
+			function gmwdShortcodeEdit(){
             
                 var shortcodeParams = gmwdShortcodeParams();
 
@@ -207,7 +223,8 @@ class GMWDViewShortcode_gmwd extends GMWDView{
             function gmwdShortcodeParams(){
                 var params = {};
                 
-                var editorText = tinyMCE.activeEditor.selection.getContent();
+                //var editorText = tinyMCE.activeEditor.selection.getContent();
+                var editorText = top.tinyMCE.activeEditor.selection.getContent();
                 var start = editorText.indexOf("[Google_Maps_WD");
                 var end = editorText.indexOf("]", start);
                 var shortcodes = [];
@@ -261,8 +278,9 @@ class GMWDViewShortcode_gmwd extends GMWDView{
                 jQuery("#tag_text").val(tagText);
                 jQuery("#adminForm").submit();
                 
-                window.tinyMCE.execCommand('mceInsertContent', false, short_code);
-                tinyMCEPopup.editor.execCommand('mceRepaint');                              
+                //window.tinyMCE.execCommand('mceInsertContent', false, short_code);
+                top.tinyMCE.execCommand('mceInsertContent', false, short_code);
+                //top.tinyMCEPopup.editor.execCommand('mceRepaint');                              
 			}
 
             

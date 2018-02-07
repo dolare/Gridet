@@ -1,76 +1,42 @@
-		<div id="services" class="landing-section skt-section skt-default-page">
+<?php if( 'none' != get_theme_mod('rational_lite_rat_first_section', 'none') ) {
+	$the_query = new WP_Query( array( 'page_id' => get_theme_mod('rational_lite_rat_first_section') ) );
+	if ( $the_query->have_posts() ) :
+		while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+		<div id="section1" class="landing-section skt-section skt-default-page">
 			<div class="container" >
 				<div class="row-fluid">
 					<div class="span12">
-                        <div class="landing-page-title">
-                        	<br/>
-                        <h3><?php _e('SERVICES', 'rational-lite'); ?></h3>
+						<div class="landing-page-title">
+							<h3 class="text-white"><?php the_title(); ?></h3>
+							<span class="border_center border-white"></span>
+						</div>
 
-                        <span class="border_center"></span>
-                        </div>
-						
-                            
-                        <br/>
-                        <div class="row-fluid" >
-                        	<!-- style="border-collapse: separate;border-spacing:5px;width: 50% ;vertical-align: top;float: none;display: table-cell;" -->
-                        <div class="span6  equal-height">
-                        	<div class="square animated pulse duration1 eds-on-hover ">
-
-                        		<a class="" href="http://www.gridet.com/services/gradgrid-service"><img src="<?php echo get_template_directory_uri(); ?>/images/computer.png"></a>
-                        	</div>
-						      <h2 style="font-size: 1.3rem; text-align:center;font-family: Roboto Condensed, sans-serif;font-weight: 550;text-shadow: 0.04rem 0.04rem 0.04rem rgba(255, 255, 255, 0.3);"><a href="http://www.gridet.com/services/gradgrid-service">Gradgrid Graduate Programs Database</a></h2>
-						      <br/>
-
-								<div class="entry-content">
-									<span>
-			                        <ul style="line-height:1.5rem;">
-									 	<li>Efficient &amp; Digestible Program Information</li>
-									 	<li>A Free and Convenient Research Tool</li>
-									 	<li>Intuitive Search Functions &amp; Data Display</li>
-									 	<li><a href="http://www.gridet.com/services/gradgrid-service" style="font-weight:400;">Learn more...</a></li>
-									</ul>
-
-									<hr style="width:100%">
-
-									<h3 style="font-size: 1rem; font-weight:normal;line-height:1.7rem;"><i class="fa fa-hourglass-half fa-lg   animated rotateIn duration2 eds-on-scroll " aria-hidden="true">&nbsp;</i>Launching schedule: Fall 2016 </h3>
-								</span>
-								</div>
-
-                        </div>  
-                        <!-- skt-animated fade_in_hide element_fade_in  -->
-                        <div class="span6 equal-height">
-                        	<div class="square animated pulse duration1 eds-on-hover">
-                        
-
- 								<a class="" href="http://www.gridet.com/services/upgrid-service"><img src="<?php echo get_template_directory_uri(); ?>/images/document-holder.png"></a>
-
-                        	</div>
-                        	 <h2 style="font-size: 1.3rem;text-align:center;font-family: Roboto Condensed, sans-serif;font-weight: 550;text-shadow: 0.04rem 0.04rem 0.04rem rgba(255, 255, 255, 0.3);"><a href="http://www.gridet.com/services/upgrid-service">Upgrid Consulting</a></h2>
-                        	 
-                        	 <h2 style="margin:0;"><br/></h2>
-                        	     
-			                        <div class="entry-content">
-			                        	<span>
-			                        <ul style="line-height:1.5rem;">
-									 	<li>Tailored Digital Consulting Services</li>
-									 	<li>Comprehensive Website Content Review</li>
-									 	<li>Effective Solutions &amp; Competitor Benchmarking</li>
-									 	<li><a href="http://www.gridet.com/services/upgrid-service" style="font-weight:400;">Learn more...</a></li>
-									</ul>
-									<hr style="width:100%">
-									<div style="text-align: center;">
-									<a class="btn btn-primary" href="#contact" style="font-size:1rem;font-weight:400;">Request a demo &nbsp;<i class="fa fa-chevron-right fa-lg"></i></a>
-									</div>
-								</span>
-								</div>
-
-
-
-
-                        </div>
-                        </div>
+						<div class="landing-page-content text-white">
+							<?php the_content(); ?>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+		<?php break;
+		endwhile;
+		wp_reset_postdata();
+	endif;
+} else { ?>
+	<div id="section1" class="landing-section skt-section skt-default-page">
+			<div class="container" >
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="landing-page-content text-white">
+							<?php echo '<div class="clearfix"><div class="about-contentbox span7 skt_animate_when_almost_visible skt_left-to-right"><h4 class="about-heading">'.__('ABOUT','rational-lite').'</h4><div class="about-bdr"></div>
+							<p>'.__('We offer a CONTINUOUS CONSULTING AND REPORTING SaaS service to help businesses to deeply understand their customers and peers, so that clients can stay on top of the competition at all times.', 'rational-lite').'</p>
+							<p>'.__('Currently, we are primarily partnering with Executive Education and Professional Development course providers, but we do look forward to the opportunity to diversify our offerings by catering to a greater range of industries.', 'rational-lite').'</p>
+							<div id="about-read-more"><a class="button-link large-button alignleft" href="#"><span>'.__('LEARN MORE', 'rational-lite').'</span></a></div></div>
+							<div class="image-wrapper span5 skt_animate_when_almost_visible skt_right-to-left">
+							<img src="http://www.gridet.com/wp-content/uploads/2018/01/iphone.png" width="294" height="487"></div></div>'; ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<?php } ?>

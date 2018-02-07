@@ -42,20 +42,7 @@ function rational_lite_widgets_init() {
 		'after_title' => '</h3>',
 	));
 }
-function lander_scripts() {
-    
-    if( is_front_page() ) {
-        wp_enqueue_style('front-style', get_stylesheet_directory_uri() . '/front-style.css');
-        wp_enqueue_script('lander-script', get_stylesheet_directory_uri() . '/js/landerscripts.js', array('jquery'),'20160615');
-        wp_enqueue_script( 'addtohome', get_stylesheet_directory_uri() . '/js/addtohomescreen.min.js', array('jquery'));
-        wp_enqueue_style('addtohomestyle', get_stylesheet_directory_uri() . '/css/addtohomescreen.css');
-    }
-}
-
-add_action('wp_enqueue_scripts','lander_scripts');
 add_action( 'widgets_init', 'rational_lite_widgets_init' );
-// add_action( 'wp_enqueue_scripts', 'Rational_addtohome' );
-// add_action( 'wp_enqueue_scripts', 'addToHomescreen' );
 
 /**
  * Sets up theme defaults and registers the various WordPress features that
@@ -86,12 +73,7 @@ function rational_lite_theme_setup() {
 	add_theme_support( 'title-tag' );
 
 	// This theme allows users to set a custom header.
-	add_theme_support( 'custom-header', array( 
-        'flex-width' => true, 
-        'width' => 1600, 
-        'flex-height' => true, 
-        'height' => 750, 
-        'default-image' => get_template_directory_uri() . '/images/header.jpg') );
+	add_theme_support( 'custom-header', array( 'flex-width' => true, 'width' => 1600, 'flex-height' => true, 'height' => 750, 'default-image' => get_template_directory_uri() . '/images/header.jpg') );
 
 	// This theme allows users to set a custom background.
 	add_theme_support( 'custom-background', apply_filters( 'rational_lite_custom_background_args', array('default-color' => 'ffffff') ) );

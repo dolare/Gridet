@@ -1,70 +1,61 @@
 jQuery(document).ready(function() {
-		var bMobile;  // true if in mobile mode
-		var isMobile;
-		// Initiate event handlers
-		function init() {
-			var isMobile = {
-				Android: function() {
-					return navigator.userAgent.match(/Android/i);
-				},
-				BlackBerry: function() {
-					return navigator.userAgent.match(/BlackBerry/i);
-				},
-				iOS: function() {
-					
-					return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-				},
-				Opera: function() {
-					return navigator.userAgent.match(/Opera Mini/i);
-				},
-				Windows: function() {
-					return navigator.userAgent.match(/IEMobile/i);
-					
-				},
-				any: function() {
-					return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-				}
-			};
-			
-			var oMenus = jQuery('.navbar-nav  .dropdown'),nTimer;
-			if( isMobile.any() ) {									
-				// Set up menu on click for Mobile and ipad mode
-				oMenus.on({
-				  'mouseenter touchstart': function(event) {
-					event.preventDefault();
-					clearTimeout(nTimer);
-					oMenus.removeClass('open');
-					jQuery(this).addClass('open').slideDown();
-				  },});
-				jQuery('ul.dropdown-menu li a').on('click touchend', function() { 
-					var link = jQuery(this).attr('href');   
-					window.open(link,'_self'); // opens in new window as requested
-					return false; // prevent anchor click    
-				});		
-				jQuery(".nav .dropdown-toggle").click(function () {
-			window.location = jQuery(this).attr('href');
-			});			
-			} else {				
-				oMenus.on({'mouseenter touchstart': function(event) {
-					event.preventDefault();
-					clearTimeout(nTimer);
-					oMenus.removeClass('open');
-					jQuery(this).addClass('open').slideDown();
-					},
-					'mouseleave': function() {
-					nTimer = setTimeout(function() {
-					oMenus.removeClass('open');
-					}, 500);
-					}
-				});
+	if( jQuery(window).width() > 767) {
+	   jQuery('.nav li.dropdown').hover(function() {
+		   jQuery(this).addClass('open');
+	   }, function() {
+		   jQuery(this).removeClass('open');
+	   }); 
+	   jQuery('.nav li.dropdown-submenu').hover(function() {
+		   jQuery(this).addClass('open');
+	   }, function() {
+		   jQuery(this).removeClass('open');
+	   }); 
+	}
+	
+	jQuery('li.dropdown').find('.fa-angle-down').each(function(){
+		jQuery(this).on('click', function(){
+			if( jQuery(window).width() < 767) {
+				jQuery(this).parent().next().slideToggle();
 			}
-		}
-		jQuery(document).ready(function() {
-		  // Your other code to run on DOM ready...
-			jQuery(".nav .dropdown-toggle").click(function () {
-			window.location = jQuery(this).attr('href');
-			});
-		  init();
+			return false;
 		});
-		jQuery(window).resize(init);
-	});  
+	});
+	});
+
+//sidemenu
+( function( jQuery ) {
+jQuery( document ).ready(function() {
+/*jQuery('#cssmenu li.has-sub>a').on('click', function(){
+		jQuery(this).removeAttr('href');
+		var element = jQuery(this).parent('li');
+		if (element.hasClass('open')) {
+			element.removeClass('open');
+			element.find('li').removeClass('open');
+			element.find('ul').slideUp();
+		}
+		else {
+			element.addClass('open');
+			element.children('ul').slideDown();
+			element.siblings('li').children('ul').slideUp();
+			element.siblings('li').removeClass('open');
+			element.siblings('li').find('li').removeClass('open');
+			element.siblings('li').find('ul').slideUp();
+		}
+	});*/
+
+			
+		jQuery('li.has-sub').find('.fa-angle-down').each(function(){
+		jQuery(this).on('click', function(){			
+			event.preventDefault()
+			jQuery(this).parent().next().slideToggle();			
+			//return false;
+		
+		});
+	});
+
+	jQuery('#cssmenu>ul>li.has-sub>a').append('<span class="holder"></span>');
+
+
+	
+});
+} )( jQuery );

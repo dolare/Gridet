@@ -14,11 +14,7 @@ get_header(); ?>
 <div class="main-wrapper-item"> 
 	<?php if(have_posts()) : ?>
 	<?php while(have_posts()) : the_post(); ?>
-
-	 <!-- <div class="page-header-image">
-	 </div> -->
-
-		<!-- <div class="bread-title-holder">
+		<div class="bread-title-holder">
 			<div class="bread-title-bg-image full-bg-breadimage-fixed"></div>
 			<div class="container">
 				<div class="row-fluid">
@@ -30,29 +26,12 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
-	<div class="page-content default-pagetemp" style="background: #f4f4f4;">
-		<div class="container post-wrap" style="margin-top:0">
-
+	<div class="page-content default-pagetemp">
+		<div class="container post-wrap">
 			<div class="row-fluid">
-				 <div class="span8">
-				<div id="content">
-
-					<div class="bread-title-holder">
-						<div class="bread-title-bg-image full-bg-breadimage-fixed"></div>
-						<div class="container">
-							<div class="row-fluid">
-								<div class="container_inner clearfix">
-									
-									<?php 
-										if ((class_exists('rational_lite_breadcumb_class'))) {$rational_lite_breadcumb->rational_lite_custom_breadcrumb();}
-									?>
-								</div>
-							</div>
-						</div>
-					</div>
-
+				<div id="content" class="span8">
 					<div class="post clearfix" id="post-<?php the_ID(); ?>">
 						<div class="skepost">
 							<?php the_content(); ?>
@@ -71,7 +50,9 @@ get_header(); ?>
 					<!-- post -->
 					<?php edit_post_link( __('Edit', 'rational-lite') , '', ''); ?>	
 					<div class="clearfix"></div>
-					
+					<div class="comments-template">
+						<?php comments_template( '', true ); ?>
+					</div>
 					<?php endwhile; ?>
 					<?php else :  ?>
 						<div class="post">
@@ -79,14 +60,16 @@ get_header(); ?>
 						</div>
 					<?php endif; ?>
 						<div class="clearfix"></div>
-
-				
 				</div>
 				<!-- content -->
-			</div>
-			</div>
 
-
+				<!-- Sidebar -->
+				<div id="sidebar" class="span3">
+					<?php get_sidebar('page'); ?>
+				</div>
+				<div class="clearfix"></div>
+				<!-- Sidebar --> 
+			</div>
 		</div>
 	</div>
 </div>

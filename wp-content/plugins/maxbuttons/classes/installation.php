@@ -1,4 +1,7 @@
 <?php 
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
+
 class maxInstall
 {
 	 static function activation_hook($network_wide) {
@@ -23,19 +26,18 @@ class maxInstall
 	static function check_database()
 	{
 		$checked = get_option("MB_DBASECHECK", true); 
+		if ($checked !== false) // removing this option.
+			delete_option('MB_DBASECHECK'); 
+		
 		$version = MAXBUTTONS_VERSION_NUM;
 		$installed_version = MB()->get_installed_version(); 
 		if ($version !== $installed_version)
 		{
- 
 			$table = maxUtils::get_table_name(); 
- 
-			if (! self::maxbuttons_database_table_exists($table))
-			{
-				self::activate_plugin();
-			}
+
+			self::activate_plugin(); // always run the DBdelta on version mismatch.
+			self::clear();
 		}
-		update_option("MB_DBASECHECK","1");
 	}
 
 	static function activate_plugin($gocreate = true)
@@ -55,7 +57,13 @@ class maxInstall
 
 	}
 	
-	/* Move data from old version database to new version 
+	/** Function to clear out obsolete and old options, items etc. */
+	static function clear() 
+	{
+		delete_option('MB_DBASECHECK');
+	}
+	
+	/** Move data from old version database to new version 
 		
 	   Check if new database table is empty ( aka new ) to prevent migrating the same data multiple times then copy all rows from old table to the new one.  
 	*/
@@ -96,6 +104,7 @@ class maxInstall
 		}
 	}
 	
+	/** Import fields from the old database format ( pre version 3.0 ) */
 	static function convertOldFields($row)
 	{
 			$data = array(); 
@@ -223,7 +232,7 @@ class maxInstall
 		
 		$table_name = maxUtils::get_table_name();
 		$button = new maxButton();
-		$blocks = $button->getDefinedBlocks();
+		$blocks = $button->getBlocks();
 	
 		// IMPORTANT: There MUST be two spaces between the PRIMARY KEY keywords
 		// and the column name, and the column name MUST be in parenthesis.
@@ -237,21 +246,17 @@ class maxInstall
 
 		foreach($blocks as $block)
 		{
-			$sql .= "" . $block . " TEXT NULL, \n "; 	
+			$block_name = $block->get_name(); 
+			
+			$sql .= "" . $block_name . " TEXT NULL, \n "; 	
 		}
 	 
-		$sql .= " PRIMARY KEY  (id) )"; 
- 
-		if (! static::maxbuttons_database_table_exists($table_name)) {
-				$result = dbDelta($sql);					
-		}
+		$sql .= "updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+				 created TIMESTAMP DEFAULT 0 NOT NULL, 
+				 PRIMARY KEY  (id) )"; 
 
-		if ( static::maxbuttons_database_table_exists($table_name) && (get_option(MAXBUTTONS_VERSION_KEY) != MAXBUTTONS_VERSION_NUM 
-			|| get_option(MAXBUTTONS_VERSION_KEY) == '' ) ){
-		 
-			$res = dbDelta($sql);
-		}
-		
+		$result = dbDelta($sql);		// always dbdelta			
+
 		// Reset the cache if there were any left from before
 		$button->reset_cache(); 
 
@@ -273,15 +278,13 @@ class maxInstall
 		$sql = "CREATE TABLE $collection_trans_table ( 
  				name varchar(1000), 
 				value varchar(255),
-				expire int(11),
-				KEY (name) ); 
+				expire int(11)
+				); 
 		";		
 		$res = dbDelta($sql); 
- 
-		//else exit( __("Something went wrong when creating database table", "maxbuttons") );
 	}
 	
-	/* Attempt to upgrade UTF table to UTFmb4 - see this article https://make.wordpress.org/core/2015/04/02/the-utf8mb4-upgrade/
+	/** Attempt to upgrade UTF table to UTFmb4 - see this article https://make.wordpress.org/core/2015/04/02/the-utf8mb4-upgrade/
 	*/
 	public static function upgradeUTF() 
 	{
@@ -297,6 +300,7 @@ class maxInstall
 		maybe_convert_table_to_utf8mb4($collection_table_name); 
 	}
  
+ 	/** Routine for activation for WPMU - All blogs */
 	public static function call_function_for_each_site($function) {
 		global $wpdb;
 	

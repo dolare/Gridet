@@ -1,4 +1,5 @@
 <?php 
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
 $collectionClass["social"] = "socialCollection"; 
 
@@ -102,7 +103,7 @@ class socialCollection extends maxCollection
 	
 		// Collect packs from dynamic amount of dirs
 		$path = MB()->get_plugin_path() . "assets/packs/" ; 
-		$packs = array_merge($packs, $this->getSocialPacks($path)); 
+		$packs = array_merge($this->getSocialPacks($path), $packs ); 
 		return $packs;
 
 	}
@@ -134,8 +135,11 @@ class socialCollection extends maxCollection
 								"dir" => '', 
 								"is_local" => true,
 						);		
-				$packsClass->load_pack($socialpack);
-			
+				$result = $packsClass->load_pack($socialpack);
+				if(! $result)  // failed.
+				{	
+					continue;  
+				}
 				$packs[$pack]['tab'] =   $packsClass->getName();
 				$packs[$pack]["func"] = array($this, 'editor_getSocialButtons'); 
 				$packs[$pack]["rel"] =  "assets/packs/"; 

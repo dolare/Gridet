@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Slider') ):
 class Magee_Slider {
 
 	public static $args;
@@ -51,7 +52,7 @@ class Magee_Slider {
 					$image       = wp_get_attachment_image_src( $slide['id'] , "full");
 					$indicators .= '<li data-target="#'.$slider_id.'" data-slide-to="'.$i.'" class="'.$active.'"></li>';
 					
-					$items      .= '<div class="item '.$active.'"><img src="'.$image[0].'" alt="'.$slide['title'].'" /><div class="carousel-caption">'.do_shortcode( Magee_Core::fix_shortcodes($slide['caption']) ).'</div></div>';
+					$items      .= '<div class="item '.$active.'"><img src="'.$image[0].'" alt="'.base64_decode($slide['title']).'" /><div class="carousel-caption">'.do_shortcode( Magee_Core::fix_shortcodes(base64_decode($slide['caption'])) ).'</div></div>';
 					
 					$i++;
 				}
@@ -77,3 +78,4 @@ class Magee_Slider {
 }
 
 new Magee_Slider();
+endif;

@@ -4,6 +4,7 @@
 */
 	define('gr_td' , 'guardian');
 	define('WL_TEMPLATE_DIR_URI', get_template_directory_uri());
+	require( get_template_directory() . '/class-tgm-plugin-activation.php' );
 	require( get_template_directory() . '/core/menu/default_menu_walker.php' ); // for Default Menus
 	require( get_template_directory(). '/core/menu/weblizar_nav_walker.php' ); // for Custom Menus	
 	require( get_template_directory() . '/core/comment-function.php' );	
@@ -15,6 +16,7 @@
 	$ImageUrl3 = get_template_directory_uri() ."/images/slide-3.jpg";
 	return $theme_options=array(
 			//Logo and Fevicon header			
+			'upload__header_image'=>'',
 			'upload_image_logo'=>'',
 			'height'=>'50',
 			'width'=>'180',
@@ -22,8 +24,13 @@
 			'upload_image_favicon'=>'',
 			'custom_css'=>'',
 			'_frontpage' => 'on',
+			'services_home' => 'on',
+			'blog_home' => 'on',
+			'excerpt_blog'=>'55',
 			'blog_title' =>__('Our Latest Blog','guardian'),
-			
+			'snoweffect'=>0,
+				
+			'slider_image_speed'=>'2000',
 			'slide_image' => $ImageUrl,
 			'slide_title' => __('Responsive Theme','guardian'),
 			'slide_desc' => __('Lorem ipsum dolor sit amet, consectetur adipiscing metus elit. Quisque rutrum pellentesque imperdiet','guardian'),
@@ -131,19 +138,34 @@
 		add_theme_support( 'post-thumbnails' ); //supports featured image
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menu( 'primary', __( 'Primary Menu', 'guardian' ) );
+		add_theme_support( 'customize-selective-refresh-widgets' );
+		
+		// Logo
+		add_theme_support( 'custom-logo', array(
+			'width'       => 250,
+			'height'      => 250,
+			'flex-width'  => true,
+			'flex-height'  => true,
+		));
+			
 		// theme support 	
 		add_theme_support( 'automatic-feed-links'); 
 		$args = array('default-color' => 'fff',);
 		add_theme_support( 'custom-background', $args);
-		$args_h = array(		
+		$args_h = array(
+		
 		'uploads'       => true,
 		'header-text'  => false,
+		'flex-width'    => true,
+	'width'         => 2000,
+	'flex-height'    => true,
+	'height'        => 100,
 		);
 		add_theme_support( 'custom-header', $args_h );
 		add_editor_style( 'custom-editor-style.css' );
 		require_once('guardian-default-settings.php');
-			
 		
+	
 	/*==================
 	* Crop image for blog
 	* ==================*/	
@@ -155,6 +177,7 @@
 		add_image_size('wl_pageff_thumb',1170,350,true);
 		add_image_size('small_thumbs',1170,520,true); //2-Column
 		add_image_size('recent_blog_img',64,64,true);
+		add_theme_support( 'title-tag' );
 	
 	}
 	// Read more tag to formatting in blog page 
@@ -207,10 +230,10 @@
 	function weblizar_scripts()
 	{	
 		// Google fonts 	
-		wp_enqueue_style('OpenSans', '//fonts.googleapis.com/css?family=Rock+Salt|Neucha|Sans+Serif|Indie+Flower|Shadows+Into+Light|Dancing+Script|Kaushan+Script|Tangerine|Pinyon+Script|Great+Vibes|Bad+Script|Calligraffitti|Homemade+Apple|Allura|Megrim|Nothing+You+Could+Do|Fredericka+the+Great|Rochester|Arizonia|Astloch|Bilbo|Cedarville+Cursive|Clicker+Script|Dawning+of+a+New+Day|Ewert|Felipa|Give+You+Glory|Italianno|Jim+Nightshade|Kristi|La+Belle+Aurore|Meddon|Montez|Mr+Bedfort|Over+the+Rainbow|Princess+Sofia|Reenie+Beanie|Ruthie|Sacramento|Seaweed+Script|Stalemate|Trade+Winds|UnifrakturMaguntia|Waiting+for+the+Sunrise|Yesteryear|Zeyada|Warnes|Verdana|Abril+Fatface|Advent+Pro|Aldrich|Alex+Brush|Amatic+SC|Antic+Slab|Candal');
+		wp_enqueue_style('OpenSans', '//fonts.googleapis.com/css?family=Rock+Salt|Neucha|Sans+Serif|Indie+Flower|Shadows+Into+Light|Dancing+Script|Kaushan+Script|Tangerine|Pinyon+Script|Great+Vibes|Bad+Script|Calligraffitti|Homemade+Apple|Allura|Megrim|Nothing+You+Could+Do|Fredericka+the+Great|Rochester|Arizonia|Astloch|Bilbo|Cedarville+Cursive|Clicker+Script|Dawning+of+a+New+Day|Ewert|Felipa|Give+You+Glory|Italianno|Jim+Nightshade|Kristi|La+Belle+Aurore|Meddon|Montez|Mr+Bedfort|Over+the+Rainbow|Princess+Sofia|Reenie+Beanie|Ruthie|Sacramento|Seaweed+Script|Stalemate|Trade+Winds|UnifrakturMaguntia|Waiting+for+the+Sunrise|Yesteryear|Zeyada|Warnes|Abril+Fatface|Advent+Pro|Aldrich|Alex+Brush|Amatic+SC|Antic+Slab|Candal');
 		
 		wp_enqueue_style('stylesheet', get_template_directory_uri() . '/style.css');
-		wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome-4.5.0/css/font-awesome.css');
+		wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome-4.7.0/css/font-awesome.css');
 		wp_enqueue_style('responsive-leyouts', get_template_directory_uri() . '/css/responsive-leyouts.css');
 		wp_enqueue_style('mainmenu-bootstrap', get_template_directory_uri() . '/css/bootstrap.css');		
 		wp_enqueue_style('mainmenu-menu', get_template_directory_uri() . '/css/menu.css');
@@ -225,7 +248,7 @@
 	}
 	add_action('wp_enqueue_scripts', 'weblizar_scripts');
 	
-	//code for image resize for according to image layout
+	/*code for image resize for according to image layout
 	add_filter( 'intermediate_image_sizes', 'weblizar_image_presets');
 	function weblizar_image_presets($sizes){
 		$type = get_post_type($_REQUEST['post_id']);	
@@ -236,7 +259,7 @@
 			{ unset($sizes[$key]);  }
 		}
 		return $sizes;	 
-	}
+	}*/
 	
 	/*==================
 	* Add Class Gravtar
@@ -354,4 +377,102 @@
 	if (is_admin()) {
 	require_once('core/admin/admin-themes.php');
 	}
+	
+	//Plugin Recommend
+add_action('tgmpa_register','Guardian_plugin_recommend');
+function Guardian_plugin_recommend(){
+	$plugins = array(
+	array(
+            'name'      => 'Responsive Coming Soon',
+            'slug'      => 'responsive-coming-soon-page',
+            'required'  => false,
+        ),/* 
+	array(
+            'name'      => 'Photo Video Link Gallery',
+            'slug'      => 'photo-video-link-gallery',
+            'required'  => false,
+        ),
+	array(
+            'name'      => 'Lightbox Gallery',
+            'slug'      => 'simple-lightbox-gallery',
+            'required'  => false,
+        ),
+	array(
+            'name'      => 'Instagram Gallery',
+            'slug'      => 'gallery-for-instagram',
+            'required'  => false,
+        ),
+	array(
+            'name'      => 'Ultimate Responsive Image Slider',
+            'slug'      => 'ultimate-responsive-image-slider',
+            'required'  => false,
+        ),
+	array(
+            'name'      => 'Flickr Album Gallery',
+            'slug'      => 'flickr-album-gallery',
+            'required'  => false,
+        ),
+	array(
+            'name'      => 'Gallery Pro',
+            'slug'      => 'gallery-pro',
+            'required'  => false,
+        ), */
+	array(
+            'name'      => 'Admin Custom Login',
+            'slug'      => 'admin-custom-login',
+            'required'  => false,
+        )
+		
+	);
+    tgmpa( $plugins );
+}
+
+$theme_options = weblizar_get_options();
+if($theme_options['snoweffect']!=''){
+	function snow_script() {
+	wp_enqueue_script('snow', get_template_directory_uri() .'/js/snowstorm.js');
+	}
+	add_action( 'wp_enqueue_scripts', 'snow_script' );
+}
+
+function guardian_custom_admin_notice() {
+	wp_register_style( 'custom_admin_css', get_template_directory_uri() . '/core/admin/admin-rating.css');
+    wp_enqueue_style( 'custom_admin_css' );
+	$wl_th_info = wp_get_theme(); 
+	$currentversion = str_replace('.','',(esc_html( $wl_th_info->get('Version') )));
+	$isitdismissed = 'guardian_notice_dismissed'.$currentversion;
+	if ( !get_user_meta( get_current_user_id() , $isitdismissed ) ) { ?>
+	<div class="notice-box notice-success is-dismissible flat_responsive_notice" data-dismissible="disable-done-notice-forever">
+		<div>
+			<p>	
+			<?php _e('Thank you for using the free version of ','guardian'); ?>
+			<?php echo esc_html( $wl_th_info->get('Name') );?> - 
+			<?php echo esc_html( $wl_th_info->get('Version') );
+			 ?>
+			<?php _e('Please give your reviews and ratings on','guardian')?><?php $wl_th_info->get('Name') ?><?php _e('theme. Your ratings will help us to improve our themes.', 'guardian'); ?>
+				<script type="text/javascript">alert(<?php echo $isitdismissed?>);</script>
+			<a class="rateme" href="<?php echo esc_url('https://wordpress.org/support/theme/guardian/reviews/?filter=5');  ?>" target="_blank" aria-label="Dismiss the welcome panel">
+				<strong><?php _e('Rate Us here','guardian');?></strong>
+			</a>
+			<a href="?-notice-dismissed<?php echo $currentversion;?>">Dismiss</a>
+			</p>
+		</div>
+		
+	</div>
+	
+<?php
+	}
+ }
+add_action('admin_notices', 'guardian_custom_admin_notice');
+
+function guardian_notice_dismissed() {
+	$wl_th_info = wp_get_theme(); 
+	$currentversion = str_replace('.','',(esc_html( $wl_th_info->get('Version') )));
+	$dismissurl = '-notice-dismissed'.$currentversion;
+	$isitdismissed = 'guardian_notice_dismissed'.$currentversion;
+    $user_id = get_current_user_id();
+    if ( isset( $_GET[$dismissurl] ) )
+        add_user_meta( $user_id, $isitdismissed, 'true', true );
+}
+add_action( 'admin_init', 'guardian_notice_dismissed' );
 ?>

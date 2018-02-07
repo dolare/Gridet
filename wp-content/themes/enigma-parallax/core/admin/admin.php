@@ -2,7 +2,7 @@
 /***** Theme Info Page *****/
 if (!function_exists('enigma_info_page')) {
 	function enigma_info_page() {
-	$page1=add_theme_page(__('Enigma Parallax', 'enigma-parallax'), __('Premium Theme Features', 'enigma-parallax'), 'edit_theme_options', 'enigma', 'enigmadisplay_theme_info_page');
+	$page1=add_theme_page(__('Enigma Parallax', 'enigma-parallax'), __('About Theme', 'enigma-parallax'), 'edit_theme_options', 'enigma-p', 'enigmadisplay_theme_info_page');
 	
 	add_action('admin_print_styles-'.$page1, 'weblizar_admin_info');
 	}
@@ -10,18 +10,75 @@ if (!function_exists('enigma_info_page')) {
 add_action('admin_menu', 'enigma_info_page');
 function weblizar_admin_info(){
 	wp_enqueue_style('admin',  get_template_directory_uri() .'/core/admin/admin.css');
-	wp_enqueue_style('font-awesome',  get_template_directory_uri() .'/css/font-awesome-4.4.0/css/font-awesome.min.css');
+	wp_enqueue_style('font-awesome',  get_template_directory_uri() .'/css/font-awesome-4.7.0/css/font-awesome.min.css');
 	wp_enqueue_style('bootstrp',  get_template_directory_uri() .'/css/bootstrap.css');
 	
 }
 if (!function_exists('enigmadisplay_theme_info_page')) {
 	function enigmadisplay_theme_info_page() {
 		$theme_data = wp_get_theme(); ?>
- <div class="theme-info-wrap">
+    <div class="row theme-info-wrap">
+<div class="row theme-dtl">
+	<div class="col-md-12 guidline">  
+		<div class="col-md-6">
+		<h1 id="theme_title"><?php printf(__('Welcome to %1s %2s', 'enigma-parallax'), $theme_data->Name, $theme_data->Version ); ?></h1>	
+		<div class="row">
+		<h4><?php printf(__('Getting Started with %s', 'enigma-parallax'), $theme_data->Name); ?></h4>
+		<p class="faq"><?php printf(__('Guideline: How to configure Enigma-Parallax Theme', 'enigma-parallax')); ?></p>
+        <p class="guidtext"><?php printf(__('1. %s Supports the Theme Customizer for all theme settings. Click "Customize Theme" to open the Customizer now.', 'enigma-parallax'), $theme_data->Name); ?></p>
+	    <a href="<?php echo admin_url('customize.php'); ?>" class="customize_button"><?php _e('Customize Theme', 'enigma-parallax'); ?></a>
+		<p class="faq"><?php printf('FAQ', 'enigma-parallax', 'enigma-parallax'); ?></p>
+		<p class="faqtext">1. <?php _e("Child Theme:","enigma-parallax"); ?></p>
+		<p class="faqtext"><?php _e("If you modify the theme and it upgrade with next updated version. Then your modifications will be lost. <br>If you want to protect your modifications then you create child theme. Child theme will ensure your modifications and speed up your development time ", "enigma-parallax"); ?></p>
+		<p class="faqtext"><?php _e("For child theme to click on" ,'enigma-parallax'); ?> <a href="https://codex.wordpress.org/Child_Themes" target="_new" class="button">  <?php _e(' Child Theme', 'enigma-parallax'); ?></a> <?php _e("Button.",'enigma-parallax'); ?></p>
+		</div>
+		</div>
+		<div class="col-md-6 theme-img">	
+		<img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/screenshot.png" alt="<?php _e('Theme Screenshot', 'enigma-parallax'); ?>" />
+	    </div>
+    </div>
+</div>
+<div class="row proinfo">
+	<div class="col-md-3">
+	<h2> <?php printf(__('ENIGMA-PARALLAX PREMIUM THEME', 'enigma-parallax')); ?> </h2>
+	<h3><?php printf(__('Get Our Premium Theme', 'enigma-parallax')); ?></h3>
+	</div>
+	<div class="col-md-3">
+	<h1><?php printf(__('Our Latest Feature Set', 'enigma-parallax')); ?></h1>
+	<ul> 
+	    <li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('Front Page', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('parallax Design', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('Theme Option Panel', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('Unlimited Color Skins', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('Multiple Bakground Patterns', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('Multiple Theme Templates', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('6 Portfolio Layout', 'enigma-parallax')); ?></li>
+	</ul>
+	</div>	
+	<div class="col-md-3 new">
+	<ul>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('10 Page Layout', 'enigma-parallax')); ?></li>
+	    <li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('6 Blog Layout', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('Multilingual', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('Complete Doceumentation', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('2 Service Page Template', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('About Us Page with short-code', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('Contact Us Page Template', 'enigma-parallax')); ?></li>
+		<li class="feature"><i class="fa fa-check fa-1x"></i> <?php printf(__('Custom Shortcodes', 'enigma-parallax')); ?></li>
+	</ul>
+	</div>
+	<div class="col-md-3 plan-feature">
+		<ul>
+		<li><a href="http://demo.weblizar.com/preview/#enigma" target="_new" class="demo_button"><i class="fa fa-check-circle"></i> Demo</a></li>
+		<li><a href="https://weblizar.com/themes/enigma-premium/" target="_new" class="purchase_button"><i class="fa fa-shopping-cart"></i> Buy</a></li>
+		</ul>
+	</div>
+</div>
+
   <!-- Theme Premium Features  -->
 	<div class="container-fluid">
 	<div class="col-md-12">
-        <h1 class="section-title">ENIGMA PREMIUM THEMES FEATURES </h1>	
+        <h1 class="section-title">ENIGMA PARALLAX PREMIUM THEME FEATURES </h1>	
 	    <p class="section-description"> We create awesome themes which are the perfect solution for your website project. </p>
 	</div>
 	   <div class="col-md-12">
@@ -170,111 +227,15 @@ if (!function_exists('enigmadisplay_theme_info_page')) {
 	    </div>
 	   </div>
 	</div>
-	
-	<div class="container-fluid">
-	<div class="col-md-12">
-        <h1 class="section-title">pricing </h1>	
-	    <p class="section-description"> Our price really cost to your need </p>
-	</div>
-	
-	<div class="container">
-	<div class=" pricing-table pricing-three-column">
-	    <div class="col-md-4">
-            <div class="plan">  
-			    <div class="plan-name"> 
-				    <h2> Enigma Pro </h2>
-					<p><span> Feature Sets </span></p>
-				</div>
-				<ul> 
-				<li class="plan-feature"> Front Page</li>
-				<li class="plan-feature"> Parallax Design </li>
-				<li class="plan-feature"> Theme Option Panel</li>
-				<li class="plan-feature"> Unlimited Color Skins</li>
-				<li class="plan-feature"> Multiple Bakground Patterns</li>
-				<li class="plan-feature"> Multiple Theme Tempplates</li>
-				<li class="plan-feature"> 6 Portfolio Layout</li>
-				<li class="plan-feature"> 10 Page Layout</li>
-				<li class="plan-feature"> 6 Blog Layout</li>
-				<li class="plan-feature"> Multilingual</li>
-				<li class="plan-feature"> Complete Doceumentation</li>
-				<li class="plan-feature"> 2 Service Page Template</li>
-				<li class="plan-feature"> About Us Page Template</li>
-				<li class="plan-feature"> Contact Us Page Template</li>
-				<li class="plan-feature"> Custom Shortcodes</li>
-				</ul>	
-			</div>
-        </div>		
-		
-		 <div class="col-md-4">
-            <div class="plan">  
-			    <div class="plan-name"> 
-				    <h2> Premium </h2>
-					<p><span> Get this in just @$39 </span></p>
-				</div>
-				<ul> 
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"> 
-				<a href="http://demo.weblizar.com/preview/#enigma" target="_new" class="demo_button"><i class="fa fa-check-circle"></i> Demo</a>
-				<a href="http://weblizar.com/amember/signup/enigma" target="_new" class="purchase_button"><i class="fa fa-shopping-cart"></i> Buy</a>
-				</li>
-				</ul>	
-			</div>
-        </div>	
-		
-		 <div class="col-md-4">
-            <div class="plan">  
-			    <div class="plan-name"> 
-				    <h2> Free </h2>
-					<p><span> $0 </span></p>
-				</div>
-				<ul> 
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-check fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"><i class="fa fa-times fa-1x"></i></li>
-				<li class="plan-feature"> 
-				<a href="https://wordpress.org/themes/enigma-parallax/" target="_new" class="demo_button"><i class="fa fa-download"></i> Download</a>
-				</li>
-				</ul>	
-			</div>
-        </div>	
-	</div>
-	</div>
-	</div>
-			
-			<div id="theme-author">
-				<p><?php printf(__('%1s is proudly brought to you by %2s. If you like this WordPress theme, %3s.', 'enigma-parallax'),
+		<div id="theme-author">
+		    <p><?php printf(__('%1s is proudly brought to you by %2s. If you like this WordPress theme, %3s.', 'enigma-parallax'),
 					$theme_data->Name,
 					'<a target="_blank" href="https://weblizar.com/" title="weblizar">Weblizar</a>',
-					'<a target="_blank" href="https://wordpress.org/support/view/theme-reviews/enigma-parallax" title="Enigma Review">' . __('rate it', 'enigma-parallax') . '</a>'); ?>
-				</p>
-			</div>
- </div> <?php
+					'<a target="_blank" href="https://wordpress.org/support/view/theme-reviews/enigma-parallax" title="enigma-parallax Review">' . __('rate it', 'enigma-parallax') . '</a>'); ?>
+			</p>
+		</div>
+ </div>
+ <?php
 	}
 }
 ?>

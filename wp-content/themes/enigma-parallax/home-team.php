@@ -24,7 +24,7 @@
 					<?php } ?>
 	
 				<div class="caption">
-						<div class="long"><h3><?php echo $wl_theme_options['team_name_'.$i]; ?></h3></div>
+						<div class="long"><h3 class="team_<?php echo $i ?>"><?php echo $wl_theme_options['team_name_'.$i]; ?></h3></div>
 				
 					<div class="team_social">
 					<?php if($wl_theme_options['team_fb_'.$i]!=''){ ?>

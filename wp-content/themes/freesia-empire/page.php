@@ -9,7 +9,6 @@
 
 get_header();
 	$freesiaempire_settings = freesiaempire_get_theme_options();
-	global $post;
 	global $freesiaempire_content_layout;
 	if( $post ) {
 		$layout = get_post_meta( $post->ID, 'freesiaempire_sidebarlayout', true );
@@ -28,7 +27,14 @@ get_header();
 	<?php }
 	}?>
 	<div id="main">
-	<?php global $post;
+	<?php
+	if( has_post_thumbnail() && $freesiaempire_settings['freesiaempire_display_page_featured_image']!=0) { ?>
+		<figure class="post-featured-image">
+			<a href="<?php the_permalink();?>" title="<?php echo the_title_attribute('echo=0'); ?>">
+			<?php the_post_thumbnail(); ?>
+			</a>
+		</figure><!-- end.post-featured-image  -->
+	<?php }
 	if( have_posts() ) {
 		while( have_posts() ) {
 			the_post(); ?>
@@ -61,4 +67,4 @@ if( 'default' == $layout ) { //Settings from customizer
 	} 
 }
 get_sidebar();
-get_footer(); ?>
+get_footer();

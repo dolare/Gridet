@@ -20,11 +20,9 @@
                 <?php wp_get_archives('type=monthly'); ?>
             </ul> 
         </div>	
-    <?php endif; // end primary widget area ?>
-    <?php
+    <?php endif; // end primary widget area 
 // A second sidebar for widgets, just because.
     if (is_active_sidebar('secondary-widget-area')) :
-        ?>
-        <?php dynamic_sidebar('secondary-widget-area'); ?>
-    <?php endif; ?>      
+        dynamic_sidebar('secondary-widget-area'); 
+        endif; ?>      
 </div>

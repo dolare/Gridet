@@ -19,14 +19,13 @@ class GMWDViewOptions_gmwd extends GMWDView{
 	////////////////////////////////////////////////////////////////////////////////////////
 
 	public function display(){	
+		add_thickbox();
 		$options = $this->model->get_options();
 		$lists = $this->model->get_lists();
+		$query_url_generate_key = 'https://console.developers.google.com/henhouse/?pb=["hh-1","maps_backend",null,[],"https://developers.google.com",null,["maps_backend","geocoding_backend","directions_backend","distance_matrix_backend","elevation_backend","places_backend","static_maps_backend","roads","street_view_image_backend","geolocation"],null]&TB_iframe=true&width=600&height=400';
 	?>	
 		<div class="gmwd_edit">
-            <div style="font-size: 14px; font-weight: bold;">
-                <?php _e("This section allows you to change general options.","gmwd");?>
-                <a style="color: #00A0D2; text-decoration: none;" target="_blank" href="https://web-dorado.com/wordpress-google-maps/installation-wizard-options-menu.html"><?php _e("Read More in User Manual.","gmwd");?></a>
-            </div>          
+         
 			<h2>
 				<img src="<?php echo GMWD_URL . '/images/general_options.png';?>" width="30" style="vertical-align:middle;">
 				<span><?php _e("General Options","gmwd");?></span>
@@ -59,9 +58,11 @@ class GMWDViewOptions_gmwd extends GMWDView{
                                     </tr> 
                                     <tr>
                                         <td colspan="2">
-                                           <a href="https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend,static_maps_backend,geocoding_backend,roads,street_view_image_backend,geolocation,places_backend&keyType=CLIENT_SIDE&reusekey=true" target="_blank" style="color: #00A0D2;"><?php _e("Get Key","gmwd");?></a>.&nbsp;
-                                            <?php _e("For Getting API Key Read More in","gmwd");?>
-                                            <a href="https://web-dorado.com/wordpress-google-maps/installation-wizard-options-menu/configuring-api-key.html" target="_blank" style="color: #00A0D2;"><?php _e("User Manual","gmwd");?></a>.
+                                           <a class="wd-btn wd-btn-primary thickbox thickbox-preview" name="<?php _e( 'Generate API Key - ( MUST be logged in to your Google account )', 'gmwd' ); ?>" href='<?php echo $query_url_generate_key;?>'>
+                                                <?php _e("Generate Key","gmwd");?>
+                                            </a>
+                                            or <a target="_blank" href='https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend,static_maps_backend,roads,street_view_image_backend,geolocation,places_backend&keyType=CLIENT_SIDE&reusekey=true'>click here</a>
+                                            <?php echo _e( ' to Get a Google Maps API KEY', 'gmwd' ) ?>
                                         </td>
                                     </tr>                                     
 									<tr>

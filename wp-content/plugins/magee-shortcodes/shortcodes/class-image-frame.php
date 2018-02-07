@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Image_Frame') ):
 class Magee_Image_Frame {
 
 	public static $args;
@@ -34,6 +35,9 @@ class Magee_Image_Frame {
 		
 		extract( $defaults );
 		self::$args = $defaults;
+		if(is_numeric($border_radius))
+		$border_radius = $border_radius.'px';
+		
 		$addclass = uniqid('radius');
 		$class .= ' '.$addclass;
 		$css_style = '';
@@ -92,7 +96,6 @@ class Magee_Image_Frame {
 		
 		endif;											
         $html .= '</div></div>';
-
   	
 		return $html;
 	}
@@ -100,3 +103,4 @@ class Magee_Image_Frame {
 }
 
 new Magee_Image_Frame();
+endif;

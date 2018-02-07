@@ -1,4 +1,5 @@
 <?php
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
 $collectionBlock["layout"] = "layoutCollectionBlock"; 
 
@@ -100,6 +101,7 @@ class layoutCollectionBlock extends collectionBlock
 		
 		$css["mb-collection-item"]["normal"]["float"] = "left"; 
  		$css["mb-collection-item"]["normal"]["display"] = "inline-block"; 
+ 		$css["mb-collection-item a"]["normal"]["cursor"] = "pointer"; // by default social share = call to action.
 		
 		//$button_spacing = $this->data["button_spacing"]; 
 		$orientation = $this->data["orientation"];
@@ -290,8 +292,8 @@ class layoutCollectionBlock extends collectionBlock
 			<label for="ignore_container"><?php _e("Remove container width and margins","maxbuttons"); ?></label>
 			<input type="checkbox" name="ignore_container" value="1" <?php checked($ignore_container,1) ?>>
 			<div class="help fa fa-question-circle "> 
-			<span><?php _e("Removes the margins and widths of the button container.", "maxbuttons"); ?> 
-				</span>
+				<span><?php _e("Removes the margins and widths of the button container.", "maxbuttons"); ?> 
+					</span>
 			</div>
 						
 		</div>
@@ -301,8 +303,9 @@ class layoutCollectionBlock extends collectionBlock
 	$condition = array("target" => "placement", "values" => array("static-left","static-right","static-top", "static-bottom")) ;
 	$static_conditional = htmlentities(json_encode($condition )); 
 	?>
-	<div class='conditional-option' data-show="<?php echo $static_conditional ?>">
-		<div class="title"><span class="dashicons dashicons-admin-appearance"></span> <?php _e("Static positioning","maxbuttons"); ?></div>		
+	<br>
+	<div class='conditional-option option-container' data-show="<?php echo $static_conditional ?>">
+		<div class="title"> <?php _e("Static positioning","maxbuttons"); ?></div>		
 		<div class="inside"> 
 	<?php 
 	$condition = array("target" => "placement", "values" => array("static-left","static-right")) ;

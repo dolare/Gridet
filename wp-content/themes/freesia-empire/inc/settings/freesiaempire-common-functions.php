@@ -84,12 +84,12 @@ function freesiaempire_add_custom_box() {
 }
 add_action( 'add_meta_boxes', 'freesiaempire_add_custom_box' );
 function freesiaempire_layout_options() {
-	global $freesiaempire_layout_options, $post;
+	global $freesiaempire_layout_options;
 	// Use nonce for verification  
 	wp_nonce_field( basename( __FILE__ ), 'freesiaempire_custom_meta_box_nonce' ); // for security purpose ?>
 	<?php
 				foreach ($freesiaempire_layout_options as $field) {  
-					$freesiaempire_layout_meta = get_post_meta( $post->ID, $field['id'], true );
+					$freesiaempire_layout_meta = get_post_meta( get_the_ID(), $field['id'], true );
 					if(empty( $freesiaempire_layout_meta ) ){
 						$freesiaempire_layout_meta='default';
 					} ?>
@@ -142,37 +142,6 @@ function freesiaempire_slider_value() {
 		)
 	);
 }
-/********************* Used wp_page_menu filter hook *********************************************/
-	function freesiaempire_wp_page_menu_filter($text) {
-		$replace = array(
-			'current_page_item' => 'current-menu-item',
-		);
-		$text = str_replace(array_keys($replace), $replace, $text);
-		return $text;
-	}
-add_filter('wp_page_menu', 'freesiaempire_wp_page_menu_filter');
-
-/***************************** Translators *********************************************************/
-function freesiaempire_font_url() {
-	$font_url = '';
-	/*
-	 * If there are characters in your language that are not supported
-	 * by Roboto, translate this to 'off'. Do not translate into your own language.
-	 */
-	if ('off' !== _x('on', 'Roboto font: on or off', 'freesia-empire')) {
-		$font_url = add_query_arg('family', urlencode('Roboto:400,300,500,700'), "//fonts.googleapis.com/css");
-	}
-	return $font_url;
-}
-/**************************************************************************************/
-function freesiaempire_get_featured_posts() {
-	return apply_filters( 'freesiaempire_get_featured_posts', array() );
-}
-/************ Return bool if there are featured Posts ********************************/
-function freesiaempire_has_featured_posts() {
-	return ! is_paged() && (bool) freesiaempire_get_featured_posts();
-}
-
 /**************************** Display Header Title ***********************************/
 function freesiaempire_header_title() {
 	$format = get_post_format();
@@ -209,7 +178,7 @@ function freesiaempire_header_title() {
 			$freesiaempire_header_title = __( 'links', 'freesia-empire' );
 		elseif ( $format =='chat' ) :
 			$freesiaempire_header_title = __( 'Chats', 'freesia-empire' );
-		elseif ( class_exists('WooCommerce') && is_shop() || is_product_category()) :
+		elseif ( class_exists('WooCommerce') && (is_shop() || is_product_category()) ):
   			$freesiaempire_header_title = woocommerce_page_title( false );
   		elseif ( class_exists('bbPress') && is_bbpress()) :
   			$freesiaempire_header_title = get_the_title();
@@ -270,4 +239,3 @@ function freesiaempire_custom_header_setup() {
 	add_theme_support( 'custom-header', $args );
 }
 add_action( 'after_setup_theme', 'freesiaempire_custom_header_setup' );
-?>

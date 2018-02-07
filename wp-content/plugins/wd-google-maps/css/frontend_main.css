@@ -260,5 +260,7 @@
     }
 }
 
-
+.gmwd_container_wrapper #gmwd_container_1 img{
+	max-width: inherit !important;
+}
 

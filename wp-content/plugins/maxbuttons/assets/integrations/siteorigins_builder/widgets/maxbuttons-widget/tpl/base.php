@@ -1,4 +1,5 @@
 <?php
+namespace MaxButtons; 
 
 $button_class = MB()->getClass('button'); 
  

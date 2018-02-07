@@ -18,12 +18,16 @@ require_once( 'page_lightbox.php' );
 /* include licensing page & color control free version */
 require_once( 'licensing.php' );
 
+/// include Theme support page class
+require_once( 'WDWT_support_information.php' );
+
 $wdwt_layout_page = new WDWT_layout_page_class();
 $wdwt_general_settings_page = new WDWT_general_settings_page_class();
 $wdwt_homepage_page = new WDWT_homepage_page_class();
 $wdwt_typography_page = new WDWT_typography_page_class();
 $wdwt_slider_page = new WDWT_slider_page_class();
 $wdwt_lightbox_page = new WDWT_lightbox_page_class();
+$wdwt_themes_support_page = new WDWT_themes_support_class();
 
 $wdwt_licensing_page = new WDWT_licensing_page_class();
 
@@ -53,10 +57,8 @@ $wdwt_licensing_page = new WDWT_licensing_page_class();
 */
 
 add_filter('option_'.WDWT_OPT, 'wdwt_options_mix_defaults');
-/* ajax for install sample data */
-add_action('wp_ajax_wdwt_install_sample_data',  array(&$wdwt_sample_data,'install_ajax'));
-/* ajax for remove sample data */
-add_action('wp_ajax_wdwt_remove_sample_data',  array(&$wdwt_sample_data,'remove_ajax'));
+
+add_filter('wdwt_new_options_new_users', 'wdwt_new_options_new_users');
 
 add_action( 'after_setup_theme', 'wdwt_options_init', 10, 2 );
 
@@ -111,8 +113,7 @@ function wdwt_get_option_defaults() {
   $option_parameters = wdwt_get_option_parameters();
   $option_defaults = array();
   
-  $current_theme = wp_get_theme();
-  $option_defaults['theme_version'] = $current_theme->get( 'Version' );
+  $option_defaults['theme_version'] = WDWT_VERSION;
   
   foreach ( $option_parameters as $option_parameter ) {
     $name =  (isset($option_parameter['name']) && $option_parameter['name'] !='' ) ? $option_parameter['name'] : false;
@@ -121,6 +122,20 @@ function wdwt_get_option_defaults() {
   }
   return apply_filters( 'wdwt_get_option_defaults', $option_defaults );
 }
+
+
+
+/**
+ * new options to be enabled by default for new users only
+ */
+
+function wdwt_new_options_new_users($options){
+  $options['shortcodes_deprecated'] = true;
+
+  return $options;
+}
+
+
 
 /*-------------------------------*/
 function wdwt_get_option_parameters() {
@@ -315,5 +330,18 @@ function wdwt_get_tabs() {
       ),
       'description' => ''
     );
+
+  $tabs['themes_support'] = array(
+    'name' => 'themes_support',
+    'title' => __( 'Theme support', "business-elite" ),
+    'sections' => array(
+      'themes_support' => array(
+        'name' => 'themes_support',
+        'title' => '',
+        'description' => ''
+      )
+    ),
+    'description' => ''
+  );
   return apply_filters( 'wdwt_get_tabs', $tabs );
 }

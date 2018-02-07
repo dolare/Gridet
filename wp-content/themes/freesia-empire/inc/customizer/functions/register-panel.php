@@ -47,4 +47,3 @@ function freesiaempire_customize_register_widgets( $wp_customize ) {
 		'description' => '',
 	) );
 }
-?>

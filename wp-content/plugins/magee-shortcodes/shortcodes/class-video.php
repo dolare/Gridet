@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Video') ):
 class Magee_Video {
     
 	
@@ -43,10 +44,10 @@ class Magee_Video {
 		 extract( $defaults );
 		 self::$args = $defaults;
 		 $html = '';
-		 if( $width == '100%')
-		 $width = '';
-		 if( $height == '100%')
-		 $height = '';
+		 if(is_numeric($width))
+			$width = $width.'px';
+		 if(is_numeric($height))
+			$height = $height.'px'; 
 		 if( $mute == 'yes'):
 		 $mute = 'muted';
 		 else:
@@ -72,7 +73,7 @@ class Magee_Video {
 		           <source src="'.esc_url($ogv_url).'" type="video/mp4">
 				   <source src="'.esc_url($webm_url).'" type="video/mp4">';
 		 	      
-         $html .= '<video>';}
+         $html .= '</video>';}
 		 else{
 		 
 		 $html .= '<image src="'.esc_url($poster).'">'	;
@@ -84,3 +85,4 @@ class Magee_Video {
 }
 
 new Magee_Video();
+endif;

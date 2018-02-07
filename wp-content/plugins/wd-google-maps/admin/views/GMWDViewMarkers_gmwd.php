@@ -59,8 +59,12 @@ class GMWDViewMarkers_gmwd extends GMWDView{
 							<tr>
                                 <td><label for="marker_address" title="<?php _e("Search for location or right-click on the map to bring address.  Alternatively, add a location manually.","gmwd");?>"><?php _e("Address","gmwd");?>:</label></td>
 								<td>
-                                    <input type="text" name="address" id="marker_address" class="wd-form-field wd-poi-required" value="<?php echo $row->address;?>" autocomplete="off" ><br>
-                                    <small><em><?php _e("Or Right Click on the Map.","gmwd");?></em></small>
+                                    <input type="text" name="address" id="marker_address" class="wd-form-field wd-poi-required" value="<?php echo $row->address;?>" autocomplete="off" >
+									<div class="gmwd_help_small">
+										<small><em><?php _e("Paste the address and press enter ","gmwd");?></em></small><br>
+										<small><em><?php _e("or right click on the Map.","gmwd");?></em></small>
+									</div>
+
                                 </td>
 					
                                 <td>

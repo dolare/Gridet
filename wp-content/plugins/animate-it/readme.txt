@@ -2,8 +2,8 @@
 Contributors: eleopard
 Tags: css3 animation, animate.css, jquery, on scroll animation, delay, infinite, entry exit, iteration
 Requires at least: 3.9
-Tested up to: 4.7.1
-Stable tag: 2.1.8
+Tested up to: 4.8.1
+Stable tag: 2.2.1
 License: GNU General Public License version 2 or later
 License URI: http://www.gnu.org/copyleft/gpl.html
 
@@ -81,6 +81,15 @@ Add duration class ( duration1 to duration20 ) along with the other classes. or 
 
 
 == Changelog ==
+
+= Version 2.2.1 =
+* Bug fixes for chrome 61+ version
+
+= Version 2.2.0 =
+* Bug fixes for chrome 61+ version
+
+= Version 2.1.9 =
+* Bug fixes for chrome 61+ version
 
 = Version 2.1.8 =
 * Mobile_Detect class updated

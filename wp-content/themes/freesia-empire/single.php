@@ -8,7 +8,6 @@
  */
 get_header();
 	$freesiaempire_settings = freesiaempire_get_theme_options();
-	global $post;	
 	global $freesiaempire_content_layout;
 	if( $post ) {
 		$layout = get_post_meta( $post->ID, 'freesiaempire_sidebarlayout', true );
@@ -28,26 +27,21 @@ get_header();
 	}?>
 	<main id="main" class="site-main clearfix">
 	<?php global $freesiaempire_settings;
-	global $post;
 	if( have_posts() ) {
 		while( have_posts() ) {
 			the_post(); ?>
-		<?php $format = get_post_format(); ?>
+			<?php $format = get_post_format(); ?>
 			<article <?php post_class('post-format'.' format-'.$format); ?><?php  ?> id="post-<?php the_ID(); ?>">
 				<?php $featured_image_display = $freesiaempire_settings['freesiaempire_single_post_image'];
 					if($featured_image_display == 'on'):
-						if( has_post_thumbnail() ) {
-							$image = '';
-							$title_attribute = apply_filters( 'the_title', get_the_title( $post->ID ) );
-							$image .= '<figure class="post-featured-image">';
-							$image .= '<a href="' . get_permalink() . '" title="'.the_title( '', '', false ).'">';
-							$image .= get_the_post_thumbnail( $post->ID, 'featured', array( 'title' => esc_attr( $title_attribute ), 'alt' => esc_attr( $title_attribute ) ) ).'</a>';
-							$image .='<span class="arrow"></span>';
-							$image .= '</figure><!-- .post-featured-image -->';
-							echo $image;
-						}
-					endif;
-				} ?>
+						if( has_post_thumbnail() ) { ?>
+							<figure class="post-featured-image">
+								<a href="<?php the_permalink();?>" title="<?php echo the_title_attribute('echo=0'); ?>">
+								<?php the_post_thumbnail(); ?>
+								</a>
+							</figure><!-- end.post-featured-image  -->
+						<?php }
+					endif; ?>
 				<header class="entry-header">
 				<?php $entry_format_meta_blog = $freesiaempire_settings['freesiaempire_entry_meta_blog'];
 				if($entry_format_meta_blog == 'show-meta' ){?>
@@ -96,7 +90,7 @@ get_header();
 					<?php }
 				} ?>
 			</article>
-	<?php
+	<?php }
 		}
 	else { ?>
 	<h1 class="entry-title"> <?php _e( 'No Posts Found.', 'freesia-empire' ); ?> </h1>
@@ -127,4 +121,4 @@ get_header();
 	}
 }
 get_sidebar();
-get_footer(); ?>
+get_footer();

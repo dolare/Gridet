@@ -1,4 +1,5 @@
 <?php
+if( !class_exists(' Magee_Tabs ') ):
 class Magee_Tabs {
 
 	public static $args;
@@ -86,7 +87,7 @@ class Magee_Tabs {
 		$html= $styles.'<div class="magee-tab-box '.$class.'" role="tabpanel" data-example-id="togglable-tabs id='.$id.'">
                <ul id="myTab1" class="list-inline '.$txtsty1.'" role="tablist">'.$this->item_tital.'
                </ul><div id="myTabContent" class="tab-content '.$tab_content_class.'">'.$items_content.'</div></div>';
-				   		
+		
 		return $html;
 	}
 	
@@ -112,7 +113,7 @@ class Magee_Tabs {
 		$tabid = uniqid('tab-');
 		
 		$txtstyle='';
-		$txtbl = ' falas';
+		$txtbl = ' false';
 		$txtat = '' ;
 		if($this->num == 1)
 		{
@@ -130,3 +131,4 @@ class Magee_Tabs {
 }
 
 new Magee_Tabs();
+endif;

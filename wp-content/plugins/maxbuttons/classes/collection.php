@@ -1,5 +1,8 @@
 <?php
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
+
+use \simple_html_dom as simple_html_dom;
 
 class maxCollection 
 {
@@ -21,11 +24,9 @@ class maxCollection
 	/* Constructor 
 	   Sets the blocks used in this collection. These are mostly derived from subclasses of the specific collection types.
 	*/
-	function __construct()
+	public function __construct()
 	{
 		maxCollections::checkExpireTrans(); 
-
-		
 		
 		foreach($this->uses_blocks as $block_name )
 		{
@@ -41,7 +42,7 @@ class maxCollection
 	
 	}
 	/* Get all buttons that are currently loaded */ 
-	function getLoadedButtons()
+	public function getLoadedButtons()
 	{
 		return $this->buttons;
 	}
@@ -49,7 +50,7 @@ class maxCollection
 
 	
 	/* Get a certain block class by name */
-	function getBlock($blockname) 
+	public function getBlock($blockname) 
 	{
  
 		if (isset($this->blocks[$blockname]))
@@ -59,20 +60,19 @@ class maxCollection
 	}
 	
 	/* Get the type of the collection */ 
-	function getType()
+	public function getType()
 	{
 		return $this->collection_type;
 	}	
 	
 	/* Get the ID of the collection */ 
-	function getID() 
+	public function getID() 
 	{
 		return $this->collection_id; 
-	
 	}
 	
-	/* Get the MaxCSSParser classes which handles SCSS. This function is derived from the one in Button class */ 
-	function getCSSParser()
+	/** Get the MaxCSSParser classes which handles SCSS. This function is derived from the one in Button class */ 
+	public function getCSSParser()
 	{
 		if (! $this->cssParser)
 			$this->cssParser = new maxCSSParser(); 
@@ -80,10 +80,10 @@ class maxCollection
 		return $this->cssParser;
 	}
 	
-	/* Set the collection by ID 
+	/** Set the collection by ID 
 	@param $collection_id ID of the collection stored in database
 	*/	
-	function set($collection_id)
+	public function set($collection_id)
 	{
 		$this->collection_id = $collection_id; 
 		
@@ -100,14 +100,14 @@ class maxCollection
 	}
 	
 
-	/* Interface for handling AJAX requests to communicate with the seperate blocks. 
+	/** Interface for handling AJAX requests to communicate with the seperate blocks. 
 		@param $result The initial (default) result to JSON back 
 		@param $block_name The name of the block in question 
 		@param $action The name of the block function to call 
 		@param $data Data specified by JS to use for this function 
 		@return $result - Standardized result block including error, body 
 	*/
-	function doBlockAJAX($result, $block_name, $action, $data)
+	public function doBlockAJAX($result, $block_name, $action, $data)
 	{
 		// core class is being called.
 		if ($block_name == 'collection') 
@@ -129,8 +129,8 @@ class maxCollection
 		return $result;
 	}
 
-	/* Save the collection data to the database. This will invoke the save functions of the blocks itself to gather, verify and manipulate data */ 
-	function save($post)
+	/** Save the collection data to the database. This will invoke the save functions of the blocks itself to gather, verify and manipulate data */ 
+	public function save($post)
 	{
 		$data = array(); 
 
@@ -146,13 +146,9 @@ class maxCollection
 	 	foreach($this->blocks as $block)
 	 	{
 	 		$data = $block->save_fields($data, $post);
-	 	
 	 	}
 	 	
 	 	$data = apply_filters("mb_col_save_collection_data", $data, $post); 
-	 	//if (! $do_save)
-	 	//	return $data; 
-	 	
 	 	
 	 	// clean what was not set 
 	 	$this->clean_meta($data); 
@@ -170,7 +166,7 @@ class maxCollection
 	}
 	
 	// remove post meta not in data post. 
-	function clean_meta($data)
+	public function clean_meta($data)
 	{
 		$data_blocks = array_keys($data); 
  
@@ -240,7 +236,7 @@ class maxCollection
 	}
 	
 	
-	
+	/** Determine the next ID for collection */ 
 	protected function getNewCollectionID()
 	{
 		global $wpdb; 
@@ -271,7 +267,7 @@ class maxCollection
 	}
 
 
-	/* Delete the collection. This is done via AJAX request */
+	/** Delete the collection. This is done via AJAX request */
 	public function delete($result, $data) 
 	{
 		global $wpdb; 
@@ -307,6 +303,8 @@ class maxCollection
 		
 	}
 	
+	/** On deletion of a collection check for each button if this is an auto-generated button just made for this collection and if 
+	no changes where made to this button. If both conditions are true, remove the button */
 	function maybe_delete_button($button_id)
 	{
 			$button = MB()->getClass("button");
@@ -410,16 +408,9 @@ class maxCollection
 		if (! $cache) 
 		{
 			$cssParser = $this->getCSSParser(); 
-		
-		//	maxUtils::startTime('collection-display-parse');
 			$domObj = $this->parse($args); 
-		
-		//	maxUtils::endTime('collection-display-parse');
-		
-		//	maxUtils::startTime('collection-display-parsecss');
 			$css 	= $this->parseCSS($args); 
-		//	maxUtils::endTime('collection-display-parsecss');	
-			
+
 			$js = $this->parseJS($args);
 
 			$output = $domObj->save();
@@ -427,8 +418,8 @@ class maxCollection
 
 		
 		// CSS & JS output control
-		$this->displayCSS($css, $args);
-		$this->displayJS($js, $args);
+		$output .= $this->displayCSS($css, $args);
+		$output .= $this->displayJS($js, $args);
 		}
 		else 
 			$output = $cache; 
@@ -457,6 +448,8 @@ class maxCollection
 			"load_type" => "footer",
 		); 
 		$args = wp_parse_args($args, $default); 
+		if ($args['load_type'] == 'inline')
+			$args['style_tag'] =true; 
 	
 		$output = ''; 
 		
@@ -505,10 +498,7 @@ class maxCollection
 		
 		if ($args["js_tag"]) 
 		{
-			$output .= "<script type='text/javascript'> "; 
-//			$output .= " if (typeof MBcollection" . $this->collection_id . " == 'undefined') { ";
-//			$output .= " function MBcollection" . $this->collection_id . "() { ";
-			
+			$output .= "<script type='text/javascript'> "; 			
 			
 		}
 		
@@ -581,6 +571,7 @@ class maxCollection
 
 		maxUtils::startTime('collection-parse-blockparse');		
 		// general parsing		
+
 		foreach($this->blocks as $block)
 		{			
 			$domObj = $block->parse($domObj, $args);
@@ -640,17 +631,19 @@ class maxCollection
 					"echo" => false, 
 					"mode" => "normal",
 					"nocache" => false, 
+					"style" => 'footer', 
 				),
 				
 		$atts);
-		
+
 		$collection_id = $this->collection_id;
  
 		//$this->set($collection_id);
 		$display_args["compile"] = $display_args["nocache"]; 
+		$display_args['load_type'] = $display_args['style']; 
+		unset($display_args['style']); 
 		unset($display_args["nocache"]); 
  
-	
 		$output = $this->display($display_args);
 	
 		return $output;
@@ -661,8 +654,8 @@ class maxCollection
 	function editor_getPacks() 
 	{			
 		//$pack_paths = apply_filters('mb-col-pack-paths',  array(MB()->get_plugin_path() . "/") );
-		$packs["maxbuttons"]["tab"] = __("Your MaxButtons","maxbuttons"); 
 		$packs["maxbuttons"]["func"] = array($this, 'editor_getButtons'); 
+		$packs["maxbuttons"]["tab"] = __("Your MaxButtons","maxbuttons"); 
 		return $packs; 
 		
 	}
@@ -709,9 +702,7 @@ class maxCollection
 			$name = $button->getName(); 
 			
 			$meta = isset($button_data["meta"]) ? $button_data["meta"] : array(); 
-			do_action('mb-data-load',$button_data); // weakness of the bubbling filter model
-			
-
+			//do_action('mb-data-load',$button_data); // weakness of the bubbling filter model
 			
 			$output .= "<div class='item shortcode-container' data-id='$button_id'> ";		
 			$output .= $button->display(array("mode" => "preview", 'echo' => false, 'load_css' => 'inline') ); //"mode" => "preview", "compile" => true,
@@ -773,5 +764,5 @@ class maxCollection
 		}
 	
 	}
-}
+} //class
 

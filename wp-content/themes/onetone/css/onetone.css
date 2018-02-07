@@ -123,7 +123,7 @@
     text-align: center;
 }
 
-.banner-box h1 {
+section .banner-box h1.section-title {
     font-family:'Lustria',serif;
     color:#FFF;
     font-weight:400;
@@ -139,7 +139,8 @@
     word-wrap:break-word;
 }
 
-.banner-box .sub-title {
+section .banner-box div.sub-title,
+section .banner-box div.section-subtitle{
     margin-top: 50px;
     font-family: 'Lustria',serif;
     color: #FFF;
@@ -148,18 +149,15 @@
     display: block;
 }
 
-.banner-scroll {
-    margin-top: 60px;
-    margin-bottom: 20px;
-}
-
 .banner-sns {
     overflow:hidden;
     margin:10px auto;
     text-align:center;
     display:inline-block;
 }
-
+.banner-sns > ul{
+	margin:0;
+}
 .banner-sns li {
     float:left;
     list-style-type:none;
@@ -298,4 +296,63 @@ li.info-email:before {
 
 li.info-website:before {
     content: "\f109";
+}
+
+/**/
+.homepage section{
+	position:relative;
+	}
+	
+.homepage .col-main {background-color: transparent;}
+.magee-contact-form .magee-btn-normal {
+    color: #666;
+    width: 100%;
+    line-height: 40px;
+    padding: 0 20px;
+}
+
+.magee-contact-form .magee-btn-normal:hover {
+    background-color: transparent;
+}
+#optionsframework-wrap .group .section h4 {
+    text-align: left;
+}
+
+.js-video {
+height: 0;
+padding-top: 25px;
+padding-bottom: 67.5%;
+margin-bottom: 10px;
+position: relative;
+overflow: hidden;
+}
+.js-video.widescreen {
+padding-bottom: 56.34%;
+}
+.js-video.vimeo {
+padding-top: 0;
+}
+.js-video embed, .js-video iframe, .js-video object, .js-video video {
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+position: absolute;
+}
+.contact-form input::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: inherit;
+    opacity: .5;
+}
+
+.contact-form input:-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: inherit;
+    opacity: .5;
+}
+
+.contact-form input::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: inherit;
+    opacity: .5;
 }

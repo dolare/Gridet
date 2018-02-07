@@ -1,4 +1,5 @@
 <?php 
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
 
 // probably load this after all plugins are loaded. 
@@ -9,7 +10,7 @@ class maxIntegrations
 	static function init() 
 	{
 		// check and init after plugin loaded. 
-		add_action('plugins_loaded', array('maxIntegrations', 'load_integrations'), 999); 
+		add_action('plugins_loaded', array(maxUtils::namespaceit('maxIntegrations'), 'load_integrations'), 999); 
 
 		// integrations that fire right now, like ones that are based on actions and filters. 
 		// This are the ones that also can't crash the plugin, since it's hook based - no hook - no call. 
@@ -33,8 +34,5 @@ class maxIntegrations
 		do_action('maxbutton-direct-integrations'); 
 	
 	}
-
-
-
 
 } // class

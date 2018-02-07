@@ -57,11 +57,11 @@ function freesiaempire_setup() {
 	add_image_size('freesiaempire_slider_image', 1920, 1080, true);
 
 	/*
-	 * Switch default core markup for search form, comment form, and comments
+	 * Switch default core markup for comment form, and comments
 	 * to output valid HTML5.
 	 */
 	add_theme_support( 'html5', array(
-		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
+		'comment-form', 'comment-list', 'gallery', 'caption',
 	) );
 
 	/**
@@ -82,6 +82,9 @@ function freesiaempire_setup() {
 	*/
 
 	add_theme_support( 'woocommerce' );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
 }
 endif; // freesiaempire_setup
 add_action( 'after_setup_theme', 'freesiaempire_setup' );
@@ -109,9 +112,6 @@ require( get_template_directory() . '/inc/settings/freesiaempire-common-function
 require get_template_directory() . '/inc/jetpack.php';
 require get_template_directory() . '/inc/footer-details.php';
 
-require get_template_directory() . '/tgm/class-tgm-plugin-activation.php';
-require get_template_directory() . '/tgm/tgm.php';
-
 /************************ Freesia Empire Widgets  *****************************/
 require get_template_directory() . '/inc/widgets/widgets-functions/contactus-widgets.php';
 require get_template_directory() . '/inc/widgets/widgets-functions/post-widgets.php';
@@ -129,10 +129,10 @@ if(!class_exists('Freesia_Empire_Plus_Features')){
 			<a title="<?php esc_attr_e( 'Review Freesia Empire', 'freesia-empire' ); ?>" href="<?php echo esc_url( 'https://wordpress.org/support/view/theme-reviews/freesia-empire/' ); ?>" target="_blank" id="about_freesiaempire">
 			<?php _e( 'Review Freesia Empire', 'freesia-empire' ); ?>
 			</a><br/>
-			<a href="<?php echo esc_url( 'http://themefreesia.com/theme-instruction/freesia-empire/' ); ?>" title="<?php esc_attr_e( 'Theme Instructions', 'freesia-empire' ); ?>" target="_blank" id="about_freesiaempire">
+			<a href="<?php echo esc_url( 'https://themefreesia.com/theme-instruction/freesia-empire/' ); ?>" title="<?php esc_attr_e( 'Theme Instructions', 'freesia-empire' ); ?>" target="_blank" id="about_freesiaempire">
 			<?php _e( 'Theme Instructions', 'freesia-empire' ); ?>
 			</a><br/>
-			<a href="<?php echo esc_url( 'http://themefreesia.com/support-forum/' ); ?>" title="<?php esc_attr_e( 'Forum', 'freesia-empire' ); ?>" target="_blank" id="about_freesiaempire">
+			<a href="<?php echo esc_url( 'https://tickets.themefreesia.com/' ); ?>" title="<?php esc_attr_e( 'Support Ticket', 'freesia-empire' ); ?>" target="_blank" id="about_freesiaempire">
 			<?php _e( 'Forum', 'freesia-empire' ); ?>
 			</a><br/>
 			<a href="<?php echo esc_url( 'http://demo.themefreesia.com/freesia-empire/' ); ?>" title="<?php esc_attr_e( 'View Demo', 'freesia-empire' ); ?>" target="_blank" id="about_freesiaempire">
@@ -146,7 +146,7 @@ if(!class_exists('Freesia_Empire_Plus_Features')){
 	}
 	$wp_customize->add_section('freesiaempire_upgrade_links', array(
 		'title'					=> __('About Freesia Empire', 'freesia-empire'),
-		'priority'				=> 1,
+		'priority'				=> 2,
 	));
 	$wp_customize->add_setting( 'freesiaempire_upgrade_links', array(
 		'default'				=> false,
@@ -172,6 +172,19 @@ if(!class_exists('Freesia_Empire_Plus_Features')){
 
 add_action( 'customize_register', 'freesiaempire_customize_register' );
 add_action( 'customize_preview_init', 'freesiaempire_customize_preview_js' );
+if(!class_exists('Freesia_Empire_Plus_Features')){
+	// Add Upgrade to Pro Button.
+	require_once( trailingslashit( get_template_directory() ) . 'inc/upgrade-plus/class-customize.php' );
+}
+/**************************************************************************************/
+function freesiaempire_hide_previous_custom_css( $wp_customize ) { 
+	// Bail if not WP 4.7. 
+	if ( ! function_exists( 'wp_get_custom_css_post' ) ) { 
+		return; 
+	} 
+		$wp_customize->remove_control( 'freesiaempire_theme_options[freesiaempire_custom_css]' ); 
+} 
+add_action( 'customize_register', 'freesiaempire_hide_previous_custom_css'); 
 /**************************************************************************************/
 
 // Add Post Class Clearfix
@@ -225,4 +238,3 @@ function freesiaempire_header_display(){
 		<?php }
 }
 add_action('freesiaempire_site_branding','freesiaempire_header_display');
-?>

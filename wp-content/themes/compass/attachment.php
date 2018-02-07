@@ -9,8 +9,7 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  */
-?>
-<?php get_header(); ?>
+ get_header(); ?>
 <div class="clear"></div>
 <div class="page_content">
     <div class="heading_container">
@@ -38,8 +37,7 @@
             $metadata = wp_get_attachment_metadata();
             printf(FULL_SIZE_IS_PIXEL, sprintf('<a href="%1$s" title="%2$s">%3$s &times; %4$s</a>', wp_get_attachment_url(), esc_attr(LINK_TO_FULL_SIZE_IMAGE), $metadata['width'], $metadata['height']));
         }
-        ?>
-        <?php edit_post_link(EDIT_TEXT, '', ''); ?>
+         edit_post_link(EDIT_TEXT, '', ''); ?>
         <!-- .entry-meta -->
         <?php
         if (wp_attachment_is_image()) {
@@ -77,16 +75,14 @@
             <?php } else {
             ?>
             <a href="<?php echo wp_get_attachment_url(); ?>" title="<?php echo esc_attr(get_the_title()); ?>" rel="attachment"><?php echo basename(get_permalink()); ?></a>
-        <?php } ?>
-        <?php
+        <?php } 
         if (!empty($post->post_excerpt)) {
             the_excerpt();
         }
-        ?>
-        <?php the_content(CONTINUE_READING); ?>
-        <?php wp_link_pages(array('before' => '' . PAGES_COLON, 'after' => '')); ?>
-        <?php compass_posted_in(); ?>
-<?php comments_template(); ?>
+        the_content(CONTINUE_READING);
+        wp_link_pages(array('before' => '' . PAGES_COLON, 'after' => '')); 
+        compass_posted_in(); 
+        comments_template(); ?>
     </div>  
 </div>
 <?php get_footer(); ?>

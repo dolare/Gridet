@@ -1,4 +1,6 @@
 <?php
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
 
 class mbCake 
 {
@@ -6,12 +8,12 @@ class mbCake
 
 	public static function init() 
 	{
-	 	add_action('register_shortcode_ui', array('mbCake', 'register')); 
-	 	add_action('init', array('mbCake', 'initField'));
-	 	add_action('shortcode_ui_after_do_shortcode', array('mbCake', 'shortcode')); 
+	 	add_action('register_shortcode_ui', array(maxUtils::namespaceit('mbCake'), 'register')); 
+	 	add_action('init', array(maxUtils::namespaceit('mbCake'), 'initField'));
+	 	add_action('shortcode_ui_after_do_shortcode', array(maxUtils::namespaceit('mbCake'), 'shortcode')); 
 	 	
 	 	// Load FA within TinyMCE
-	 	add_action('admin_enqueue_scripts', array('mbCake', 'editor_styles')) ; 
+	 	add_action('admin_enqueue_scripts', array(maxUtils::namespaceit('mbCake'), 'editor_styles')) ; 
 	 	
 	}
 
@@ -25,11 +27,10 @@ class mbCake
 	
 	public static function shortcode($shortcode) 
 	{
- 
- 
+
 		if (strpos ($shortcode, 'maxbutton') === false) 
 			return; // not our shorts 
-		
+ 
 		// style controls the output - if set to something else assume css is there. 
 		if (strpos ( $shortcode, 'style') === false)
 		{
@@ -41,6 +42,7 @@ class mbCake
  
 			$button = new maxButton(); 
 			$button->set($button_id); 
+		
 			$button->parse_button(); 
 			$button->parse_css('preview');
 			$button->display_css(); 

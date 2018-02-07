@@ -11,7 +11,6 @@
 get_header();
 	global $freesiaempire_settings;
 	$freesiaempire_settings = wp_parse_args(  get_option( 'freesiaempire_theme_options', array() ),  freesiaempire_get_option_defaults_values() );
-	global $post;	
 	global $freesiaempire_content_layout;
 	if( $post ) {
 		$layout = get_post_meta( $post->ID, 'freesiaempire_sidebarlayout', true );
@@ -30,7 +29,7 @@ get_header();
 	<?php }
 	}?>
 	<div id="main">
-	<?php global $post;
+	<?php
 	if( have_posts() ) {
 		while( have_posts() ) {
 			the_post();
@@ -84,4 +83,4 @@ if( 'default' == $layout ) { //Settings from customizer
 			echo '</aside><!-- #secondary -->';
 		} 
 	}
-get_footer(); ?>
+get_footer();

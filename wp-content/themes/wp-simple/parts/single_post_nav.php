@@ -5,7 +5,7 @@
         if (is_attachment()) {
             previous_image_link();
         } else {
-            previous_post_link('%link', __( '&laquo;', 'nimbus') . ' %title'); 
+            previous_post_link('%link', __( '&laquo;', 'wp-simple' ) . ' %title'); 
         }                                
         ?>
     </div>
@@ -14,7 +14,7 @@
         if (is_attachment()) {
             next_image_link();
         } else {
-            next_post_link('%link', '%title ' . __( '&raquo;', 'nimbus'));
+            next_post_link('%link', '%title ' . __( '&raquo;', 'wp-simple' ));
         }                                
         ?>                  
     </div>

@@ -7,6 +7,7 @@ $wdwt_allowed_for_footer = array(
 		'rev' => true,
 		'name' => true,
 		'target' => true,
+		'class' => true,
 	),
 	'abbr' => array(),
 	'area' => array(
@@ -188,6 +189,7 @@ $wdwt_allowed_for_footer = array(
 		'dir' => true,
 		'lang' => true,
 		'xml:lang' => true,
+		'class' => true,
 	),
 	'pre' => array(
 		'width' => true,
@@ -202,6 +204,7 @@ $wdwt_allowed_for_footer = array(
 		'align' => true,
 		'lang' => true,
 		'xml:lang' => true,
+		'class' => true,
 	),
 	'small' => array(),
 	'strike' => array(),
@@ -325,6 +328,8 @@ $wdwt_allowed_for_slider_desc = array(
 	'a' => array(
 		'href' => true,
 		'title' => true,
+		'target' => true,
+		'class' => true,
 	),
 	'abbr' => array(
 		'title' => true,
@@ -401,12 +406,12 @@ $wdwt_allowed_for_custom_head = array(
 		'type' => true,
 	),
 	'link' => array(
-	    'charset' => true,
-	    'href' => true,
-	    'rel' => true,
-	    'type' => true,
-	    'target' => true,
-	    'title' => true,
+		'charset' => true,
+		'href' => true,
+		'rel' => true,
+		'type' => true,
+		'target' => true,
+		'title' => true,
 	),
 );
 

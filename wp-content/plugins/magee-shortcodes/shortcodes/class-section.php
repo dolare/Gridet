@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Section') ):
 class Magee_Section {
 
 	public static $args;
@@ -49,7 +50,6 @@ class Magee_Section {
 		$class     .= ' '.$add_class;
 		$css_style  = '';
 		$container  = '';
-		
 		if( $contents_in_container == 'yes' )
 		$container  = 'container';
 		else
@@ -57,15 +57,15 @@ class Magee_Section {
 		
 		
 		if( is_numeric($border_size) )
-		$border_size = border_size.'px';
+		$border_size = $border_size.'px';
 		if( is_numeric($padding_top) )
-		$padding_top = padding_top.'px';
+		$padding_top = $padding_top.'px';
 		if( is_numeric($padding_bottom) )
-		$padding_bottom = padding_bottom.'px';
+		$padding_bottom = $padding_bottom.'px';
 		if( is_numeric($padding_left) )
-		$padding_left = padding_left.'px';
+		$padding_left = $padding_left.'px';
 		if( is_numeric($padding_right) )
-		$padding_right = padding_right.'px';
+		$padding_right = $padding_right.'px';
 		
 		
 		$top_separator_html      = '';
@@ -361,15 +361,27 @@ class Magee_Section {
 		
 		$styles  = sprintf( '<style type="text/css" scoped="scoped">%s </style>',$css_style);		
 		$content = do_shortcode( Magee_Core::fix_shortcodes($content));
+		$html  = '';
+		
+		if( $top_separator == 'triangle' ){
 		if ( $full_height == 'yes'):
-        $html   .= sprintf('%s<section class="section magee-section %s fullheight verticalmiddle" id="%s"><div class="section-content"><div class="%s">%s</div></div>%s %s</section>',$styles,esc_attr($class),esc_attr($id),$container,$content,$top_separator_html,$bottom_separator_html);
+		 $html   .= sprintf('%s<section class="section magee-section %s fullheight verticalmiddle" id="%s">%s<div class="section-content"><div class="%s">%s</div></div> %s</section>',$styles,esc_attr($class),esc_attr($id),$top_separator_html,$container,$content,$bottom_separator_html);
 		else:
-		$html   .= sprintf('%s<section class="section magee-section %s" id="%s"><div class="section-content"><div class="%s">%s</div></div>%s %s</section>',$styles,esc_attr($class),esc_attr($id),$container,$content,$top_separator_html,$bottom_separator_html);
+		$html   .= sprintf('%s<section class="section magee-section %s" id="%s">%s <div class="section-content"><div class="%s">%s</div></div> %s</section>',$styles,esc_attr($class),esc_attr($id),$top_separator_html,$container,$content,$bottom_separator_html);
+		endif;
+		
+		}else{
+		if ( $full_height == 'yes'):
+        $html   .= sprintf('%s<section class="section magee-section %s fullheight verticalmiddle" id="%s"><div class="section-content"><div class="%s">%s</div></div> %s %s</section>',$styles,esc_attr($class),esc_attr($id),$container,$content,$top_separator_html,$bottom_separator_html);
+		else:
+		$html   .= sprintf('%s<section class="section magee-section %s" id="%s"> <div class="section-content"><div class="%s">%s</div></div>%s %s</section>',$styles,esc_attr($class),esc_attr($id),$container,$content,$top_separator_html,$bottom_separator_html);
 
 		endif;
+		}
 		return $html;
 	}
 	
 }
 
 new Magee_Section();
+endif;

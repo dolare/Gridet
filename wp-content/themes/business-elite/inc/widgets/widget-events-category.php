@@ -40,7 +40,8 @@ class Business_elite_events_categ extends WP_Widget {
 				 </a> 
 			  </div>
 			</div>
-		<?php endwhile; 
+		<?php endwhile;
+			wp_reset_postdata();
 		echo $after_widget;
 	}
 	/*Saves the settings. */

@@ -1,4 +1,5 @@
 <?php
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
 
 $collectionBlock["picker"] = "pickerCollectionBlock"; 
@@ -19,13 +20,19 @@ class pickerCollectionBlock extends collectionBlock
  		if (count($selection) == 0) 
  			return $buttonsArray; 
  
-		$table = maxUtils::get_buttons_table_name();
+		$table = maxUtils::get_table_name();
+		$status = 'publish'; 
+		
 		$query_selection =  $selection; 
 		 
-		$selectstring = implode($query_selection, ","); 
-		$sql = "SELECT DISTINCT * FROM $table WHERE id in (" . $selectstring . ")";
-	
+		$selectmask = implode( ', ', array_fill( 0, count( $query_selection ), '%d' ) );
+		$sql = "SELECT DISTINCT * FROM {$table} WHERE id in (" . $selectmask . ") and status = '%s' ";
+		$prepare_values = $query_selection;
+ 
+		array_push($prepare_values, $status); 
+
 		global $wpdb; 
+		$sql = $wpdb->prepare($sql, $prepare_values ); 
 		$results = $wpdb->get_results($sql, ARRAY_A); 
 		
 		$data_array = array(); 
@@ -48,6 +55,8 @@ class pickerCollectionBlock extends collectionBlock
 				maxButtons::buttonLoad(array("button_id" => $button_id)); // central registration - from button
 				$button->setupData($data); 
 			}	
+			else
+				continue; // non-existing buttons should not show.
 
 			maxButtons::forceNextID();
 			
@@ -60,7 +69,7 @@ class pickerCollectionBlock extends collectionBlock
 		
 	function parse($domObj, $args)
 	{
- 
+
 		$buttons = $this->collection->getLoadedButtons(); 
 		
 		$output = ''; 
@@ -72,25 +81,23 @@ class pickerCollectionBlock extends collectionBlock
 		foreach($buttons as $button)
 		{
  
-				$button->reloadData(); 
+				//$button->reloadData(); 
 				$button_id = $button->getID(); 
-				//$button_data = $button->get(); 
 
  				$document_id = $button->getDocumentID();
- 				//isset($button_data["document_id"]) ? $button_data["document_id"] : -1;
-				
+
 				$default_args = array("mode" => "normal", 
 							  "compile" => false,
+							  "load_type" => "footer", 
 							  ); 
 				$button_args = wp_parse_args($args, $default_args);
+				$button_args["load_css"] = $button_args["load_type"]; 
 				
 				$button_args["echo"] = false;  // non-optional.
 				 
  				if (isset($args['preview']) && $args["preview"]) 
 					$button_args["mode"] = "preview"; // buttons work with mode.
 
-
- 
 				$btn_display .= "<span class='mb-collection-item item-$button_id ' data-doc-id='" . $document_id . "'>" . $button->display($button_args) . "</span>";
 				
 
@@ -205,7 +212,7 @@ class pickerCollectionBlock extends collectionBlock
 	$mb_pick_modal = ob_get_contents(); 
 
 	// print this outside of the main div since it messes with z-index 
-	add_action('mb-interface-end', 'mb_print_modal' ); 
+	add_action('mb-interface-end', maxUtils::namespaceit('mb_print_modal') ); 
 	function mb_print_modal()
 	{
 		global $mb_pick_modal; 
@@ -218,7 +225,7 @@ class pickerCollectionBlock extends collectionBlock
 		<div class="title">
 			<span class="dashicons dashicons-list-view"></span> 
 			<span class='title'><?php _e("Buttons", "maxbuttons"); ?></span>
-			<button name="picker_popup" type="button" class="button"><?php _e("Add buttons","maxbuttons"); ?></button>
+			<button name="picker_popup" type="button" class="button-primary"><?php _e("Select Social Share Icons","maxbuttons"); ?></button>
 			<span class='right'><button name="save" type="submit"  data-form='collection_edit' class="button button-primary"><?php _e("Save All","maxbuttons"); ?></button>
 			</span>
 		</div> 
@@ -238,13 +245,14 @@ class pickerCollectionBlock extends collectionBlock
 				<div class="sortable buttons">
  
 					<?php
+					
 					foreach($selection as $button_id)
 					{	
 						echo "<div class='shortcode-container item' data-id='$button_id'>";
 						$button = MB()->getClass("button"); 
 						$button->set($button_id);
 						echo "<div id='maxbutton-$button_id'>"; 
-						$button->display(array( "load_css" => "inline" ));
+						$button->display(array( "load_css" => "inline", 'mode' => 'preview' ));
 						echo "</div>"; 
 						echo "<div class='button-remove'><span class='dashicons dashicons-no'></span></div>"; 
 						echo "</div>"; 

@@ -4,8 +4,7 @@
     <div class="two_third">    
     	<div class="title">
 		<h1><?php printf( __( 'Search Results for: %s', 'guardian' ), '<span>' . get_search_query() . '</span>'  ); ?></h1>
-		</div>       
-        <?php weblizar_breadcrumbs(); ?>
+		</div>
     </div>    
     <div class="one_third last">    
     	<div class="site-search-area">        

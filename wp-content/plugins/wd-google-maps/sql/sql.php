@@ -71,7 +71,8 @@ function gmwd_create_tables(){
         `shortcode_id`                    INT(16)      NOT NULL,
         `theme_id`                        INT(16)      NOT NULL,
         `enable_searchbox`      	      TINYINT(1)   NOT NULL, 
-        `searchbox_position`      	      INT(16)      NOT NULL,         
+        `searchbox_position`      	      INT(16)      NOT NULL, 
+        `info_window_info`      	      VARCHAR(256) NOT NULL,        
         `published`      				  TINYINT(1)   NOT NULL DEFAULT '1', 
 
         PRIMARY KEY (`id`)
@@ -106,7 +107,7 @@ function gmwd_create_tables(){
         `map_id`                        INT(16) 	 NOT NULL,
         `lat`                           VARCHAR(256) NOT NULL,
         `lng`                           VARCHAR(256) NOT NULL,
-        `category`                      INT(16) 	 NOT NULL,
+        `category`                      VARCHAR(256) NOT NULL,
         `title`                         VARCHAR(256) NOT NULL,
         `address`                       VARCHAR(256) NOT NULL,
         `animation`                     VARCHAR(16)  NOT NULL,
@@ -336,9 +337,9 @@ function gmwd_create_tables(){
     if(!get_option("gmwd_version")){
         // insert map
    
-        $gmwd_maps_insert = "INSERT INTO `" . $wpdb->prefix . "gmwd_maps` (`id`, `title`, `width`, `height`, `center_address`, `center_lat`, `center_lng`, `width_percent`, `map_alignment`, `border_radius`, `zoom_level`, `min_zoom`, `max_zoom`, `enable_zoom_control`, `zoom_control_position`, `enable_map_type_control`, `map_type_control_position`, `map_type_control_style`, `enable_scale_control`, `enable_street_view_control`, `street_view_control_position`, `enable_fullscreen_control`, `fullscreen_control_position`, `enable_rotate_control`, `whell_scrolling`, `map_draggable`, `map_db_click_zoom`, `enable_directions`, `directions_window_open`, `info_window_open_on`, `direction_position`, `directions_window_width`, `directions_window_width_unit`, `enable_store_locator`, `store_locator_window_width`, `store_locator_window_width_unit`, `store_locator_position`, `restrict_to_country`, `distance_in`, `show_bouncing_icon`, `enable_bicycle_layer`, `enable_traffic_layer`, `enable_transit_layer`, `georss_url`, `kml_url`, `fusion_table_id`, `geolocate_user`, `marker_listing_type`, `marker_list_position`, `enable_category_filter`, `type`, `marker_list_inside_map`, `marker_list_inside_map_position`, `advanced_info_window_position`, `circle_line_color`, `circle_line_opacity`, `circle_fill_color`, `circle_fill_opacity`, `circle_line_width`, `shortcode_id`, `theme_id`, `published`) 
+        $gmwd_maps_insert = "INSERT INTO `" . $wpdb->prefix . "gmwd_maps` (`id`, `title`, `width`, `height`, `center_address`, `center_lat`, `center_lng`, `width_percent`, `map_alignment`, `border_radius`, `zoom_level`, `min_zoom`, `max_zoom`, `enable_zoom_control`, `zoom_control_position`, `enable_map_type_control`, `map_type_control_position`, `map_type_control_style`, `enable_scale_control`, `enable_street_view_control`, `street_view_control_position`, `enable_fullscreen_control`, `fullscreen_control_position`, `enable_rotate_control`, `whell_scrolling`, `map_draggable`, `map_db_click_zoom`, `enable_directions`, `directions_window_open`, `info_window_open_on`, `direction_position`, `directions_window_width`, `directions_window_width_unit`, `enable_store_locator`, `store_locator_window_width`, `store_locator_window_width_unit`, `store_locator_position`, `restrict_to_country`, `distance_in`, `show_bouncing_icon`, `enable_bicycle_layer`, `enable_traffic_layer`, `enable_transit_layer`, `georss_url`, `kml_url`, `fusion_table_id`, `geolocate_user`, `marker_listing_type`, `marker_list_position`, `enable_category_filter`, `type`, `marker_list_inside_map`, `marker_list_inside_map_position`, `advanced_info_window_position`, `circle_line_color`, `circle_line_opacity`, `circle_fill_color`, `circle_fill_opacity`, `circle_line_width`, `shortcode_id`, `theme_id`, `published`, `info_window_info`) 
         VALUES
-        ('', 'My First Map', '100', '', 'R. do Celeiros 2, 7780, Portugal', '42.45362248301644', '-21.056485250000033', '%', 'left', '', 3, 2, 22, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 'click', 0, '100', '%', 1, '100', '%', '', '', 'km', 0, 0, 0, 0, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '000', '0.6', '7FDF16', '0.3', 2, 1, 1, 1)";
+        ('', 'My First Map', '100', '', 'R. do Celeiros 2, 7780, Portugal', '42.45362248301644', '-21.056485250000033', '%', 'left', '', 3, 2, 22, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 'click', 0, '100', '%', 1, '100', '%', '', '', 'km', 0, 0, 0, 0, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, '000', '0.6', '7FDF16', '0.3', 2, 1, 1, 1, 'title,address,desc,pic')";
     
         $wpdb->query($gmwd_maps_insert);
         

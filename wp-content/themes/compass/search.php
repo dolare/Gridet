@@ -5,8 +5,7 @@
  * @package WordPress
  * 
  */
-?>
-<?php get_header(); ?>
+ get_header(); ?>
 <div class="clear"></div>
 <div class="page_content">
     <div class="heading_container">

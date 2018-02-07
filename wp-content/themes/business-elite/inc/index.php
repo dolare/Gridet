@@ -19,7 +19,9 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 
 if(is_admin()){
 	/*include admin cpanel*/
-	require_once('admin/WDWT_admin_cpanel.php');  
+	require_once('admin/WDWT_admin_cpanel.php');
+	/*include TGM PA*/
+	require_once('admin/plugins.php');
 	/*include meta*/
 	require_once('meta/meta.php');
 }

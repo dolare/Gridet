@@ -1,49 +1,64 @@
 <?php
 
 /*
-  Copyright (c) 2012, SEO Squirrly.
+  Copyright (c) 2012-2017, SEO Squirrly.
   The copyrights to the software code in this file are licensed under the (revised) BSD open source license.
 
-  Plugin Name: SEO by SQUIRRLY
+  Plugin Name: Squirrly SEO 2018 (Steve)
   Plugin URI: http://www.squirrly.co
-  Description: SEO Plugin By Squirrly is for the NON-SEO experts. Get Excellent Seo with Better Content, Ranking and Analytics. For Both Humans and Search Bots.<BR> <a href="http://my.squirrly.co/user" target="_blank"><strong>Check your profile</strong></a>
-  Author: calinvingan, florinmuresan, nagy.sorel
-  Version: 6.1.4
+  Description: SEO By Squirrly is for the NON-SEO experts. Get Excellent Seo with Better Content, Ranking and Analytics. For Both Humans and Search Bots.<BR> <a href="http://my.squirrly.co/user" target="_blank"><strong>Check your profile</strong></a>
+  Author: Squirrly SEO
+  Version: 8.3.02
   Author URI: http://www.squirrly.co
  */
 
 /* SET THE CURRENT VERSION ABOVE AND BELOW */
-define('SQ_VERSION', '6.1.4');
+define('SQ_VERSION', '8.3.02');
+
 /* Call config files */
 if (file_exists(dirname(__FILE__) . '/config/config.php')) {
-    require(dirname(__FILE__) . '/config/config.php');
+    require_once(dirname(__FILE__) . '/config/config.php');
 
     /* important to check the PHP version */
     if (PHP_VERSION_ID >= 5100) {
         /* inport main classes */
-        require_once(_SQ_CLASSES_DIR_ . 'SQ_ObjController.php');
+        require_once(_SQ_CLASSES_DIR_ . 'ObjController.php');
+        require_once(_SQ_CLASSES_DIR_ . 'BlockController.php');
 
-        if (is_admin()) {
-            require_once(_SQ_CLASSES_DIR_ . 'SQ_BlockController.php');
-            SQ_ObjController::getController('SQ_FrontController', false)->run();
+        SQ_Classes_ObjController::getClass('SQ_Classes_FrontController');
+        SQ_Classes_ObjController::getClass('SQ_Classes_Tools');
+
+        if (is_admin() || is_network_admin()) {
+
+            SQ_Classes_ObjController::getClass('SQ_Classes_FrontController')->runAdmin();
 
             /**
              *  Upgrade Squirrly call.
              */
-            register_activation_hook(__FILE__, array(SQ_ObjController::getController('SQ_Tools', false), 'sq_activate'));
-            register_deactivation_hook(__FILE__, array(SQ_ObjController::getController('SQ_Tools', false), 'sq_deactivate'));
-        } else {
-            SQ_ObjController::getController('SQ_FrontController', false);
-            SQ_ObjController::getController('SQ_Frontend');
+            register_activation_hook(__FILE__, array(SQ_Classes_ObjController::getClass('SQ_Classes_Tools'), 'sq_activate'));
+            register_deactivation_hook(__FILE__, array(SQ_Classes_ObjController::getClass('SQ_Classes_Tools'), 'sq_deactivate'));
 
+            if (!SQ_Classes_Tools::getOption('sq_force_savepost')) {
+                //Jost for logged users. Send the posts to API
+                add_action('sq_processApi', array(SQ_Classes_ObjController::getClass('SQ_Controllers_Cron'), 'processSEOPostCron'));
+                SQ_Classes_ObjController::getClass('SQ_Controllers_Cron')->processSEOPostCron();
+            }
+
+        } elseif (SQ_Classes_Tools::getOption('sq_use') == 1) {
+            SQ_Classes_ObjController::getClass('SQ_Classes_FrontController')->runFrontend();
         }
 
-        add_action('sq_processCron', array(SQ_ObjController::getController('SQ_Ranking', false), 'processCron'));
-        add_action('sq_processApi', array(SQ_ObjController::getController('SQ_Post'), 'processCron'));
+        //Only if ranking option is activated
+        if (SQ_Classes_Tools::getOption('sq_google_ranksperhour') > 0 ||
+            SQ_Classes_Tools::getOption('sq_google_serp_active')) {
+            add_action('sq_processCron', array(SQ_Classes_ObjController::getClass('SQ_Controllers_Cron'), 'processRankingCron'));
+        }
     } else {
         /* Main class call */
         add_action('admin_init', 'sq_phpError');
     }
+
+
 }
 
 /**

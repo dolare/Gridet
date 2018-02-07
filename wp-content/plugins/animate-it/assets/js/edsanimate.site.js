@@ -13,10 +13,9 @@
 		this.edsElemAnimating = false;
 		
 		this.checkPosition = function() {
-			
-			windowHeight = edsWObj.height();			
-			var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
-            viewportTop = $(scrollElem).scrollTop(),
+						
+			var windowHeight = edsWObj.height(),
+            viewportTop = $(document).scrollTop(),
             viewportBottom = (viewportTop + windowHeight),			
 			elemTop = '';
 			
@@ -35,7 +34,7 @@
 		}
 		
 		this.edsAnimate = function(counter, iteration) {			
-			obj.removeClass('edsanimate-sis-hidden' );
+			obj.removeClass('edsanimate-sis-hidden' );			
 			obj.animo( obj.edsAnimations[ counter ].animoSettings, function() {
 				counter++ 
 				if( counter < obj.edsAnimations.length ) {																												

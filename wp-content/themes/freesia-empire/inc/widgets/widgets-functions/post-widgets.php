@@ -68,7 +68,6 @@
 		global $freesiaempire_settings;
 		extract($args);
 		extract($instance);
-		global $post;
 		$checkbox    = esc_attr('checkbox', empty($instance['checkbox'])?'':$instance['checkbox'], $instance);
 		$title = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : '';
 		$description = isset( $instance[ 'description' ] ) ? $instance[ 'description' ] : '';
@@ -109,18 +108,16 @@
 							<article class="format-<?php echo $format; ?>">
 							<?php
 							}
-								if( has_post_thumbnail() ) {
-								$image = '';        			
-								$title_attribute = get_the_title( $post->ID );
-								$image .= '<div class="blog-img freesia-animation fadeInDown" data-wow-delay="0.3s">';
-								$image .= get_the_post_thumbnail( $post->ID, 'post-thumbnails', array( 'title' => esc_attr( $title_attribute ), 'alt' => esc_attr( $title_attribute ) ) ).'<div class="blog-overlay">
-											<a href="'.get_permalink().'">
-												<span class="ico-link"></span>
-											</a>
-										</div><!-- end.blog-overlay -->'.'</div><!-- end.blog-img -->';
-								echo $image;
-								}
-								?>
+								if( has_post_thumbnail() ) { ?>
+								<div class="blog-img freesia-animation fadeInDown" data-wow-delay="0.3s">
+								<?php the_post_thumbnail(); ?>
+									<div class="blog-overlay">
+										<a href="<?php the_permalink(); ?>">
+											<span class="ico-link"></span>
+										</a>
+									</div><!-- end.blog-overlay -->
+								</div><!-- end.blog-img -->
+								<?php } ?>
 								<div class="blog-content freesia-animation fadeInUp" data-wow-delay="0.3s">
 									<header class="entry-header">
 											<h3 class="entry-title"><a rel="bookmark" href="<?php the_permalink();?>"><?php the_title(); ?> </a></h3>
@@ -138,7 +135,11 @@
 									</div>  <!-- end .entry-meta -->
 									<?php } ?>
 									</header><!-- end.entry-header -->
+									<?php if($freesiaempire_settings['freesiaempire_crop_excerpt_length'] ==1){ ?>
 									<div class="entry-content"><p><?php echo substr(get_the_excerpt(), 0 , 120); ?> </p>
+									<?php }else{ ?>
+									<div class="entry-content"><p><?php echo get_the_excerpt(); ?> </p>
+										<?php } ?>
 									<?php $freesiaempire_tag_text = $freesiaempire_settings['freesiaempire_tag_text'];
 									$excerpt = get_the_excerpt();
 									$content = get_the_content();
@@ -167,4 +168,3 @@
 		<?php echo $after_widget .'<!-- end .widget_latest_blog -->';
 	}
 }
-?>

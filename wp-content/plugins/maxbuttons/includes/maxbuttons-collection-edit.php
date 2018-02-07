@@ -1,4 +1,7 @@
 <?php
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
+
 global $page_title; 
 
 $collections = MB()->getClass("collections"); 
@@ -46,7 +49,7 @@ $button = MB()->getClass("button");
 			<div class="mb-message shortcode">
 				<?php $button_name = $button->getName(); ?>
 				<?php _e('To use this collection, place the following shortcode anywhere in your site content:', 'maxbuttons') ?>
-				<strong>[maxcollection id="<?php echo $collection_id ?>"]</strong> <i><?php _e("or","maxbuttons"); ?></i> <strong>[maxcollection name=" <?php echo $collection_name ?>"]</strong> 
+				<strong>[maxcollection id="<?php echo $collection_id ?>"]</strong> <i><?php _e("or","maxbuttons"); ?></i> <strong>[maxcollection name="<?php echo $collection_name ?>"]</strong> 
  
  
 			</div>
@@ -82,11 +85,12 @@ $button = MB()->getClass("button");
 <input type="hidden" name="block_nonce" value="<?php echo $block_nonce ?>"> 
 <input type="hidden" name="tab" value="<?php echo $tab ?>" /> 	
 <input type="hidden" name="collection_type" value="<?php echo $collection_type ?>" > 
-</form>
 
 <div class="form-actions">				
 	<input type="submit" data-form='collection_edit' name="submit" value="<?php _e('Save All', 'maxbuttons') ?>" class="button-primary ">
 </div>
+</form>
+
 <?php 
 
 $admin->get_footer(); 

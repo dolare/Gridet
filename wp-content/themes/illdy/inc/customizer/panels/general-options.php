@@ -5,16 +5,6 @@ $panel_id = 'illdy_panel_general';
 // Set prefix
 $prefix = 'illdy';
 
-
-// Change panel for Colors
-$site_colors        = $wp_customize->get_section( 'colors' );
-$site_colors->panel = $panel_id;
-$site_colors->title = __( 'Background Color', 'illdy' );
-
-// Change panel for Background Image
-$site_title        = $wp_customize->get_section( 'background_image' );
-$site_title->panel = $panel_id;
-
 // Change panel for Static Front Page
 $site_title        = $wp_customize->get_section( 'static_front_page' );
 $site_title->panel = $panel_id;
@@ -31,13 +21,9 @@ $site_icon           = $wp_customize->get_control( 'site_icon' );
 $site_icon->section  = $prefix . '_general_logo_section';
 $site_icon->priority = 2;
 
-
-
-
 /***********************************************/
 /************** GENERAL OPTIONS  ***************/
 /***********************************************/
-
 
 $wp_customize->add_panel( $panel_id, array(
 	'priority'       => 1,
@@ -62,12 +48,12 @@ $wp_customize->add_setting( $prefix . '_preloader_enable', array(
 	'sanitize_callback' => $prefix . '_value_checkbox_helper',
 	'default'           => 1,
 ) );
-$wp_customize->add_control( $prefix . '_preloader_enable', array(
-	'type'     => 'checkbox',
+$wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_preloader_enable', array(
+	'type'     => 'epsilon-toggle',
 	'label'    => __( 'Enable the site preloader?', 'illdy' ),
 	'section'  => $prefix . '_preloader_section',
 	'priority' => 1,
-) );
+) ) );
 
 // Background Color
 $wp_customize->add_setting( $prefix . '_preloader_background_color', array(
@@ -121,7 +107,10 @@ $wp_customize->add_section( $prefix . '_general_logo_section', array(
 /***********************************************/
 /*********** General Site Settings  ************/
 /***********************************************/
-
+$wp_customize->selective_refresh->add_partial( 'custom_logo', array(
+	'selector' => '#header .col-sm-2 a:not(.header-logo)',
+	'render_callback' => $prefix . '_custom_logo',
+) );
 
 /* Company text logo */
 $wp_customize->add_setting( $prefix . '_text_logo', array(
@@ -136,15 +125,86 @@ $wp_customize->add_control( $prefix . '_text_logo', array(
 	'section'     => $prefix . '_general_logo_section',
 	'priority'    => 2,
 ) );
+$wp_customize->selective_refresh->add_partial( $prefix . '_text_logo', array(
+	'selector' => '#header a.header-logo',
+) );
 
+/***********************************************/
+/************** 404 Customization  ***************/
+/***********************************************/
+$wp_customize->add_section( $prefix . '_404', array(
+	'title'       => __( '404 Page', 'illdy' ),
+	'description' => __( 'From this section, you\'ll be able to alter texts from 404 page', 'illdy' ),
+	'priority'    => 4,
+	'panel'       => $panel_id,
+) );
+$wp_customize->add_setting( $prefix . '_404_title', array(
+	'sanitize_callback' => 'wp_kses_post',
+	'default'           => __( 'Page not found', 'illdy' ),
+	'transport'         => 'postMessage',
+) );
+
+$wp_customize->add_control( $prefix . '_404_title', array(
+	'label'       => __( '404 Page Title', 'illdy' ),
+	'section'     => $prefix . '_404',
+	'priority'    => 1,
+) );
+$wp_customize->selective_refresh->add_partial( $prefix . '_404_title', array(
+	'selector' => '.error404 .bottom-header h1',
+) );
+
+$wp_customize->add_setting( $prefix . '_404_subtitle', array(
+	'sanitize_callback' => 'wp_kses_post',
+	'default'           => __( 'OOOPS!', 'illdy' ),
+	'transport'         => 'postMessage',
+) );
+
+$wp_customize->add_control( $prefix . '_404_subtitle', array(
+	'label'       => __( '404 Page Subtitle', 'illdy' ),
+	'section'     => $prefix . '_404',
+	'priority'    => 2,
+) );
+$wp_customize->selective_refresh->add_partial( $prefix . '_404_subtitle', array(
+	'selector' => '.error404 .subheading-404',
+) );
+
+$wp_customize->add_setting( $prefix . '_404_content', array(
+	'sanitize_callback' => 'wp_kses_post',
+	'default'           => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet lorem ac orci dictum sodales et eget orci. Vestibulum a laoreet dolor. Sed finibus vulputate nisl, at pulvinar nisi commodo ac. Proin placerat auctor libero. Phasellus nec suscipit mi, sed faucibus purus.', 'illdy' ),
+	'transport'         => 'postMessage',
+) );
+$wp_customize->add_control( new Epsilon_Control_Text_Editor( $wp_customize, $prefix . '_404_content', array(
+	'type' => 'epsilon-text-editor',
+	'label'         => __( '404 Page Entry', 'illdy' ),
+	'section'       => $prefix . '_404',
+	'priority'      => 3,
+) ) );
+$wp_customize->selective_refresh->add_partial( $prefix . '_404_content', array(
+	'selector' => '.error404 .content-404',
+) );
+
+$wp_customize->add_setting( $prefix . '_404_button_label', array(
+	'sanitize_callback' => 'sanitize_text_field',
+	'default'           => __( 'Home', 'illdy' ),
+	'transport'         => 'postMessage',
+) );
+
+$wp_customize->add_control( $prefix . '_404_button_label', array(
+	'label'       => __( '404 Page Button Label', 'illdy' ),
+	'section'     => $prefix . '_404',
+	'priority'    => 4,
+) );
+$wp_customize->selective_refresh->add_partial( $prefix . '_404_button_label', array(
+	'selector' => '.error404 .button-404',
+) );
 
 /***********************************************/
 /************** Footer Details  ***************/
 /***********************************************/
 $wp_customize->add_section( $prefix . '_general_footer_section', array(
 	'title'       => __( 'Copyright', 'illdy' ),
-	'description' => __( 'Change the footer copyright message from here.', 'illdy' ),
-	'priority'    => 4,
+	'description' => __( 'From this section, you\'ll be able to alter the footer settings. Manage your copyright message as well as the logo shown in the footer of the theme.', 'illdy' ),
+	'priority'    => 5,
 	'panel'       => $panel_id,
 ) );
 
@@ -162,17 +222,7 @@ $wp_customize->add_control( $prefix . '_footer_copyright', array(
 	'priority'    => 2,
 ) );
 
-/* Footer Image Logo */
-$wp_customize->add_setting( $prefix . '_img_footer_logo', array(
-	'sanitize_callback' => 'esc_url_raw',
-	'default'           => esc_url_raw( get_template_directory_uri() . '/layout/images/footer-logo.png' ),
-	'transport'         => 'postMessage',
+$wp_customize->selective_refresh->add_partial( $prefix . '_footer_copyright', array(
+	'selector' => '#footer .bottom-copyright',
 ) );
 
-$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $prefix . '_img_footer_logo', array(
-	'label'       => __( 'Footer Logo', 'illdy' ),
-	'description' => __( 'Image logo used in the footer, above the copyright message.', 'illdy' ),
-	'section'     => $prefix . '_general_footer_section',
-	'settings'    => $prefix . '_img_footer_logo',
-	'priority'    => 3,
-) ) );

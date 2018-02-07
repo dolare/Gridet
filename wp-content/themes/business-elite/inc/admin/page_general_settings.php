@@ -104,27 +104,41 @@ class WDWT_general_settings_page_class {
 			),
 			/*--- FIX MENU ---*/
 			'fixed_menu' => array(
-				'name' => 'fixed_menu', 
-				'title' =>  __( 'Fix menu', "business-elite" ), 
-				'type' => 'checkbox', 
-				'description' => __('Check the box to fix menu.', "business-elite"), 
-				'section' => 'general_header', 
-				'tab' => 'general', 
+				'name' => 'fixed_menu',
+				'title' => __('Fix menu', "business-elite"),
+				'type' => 'checkbox_open',
+				'description' => __('Check the box to fix menu.', "business-elite"),
+				'section' => 'general_header',
+				'tab' => 'general',
 				'default' => true,
+				'customizer' => array(),
+				'show' => array('transparent_sticky'),
+				'hide' => array(),
+			),
+			'transparent_sticky' => array(
+				'name' => 'transparent_sticky',
+				'title' => __('Transparent sticky menu', "business-elite"),
+				'type' => 'checkbox',
+				'description' => __('Keep menu header and menu transparent when they have fixed positioning.', "business-elite"),
+				'section' => 'general_header',
+				'tab' => 'general',
+				'default' => false,
 				'customizer' => array()
 			),
-			'menu_section_width' => array( 
-				"name" => "menu_section_width", 
-				"title" => __("Menu Width", "business-elite"), 
-				'type' => 'text', 
-				"sanitize_type" => "sanitize_text_field", 
+			'menu_section_width' => array(
+				"name" => "menu_section_width",
+				"title" => __("Menu Width", "business-elite"),
+				'type' => 'number',
+				"sanitize_type" => "sanitize_text_field",
 				"description" => __("Menu width as a percentage of total header container width. The rest is logo section width.", "business-elite"),
-				'section' => 'general_header',  
-				'tab' => 'general', 
-				'default' => '80' ,
+				'section' => 'general_header',
+				'tab' => 'general',
+				'min' => '30',
+				'max' => '100',
+				'default' => '80',
 				'unit_symbol' => '%',
 				'input_size' => '2',
-				'customizer' => array()  
+				'customizer' => array()
 			),
 			/*--- LOGO ---*/	
 			'logo_type' => array(

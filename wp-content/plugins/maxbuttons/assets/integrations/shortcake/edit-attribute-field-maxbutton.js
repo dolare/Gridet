@@ -48,7 +48,7 @@
 				
 		}); 
 		
-		$(document).on('mb_media_buttons_close', function () 
+		$(document).on('modal_close', function () 
 		{
 				$('.media-modal, .media-modal-backdrop').show(); 		
 		});

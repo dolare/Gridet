@@ -70,4 +70,3 @@ for ( $i=1; $i <= $freesiaempire_settings['freesiaempire_total_features'] ; $i++
 		'type' => 'dropdown-pages',
 	));
 }
-?>

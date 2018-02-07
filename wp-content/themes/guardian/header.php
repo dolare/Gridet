@@ -19,19 +19,18 @@
 <header id="header">
 	<!-- Top header bar -->
 	<div id="topHeader">
-		<div class="wrapper">         
-			<div class="container-fluid top_nav">
+		<div class="wrapper" <?php if ( has_header_image() ) { ?> style='background-image: url("<?php header_image(); ?>")' <?php  } ?>>  
+			<div class="container-fluid top_nav"  >
 				<div class="container">					
-					<div class="col-md-12 right"><?php $guardian_image=get_header_image();
-					if(! empty($guardian_image)){ ?><img src="<?php echo get_header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="image" /><?php } ?>	
+					<div class="col-md-12 right">
 						<ul> <?php if($wl_theme_options['contact_email']!=''){ ?>           	
-							<li class="g_email"><a href="mailto:<?php echo esc_url($wl_theme_options['contact_email']); ?>"><i class="fa fa-envelope"></i> <?php echo esc_attr($wl_theme_options['contact_email']); ?></a></li> <?php } ?>
+							<li class="g_email guardian_contact_email"><a href="mailto:<?php echo ($wl_theme_options['contact_email']); ?>"><i class="fa fa-envelope"></i> <?php echo ($wl_theme_options['contact_email']); ?></a></li> <?php } ?>
 							<?php if($wl_theme_options['contact_phone_no']!=''){ ?> 
-							<li class="g_contact"><i class="fa fa-phone"></i> + <?php echo esc_attr($wl_theme_options['contact_phone_no']); ?></li>
+							<li class="g_contact guardian_contact_phone"><a href="tel:<?php echo ($wl_theme_options['contact_phone_no']); ?>"><i class="fa fa-phone"></i> + <?php echo ($wl_theme_options['contact_phone_no']); ?></a></li>
 							<?php } ?>
 							<?php if($wl_theme_options['header_section_social_media_enbled'] =='on'){ 
 								if($wl_theme_options['facebook_link']!=''){  ?>
-								<li><a href="<?php echo esc_url($wl_theme_options['facebook_link']); ?>"><i class="fa fa-facebook"></i></a></li>
+								<li class="guardian_facebook_link"><a href="<?php echo esc_url($wl_theme_options['facebook_link']); ?>"><i class="fa fa-facebook"></i></a></li>
 								<?php }  if($wl_theme_options['twitter_link']!=''){  ?>
 								<li><a href="<?php echo esc_url($wl_theme_options['twitter_link']); ?>"><i class="fa fa-twitter"></i></a></li>
 								<?php }  if($wl_theme_options['google_plus']!=''){  ?>
@@ -58,11 +57,14 @@
 				<!-- Logo -->
 				<div class="col-md-3 col-sm-3 logo">
 					<a href="<?php echo esc_url(home_url( '/' )); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" id="logo" >
-						<?php if($wl_theme_options['upload_image_logo']!='') 
-						{ ?>
-						<img src="<?php echo esc_url($wl_theme_options['upload_image_logo']); ?>" style="height:<?php if($wl_theme_options['height']!='') { echo $wl_theme_options['height']; }  else { "50"; } ?>px; width:<?php if($wl_theme_options['width']!='') { echo $wl_theme_options['width']; }  else { "180"; } ?>px;" />
-						<?php } else { echo get_bloginfo('name'); } ?>						
+						<?php 
+						$custom_logo_id = get_theme_mod( 'custom_logo' );
+						$image = wp_get_attachment_image_src( $custom_logo_id,'full' );
+						if(has_custom_logo()) { ?>
+						<img src="<?php echo $image[0]; ?>" style="height:<?php if($wl_theme_options['height']!='') { echo $wl_theme_options['height']; }  else { "50"; } ?>px; width:<?php if($wl_theme_options['width']!='') { echo $wl_theme_options['width']; }  else { "180"; } ?>px;" />
+						<?php } else { echo '<span class="site-title">'.get_bloginfo('name').'</span>'; } ?>						
 					</a>
+					<p class="site-description"><?php bloginfo( 'description' ); ?></p>
 				</div>
 				<!-- Menu -->
 				<div class="col-md-9 col-sm-9 menu_main">				

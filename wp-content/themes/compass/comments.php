@@ -25,10 +25,10 @@
             if ($post->post_type == 'post') {
                 ?>
                 <h3 class="nocomments"><?php echo CMNT_CLSD; ?></h3>
-            <?php } ?>
-        <?php endif; ?>
-    <?php endif; ?>
-    <?php if (comments_open()) : ?>
-        <?php comment_form(); ?>
-    <?php endif; // if you delete this the sky will fall on your head  ?>
+            <?php } 
+            endif; 
+            endif; 
+            if (comments_open()) : 
+                comment_form(); 
+            endif; // if you delete this the sky will fall on your head  ?>
 </div>

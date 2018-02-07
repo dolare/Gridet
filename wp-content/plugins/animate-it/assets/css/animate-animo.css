@@ -16,12 +16,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	overflow: hidden;	
 }
 
-.eds-scroll-hidden, .edsanimate-sis-hidden {
-	opacity:0;
+.edsanimate-sis-hidden, .eds-scroll-hidden {
+	opacity:0;	
 }
 
 .eds-scroll-visible {
-	opacity:1;
+	opacity:1;	
 }
 
 .animated {
@@ -265,20 +265,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	-webkit-backface-visibility: hidden;
 
 	animation-fill-mode: both;
-	transform: translate3d(0, 0, 0);
-	perspective: 1000;
+	transform: translate3d(0, 0, 0);	
 
 	-o-animation-fill-mode: both;
-	-o-transform: translate3d(0, 0, 0);
-	-o-perspective: 1000;
+	-o-transform: translate3d(0, 0, 0);	
 
 	-moz-animation-fill-mode: both;
 	-moz-transform: translate3d(0, 0, 0);
-	-moz-perspective: 1000;
-
+	
 	-webkit-animation-fill-mode: both;
 	-webkit-transform: translate3d(0, 0, 0);
-	-webkit-perspective: 1000;
 }
 
 .animated.infinite {

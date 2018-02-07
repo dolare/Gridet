@@ -1,5 +1,11 @@
 <?php 
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
+
+use \RecursiveDirectoryIterator as RecursiveDirectoryIterator; 
+use \FilesystemIterator as FilesystemIterator; 
+use \RecursiveIteratorIterator as RecursiveIteratorIterator;
+
 
 class maxCollections
 {
@@ -13,6 +19,7 @@ class maxCollections
 	static $cached_collections = array(); 
 	protected static $transientChecked = false; 
 
+	static $collectionButtons = null; // all button ID's in a collection.
 
 	static function init()
 	{
@@ -62,7 +69,8 @@ class maxCollections
 		// check for admin side, we need not hooks nor queries for this. 
 		if (is_admin()) 
 			return; 
-			
+		
+ 
 		global $pagenow; 
 		if  ( in_array($pagenow, array('wp-login.php', 'wp-register.php')) )
 			return;
@@ -70,7 +78,9 @@ class maxCollections
 		global $wpdb; 
 		$table = maxUtils::get_collection_table_name(); 
 		$sql =  "select collection_id, collection_key, collection_value from $table where 
-				 collection_key in ('show_homepage','show_page','show_post', 'show_archive') ";
+				 collection_key in ('show_homepage','show_page','show_post', 'show_archive') 
+				 and collection_id IN (select collection_id from $table where collection_key = 'collection_type' 
+				 and collection_value  = 'social' )  ";
 		$results = $wpdb->get_results($sql, ARRAY_A); 
 		
 		$hook_array = array();
@@ -105,14 +115,16 @@ class maxCollections
 		
 		self::$hooks = $hook_array; 
 		
+
+		
 		if (isset($hook_array["post"]) && count($hook_array["post"]) > 0) 
 		{
-			add_filter("the_content", array('maxCollections', "doContentHooks"));
+			add_filter("the_content", array(maxUtils::namespaceit('maxCollections'), "doContentHooks"));
 		}
 		if (isset($hook_array["once"]) && count($hook_array["once"]) > 0) 
 		{
 			//self::doFooterHooks(); // the stuff that goes once. 
-			add_action('wp_head', array('maxCollections', 'doFooterHooks')); 
+			add_action('wp_head', array(maxUtils::namespaceit('maxCollections'), 'doFooterHooks')); 
 		}
 		
 		if (count($hook_array) > 0) 
@@ -244,7 +256,44 @@ class maxCollections
  		self::$cached_collections[$collection_id] = $data;
  	}
  	
- 
+ 	public static function isButtonInCollection($button_id)
+	{
+		if (is_null(self::$collectionButtons))
+		{
+			global $wpdb; 	
+			$table = maxUtils::get_collection_table_name();
+			$sql = 'SELECT collection_id, collection_value FROM ' . $table . ' WHERE 
+					collection_key = "picker";'; 
+			$result = $wpdb->get_results($sql, ARRAY_A); 
+			
+			$buttonarray = array(); 
+			foreach ($result as $index => $row)
+			{
+				$collection_id = $row['collection_id']; 
+				$buttons = json_decode($row['collection_value']); 
+				
+				if (isset($buttons->selection))
+					$buttons = $buttons->selection;
+				else
+					$buttons = array();
+				
+				foreach($buttons as $index => $b_id)
+				{
+					if (isset(static::$collectionButtons[$b_id])) 
+						self::$collectionButtons[$b_id][] = $collection_id; 
+					else
+						self::$collectionButtons[$b_id] = array($collection_id);
+				}
+				
+			}
+		
+		}
+		
+		if (isset(self::$collectionButtons[$button_id])) 
+			return self::$collectionButtons[$button_id]; 
+		else
+			return false;
+	}
  	
  	static function ajax_save() 
  	{
@@ -397,8 +446,10 @@ class maxCollections
 		if (! self::$init) self::init(); 
  
 		if (isset(self::$collectionClass[$name])) 
-			return new self::$collectionClass[$name];
-		
+		{
+			$class = maxUtils::namespaceit(self::$collectionClass[$name]); 
+			return new $class;
+		}
 	}
 	
 	/* This will find an user defined collection from the database by ID */
@@ -414,6 +465,9 @@ class maxCollections
 			$type = $results["collection_type"]; 
 
 			$usecol = self::getCollection($type);
+			if (! $usecol) 
+				return false;
+				
 			$usecol->set($id);
 			return $usecol;
 		}
@@ -450,7 +504,8 @@ class maxCollections
 		
 		if (isset(self::$collectionBlock[$name])) 
 		{
-			return new self::$collectionBlock[$name];
+			$class = maxUtils::namespaceit(self::$collectionBlock[$name]); 
+			return new $class;
 		}
 		else return false;
 	}

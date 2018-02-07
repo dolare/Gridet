@@ -14,42 +14,48 @@ class WDWT_lightbox_page_class{
         'default' => false ,
         'customizer' => array()     
       ),
-      'lbox_slideshow_interval' => array( 
-        "name" => "lbox_slideshow_interval", 
-        "title" => __("Slideshow interval.", "business-elite"), 
-        'type' => 'text',
-        'input_size' => '3',
-        "sanitize_type" => "sanitize_text_field", 
-        "description" => __("Interval of slideshow in seconds.", "business-elite"), 
-        'section' => 'lightbox', 
-        'tab' => 'lightbox',
-        'default' => 5 ,
-        'customizer' => array()     
-      ),
-      'lbox_image_width' => array( 
-        "name" => "lbox_image_width", 
-        "title" => __("Lightbox width.", "business-elite"), 
-        'type' => 'text',
-        'input_size' => '4', 
-        "sanitize_type" => "sanitize_text_field", 
-        "description" => __("Lightbox width.", "business-elite"), 
-        'section' => 'lightbox', 
-        'tab' => 'lightbox',
-        'default' => 600 ,
-        'customizer' => array()     
-      ),
-      'lbox_image_height' => array( 
-        "name" => "lbox_image_height", 
-        "title" => __("Lightbox height.", "business-elite"), 
-        'type' => 'text',
-        'input_size' => '4',
-        "sanitize_type" => "sanitize_text_field", 
-        "description" => __("Lightbox height.", "business-elite"), 
-        'section' => 'lightbox', 
-        'tab' => 'lightbox',
-        'default' => 400 ,
-        'customizer' => array()
-      )); 
+			'lbox_slideshow_interval' => array(
+				"name" => "lbox_slideshow_interval",
+				"title" => __("Slideshow interval.", "business-elite"),
+				'type' => 'number',
+				'input_size' => '3',
+				"sanitize_type" => "sanitize_text_field",
+				"description" => __("Interval of slideshow in seconds.", "business-elite"),
+				'min' => '1',
+				'step' => '0.1',
+				'section' => 'lightbox',
+				'tab' => 'lightbox',
+				'default' => 5,
+				'customizer' => array()
+			),
+			'lbox_image_width' => array(
+				"name" => "lbox_image_width",
+				"title" => __("Lightbox width.", "business-elite"),
+				'type' => 'number',
+				'input_size' => '4',
+				"sanitize_type" => "sanitize_text_field",
+				"description" => __("Lightbox width.", "business-elite"),
+				'section' => 'lightbox',
+				'tab' => 'lightbox',
+				'min' => '320',
+				'max' => '1200',
+				'default' => 600,
+				'customizer' => array()
+			),
+			'lbox_image_height' => array(
+				"name" => "lbox_image_height",
+				"title" => __("Lightbox height.", "business-elite"),
+				'type' => 'number',
+				'input_size' => '4',
+				"sanitize_type" => "sanitize_text_field",
+				"description" => __("Lightbox height.", "business-elite"),
+				'section' => 'lightbox',
+				'tab' => 'lightbox',
+				'min' => '240',
+				'max' => '1200',
+				'default' => 400,
+				'customizer' => array()
+			));
     
       $this->options["lbox_image_effect"] = array(
         "name" => "lbox_image_effect",

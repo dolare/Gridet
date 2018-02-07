@@ -50,6 +50,7 @@ maxCollection.prototype.init = function()
 	$(document).on('click', '#exportCollection', $.proxy(this.exportCollection, this)); 
 
 	this.updatePlacement(); 
+	this.updatePlacement(); // running this twice yields better results 
 	
 	// init, if there are not buttons selected, open selector ( i.e. new collection )
 	if ($('input[name="sorted"]').val() == '')
@@ -347,14 +348,16 @@ maxCollection.prototype.replaceTags = function (element, replacements)
 	
 maxCollection.prototype.pushPreview = function(orientation)
 {
+
 	var $window = $('.mb-preview-window.output'); 
 	var $items = $('.mb-preview-window .mb-collection-item'); 
 	var height = $('.mb-preview-window .maxcollection').height() + 75; 
- 
- 
- 
-	$items.css('float','left');
 
+	$items.css('float','left');
+	
+	if( $window.css('position') == 'relative')
+		return; // don't size on mobile views.
+		
 	if (orientation == 'horizontal') 
 	{
 		$window.css('width', $('#maxbuttons').css('width') ); 
@@ -593,7 +596,7 @@ maxCollection.prototype.togglePickerPopup = function (e)
 	modal = maxmodal.get(); 
 	
 	// load the events on demand
-	$(modal).off();
+	$(modal).off('click change keyup');
 	$(modal).on('click', '.picker-packages a', $.proxy(this.getModalButtons, this));
 	$(modal).on('click', '.picker-main .screen .item', $.proxy(this.toggleInSelection, this)); 
 	$(modal).on('click', '.modal_close',   $.proxy(maxmodal.close, maxmodal) ); 
@@ -690,7 +693,7 @@ maxCollection.prototype.modalLoadButtons = function (result,pack,target)
 	$(modal).find('.picker-main .screen-' + pack).show().addClass('current-screen');
  
  	setTimeout( $.proxy(function() { 
-		console.log('timeout');
+
 		$(modal).find('.picker-main .current-screen .item').each(function()
 		{
 			self.modalScaleButton(this);	

@@ -1,12 +1,12 @@
 <?php
 if (comments_open()) {
     echo "<h2>";
-    _e('Comments', 'nimbus');
+    _e('Comments', 'simple-business-wp');
     echo "</h2>";
 }
 if (post_password_required()) {
 ?>
-    <p class="nopassword"><?php _e('This post is password protected. Enter the password to view any comments.', 'nimbus'); ?></p>
+    <p class="nopassword"><?php _e('This post is password protected. Enter the password to view any comments.', 'simple-business-wp'); ?></p>
     <?php
     return;
 }
@@ -15,7 +15,7 @@ if (have_comments()) {
     if (!empty($comments_by_type['comment'])) {
     ?>
         <ol id="comments">
-            <?php wp_list_comments(array('type' => 'comment', 'callback' => 'nimbus_comment', 'avatar_size' => 75, 'reply_text' => __('Reply', 'nimbus'))); ?>
+            <?php wp_list_comments(array('type' => 'comment', 'callback' => 'simple_business_wp_comment', 'avatar_size' => 75, 'reply_text' => __('Reply', 'simple-business-wp'))); ?>
         </ol>
     <?php
     }
@@ -34,7 +34,7 @@ if (have_comments()) {
     if (!empty($comments_by_type['pings'])) {
     ?>
         <ol id="pings">
-            <?php wp_list_comments(array('type' => 'pings', 'callback' => 'nimbus_ping')); ?>
+            <?php wp_list_comments(array('type' => 'pings', 'callback' => 'simple_business_wp_ping')); ?>
         </ol>
     <?php
     }
@@ -44,7 +44,7 @@ if (have_comments()) {
         <?php
         if ('open' == $post->comment_status) {
         ?>
-            <p><?php _e('Be the first to comment.', 'nimbus'); ?></p>
+            <p><?php _e('Be the first to comment.', 'simple-business-wp'); ?></p>
         <?php
         } else {
             // If comments are closed.
@@ -64,21 +64,21 @@ $commenter = wp_get_current_commenter();
     
     $fields = array(
         'author' => '<div class="form-group">
-                        <label class="sr-only" for="author">' . __("Name", "nimbus") . '</label>
+                        <label class="sr-only" for="author">' . __("Name", "simple-business-wp") . '</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" name="author" id="author" value="' . esc_attr($comment_author) . '" tabindex="1" placeholder="' . __('Name', 'nimbus') . '" ' . $req_echo . ' />
+                            <input type="text" class="form-control" name="author" id="author" value="' . esc_attr($comment_author) . '" tabindex="1" placeholder="' . __('Name', 'simple-business-wp') . '" ' . $req_echo . ' />
                         </div>
                     </div>',
         'email' => '<div class="form-group">
-                        <label class="sr-only" for="email">' . __('Email', 'nimbus') . '</label>
+                        <label class="sr-only" for="email">' . __('Email', 'simple-business-wp') . '</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" name="email" id="email" value="' . esc_attr($comment_author_email) . '" tabindex="2" placeholder="' . __('Email', 'nimbus') . '" ' . $req_echo . ' />
+                            <input type="text" class="form-control" name="email" id="email" value="' . esc_attr($comment_author_email) . '" tabindex="2" placeholder="' . __('Email', 'simple-business-wp') . '" ' . $req_echo . ' />
                         </div>
                     </div>',
         'url' => '<div class="form-group">
-                        <label class="sr-only" for="url">' .  __('Website', 'nimbus') . '</label>
+                        <label class="sr-only" for="url">' .  __('Website', 'simple-business-wp') . '</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" name="url" id="url" value="' . esc_attr($comment_author_url) . '" tabindex="3" placeholder="' .  __('Website', 'nimbus') . '" />
+                            <input type="text" class="form-control" name="url" id="url" value="' . esc_attr($comment_author_url) . '" tabindex="3" placeholder="' .  __('Website', 'simple-business-wp') . '" />
                         </div>
                     </div>'
     );
@@ -87,15 +87,15 @@ $commenter = wp_get_current_commenter();
     $modified_defaults = array(
         'fields' => apply_filters('comment_form_default_fields', $fields),
         'comment_field' => '<div class="form-group">
-                    <label class="sr-only" for="comment">' .  __('Comment', 'nimbus') . '</label>
+                    <label class="sr-only" for="comment">' .  __('Comment', 'simple-business-wp') . '</label>
                     <div class="col-md-10">
                         <textarea class="form-control input-lg" name="comment" id="comment" tabindex="4" placeholder="Type your comment here..."></textarea>
                     </div>
                 </div>',
-        'must_log_in' => '<p class="must-log-in">' . sprintf(__('You must be <a href="%s">logged in</a> to post a comment.', 'nimbus'), wp_login_url(apply_filters('the_permalink', get_permalink()))) . '</p>',
-        'logged_in_as' => '<p class="logged-in-as">' . sprintf(__('Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>', 'nimbus'), admin_url('profile.php'), $user_identity, wp_logout_url(apply_filters('the_permalink', get_permalink()))) . '</p>',
+        'must_log_in' => '<p class="must-log-in">' . sprintf(__('You must be <a href="%s">logged in</a> to post a comment.', 'simple-business-wp'), wp_login_url(apply_filters('the_permalink', get_permalink()))) . '</p>',
+        'logged_in_as' => '<p class="logged-in-as">' . sprintf(__('Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>', 'simple-business-wp'), admin_url('profile.php'), $user_identity, wp_logout_url(apply_filters('the_permalink', get_permalink()))) . '</p>',
         'comment_notes_before' => '',
-        'comment_notes_after' => '<p class="form_allowed_tags">' . sprintf(__('You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s', 'nimbus'), ' <code>' . allowed_tags() . '</code>') . '</p>',
+        'comment_notes_after' => '<p class="form_allowed_tags">' . sprintf(__('You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s', 'simple-business-wp'), ' <code>' . allowed_tags() . '</code>') . '</p>',
         'id_form' => 'commentform',
         'id_submit' => 'submit',
         'title_reply' => 'Leave a Reply',

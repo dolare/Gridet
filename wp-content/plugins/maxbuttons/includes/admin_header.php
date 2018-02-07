@@ -1,10 +1,12 @@
 <?php 
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
  
 
-$page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : '';
-$action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : $action; 
-$mainclass = $page . '-' . $action; 
+$mainclass = isset($_REQUEST["page"]) ? sanitize_text_field($_REQUEST["page"]) : '';
+$action = isset($_REQUEST["action"]) ? sanitize_text_field($_REQUEST["action"]) : $action; 
+if ($action !== '')
+	$mainclass .= '-' . $action; 
 ?>
 
 <div id="maxbuttons" class="<?php echo $mainclass ?>" <?php if ($tabs_active) echo "data-view='tabs'" ?>>
@@ -19,12 +21,8 @@ $mainclass = $page . '-' . $action;
 			</div>
 			
 		</h1>
-		<h2 class='dummy-heading'></h2>
-		<?php do_action("mb_admin_notices"); ?> 
-				
+		<div class='mb_header_notices'><?php do_action('mb/header/display_notices'); ?></div>		
 		<div class="clear"></div>
-		<?php do_action("mb-feedback-form"); ?> 
-		
 		<div class="main">
 			<?php do_action('mb-display-tabs'); ?>
 			

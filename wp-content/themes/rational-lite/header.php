@@ -10,7 +10,7 @@
 <html class="ie ie8" <?php language_attributes(); ?>>
 <![endif]-->
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
-<html <?php language_attributes(); ?>
+<html <?php language_attributes(); ?>>
 <!--<![endif]-->
 <head>
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
@@ -48,18 +48,7 @@
 							<div class="top-nav-menu span8">
 							<?php 
 								if( has_nav_menu( 'Header' ) ) {
-
-									if( is_front_page() ) {
-										//wp_nav_menu( array( 'menu' => 'Front Page Menu') );
-										wp_nav_menu(array( 'container_class' => 'ske-menu', 'container_id' => 'skenav', 'menu_id' => 'menu-main','theme_location' => 'Header' )); 
-
-									} else {
-
-										wp_nav_menu( array('container_class' => 'ske-menu', 'container_id' => 'skenav', 'menu_id' => 'menu-main', 'theme_location' => 'primary') );
-									}
-									//wp_nav_menu(array( 'container_class' => 'ske-menu', 'container_id' => 'skenav', 'menu_id' => 'menu-main','theme_location' => 'Header' )); 
-
-
+									wp_nav_menu(array( 'container_class' => 'ske-menu', 'container_id' => 'skenav', 'menu_id' => 'menu-main','theme_location' => 'Header' )); 
 								} else {
 								?>
 								<div class="ske-menu" id="skenav">
@@ -85,12 +74,11 @@
 		</div>
 <!-- #header -->
 		<div class="header-clone"></div>
-		<!-- <div class="header-image"> -->
+		
 <!-- header image section -->
  <?php
   if ( is_front_page() ) {
   	get_template_part( 'includes/front', 'header-image-section' );
   }
 ?>
-<!-- </div> -->
 <div id="main" class="clearfix">

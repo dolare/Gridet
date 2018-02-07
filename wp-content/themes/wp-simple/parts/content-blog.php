@@ -40,11 +40,3 @@ if ($nimbus_blog_sidebar_position == 'left') {
         ?>
     </div>
 </div>
-
-
-                    
-
-                        
-              
- 
-  

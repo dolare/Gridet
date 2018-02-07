@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Title') ):
 class Magee_Title {
 
 	public static $args;
@@ -41,9 +42,18 @@ class Magee_Title {
 		extract( $defaults );
 		self::$args = $defaults;
 		
+		
 		$uniqid = uniqid('heading-');
 		$class .=' '.$uniqid;
- 		
+ 		if(is_numeric($font_size))
+		$font_size = $font_size.'px';
+		if(is_numeric($margin_top))
+		$margin_top = $margin_top.'px';
+		if(is_numeric($margin_bottom))
+		$margin_bottom = $margin_bottom.'px';
+		if(is_numeric($border_width))
+		$border_width = $border_width.'px';
+		
 		$html  = '<style type="text/css">
 		                          
                                     .'.$uniqid.'.magee-heading{
@@ -64,23 +74,11 @@ class Magee_Title {
 									    border-width: '.$border_width.';
 									}
                                 </style>';
-		if( $responsive_text == 'yes'){
-		$html .= '<script>' ;  
-		$html .= 'jQuery(function($) {';     
-		$html .= '$(document).ready(function () {';
-		$html .= 'var holdWidth = $(window).width();';
-		$html .= '$(window).on("resize", function () {' ;
-		$html .= 'newPercentage = (($(window).width() / holdWidth) * 100) + "%";' ;
-		$html .= '$(".'.$uniqid.' .heading-inner").css({"font-size": newPercentage});' ;
-		$html .= '});' ;
-		$html .= '});' ;
-		$html .= '});' ;
-		$html .= '</script>' ;
-		}	
+
 		if( $style == 'none'){
-		$html .= '<h1 class="magee-heading  '.esc_attr($class).'" id="'.$id.'"><span class="heading-inner">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</span></h1>';
+		$html .= '<h1 class="magee-heading  '.esc_attr($class).'" id="'.$id.'" data-fontsize="'.$font_size.'" data-responsive="'.$responsive_text.'"><span class="heading-inner">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</span></h1>';
 		}else{					
-		$html .= '<h1 class="magee-heading heading-'.$style.' '.esc_attr($class).'" id="'.$id.'"><span class="heading-inner">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</span></h1>'; }
+		$html .= '<h1 class="magee-heading heading-'.$style.' '.esc_attr($class).'" id="'.$id.'" data-fontsize="'.$font_size.'" data-responsive="'.$responsive_text.'"><span class="heading-inner">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</span></h1>'; }
 		
 		
 		return $html;
@@ -89,3 +87,4 @@ class Magee_Title {
 }
 
 new Magee_Title();
+endif;

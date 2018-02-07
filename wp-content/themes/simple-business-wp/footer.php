@@ -1,4 +1,4 @@
-    </div> <!-- //.container -->
+        </div> <!-- //.container -->
         <?php if (is_active_sidebar( 'Footer Left' ) || is_active_sidebar( 'Footer Center' ) || is_active_sidebar( 'Footer Right' )) { ?>
         <div class="container footer">
             <div class="row content_squeeze footer_widgets">
@@ -29,10 +29,10 @@
         <div class="container noborder base">
             <div class="row">
                 <div class="col-md-5">
-                    <p id="copyright"><?php if (nimbus_get_option('copyright') != '') { echo nimbus_get_option('copyright'); } else { echo "&copy ". get_bloginfo( 'name' ) . " " . date('Y'); } ?></p>
+                    <p id="copyright"><?php if (simple_business_wp_get_option('copyright') != '') { echo esc_html(simple_business_wp_get_option('copyright')); } else { echo "&copy ". esc_html(get_bloginfo( 'name' )) . " " . date('Y'); } ?></p>
                 </div>
                 <div class="col-md-5 col-md-offset-2 text-right">
-                    <p id="credit"><a href="http://www.nimbusthemes.com/wordpress-themes/simple-business/">Simple Business Theme</a><br /><?php _e('Powered by', 'nimbus') ?> <a href="http://wordpress.org">WordPress</a></p>
+                    <p id="credit">Simple Business <?php _e('by', 'simple-business-wp') ?> <a href="http://www.nimbusthemes.com/">Nimbus Themes</a><br /><?php _e('Powered by', 'simple-business-wp') ?> <a href="http://wordpress.org">WordPress</a></p>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Person') ):
 class Magee_Person {
 
 	public static $args;
@@ -52,6 +53,13 @@ class Magee_Person {
 		
 		extract( $defaults );
 		self::$args = $defaults;
+		if(is_numeric($picborder))
+		$picborder = $picborder.'px';
+		if(is_numeric($picborderradius))
+		$picborderradius = $picborderradius.'px';
+		if(is_numeric($iconboxedradius))
+		$iconboxedradius = $iconboxedradius.'px';
+		
 		$uniqid = uniqid('person-');
 		$this->id = $id.$uniqid;
         $class .= ' '.$uniqid;
@@ -62,8 +70,8 @@ class Magee_Person {
 		$r = hexdec(substr($overlay_color,0,2)) ;
 		$g = hexdec(substr($overlay_color,2,2)) ;
 		$b = hexdec(substr($overlay_color,4,2)) ;		
-		
 		$textstyle1 = sprintf('.'.$uniqid.' .person-vcard.person-social li a i{ border-radius: %s; background-color:%s;}',$iconboxedradius,$iconcolor);
+		$textstyle1 .= sprintf('.'.$uniqid.' .person-vcard.person-social li a img{ border-radius: %s; background-color:%s;}',$iconboxedradius,$iconcolor);
 		$textstyle2 = sprintf('.'.$uniqid.' .img-box img{ border-radius: %s; display: inline-block;}',$picborderradius);
 		
 		$imgstyle = '';
@@ -73,9 +81,9 @@ class Magee_Person {
 		if( $picbordercolor !='' )
 		$imgstyle .= sprintf('.'.$uniqid.' .img-box img{border-color: %s;}',$picbordercolor);
 		if( $style == 'beside'){
-        $afterstyle = '.person-vcard .person-title:after{margin-left:0;}';
-		$leftstyle1 = '.person-social{text-align:left;}' ;
-		$leftstyle2 = '.person-social li a i{margin-left:6px;} ' ;
+        $afterstyle = '.'.$uniqid.' .person-vcard .person-title:after{margin-left:0;}';
+		$leftstyle1 = '.'.$uniqid.' .person-social{text-align:left;}' ;
+		$leftstyle2 = '.'.$uniqid.' .person-social li a i{margin-left:6px;} ' ;
  		$styles = sprintf( '<style type="text/css" scoped="scoped">%s %s %s %s %s %s</style>', $textstyle1,$textstyle2,$imgstyle,$afterstyle,$leftstyle1,$leftstyle2);
 		}else{
 		$styles = sprintf( '<style type="text/css" scoped="scoped">%s %s %s</style>', $textstyle1,$textstyle2,$imgstyle);
@@ -98,19 +106,40 @@ class Magee_Person {
 		$divcont = sprintf('<p class="person-desc">%s</p>',do_shortcode( Magee_Core::fix_shortcodes($content)));
 		$divli = '';
 		if($icon1 != ''){
+		    if( stristr($icon1,'fa-')):
 			$divli .= sprintf(' <li><a href="%s"><i class="fa %s"></i></a></li>',$link1,$icon1);
+			else:
+			$divli .= sprintf(' <li><a href="%s"><img src="%s" class="image_instead"/></i></a></li>',$link1,$icon1);
+			endif;
+			
 		}
 		if($icon2 != ''){
+		    if( stristr($icon2,'fa-')):
 			$divli .= sprintf(' <li><a href="%s"><i class="fa %s"></i></a></li>',$link2,$icon2);
+			else:
+			$divli .= sprintf(' <li><a href="%s"><img src="%s" class="image_instead"/></i></a></li>',$link2,$icon2);
+			endif;  
 		}
 		if($icon3 != ''){
+			if( stristr($icon3,'fa-')):
 			$divli .= sprintf(' <li><a href="%s"><i class="fa %s"></i></a></li>',$link3,$icon3);
+			else:
+			$divli .= sprintf(' <li><a href="%s"><img src="%s" class="image_instead"/></i></a></li>',$link3,$icon3);
+			endif;
 		}
 		if($icon4 != ''){
+			if( stristr($icon4,'fa-')):
 			$divli .= sprintf(' <li><a href="%s"><i class="fa %s"></i></a></li>',$link4,$icon4);
+			else:
+			$divli .= sprintf(' <li><a href="%s"><img src="%s" class="image_instead"/></i></a></li>',$link4,$icon4);
+			endif;
 		}
 		if($icon5 != ''){
+			if( stristr($icon5,'fa-')):
 			$divli .= sprintf(' <li><a href="%s"><i class="fa %s"></i></a></li>',$link5,$icon5);
+			else:
+			$divli .= sprintf(' <li><a href="%s"><img src="%s" class="image_instead"/></i></a></li>',$link5,$icon5);
+			endif;
 		}	
 		if( $style == 'beside'){
 		
@@ -130,3 +159,4 @@ class Magee_Person {
 }
 
 new Magee_Person();
+endif;

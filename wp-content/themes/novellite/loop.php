@@ -22,7 +22,7 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
                     //$image_link = wp_get_attachment_url( $attachment_id );
 				 for( $j=0;$j<$length_g ;$j++) {				
                                 ?>
-                                 <li><a href="<?php the_permalink() ?>"><img src="<?php echo $galleries_images[$i][$j]; ?>" /></a></li>
+                                 <li><a href="<?php the_permalink() ?>"><img src="<?php echo esc_url($galleries_images[$i][$j]); ?>" /></a></li>
 								 <?php } }?>             
                                  </ul>                            
                                     </div>

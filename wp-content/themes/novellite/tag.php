@@ -2,11 +2,12 @@
 /**
  * The template used to display Tag Archive pages
  *
- * @package WordPress
+ * @package ThemeHunk
  * 
  */
 ?>
 <?php get_header(); ?>
+<?php $layout = novellite_get_layout(); ?>
 <div class="page_heading_container">
   <div class="container">
         <div class="row">
@@ -22,8 +23,12 @@
 <div class="page-container">
     <div class="container">
         <div class="row">
-            <div class="page-content">
-                <div class="col-md-9">
+            <div class="page-content <?php echo $layout; ?>">
+                <?php if ( $layout != 'no-sidebar' ) { ?>
+    <div class="col-md-9">
+<?php } else { ?>
+    <div class="col-md-12">
+<?php } ?>
                  <div class="content-bar gallery">
             <?php get_template_part('loop', 'index'); ?> 
 			<div class="clear"></div>
@@ -34,11 +39,13 @@
 	</span> </nav>
           </div>
                 </div>
-				<div class="col-md-3">
+    <?php if ( $layout != 'no-sidebar' ) { ?>
+		<div class="col-md-3">
 		<!--Start Sidebar-->
 		<?php get_sidebar(); ?>
 		<!--End Sidebar-->
 		</div> 
+    <?php } ?>
             </div>
         </div>
         <div class="clear"></div>

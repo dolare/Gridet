@@ -1,4 +1,5 @@
 <?php 
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
 
 // basic pack reading functionality for social buttons
@@ -48,17 +49,21 @@ class maxPack
 		$this->pack_dir = $packdata["dir"];
 
 		$xml = simplexml_load_file($pack_file,null,  LIBXML_NOCDATA);	
-
+		
+		if (! $xml) 
+		{
+			MB()->add_notice('error', __( sprintf('Pack file could not be loaded', $pack_file), 'maxbuttons'));
+			return false;
+		}
 		$this->pack_xml = $xml; 
 		
 		$pack = $xml->pack[0];
-		
 		$packset = current($pack->attributes());
 		$packset["image"] = $pack_img;
 		$packset["is_local"] = $packdata["is_local"];
 
 		$this->set_pack($packset);		
-		//}
+		return true; // success
 	}
 	
 	/* Return the full XML of the pack */ 
@@ -120,7 +125,13 @@ class maxPack
 				}
 				$temp_id = floor(rand(100000,990000));
 				$button_array["id"] =  $temp_id; // fingers crossed
-				
+			
+				// for some reason on json_decode when value is empty it created an empty array instead of string.
+				foreach($button_array as $name => $values)
+				{
+					if (is_array($values) && count($values) == 0) 
+						$button_array[$name] = ''; 
+				}
 
 
 				// icons from pack

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Divider') ):
 class Magee_Divider {
 
 	public static $args;
@@ -25,7 +26,7 @@ class Magee_Divider {
 				'class' 				=>'',
 				'style'					=>'normal',
 				'align'                 =>'',
-				'width'					=>'100%',
+				'width'					=>'100',
 				'margin_top'			=>'',
 				'margin_bottom'			=>'',
 				'border_size'			=>'',
@@ -36,6 +37,14 @@ class Magee_Divider {
 		
 		extract( $defaults );
 		self::$args = $defaults;
+		if(is_numeric($width)) 
+		$width = $width.'px';
+		if(is_numeric($margin_top))
+		$margin_top = $margin_top.'px';
+		if(is_numeric($margin_bottom))
+		$margin_bottom = $margin_bottom.'px';
+		if(is_numeric($border_size))
+		$border_size = $border_size.'px';
 		
 		$uniq_class = uniqid('divider-');
 		
@@ -85,23 +94,36 @@ class Magee_Divider {
 		
 		
 		$html = '<div class="'.esc_attr($class).'" id="'.esc_attr($id).'" style="margin-top:; margin-bottom:;"><div class="divider-inner divider-border"></div></div>';
-		if( $style == 'icon' )				
+		if( $style == 'icon' ):				
         $html = '<div class="'.esc_attr($class).'" id="'.esc_attr($id).'" style="margin-top:; margin-bottom:;">
-		<div class="divider-inner"><div class="divider-inner-item divider-border double-line">
-		<div class="divider-inner"></div>
+		<div class="divider-inner">
+		    <div class="divider-inner-item divider-border double-line">
+				<div class="divider-inner"></div>
+			</div>
+			<div class="divider-inner-item divider-inner-icon">';
+			if( stristr($icon,'fa-')):
+			$html .= '<i class="fa '.esc_attr($icon).'"></i>';
+			else:
+			$html .= '<img class="image-instead" src="'.esc_attr($icon).'"/>';
+			endif;
+			$html .= '</div>
+			<div class="divider-inner-item divider-border double-line">
+			     <div class="divider-inner"></div>
+			</div>
 		</div>
-		<div class="divider-inner-item divider-inner-icon"><i class="fa '.esc_attr($icon).'"></i></div>
-		<div class="divider-inner-item divider-border double-line"><div class="divider-inner"></div></div>
-		</div>
-		</div>';
+	    </div>';
+		endif;
 		if( $style == 'back_to_top' )	
 		$html = '<div class="'.esc_attr($class).'" id="'.esc_attr($id).'">
 		<div class="divider-inner divider-border">
-		<div class="divider-inner-item divider-border">
-		<div class="divider-inner"></div></div>
-		<div class="divider-inner-item divider-inner-back-to-top">
-		<a href="#" class="magee-back-to-top"><i class="fa fa-arrow-up"></i></a>
-		</div></div></div>';							
+		   <div class="divider-inner-item divider-border">
+			 <div class="divider-inner"></div>
+		   </div>
+		   <div class="divider-inner-item divider-inner-back-to-top">
+			 <a href="#" class="magee-back-to-top"><i class="fa fa-arrow-up"></i></a>
+		   </div>
+		</div>
+		</div>';							
 		
 		$html = $styles.$html;
     
@@ -111,3 +133,4 @@ class Magee_Divider {
 }
 
 new Magee_Divider();
+endif;

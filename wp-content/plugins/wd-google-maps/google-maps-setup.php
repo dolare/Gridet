@@ -64,6 +64,10 @@ class GMWDSetupWizard {
         if(gmwd_get_option("map_api_key")){
             $map_api_url .= "&key=" . gmwd_get_option("map_api_key");
         }  
+		else{
+			$api_keys = array("AIzaSyAmYQInD-coq0G5wC_D9h7uHjGeHhSSR4o", "AIzaSyBxiaSJPIRfQWID9j4hCrX3t7z-9IOOjis","	AIzaSyDi6aVWxOVptj9WZZYeAgdAA1xpqAR1mnw", "AIzaSyCzvhE5_lt5l0fYYChF1TpRtfFTjXpYkVI","AIzaSyBMWPhZdxcpwpfXBrGPGmz8zMjwJJt83mc");
+			$map_api_url .= "&key=" . $api_keys[rand(0,4)];
+		}		
         wp_register_script ('google_map-js', $map_api_url, array ('jquery'), '' );
         wp_enqueue_script('google_map-js');
         
@@ -266,6 +270,7 @@ class GMWDSetupWizard {
 				"zh-CN" => "Chinese (Simplified)",
 				"zh-TW" => "Chinese (Traditional)" 
 		);
+		$query_url_generate_key = 'https://console.developers.google.com/henhouse/?pb=["hh-1","maps_backend",null,[],"https://developers.google.com",null,["maps_backend","geocoding_backend","directions_backend","distance_matrix_backend","elevation_backend","places_backend","static_maps_backend","roads","street_view_image_backend","geolocation"],null]&TB_iframe=true&width=600&height=400';
 		?>
         <div class="gmwd_edit gmwd_wizard">
             <form method="post" action="" id="setupForm">
@@ -276,10 +281,12 @@ class GMWDSetupWizard {
                         <table class="gmwd_edit_table" style="width: 100%;">
                             <tr>
                                 <td colspan="2">
-                                    <p style="font-size:17px;"><strong><?php _e("Important. API key is required for Google Maps to work.","gmwd"); ?></strong></p>
-                                   <a href="https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend,static_maps_backend,geocoding_backend,roads,street_view_image_backend,geolocation,places_backend&keyType=CLIENT_SIDE&reusekey=true" target="_blank" style="color: #00A0D2;"><?php _e("Get Key","gmwd");?></a>.&nbsp;
-                                    <?php _e("For Getting API Key Read More in","gmwd");?>
-                                    <a href="https://web-dorado.com/wordpress-google-maps/installation-wizard-options-menu/configuring-api-key.html" target="_blank" style="color: #00A0D2;"><?php _e("User Manual","gmwd");?></a>.
+                                   <p style="font-size:17px;"><strong><?php _e("Important. API key is required for Google Maps to work.","gmwd"); ?></strong></p>
+                                    <a class="wd-btn wd-btn-primary thickbox thickbox-preview" name="<?php _e( 'Generate API Key - ( MUST be logged in to your Google account )', 'gmwd' ); ?>" href='<?php echo $query_url_generate_key;?>'>
+                                        <?php _e("Generate Key","gmwd");?>
+                                    </a>
+                                    or <a target="_blank" href='https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend,static_maps_backend,roads,street_view_image_backend,geolocation,places_backend&keyType=CLIENT_SIDE&reusekey=true'>click here</a>
+                                    <?php echo _e( ' to Get a Google Maps API KEY', 'gmwd' ) ?>
                                 </td>
                             </tr>                          
                             <tr>

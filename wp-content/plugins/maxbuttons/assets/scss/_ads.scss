@@ -16,6 +16,9 @@
 		{
 			background: none; 
 			margin-top: 20px; 
+			img { 
+				max-width: 100%; 
+			}
 		}
 		
 		> a { 
@@ -70,5 +73,12 @@
 	 		}
 	 	}
 	}
+}
+
+@media screen and (max-width: 960px) {
+	.ad-wrap {
+		display: none;
+	}
+
 }
 

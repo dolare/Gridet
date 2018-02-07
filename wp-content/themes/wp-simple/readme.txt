@@ -1,12 +1,12 @@
-Unless otherwise specified, all the theme files, scripts and images
-are licensed under GNU General Public License version 3, see file license.txt.
+* WP Simple WordPress Theme, Copyright (C) 2015, Evan Scoboria - WP Simple is distributed under the terms of the GNU GPL
 
 The exceptions to this license are as follows:
 
 **** INC *****
 
 * wp_bootstrap_navwalker - GitHub URI: https://github.com/twittem/wp-bootstrap-navwalker - Author: Edward McIntyre - @twittem - License: GPL-2.0+ - License URI: http://www.gnu.org/licenses/gpl-2.0.txt
-* Redux Framework is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version. - Redux Framework Team
+* Kirki Framework (https://github.com/aristath/kirki/blob/master/LICENSE)
+
 
 **** Scripts *****
 
@@ -26,6 +26,7 @@ The exceptions to this license are as follows:
 * Google fonts are licensed under one of the following: (SIL Open Font License, 1.1), (Apache License, version 2.0), or (Ubuntu Font License, 1.0) (this includes the fonts Lato and Open Sans)
 * FontAwesome is licenced SIL OFL 1.1 by Dave Gandy - http://fontawesome.io/license/
 * GLYPHICONS Halflings -  Jan Kovarik - http://www.apache.org/licenses/LICENSE-2.0
+
 
 **** Images *****
 

@@ -1,10 +1,9 @@
-=== Google Map ===
-Contributors: webdorado
-Donate link: https://web-dorado.com/products/wordpress-google-maps-plugin.html
-Tags: directions, google map, google map plugin, google maps, google maps plugin, map, map markers, map plugin, map widget, maps, wp google map, wp google maps
+=== Google Maps WD - Google Maps builder Plugin ===
+Contributors: webdorado, wdsupport
+Tags: google map, google maps, map, map markers, maps, directions, google map plugin, google maps plugin, map plugin, wp google map, wp google maps, google map widget
 Requires at least: 3.4
-Tested up to: 4.6
-Stable tag: 1.0.19
+Tested up to: 4.9
+Stable tag: 1.0.50  
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,8 +11,9 @@ Google Maps WD is an intuitive tool for creating Google maps with advanced marke
 
 == Description ==
 
-https://www.youtube.com/watch?v=acaexefeP7o
+https://www.youtube.com/watch?v=bUI4ObvKlkA
 
+[Special Offer for all Premium Plugins](https://web-dorado.com/wordpress-plugins-bundle.html)    
 [WordPress Google Maps WD](https://web-dorado.com/products/wordpress-google-maps-plugin.html)     
 [Demo](http://wpdemo.web-dorado.com/google-maps/)  
 [Demo Admin](http://wpdemo.web-dorado.com/wp-admin/admin.php?page=maps_gmwd)  
@@ -24,14 +24,17 @@ https://www.youtube.com/watch?v=acaexefeP7o
 [GMWD Marker Clustering Add-on](https://web-dorado.com/products/wordpress-google-maps-plugin/add-ons/marker-clustering.html)    
 
 
-Google Maps WD is a user-friendly, responsive  Google maps plugin. It is very simple in use and doesn’t require any coding skills or complex customization processes. Using this Google maps plugin you can showcase any location, display related or categorized locations with markers or showcase coverage areas with the help of layers and overlays.
+Google Maps WD is a user-friendly, responsive WP Google maps plugin. It is very simple in use, doesn’t require any coding skills or complex customization processes and allows to easily add custom Google maps to your website. Using this simple Google map WordPress plugin you can showcase any location, display related or categorized locations with markers or showcase coverage areas with the help of layers and overlays.
 
-It  solves the necessity of adding different plugins for individual Google Maps related features combining marker maps plugin, store locator plugin, location highlighting map plugin in a single package.
+Need to add a contact page map or any kind of custom google map to your WordPress pages or posts? With an intuitive and user friendly interface, Google Maps is an easy map plugin and one of the best google maps solutions available.
 
-To add Google Maps to your post/page all you need is to copy the map plugin shortcode or php code from Map listing and add it to your post/page or php file.
+It solves the necessity of adding different plugins for individual Google Maps related features combining marker maps plugin, store locator plugin, location highlighting WP map plugin in a single package.
+
+The WP google map plugin allows to add multiple map markers or placemarks, adding information, such as address, location by latitude/longitude description, links, images, get map directions and much more. If you need to display a large number of markers on your map and don't want to overload the map, you can user the market clustering add-on (commercial version). Marker Clustering will help you group close markers for more user-friendly display over the map. The gmap plugin allows you to create different map styles, display different map layers on the maps, highlight traffic/bike lanes and more.
+To add Google Maps to your post/page all you need is to copy the Google map shortcode or php code from Map listing and add it to your post/page or php file. You can also add the plugin as a map widget to have Google Map embedded to a custom position.
 
 ###IMPORTANT:    
-If you think you found a bug in Google Maps WD or have any problem/question concerning this plugin, please check out [Support Forum](https://web-dorado.com/forum/wordpress-google-maps-wd.html)  in our website. If you do not find a solution here, do not hesitate to [click here to contact us](https://web-dorado.com/support/contact-us.html).
+If you think you found a bug in Google Maps WD or have any problem/question concerning this plugin, please check out [Support Forum](https://wordpress.org/support/plugin/wd-google-maps)  . If you do not find a solution here, do not hesitate to [click here to contact us](https://web-dorado.com/support/contact-us.html).
 
 
 = Features of Google Maps WD plugin: =
@@ -42,28 +45,29 @@ If you think you found a bug in Google Maps WD or have any problem/question conc
 *   Instant live previews of changes you make in the working area on the Google Maps WD back end    
 *   Unlimited maps for posts and pages   
 *   Support for different Google maps styles: road, traffic, satellite, terrain and hybrid   
-*   Unlimited number of markers per map, possibility to add markers filling out address or alternatively right clicking on the map   
+*   Unlimited number of markers per map (placemarks or map point), possibility to add markers filling out location by address or alternatively right clicking on the map     
 *   Drag and drop feature for markers, custom animation support   
 *   Polygon layer, which allows to add multi-edge shape overlay over selected area of the map with markers    
-*   Polyline layer, which allows to add mark certain area on the map with line overlay without covering marked area with fill color    
-*   Full support of controls of the Google map, such as zoom control, map type control, scale control, street view control, fullscreen and  rotate (only available with zoomed satellite map) control   
-*   Google Maps standard Bicycle, traffic and transit layers   
-*   Store locator for allowing map users to find nearest stores with provided radius overlay   
+*   Polyline layer, which allows to add mark certain area on the map with line overlay without covering marked area with fill color      
+*   Full support of controls of the Google map, such as zoom control, map type control, scale control, street view control, fullscreen and rotate (only available with zoomed satellite map) control      
+*   Google Maps standard Bicycle, traffic and transit layers highlighting bike lanes and traffic lanes  
+*   Store locator for allowing WP map users to find nearest stores with provided radius overlay     *   Possibility to define cycle line color, width, opacity for store locator 
 *   User geolocation    
 
 Upgrade to [Google Maps Pro](https://web-dorado.com/products/wordpress-google-maps-plugin.html) to get access to:   
 
 *   Customizable Google maps skins    
 *   Possibility to add new Google Maps themes/customize existing themes based on detailed styles and colors section    
-*   Get directions feature for allowing users to get detailed directions for moving from point A to point B using one of the modes (Walking, Driving, Bicycling and Transit)    
+*   Get directions feature for allowing users to get detailed map directions for moving from point A to point B using one of the modes (Walking, Driving, Bicycling and Transit)   
 *   Circle and Rectangle layers over the map   
 *   Multi-level marker categories: created marker category can serve as a parent for newly-created marker    
 *   Custom Marker icon builder (100+  marker icons + option to add your own icons)    
-*   Custom icon, description, images and link support for the markers   
+*   Custom icon, custom marker text/description, images and link support for the markers   
 *   Marker, Circle, Rectangle, Polygon, Polyline Export/Import option from one map to another    
 *   Marker listing ( Basic listing, Advanced Listing and Carousel view) for easier access of categorized markers    
 *   Marker listing display within the map as a map legend     
 *   Advanced layer support (layers based on GeoRSS, KML URLs, Fusion Table Id)     
+
 
 = Google Maps WD Demos =
 [Basic Google Maps](http://wpdemo.web-dorado.com/google-maps/)    
@@ -112,6 +116,103 @@ After downloading the ZIP file of the Google Maps WD plugin,
 10. Google Maps WD - Google Maps Polygons and Polylines   
 
 == Changelog ==
+
+= 1.0.50 =
+* Changed : Deactivation popup.     
+* Added : Support forum link.  
+
+= 1.0.49 =
+* Remove: Font awesome. 
+* Changed : WebDorado links.    
+* Added: Support forum and Review links. 
+
+= 1.0.47 =
+* Changed: Show notification to install Backup WD plugin only on plugin pages.   
+
+= 1.0.46 =
+* Added: Notice to install Backup WD plugin       
+
+= 1.0.45 =
+* Fixed: Translations   
+
+= 1.0.44 =
+* Fixed: Updated library to prevent conflict with PHP version 7.         
+
+= 1.0.43 =
+* Added: Generate Google Maps API key button       
+
+= 1.0.42 =
+* Fixed: JS error on shortcode editor pop-up   
+
+= 1.0.41 =
+* Fixed: Center Map in fullscreen mode     
+
+= 1.0.40 =
+* Added: ordering for marker listings     
+
+= 1.0.39 =
+* Changed: Dashboard guide texts    
+
+= 1.0.38 =
+* Added: Helper bar    
+
+= 1.0.37 =
+* Fixed: Minor bugs    
+
+= 1.0.36 =
+* Changed: Dashboard menu  
+
+= 1.0.35 =
+* Fixed: Minor bugs       
+
+= 1.0.34 =
+* Changed: Deactivation       
+
+= 1.0.33 =
+* Added: Multicategory markers     
+
+= 1.0.32 =
+* Fixed: Minor bug   
+
+= 1.0.31 =
+* Added: Overview page  
+
+= 1.0.30 =
+* Fixed: Styles   
+* Changed: Featured plugins   
+
+= 1.0.29 =
+* Removed: Bootstrap      
+* Fixed: api key save issue     
+   
+= 1.0.28 =
+* Fixed: infowindows issue   
+
+= 1.0.27 =
+* Fixed: Image max_width issue from themes   
+
+= 1.0.26 =
+* Added: Option to show categories on Store Locator    
+
+= 1.0.25 =
+* Fixed: Minor bugs      
+
+= 1.0.24 =
+* Added: Default API keys    
+
+= 1.0.23 =
+* Fixed: Bug on export    
+* Fixed: Conflict with wysiwyg editor    
+* Changed: phpexcel and poi fields stripslashes   
+
+= 1.0.22 =
+* Added: "Show in Info Window" option  
+
+= 1.0.21 =
+* Added: Category filter     
+
+= 1.0.20 =
+* Fixed: Minor bug       
 
 = 1.0.19 =
 * Added: Address in infowindow     
@@ -256,13 +357,15 @@ Zoom Level. Google Maps has an integer 'zoom level' which is the resolution of t
 Wheel Scrolling. Allow zooming in and out for Google Maps using mouse scroll or not.  
 Map Draggable. Allow using mouse for dragging Google maps up/down or not.    
 
-Afterwards you can go on to your first map creation using Google Maps plugin.    
+Afterwards you can go on to your first map creation using Google Maps plugin. Configuring Map API Key    
+Starting June 22, 2016 API keys are required for Google Maps API functioning. If you want to create a map API key, login to Google API Console. Start a project by clicking the Create project button if you are a new user or choose one of the existing projects if you're a returning user.   
+Follow the steps and fill in the form. Copy the API key and fill them in Google Maps WD > Options.   
 
 = Settings =
 You need to configure settings of the map in advance to moving to the rest of Google Maps WD plugin sections.
 
 General   
-Map type. Choose map type based on available Google Maps options:   
+Map type. Choose the type of WP map embedded based on available Google Maps options:   
 Roadmap displays 2D road map. This is default map type for Google Map.     
 Satellite displays Google Earth satellite images.       
 Hybrid displays mixture of roadmap and satellite views- photographic map with roads and city name indication.   
@@ -291,9 +394,9 @@ Rotate Control feature is only available with Google Maps Satellite mode, when y
 
 Layers
 
-Enable Bicycle Layer. Bicycle routes will be highlighted on the map. Usually suggested routes will be highlighted as well. In cases if bicycle layer is not available with that certain area on Google Maps, the layer will be disabled.  
-Enable Traffic Layer. Real-time traffic information of the route will be highlighted on map as a layer. The timing is based on the actual request time. In cases if traffic layer is not available with that certain area on Google Maps, the layer will be disabled. 
-Enable Transit Layer. Transit routes will be highlighted on the map.This will display the public transit network of the city. The information will be displayed with thick lines. The list of the supported cities can be found at official developers site of Google Maps.    
+Enable Bicycle Layer. Bike lanes will be highlighted on the map. Usually suggested routes will be highlighted as well. In cases if bicycle layer is not available with that certain area on Google Maps, the layer will be disabled.  
+Enable Traffic Layer. Real-time traffic information of the route will be highlighted on map as a layer. The timing is based on the actual request time. In cases if traffic layer is not available with that certain area on Google Maps, the traffic lanes will be disabled. 
+Enable Transit Layer. Transit routes will be highlighted on the map. This will display the public transit network of the city. The information will be displayed with thick lines. The list of the supported cities can be found at official developers site of Google Maps.    
 GeoRSS URL. Providing the URL to created Geographically encoded objects of RSS (http://www.georss.org/) feed you can add RSS-feed based layers on your Google Maps. 
 KML URL. KML is a file format created on the basis of Google Earth. It might contain rich data, such as trails/locations, images and tips related to the locations, etc. After creating the file you can provide the URL here.    
 Fusion Table Id. You can create your own Google Fusion table and provide its ID here. Fusion tables is overall an application used for sharing, visualizing, and publishing tabular data.   
@@ -308,7 +411,7 @@ Direction Window Position. Choose the position of the directions window from pos
 
 Store Locator
 
-Store locator will add a circular overlay over the Google maps with filled centre and radius. Than you can see the markers which are located within this circle:   
+Store locator will add a circular overlay over the Google maps with filled centre and radius. Than you can see the markers (placemarks) which are located within this circle:   
 Enable Store Locator. Choose whether to have store locator feature enabled for the Google maps or not.  
 Window Width. Choose fixed size for the store locator window in pixels either percentage of content area.   
 Window Position. Chose the Store location window position relative to Google maps.   
@@ -345,7 +448,7 @@ Markers are used for indicating specific location on Google maps. The icon of th
 Note that all changes made here  will be previewed on small Google maps sample on the right side of the screen.   
 Title. You can provide a title for the marker. The title will be included in Information window of the marker.	   
 Link URL. You can link Google Maps Marker to any URL, so that when site visitor hits the marker they will be redirected to mentioned URL. The link will be opened in a new window.   
-Address. There are three ways of adding the marker location- providing address, filling in longitude and latitude or right-clicking on the location on the map.    
+Address. There are three ways of adding the marker location- providing address, filling in longitude and latitude (GPS coordinates) or right-clicking on the location on the map.    
 Description. Description of the marker will be displayed alongside its title within Information window of the Google Maps.    
 Marker Description Image. The marker information window can also contain an image. Here you can upload the images to be used.  
 Category. Here you can specify the marker category. More about marker categories can be found at Marker Category section.   
@@ -513,4 +616,4 @@ To Insert Google Maps into a Page or Post you should open the post/page from Adm
 Here select the Map and press Insert button:   
 Alternatively you can copy the shortcode available in Google Maps WD>Maps section. Go your Post/Page. Change the content box from Visual to Text tab and add the Google Map code here.   
 If you want to add Google map to custom area on your site please instead use php shortcode. Copy and paste it to .php file, where you plan to include the map.   
-For adding Google Maps as a widget go to Appearance>Widgets. Here find Google Maps WD and assign it to a custom position. After that set up Google Maps settings, choose the Google Map to add and press Save button. This way Google Maps will be added to selected area.   
+For adding Google Maps as a widget go to Appearance>Widgets. Here find Google Maps WD and assign it to a custom position. After that set up Google Maps settings, choose the Google Map to add and press Save button. This way Google Maps will be added to selected area.  

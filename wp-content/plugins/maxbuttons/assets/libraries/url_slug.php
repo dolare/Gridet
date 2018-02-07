@@ -15,7 +15,7 @@
  * @return string
  */
 function mb_url_slug($str, $options = array()) {
-	if (! function_exists('mb_convert_encoding')) 
+	if (! function_exists('mb_convert_encoding') || ! function_exists('mb_list_encodings') ) 
 		return $str; 
 		
 	// Make sure string is in UTF-8 and strip invalid UTF-8 characters

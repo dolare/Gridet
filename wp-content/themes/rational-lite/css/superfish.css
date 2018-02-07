@@ -32,17 +32,17 @@ left: 100%;
 /*** DEMO SKIN ***/
 .sf-menu {
 float: left;
-margin-bottom: 1rem;
+margin-bottom: 1em;
 }
 .sf-menu ul {
-box-shadow: 0.08rem 0.08rem 0.24rem rgba(0,0,0,.2);
-min-width: 12rem; /* allow long menu items to determine submenu width */
+box-shadow: 2px 2px 6px rgba(0,0,0,.2);
+min-width: 12em; /* allow long menu items to determine submenu width */
 }
 .sf-menu a {
-border-left: 0.04rem solid #fff;
-border-top: 0.04rem solid #dFeEFF; /* fallback colour must use full shorthand */
-border-top: 0.04rem solid rgba(255,255,255,.5);
-padding: .75rem 1rem;
+border-left: 1px solid #fff;
+border-top: 1px solid #dFeEFF; /* fallback colour must use full shorthand */
+border-top: 1px solid rgba(255,255,255,.5);
+padding: .75em 1em;
 text-decoration: none;
 }
 .sf-menu a {
@@ -69,15 +69,15 @@ transition: none;
 }
 /*** arrows (for all except IE7) **/
 .sf-arrows .sf-with-ul {
-padding-right: 2.5rem;
+padding-right: 2.5em;
 }
 /* styling for both css and generated arrows */
 .sf-arrows .sf-with-ul:after {
 content: '';
 position: absolute;
 top: 55%;
-right: 0;
-margin-top: -0.12rem;
+right: 0em;
+margin-top: -3px;
 height: 0;
 width: 0;
 color:transparent;
@@ -94,13 +94,13 @@ color:transparent;
 }
 /* styling for right-facing arrows */
 .sf-arrows ul .sf-with-ul:after {
-margin-top: -0.2rem;
-margin-right: -0.12rem;
+margin-top: -5px;
+margin-right: -3px;
 border-color: transparent;
-border: 0.2rem solid transparent;
+border: 5px solid transparent;
 border-left-color: #dFeEFF; /* edit this to suit design (no rgba in IE8) */
 border-left-color: rgba(255,255,255,.5);
-right: 1rem;
+right: 1em;
 top: 50%;
 }
 .sf-arrows ul li > .sf-with-ul:focus:after,
@@ -108,18 +108,14 @@ top: 50%;
 .sf-arrows ul .sfHover > .sf-with-ul:after {
 border-left-color: white;
 }
-/*for drop down menu location*/
-.skt-mob-menu{  box-shadow: 0 0.08rem 0.12rem -0.08rem rgba(0, 0, 0, 0.5);	 background: none repeat scroll 0 0 #FFFFFF !important;left: 0 !important; margin-right: -3% !important; position: absolute !important; top: 3.9rem; width: 100% !important; z-index: 99999 !important;} 
+.skt-mob-menu{  box-shadow: 0 2px 3px -2px rgba(0, 0, 0, 0.5);	 background: none repeat scroll 0 0 #FFFFFF !important;left: 0 !important; margin-right: -3% !important; position: absolute !important; top: 100%; width: 100% !important; z-index: 99999 !important;} 
 .skt-mob-menu li{width:100% !important;margin: 0;}
-.skt-mob-menu li a{line-height: 1.44rem !important; padding: 0 0.2rem 0 1.6% !important;}
+.skt-mob-menu li a{line-height: 36px !important; padding: 0 5px 0 1.6% !important;}
 .skt-mob-menu .sub-menu{ position:relative !important;	left:0 !important;}
 .sktmenu-toggle:before{ color: #fff; content: "\f0c9";}
-.sktmenu-toggle{background-color: #D6D6D6;	cursor: pointer;	float: right;	font-family: "FontAwesome";	font-size: 0.84rem;	font-style: normal;	font-weight: normal;	height: 1.4rem;	line-height: 1.48rem;	margin-top: 1.48rem;	right: -0.24rem;	text-align: center;	vertical-align: middle;	width: 1.4rem;}
-/*#header.skehead-headernav-shrink .sktmenu-toggle { margin-top:0.4rem; }*/
-
-
-/*for drop down menu in other sections*/
-#header.skehead-headernav-shrink .skt-mob-menu {top:3.9rem;}
+.sktmenu-toggle{background-color: #D6D6D6;	cursor: pointer;	float: right;	font-family: "FontAwesome";	font-size: 21px;	font-style: normal;	font-weight: normal;	height: 35px;	line-height: 37px;	margin-top: 18px;	right: -6px;	text-align: center;	vertical-align: middle;	width: 35px;}
+#header.skehead-headernav-shrink .sktmenu-toggle { margin-top:10px; }
+#header.skehead-headernav-shrink .skt-mob-menu {top:56px;}
 .skt-mob-menu li.has_child > a{
 background-image:url('../images/ch-arr.png');
 background-repeat:no-repeat;
@@ -128,6 +124,6 @@ background-position: 98% center;
 }
 #skenav.ske-menu {position: static !important;}
 #skenav ul.skt-mob-menu ul {width:100%;border:0;position:relative;margin:0;left:0 !important;}
-#skenav ul.skt-mob-menu ul li a{padding-left:1.2rem !important;-moz-box-sizing:border-box;box-sizing:border-box;}
-#skenav ul.skt-mob-menu ul ul li a{padding-left:2.4rem !important;-moz-box-sizing:border-box;box-sizing:border-box;}
-#skenav ul.skt-mob-menu .children li:first-child, #skenav ul.skt-mob-menu .sub-menu li:first-child {border-top:0.04rem solid rgba(0, 0, 0, 0.15);}
+#skenav ul.skt-mob-menu ul li a{padding-left:30px !important;-moz-box-sizing:border-box;box-sizing:border-box;}
+#skenav ul.skt-mob-menu ul ul li a{padding-left:60px !important;-moz-box-sizing:border-box;box-sizing:border-box;}
+#skenav ul.skt-mob-menu .children li:first-child, #skenav ul.skt-mob-menu .sub-menu li:first-child {border-top:1px solid rgba(0, 0, 0, 0.15);}

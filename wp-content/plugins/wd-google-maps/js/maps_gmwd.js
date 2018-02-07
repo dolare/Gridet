@@ -259,6 +259,13 @@ jQuery( document ).ready(function() {
             }
         }    
     });
+	jQuery(".info_window_info").change(function(){
+        var selected = [];
+        jQuery(".info_window_info:checked").each(function(){
+            selected.push(jQuery(this).val());
+        });
+        jQuery("[name=info_window_info]").val(selected.join());
+    });     
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////

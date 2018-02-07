@@ -13,7 +13,6 @@ $freesiaempire_settings = freesiaempire_get_theme_options();
 	echo '<div id="main">';
 	if($freesiaempire_settings['freesiaempire_disable_features'] != 1){
 		echo '<!-- Our Feature ============================================= -->';
-		global $post;
 		$freesiaempire_features = '';
 		$freesiaempire_total_page_no = 0; 
 		$freesiaempire_list_page	= array();
@@ -69,7 +68,11 @@ $freesiaempire_settings = freesiaempire_get_theme_options();
 					if ($excerpt != '') {
 						$excerpt_text = $freesiaempire_settings['freesiaempire_tag_text'];
 						$excerpt_length = substr(get_the_excerpt(), 0 , 85);
-						$freesiaempire_features .= '<p>'.$excerpt_length.' </p>';
+						if($freesiaempire_settings['freesiaempire_crop_excerpt_length'] ==1){
+							$freesiaempire_features .= '<p>'.$excerpt_length.' </p>';
+						}else{
+							$freesiaempire_features .= '<p>'.esc_attr(get_the_excerpt()).' </p>';
+						}
 					}
 					$freesiaempire_features 	.= '</article>';
 					$excerpt = get_the_excerpt();
@@ -99,4 +102,4 @@ $freesiaempire_settings = freesiaempire_get_theme_options();
 	} ?>
 </div>
 <!-- end #main -->
-<?php get_footer(); ?>
+<?php get_footer();

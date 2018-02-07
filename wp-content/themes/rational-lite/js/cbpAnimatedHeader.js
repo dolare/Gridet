@@ -237,7 +237,7 @@ var cbpAnimatedHeader = (function() {
 
 			if(jQuery('#wpadminbar').length!==0){
 
-				jQuery('.skehead-headernav-shrink').css('top','1.12rem');
+				jQuery('.skehead-headernav-shrink').css('top','28px');
 
 			}
 
@@ -251,7 +251,7 @@ var cbpAnimatedHeader = (function() {
 
 			jQuery('#header').show();
 
-			jQuery('.skehead-headernav').css('top','0');
+			jQuery('.skehead-headernav').css('top','0px');
 
 		}
 

@@ -1,4 +1,5 @@
-
+<?php $back_to_top = get_theme_mod('novellite_backtotop_disable','0');?>
+<input type="hidden" id="back-to-top" value="<?php echo $back_to_top?>"/> 
 <div class="outer-footer">
 <div class="container">
 <div class="footer-widget-area">
@@ -16,7 +17,7 @@
             <div class="row">
                 <div class="col-md-12">
 				<?php if (get_theme_mod('footertext','') != '') { ?>
-		<span class="copyright"><?php echo get_theme_mod('footertext',''); ?></span> 
+		<span class="copyright"><?php echo esc_html(get_theme_mod('footertext','')); ?></span> 
 			<?php } else { ?>
                     <p><a href="<?php echo esc_url('http://www.themehunk.com'); ?>"><?php _e('NovelLite Theme', 'novellite'); ?></a> <?php _e('Powered By ', 'novellite'); ?><a href="http://www.wordpress.org"><?php _e(' WordPress', 'novellite'); ?></a></p>
 					<?php } ?>

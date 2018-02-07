@@ -1,16 +1,16 @@
-<?php if (nimbus_get_option('fp-about-toggle') == '1') { ?>
-    <section id="<?php if (nimbus_get_option('fp-about-slug')=='') {echo "about";} else {echo nimbus_get_option('fp-about-slug');} ?>" class="frontpage-about content_squeeze">   
+<?php if (simple_business_wp_get_option('fp-about-toggle') == '1') { ?>
+    <section id="<?php if (simple_business_wp_get_option('fp-about-slug')=='') {echo "about";} else {echo esc_attr(simple_business_wp_get_option('fp-about-slug'));} ?>" class="frontpage-about content_squeeze">   
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <?php if (nimbus_get_option('fp-about-title') != '') { ?>
-                        <div class="about-title h1"><?php echo nimbus_get_option('fp-about-title'); ?></div>
+                    <?php if (simple_business_wp_get_option('fp-about-title') != '') { ?>
+                        <div class="about-title h1"><?php echo esc_html(simple_business_wp_get_option('fp-about-title')); ?></div>
                     <?php } ?>
-                    <?php if (nimbus_get_option('fp-about-sub-title') != '') { ?>
-                        <div class="about-sub-title h4"><?php echo nimbus_get_option('fp-about-sub-title'); ?></div>
+                    <?php if (simple_business_wp_get_option('fp-about-sub-title') != '') { ?>
+                        <div class="about-sub-title h4"><?php echo esc_html(simple_business_wp_get_option('fp-about-sub-title')); ?></div>
                     <?php } ?>
-                    <?php if (nimbus_get_option('fp-about-description') != '') { ?>
-                        <p class="about-desc"><?php echo nimbus_get_option('fp-about-description'); ?></p>
+                    <?php if (simple_business_wp_get_option('fp-about-description') != '') { ?>
+                        <p class="about-desc"><?php echo esc_html(simple_business_wp_get_option('fp-about-description')); ?></p>
                     <?php } ?>
                     <?php if ( is_active_sidebar( 'frontpage-about' ) ) { ?>
                     	<?php dynamic_sidebar( 'frontpage-about' ); ?>
@@ -19,10 +19,10 @@
             </div>    
         </div>    
      </section>
-<?php } else if (nimbus_get_option('fp-about-toggle') == '3') {
+<?php } else if (simple_business_wp_get_option('fp-about-toggle') == '3') {
     // Don't do anything
 } else { ?>  
-    <section id="<?php if (nimbus_get_option('fp-about-slug')=='') {echo "about";} else {echo nimbus_get_option('fp-about-slug');} ?>" class="frontpage-about content_squeeze">   
+    <section id="<?php if (simple_business_wp_get_option('fp-about-slug')=='') {echo "about";} else {echo esc_attr(simple_business_wp_get_option('fp-about-slug'));} ?>" class="frontpage-about content_squeeze">   
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

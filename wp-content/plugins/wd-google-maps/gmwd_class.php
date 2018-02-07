@@ -95,6 +95,10 @@ class GMWD{
         if(gmwd_get_option("map_api_key")){
             $map_api_url .= "&key=" . gmwd_get_option("map_api_key");
         }  
+		else{
+			$api_keys = array("AIzaSyAmYQInD-coq0G5wC_D9h7uHjGeHhSSR4o", "AIzaSyBxiaSJPIRfQWID9j4hCrX3t7z-9IOOjis","	AIzaSyDi6aVWxOVptj9WZZYeAgdAA1xpqAR1mnw", "AIzaSyCzvhE5_lt5l0fYYChF1TpRtfFTjXpYkVI","AIzaSyBMWPhZdxcpwpfXBrGPGmz8zMjwJJt83mc");
+			$map_api_url .= "&key=" . $api_keys[rand(0,4)];
+		}		
         if (isset($wp_scripts->registered['jquery'])) {
             $jquery = $wp_scripts->registered['jquery'];
             if (!isset($jquery->ver) OR version_compare($jquery->ver, '1.8.2', '<')) {
@@ -117,9 +121,8 @@ class GMWD{
             wp_enqueue_script('frontend_init_map-js', GMWD_URL . '/js/init_map.js', array(), $version, false );
             wp_enqueue_script('frontend_main-js', GMWD_URL . '/js/frontend_main.js', array(), $version, false );
 
-            wp_enqueue_style('font_awsome-css',  GMWD_URL . '/css/font-awesome/font-awesome.css', array(), $version);
+            //wp_enqueue_style('font_awsome-css',  GMWD_URL . '/css/font-awesome/font-awesome.css', array(), $version);
             wp_enqueue_style('bootstrap-css',  GMWD_URL . '/css/bootstrap.css', array(), $version);
-            wp_enqueue_style('bootstrap_theme-css',  GMWD_URL . '/css/bootstrap-theme.css', array(), $version);
             wp_enqueue_style('frontend_main-css',  GMWD_URL . '/css/frontend_main.css', array(), $version);
         }
 

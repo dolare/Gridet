@@ -1,18 +1,19 @@
 <?php
 /**
  * The template for displaying Search Results pages.
- *
- * @package WordPress
  * 
  */
 ?>
 <?php get_header(); ?>
-<div class="page_heading_container">
+<?php $layout = novellite_get_layout(); ?>
+<div class="page_heading_container" <?php if (get_theme_mod('header_image','') != '') { ?>
+ style="background: url(<?php echo esc_url(get_theme_mod('header_image','')); ?>);"
+ <?php }?> >
   <div class="container">
         <div class="row">
         <div class="col-md-12">
 <div class="page_heading_content">
-<h1><?php printf(AUTHOR_ARCHIVES, "<span class='vcard'><a class='url fn n' href='" . get_author_posts_url(get_the_author_meta('ID')) . "' title='" . esc_attr(get_the_author()) . "' rel='me'>" . get_the_author() . "</a></span>"); ?></h1>
+<h1><?php printf( __( 'Search Results for: %s', 'novellite' ), get_search_query() ); ?></h1>
 </div>
 </div>
 </div>
@@ -22,8 +23,12 @@
 <div class="page-container">
     <div class="container">
         <div class="row">
-            <div class="page-content">
-                <div class="col-md-9">
+            <div class="page-content <?php echo $layout; ?>">
+                <?php if ( $layout != 'no-sidebar' ) { ?>
+    <div class="col-md-9">
+<?php } else { ?>
+    <div class="col-md-12">
+<?php } ?>
                  <div class="content-bar gallery">
             <?php if (have_posts()) : the_post(); ?>
                 <?php
@@ -59,14 +64,22 @@
                 </span> <span class="nav-next">
                 <?php previous_posts_link(OLDER_POSTS); ?>
                 </span> </nav>
+                <?php else: ?>
+                <div class="post">
+                <p>
+                <?php _e('Sorry no post matched your criteria!', 'novellite'); ?>
+                </p>  
+                </div>
             <?php endif; ?> 
           </div>
                 </div>
-    <div class="col-md-3">
+        <?php if ( $layout != 'no-sidebar' ) { ?>
+        <div class="col-md-3">
         <!--Start Sidebar-->
         <?php get_sidebar(); ?>
         <!--End Sidebar-->
-        </div> 
+        </div>
+        <?php } ?> 
             </div>
         </div>
         <div class="clear"></div>

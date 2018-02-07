@@ -1,10 +1,10 @@
 /*
 Theme Name:Freesia Empire
-Theme URI: http://themefreesia.com/themes/freesia-empire
+Theme URI: https://themefreesia.com/themes/freesia-empire
 Author: Theme Freesia
-Author URI: http://themefreesia.com
-Description: Freesia Empire is a Responsive Multi-Purpose WordPress Theme, Designed & Developed by Theme Freesia. This theme supports popular plugins like Breadcrumb NavXT, WP-PageNavi, Contact Form 7, Jetpack by WordPress.com, Polylang, Newsletter, bbPress and WooCommerce. It is also translation ready and currently translated in French language. It is also easily customizable with lots of theme options using Customizer. It consists contact-template, gallery-template, freesiaempire-corporate template and with lots of widgets and sidebar. Get free support at http://themefreesia.com/support-forum/ and View demo site at http://demo.themefreesia.com/freesia-empire.
-Version: 1.2.0
+Author URI: https://themefreesia.com
+Description: Freesia Empire is a Responsive Multi-Purpose WordPress Theme, Designed & Developed by Theme Freesia. This theme supports popular plugins like Breadcrumb NavXT, WP-PageNavi, Contact Form 7, Jetpack by WordPress.com, Polylang, WPML Compatible, Newsletter, bbPress and WooCommerce. It is also translation ready and currently translated in French language. It is also easily customizable with lots of theme options using Customizer. It consists contact-template, gallery-template, freesiaempire-corporate template and with lots of widgets and sidebar. Get free support at https://tickets.themefreesia.com/ and View demo site at http://demo.themefreesia.com/freesia-empire.
+Version: 1.2.3.1
 Text Domain: freesia-empire
 License: GNU General Public License version 3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -16,7 +16,7 @@ version 3.0 (http://www.gnu.org/licenses/gpl-3.0.html)
 ==================================================
 */
 
-/* #Browser Reset
+/* 1.0 Browser Reset
 ================================================== */
 html {
 	overflow-y: scroll;
@@ -415,10 +415,12 @@ a:hover {
 	color: #fff;
 }
 .light {
+	background-color: transparent;
 	border-color: #fff;
     color: #fff;
 }
 .light-color {
+	background-color: transparent;
 	border-color: #fff;
     color: #fff;
 }
@@ -672,6 +674,10 @@ textarea:focus {
 input[type="checkbox"],
 input[type="radio"] {
 	padding: 0; /* Addresses excess padding in IE8/9 */
+}
+
+input[type=search] {
+  -webkit-appearance: none;
 }
 
 /* #Search Form 
@@ -1336,7 +1342,8 @@ img#wpstats {
 		-o-transition: 		all .40s ease;
 	transition: 			all .40s ease;
 }
-.main-navigation > ul > li:hover > ul {
+.main-navigation > ul > li:hover > ul,
+.main-navigation > ul > li.focus > ul {
 	display: block;
 	opacity: 1;
 		-moz-opacity: 1;
@@ -1391,7 +1398,9 @@ img#wpstats {
 	left: -200px;
 }
 .main-navigation ul ul li:hover ul,
-.main-navigation ul ul ul li:hover ul {
+.main-navigation ul ul li.focus ul,
+.main-navigation ul ul ul li:hover ul,
+.main-navigation ul ul ul li.focus ul {
 	top: 0;
 	display: block;
 	opacity: 1;
@@ -1400,7 +1409,8 @@ img#wpstats {
   	visibility:visible;
 }
 /* ----- Responsive Navigation ----- */
-.menu-toggle {
+.menu-toggle,
+.menu-toggle-2 {
 	display: none;
 }
 .line-one,
@@ -1675,6 +1685,7 @@ img#wpstats {
 /* 21.0 Gallery
 ================================================== */
 .gallery {
+	display: inline-block;
 	margin-bottom: 20px;
 }
 .gallery-item {
@@ -3206,42 +3217,45 @@ ul.next-prev li.active, ul.next-prev li:hover {
 .widget_newsletterwidget .widget-title {
 	padding: 0;
 }
-.newsletter-widget {
+.tnp-widget {
 	margin: 0 auto;
 } 
-.newsletter-widget .newsletter-email {
+.tnp-widget .tnp-email {
 	height: 40px;
 		-webkit-border-radius: 0;
 		-moz-border-radius: 0;
 	border-radius: 0;
 	width: 100%;
 }
-.newsletter-widget input[type="email"],
-.newsletter-widget input[type="submit"] {
+.tnp-widget input[type="email"],
+.tnp-widget input[type="submit"] {
 	margin: 0;
 	outline: none;
 		-webkit-box-shadow: none;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
 		-moz-box-shadow:    none;  /* Firefox 3.5 - 3.6 */
 	box-shadow:         	none;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
-.newsletter-widget input[type="submit"] {
+.tnp-widget input[type="submit"] {
 	padding: 0 10px;
 }
-.newsletter-widget p {
+.tnp-widget .tnp-field {
 	margin: 10px 0 ;
 	padding: 0 5px;
 	display: inline-block;
 	width: 25%;
 	vertical-align: top;
 }
+.tnp-field.tnp-field-button {
+	margin-top: 32px;
+}
 #secondary .widget_newsletterwidget {
 	margin-bottom: 50px;
 }
-#colophon .newsletter-widget p,
-#secondary .newsletter-widget p {
+#colophon .tnp-widget .tnp-field,
+#secondary .tnp-widget .tnp-field {
 	width: 80%;
 }
-.newsletter-widget .newsletter-submit {
+.tnp-widget .tnp-submit {
 	height: 40px;
 	cursor: pointer;
 		-webkit-border-radius: 0;
@@ -3926,4 +3940,22 @@ div.bbp-template-notice, div.indicator-hint {
 }
 .woocommerce-review-link {
 	color: #747474;
+}
+#main .woocommerce-MyAccount-navigation > ul {
+	list-style: none;
+}
+.woocommerce-MyAccount-navigation ul li > a {
+	border: 1px solid #e4e4e4;
+	display: block;
+	height: 100%;
+	margin-bottom: -1px;
+	padding: 8px;
+	width: 100%;
+}
+.woocommerce-MyAccount-navigation ul li > a:hover,
+.woocommerce-MyAccount-navigation ul li.is-active {
+	background-color: #f8f8f8;
+}
+.related.products {
+	display: inline-block;
 }

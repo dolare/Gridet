@@ -16,8 +16,10 @@ $c-border-dark : #000;
 	@import "general"; 
 	@import "overview"; 
 	@import "editor";
-	@import "elements";  
+	@import "elements";
+	@import 'input_range';   
 	@import "support";
+	@import "settings"; 
 
 	@import "subtabs"; 
 	@import "collection";
@@ -27,7 +29,7 @@ $c-border-dark : #000;
 }
 	// loaded outside of container
 	@import "maxmodal"; 
-	@import "colpick"; 
+	//@import "colpick"; 
 	@import "media_button";
 
 

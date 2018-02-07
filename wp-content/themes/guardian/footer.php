@@ -55,13 +55,12 @@
 		<div class="container">
 			<div class="clearfix divider_dashed10"></div>
 			<?php $wl_theme_options = weblizar_get_options(); ?>
-			<div class="col-md-4 col-sm-4 one_third">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'guardian' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'guardian' ), 'WordPress' ); ?></a>
+			<div class="col-md-3 col-sm-3 one_third">
+				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'guardian' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'guardian' ), 'WordPress' ); ?></a>
 			</div>
-			<div class="col-md-4 col-sm-4 one_third animate" data-anim-type="fadeInRight">
-			
+			<div class="col-md-5 col-sm-5 one_third animate" data-anim-type="fadeInRight">			
 			<?php 
-				if($wl_theme_options['footer_customizations']!= '') { echo esc_attr($wl_theme_options['footer_customizations']); } 
+				if($wl_theme_options['footer_customizations']!= '') { echo '<span class="guardian_footer_customizations">'.esc_attr($wl_theme_options['footer_customizations']).'</span>'; } 
 				
 				if($wl_theme_options['developed_by_text']!='') { echo  "  ". esc_attr($wl_theme_options['developed_by_text']); }
 				
@@ -71,7 +70,7 @@
 			</div>	
 			<?php if($wl_theme_options['footer_section_social_media_enbled'] == "on") { ?>
 			<div class="col-md-4 col-sm-4 one_third last">			
-				<ul class="footer_social_links">
+				<ul class="footer_social_links guardian_footer_section_social_media">
 				<?php if($wl_theme_options['facebook_link']!= '') { ?>
 				<li class="animate" data-anim-type="zoomIn"><a href="<?php echo esc_url($wl_theme_options['facebook_link']); ?>"><i class="fa fa-facebook"></i></a></li>
 				<?php  }  if($wl_theme_options['twitter_link']!= '') { ?>
@@ -87,10 +86,9 @@
 				<?php  }  if($wl_theme_options['rss_link']!= '') { ?>
 					<li class="animate" data-anim-type="zoomIn"><a href="<?php echo esc_url($wl_theme_options['rss_link']); ?>"><i class="fa fa-rss"></i></a></li>
 				<?php  }  ?>
-				</ul>				
-									
+				</ul>
 			</div>	
-			<?php } ?>
+			<?php } ?>			
 		</div>
 	</div><!-- end copyright info -->
 	

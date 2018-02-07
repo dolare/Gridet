@@ -1,33 +1,34 @@
-<?php 
+<?php
 class WDWT_meta {
   protected $meta_sections = array();
-  
+
   public function init(){
     $screen = get_current_screen();
     if($screen->post_type == 'post' || $screen->post_type == 'page'){
-      add_meta_box(WDWT_META, WDWT_TITLE , array($this, 'view'), $screen->post_type, 'normal', 'high');  
+      add_meta_box(WDWT_META, WDWT_TITLE , array($this, 'view'), $screen->post_type, 'normal', 'high');
     }
   }
-  
+
   public function view(){ ?>
     <div class="wdwt_meta" id="wdwt_meta_content">
+      <span class="wdwt_help_link"><a href="<?php echo WDWT_HOMEPAGE . "/theme-guide/adding-content/creating-pages.html"; ?>" target="_blank">Check out user guide</a></span>
 
-    <?php
-    wp_nonce_field( "WDWT_META", "WDWT_META_nonce");
-    ?>
+      <?php
+      wp_nonce_field( "WDWT_META", "WDWT_META_nonce");
+      ?>
 
-    <?php
-    global $post;
+      <?php
+      global $post;
       $meta = get_post_meta($post->ID, WDWT_META , true);
 
-        foreach ($this->meta_sections as $section) {
-          $section->view($meta);    
-        }
+      foreach ($this->meta_sections as $section) {
+        $section->view($meta);
+      }
       ?>
     </div>
-  <?php
+    <?php
   }
-  
+
   public function save($post_id){
 
     if(!isset($_POST["WDWT_META_nonce"]) || !wp_verify_nonce( $_POST["WDWT_META_nonce"],  "WDWT_META" )){

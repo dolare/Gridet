@@ -8,7 +8,7 @@
   	 #skenav .sfHover a, a.skt-featured-icons,.service-icon{ background: <?php if(isset($bg_color)){ echo $bg_color; } ?>;}
 	 a.skt-featured-icons:after,.service-icon:after {border-top-color: <?php if(isset($bg_color)){ echo $bg_color; } ?>; }
 	 a.skt-featured-icons:before,.service-icon:before {border-bottom-color: <?php if(isset($bg_color)){ echo $bg_color; } ?>; }
-	 .sfHover ul li a {font-size: 2rem;}
+
 	
 	.sticky-post {color : <?php if(isset($bg_color)){ echo $bg_color; } ?>;border-color:<?php if(isset($bdrrgbcolor)){ echo $bdrrgbcolor; } ?>}
 	#footer{ border-color: <?php if(isset($bg_color)){ echo $bg_color; } ?>; }
@@ -38,42 +38,33 @@
 	}
 	
 	/***************** PAGINATE *****************/
-	#skenav li a:hover,#skenav .sfHover { background-color:#5D73C4;color: #FFFFFF;border-radius: 0.16rem;}
+	#skenav li a:hover,#skenav .sfHover { background-color:#333333;color: #FFFFFF;border-radius: 4px;}
 	#skenav .sfHover a { color: #FFFFFF;}
 	#skenav ul ul li { color: #FFFFFF; }
-	#skenav .ske-menu #menu-secondary-menu li a:hover, #skenav .ske-menu #menu-secondary-menu .current-menu-item a{ color: #71C1F2;  }
+	#skenav .ske-menu #menu-secondary-menu li a:hover, #skenav .ske-menu #menu-secondary-menu .current-menu-item a{color: #71C1F2;  }
 	.footer-seperator{background-color: rgba(0,0,0,.2);}
 	#skenav .ske-menu #menu-secondary-menu li .sub-menu li {	margin: 0;  }
-	/*.menu-item a {
-		font-size: 0.96rem;
-	}
-*/
+
+
 	@media only screen and (max-width : 1025px) {
-		/*#menu-main {
+		#menu-main {
 			display:none;
 		}
-*/
+
 		#header .container {
 			width:97%;
 		}
 
 		.skehead-headernav .logo {
-		    margin-bottom: 0.12rem;
-		    margin-top: 0.48rem;
+		    margin-bottom: 3px;
+		    margin-top: 12px;
 		    position: relative;
 		}
 
 		.skehead-headernav.skehead-headernav-shrink .logo {
-            margin-top: 0.04rem;
-            top: 0.24rem;
+            margin-top: 1px;
+            top: 6px;
 		}
 
 	}
-	/*toggle point of menu list*/
-	@media only screen and (max-width : 767px) {
-		#menu-main {
-			display:none;
-		   }
-    }
-
 </style>

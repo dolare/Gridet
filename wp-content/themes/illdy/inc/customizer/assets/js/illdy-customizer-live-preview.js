@@ -93,7 +93,7 @@
 	/* Footer Copyright */
 	wp.customize( 'illdy_footer_copyright', function( value ) {
 		value.bind( function( newval ) {
-			$( '#footer .copyright' ).html( newval );
+			$( '#footer .bottom-copyright' ).html( newval );
 		} );
 	} );
 
@@ -202,15 +202,15 @@
 	} );
 
 	// Image
-	wp.customize( 'illdy_jumbotron_general_image', function( value ) {
-		value.bind( function( newval ) {
-			if( newval == '' ) {
-				$( '#header.header-front-page' ).removeAttr( 'style' );
-			} else {
-				$( '#header.header-front-page' ).css( 'background-image', 'url('+ newval +')' );
-			}
-		} );
-	} );
+	// wp.customize( 'illdy_jumbotron_general_image', function( value ) {
+	// 	value.bind( function( newval ) {
+	// 		if( newval == '' ) {
+	// 			$( '#header.header-front-page' ).removeAttr( 'style' );
+	// 		} else {
+	// 			$( '#header.header-front-page' ).css( 'background-image', 'url('+ newval +')' );
+	// 		}
+	// 	} );
+	// } );
 
 	// First word from title
 	wp.customize( 'illdy_jumbotron_general_first_row_from_title', function( value ) {
@@ -255,6 +255,12 @@
 	// First button text
 	wp.customize( 'illdy_jumbotron_general_first_button_title', function( value ) {
 		value.bind( function( newval ) {
+			if ( newval == false ) {
+				$( '#header .bottom-header .header-button-one' ).hide();
+			}
+			if ( newval != '' ) {
+				$( '#header .bottom-header .header-button-one' ).show();
+			}
 			$( '#header .bottom-header .header-button-one' ).html( newval );
 		} );
 	} );
@@ -269,6 +275,12 @@
 	// Second button text
 	wp.customize( 'illdy_jumbotron_general_second_button_title', function( value ) {
 		value.bind( function( newval ) {
+			if ( newval == false ) {
+				$( '#header .bottom-header .header-button-two' ).hide();
+			}
+			if ( newval != '' ) {
+				$( '#header .bottom-header .header-button-two' ).show();
+			}
 			$( '#header .bottom-header .header-button-two' ).html( newval );
 		} );
 	} );
@@ -438,7 +450,6 @@
 	wp.customize( 'illdy_counter_background_type', function( value ) {
 		value.bind( function( newval ) {
 			if( newval == 'image' ) {
-				$( '#counter' ).css( 'background-color', '' );
 				$( '#counter' ).css( 'background-image', 'url('+ wp.customize._value.illdy_counter_background_image() +')' );
 			} else if( newval == 'color' ) {
 				$( '#counter' ).css( 'background-image', '' );
@@ -451,7 +462,7 @@
 	wp.customize( 'illdy_counter_background_image', function( value ) {
 		value.bind( function( newval ) {
 			if( newval == '' ) {
-				$( '#counter' ).removeAttr( 'style' );
+				$( '#counter' ).css( 'background-image', '' );
 			} else {
 				$( '#counter' ).css( 'background-image', 'url('+ newval +')' );
 			}
@@ -491,7 +502,7 @@
 	} );
 
 	// Show this section
-	wp.customize( 'illdy_contact_us_general_show', function( value ) {
+	wp.customize( 'illdy_contact_us_show', function( value ) {
 		value.bind( function( newval ) {
 			if( newval == false ) {
 				$( '#contact-us' ).addClass( 'customizer-display-none' );
@@ -528,4 +539,81 @@
 			$( '#contact-us .section-content .contact-us-box .box-left[data-customizer="box-left-customer-support-title"]' ).html( newval );
 		} );
 	} );
+
+	// Color scheme
+	wp.customize.bind('preview-ready', function () {
+		wp.customize.preview.bind('update-inline-css', function (object) {
+
+			var data = {
+				'action': object.action,
+				'args'  : object.data,
+				'id'    : object.id
+			};
+
+			jQuery.ajax({
+				dataType: 'json',
+				type    : 'POST',
+				url     : WPUrls.ajaxurl,
+				data    : data,
+				complete: function (json) {
+					var sufix = object.action + object.id;
+					var style = $('#illdy-main-inline-css');
+
+					if ( !style.length ) {
+						style = $('head').append('<style type="text/css" id="illdy-main-inline-css" />').find('#illdy-main-inline-css');
+					}
+
+					style.html(json.responseText);
+				}
+			});
+		});
+
+		wp.customize.preview.bind('update-section-css', function (object) {
+			var illdy_templates = {};
+			var template = '#illdy-'+object.illdy_section+'-section';
+			var h_t = Handlebars.compile($(template).text());
+			var html = h_t(object.values);
+			var style = $('#illdy-'+object.illdy_section+'-section-css');
+			if ( !style.length ) {
+				style = $('head').append('<style type="text/css" id="illdy-'+object.illdy_section+'-section-css" />').find('#illdy-'+object.illdy_section+'-section-css');
+			}
+			
+			style.html(html);
+		});
+
+		wp.customize.preview.bind( 'section-highlight', function( data ) {
+			var selectors = {
+				'illdy_jumbotron_general' : '#header',
+				'illdy_panel_about' : '#about',
+				'illdy_panel_projects' : '#projects',
+				'illdy_testimonials_general' : '#testimonials',
+				'illdy_panel_services' : '#services',
+				'illdy_latest_news_general' : '#latest-news',
+				'illdy_counter_general' : '#counter',
+				'illdy_panel_team' : '#team',
+				'illdy_contact_us' : '#contact-us',
+				'illdy_full_width' : '#full-width',
+			};
+
+			// Only on the front page.
+			if ( ! $( selectors[ data.section ] ).length ) {
+				return;
+			}
+
+			// When the section is expanded, show and scroll to the content placeholders, exposing the edit links.
+			if ( true === data.expanded ) {
+				$.scrollTo( $( selectors[ data.section ] ), {
+					duration: 600,
+				});
+			}
+		});
+
+	});
+
+	$(document).ready(function(){
+		wp.customize.selectiveRefresh.bind('widget-updated', function (placement) {
+			$('.parallax-window').parallax();
+		});
+	});
+
 } )( jQuery );

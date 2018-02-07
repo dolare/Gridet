@@ -1,11 +1,12 @@
 <?php
+namespace MaxButtons; 
 
 /**
  * Use of this field requires at least WordPress 3.5.
  *
  * Class SiteOrigin_Widget_Field_Media
  */
-class MaxButton_Widget_Field_MaxButton extends SiteOrigin_Widget_Field_Base {
+class MaxButton_Widget_Field_MaxButton extends \SiteOrigin_Widget_Field_Base {
 	/**
 	 * A label for the title of the media selector dialog.
 	 *

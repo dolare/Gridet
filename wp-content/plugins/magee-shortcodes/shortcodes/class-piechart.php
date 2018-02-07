@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Piechart') ):
 class Magee_Piechart {
 
 	public static $args;
@@ -24,6 +25,7 @@ class Magee_Piechart {
 			array(
 				'class' =>'',
 				'percent' => '80',
+				'line_cap' => '',
 				'filledcolor'=>'#fdd200',
 				'unfilledcolor'=>'#f5f5f5',
 				'size' =>'200',
@@ -38,26 +40,14 @@ class Magee_Piechart {
 		$class       .= ' '.$uniq_class;
 		$size         = str_replace('px','',absint($size));
 		$html = '<style>.'.$uniq_class.' .chart-title{line-height: '.$size.'px;font-size:'.esc_attr($font_size).';}.'.$uniq_class.'{height:'.$size.'px;width:'.$size.'px;}</style>';
-		$html .= '<div class="chart magee-chart-box '.esc_attr($class).'" data-percent="'.esc_attr($percent).'" id="'.$chartID.'">
+		$html .= '<div class="chart magee-chart-box '.esc_attr($class).'" data-percent="'.esc_attr($percent).'" id="'.$chartID.'" data-barcolor="'.esc_attr($filledcolor).'" data-trackcolor="'.esc_attr($unfilledcolor).'" data-size="'.absint($size).'" data-linecap="'.esc_attr($line_cap).'">
                                                 <div class="chart-title">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</div>
                                             </div>';
-		$html .= '<script language="javascript">';
-		$html .= "
-		jQuery(document).ready(function($){
-		$('#".$chartID."').easyPieChart({
-                barColor: '".esc_attr($filledcolor)."',
-                trackColor: '".esc_attr($unfilledcolor)."',
-                scaleColor: false,
-                lineWidth: 10,
-                trackWidth: 10,
-                size: ".absint($size).",
-                lineCap: 'butt'
-            }); });";
-
-		$html .= '</script>';									
+	
 		return $html;
 	} 
 	
 }
 
 new Magee_Piechart();
+endif;

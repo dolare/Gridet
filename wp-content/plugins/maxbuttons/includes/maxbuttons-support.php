@@ -1,20 +1,16 @@
 <?php
+namespace MaxButtons;
+defined('ABSPATH') or die('No direct access permitted');
+
 $theme = wp_get_theme();
 $browser = maxbuttons_get_browser();
 
 if(is_admin()) {
-    wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '', '4.0.1', false);
+   // wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '', '4.0.1', false);
 }
 
 function maxbuttons_system_label($label, $value, $spaces_between) {
-	$output = "<label>$label</label>";
-	
-	/*if ($spaces_between > 0) {
-		for ($i = 0; $i < $spaces_between; $i++) {
-			$output .= "&nbsp;";
-		}
-	} */
-	
+	$output = "<label>$label</label>";	
 	return "<div class='info'>" . $output . trim($value) . "</div>" ;
 }
 
@@ -101,7 +97,7 @@ function maxbuttons_get_browser() {
 function check_charset() {
     global $maxbuttons_installed_version;
     global $wpdb;
-    $check = "SHOW FULL COLUMNS FROM " . maxUtils::get_buttons_table_name();
+    $check = "SHOW FULL COLUMNS FROM " . maxUtils::get_table_name();
     $charset = $wpdb->query($check);
     return $charset;
 }
@@ -109,7 +105,7 @@ function check_charset() {
         $kludge = 'altering table to be utf-8';
         global $maxbuttons_installed_version;
         global $wpdb;
-        $table_name = maxbuttons_get_buttons_table_name();
+        $table_name = maxUtils::get_table_name();
         $kludge = $table_name;
         // IMPORTANT: There MUST be two spaces between the PRIMARY KEY keywords
         // and the column name, and the column name MUST be in parenthesis.
@@ -137,12 +133,12 @@ $admin->get_header(array("title" => $page_title, "title_action" => $action) );
     <div class="rss-feed">
           <h3><?php _e('Latest Support Questions', 'maxbuttons'); ?></h3>
               <?php
-              if( ini_get('allow_url_fopen') ): 
+              if( ini_get('allow_url_fopen') && extension_loaded('simplexml') ): 
               
                	try{
                   $content = file_get_contents('https://wordpress.org/support/rss/plugin/maxbuttons');
 
-                  $x = new SimpleXmlElement($content);
+                  $x = new \SimpleXmlElement($content);
 				}
 				catch (Exception $e)
 				{
@@ -175,7 +171,7 @@ $admin->get_header(array("title" => $page_title, "title_action" => $action) );
                   }
                   echo '</ul>';
               	else: 
-              		echo _e("Your server doesn't allow us to catch the latest support questions", "maxbuttons");  
+              		echo _e("Your server doesn't allow us to fetch the latest support questions", "maxbuttons");  
               	
               	endif; // ini_get
               ?>

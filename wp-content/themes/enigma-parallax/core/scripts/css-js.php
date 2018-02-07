@@ -7,7 +7,8 @@
 		wp_enqueue_style('enigma-parallax-media-responsive', get_template_directory_uri() . '/css/media-responsive.css');
 		wp_enqueue_style('enigma-parallax-animations', get_template_directory_uri() . '/css/animations.css');
 		wp_enqueue_style('enigma-parallax-theme-animtae', get_template_directory_uri() . '/css/theme-animate.css');
-		wp_enqueue_style('enigma-parallax-font-awesome', get_template_directory_uri() . '/css/font-awesome-4.4.0/css/font-awesome.css');              
+		wp_enqueue_style('enigma-parallax-font-awesome', get_template_directory_uri() . '/css/font-awesome-4.7.0/css/font-awesome.css'); 
+		
 		wp_enqueue_style('enigma-parallax-OpenSansRegular','//fonts.googleapis.com/css?family=Open+Sans');
 		wp_enqueue_style('enigma-parallax-OpenSansBold','//fonts.googleapis.com/css?family=Open+Sans:700');
 		wp_enqueue_style('enigma-parallax-OpenSansSemiBold','//fonts.googleapis.com/css?family=Open+Sans:600');
@@ -15,6 +16,8 @@
 		wp_enqueue_style('enigma-parallax-RobotoBold','//fonts.googleapis.com/css?family=Roboto:700');
 		wp_enqueue_style('enigma-parallax-RalewaySemiBold','//fonts.googleapis.com/css?family=Raleway:600');
 		wp_enqueue_style('enigma-parallax-Courgette','//fonts.googleapis.com/css?family=Courgette');
+		
+		
 		
 		// Js
 		wp_enqueue_script('enigma-parallax-menu', get_template_directory_uri() .'/js/menu.js', array('jquery'));

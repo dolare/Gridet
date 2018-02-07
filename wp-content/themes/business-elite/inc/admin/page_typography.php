@@ -349,6 +349,9 @@ class WDWT_typography_page_class{
       $font_choices[ 'Titillium Web, sans-serif'  ] = 'Titillium Web (sans-serif)';
       $font_choices[ 'Ubuntu, sans-serif' ] = 'Ubuntu (sans-serif)';
       $font_choices[ 'Ubuntu Mono, monospace' ] = 'Ubuntu Mono (monospace)';
+
+      $font_choices = apply_filters('wdwt_more_google_fonts', $font_choices );
+
     return $font_choices;
   }
   

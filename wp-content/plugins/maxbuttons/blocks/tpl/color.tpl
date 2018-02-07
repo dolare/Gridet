@@ -1,10 +1,7 @@
-		{if:label} 	<label class='color'>%%label%%</label> {/if:label} 
+		{if:label} 	<label for='%%id%%' class='mbcolor'>%%label%%</label> {/if:label}
 
-	<div class="input color %%name%%">
+	<div class="input mbcolor %%name%%"  {if:conditional}data-show="%%conditional%%"{/if:conditional}>
 
-		<span class="colorpicker-box {if:inputclass} %%inputclass%% {/if:inputclass} " id="%%id%%_box">
-						<span></span>
-		</span>
-		<input  type="hidden" id="%%id%%" name="%%name%%" 
-		value="%%value%%" />
+		<input type="text" name="%%name%%" id="%%id%%" class="color-field" value="%%value%%">
+		{if:copycolor} <div class="arrows %%copypos%%" data-id="%%id%%" data-bind="%%bindto%%"><div class='right'><span class='arrow-right' title='%%right_title%%'></div><div class='left'><span class='arrow-left' title='%%left_title%%'></div></div>	{/if:copycolor} 
 	</div>

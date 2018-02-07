@@ -3,8 +3,8 @@ Contributors: magictheme
 Donate link: http://www.mageewp.com/
 Tags: shortcodes, shortcode, accordion, alert, button, column, custom box, countdowns, counter, divider, dropcap, feature box, flip box, highlight, list, modal, popover, tooltip, person, promo box, scocial, tab, testimonial, progress, piechart, timeline, panel, section, slider
 Requires at least: 4.0
-Tested up to: 4.3
-Stable tag: 4.3
+Tested up to: 4.6
+Stable tag: 4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,11 +12,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 ### Overview 
 
-Magee Shortcodes is WordPress plugin that provides a pack of shortcodes. It is based on Bootstrap and coded with HTML5 and CSS3 language, fully responsive in desktops and mobile devices. With enriched settings in options, you could easily create column, section, feature box, person, testimonial and much more. Anyone who wants to create a business site with WordPress may not miss this plugin.
+Magee Shortcodes is WordPress plugin that provides a pack of shortcodes. It is based on Bootstrap and coded with HTML5 and CSS3 language, fully responsive in desktops and mobile devices With enriched settings in options, you could easily create column, section, feature box, person, testimonial and much more.You can also customize post & page layouts using shortcode generator with one simple click, see how your inserted shortcode effects before it goes live with shortcode preview function. Still, more shortcodes coming soon.
+
 
 ### Key Features 
 
 * Shortcode Generator
+* Shortcode Preview
 * Modern design
 * Fully responsive
 * Developed with Bootstrap 3
@@ -28,14 +30,14 @@ Magee Shortcodes is WordPress plugin that provides a pack of shortcodes. It is b
 
 ### Relevant Links
 
-* [Live Demo](http://www.mageewp.com/magee-shortcodes-demo/)
+* [Examples](https://demo.mageewp.com/magee-shortcodes-demo/)
 * [Beginner Guide](http://www.mageewp.com/magee-shortcode-guide.html)
 * [Tech Support](http://www.mageewp.com/forums/magee-shortcode/)
 
 
 ### Shortcode List 
 
-Accordion, Alert, Button, Column, Custom Box, Countdowns, Counter, Divider, Dropcap, Feature Box, Flip Box, Highlight, List, Modal, Popover, Tooltip, Person, Promo Box, Scocial, Tab, Testimonial, Progress, Piechart, Timeline, Panel, Section, Slider
+Accordion, Alert, Audio, Button, Column, Custom Box, Countdowns, Counter, Divider, Dropcap, Document, Dummy Text, Dummy Image, Dailymotion, Expand, Feature Box, Flip Box, Highlight, Heading, Icon, Image Frame, Image Compare, List, Label, Modal, Menu, Popover, Person, Promo Box, Piechart, Panel, Progress, Pullquote, QR Code, Quote, Slider, RSS Feed, Social, Section, Scheduled, Tooltip, Tab, Testimonial, Timeline, Targeted, Video, Vimeo, Youtube
 
 
 == Installation ==
@@ -49,24 +51,103 @@ Activate plugin at "Plugins" administration page.
 
 == Frequently Asked Questions ==
 
-* 1.2.4 
+* [Tech Support](https://www.mageewp.com/forums/magee-shortcode/)
 
 
 == Screenshots ==
 
 1. Magee Shortcodes.
-2. Magee Shortcodes Options.
-3. Magee Shortcodes Icons.
-4. You could use this to show alert and set it whether dismissable or not. A lot of color you could select.
-5. You could use the shortcode to custom a lot of different menu style.
-6. You could use the this to show countdown.
-7. You could use the shortcode to dropcap your paragraph, the color is settable.
-8. You could use the shortcode to make a piechart, and the color is settable too. 
-9. You could use the shortcode to make feature box, the icon, color, animation is settable. 
-10. You could use the shortcode to make timeline. 
-11. You could use the shortcode to make testiomnial, it has some styles you could choose.
+2. Magee Shortcodes List.
+3. Magee Shortcodes generator form.
+4. Magee Shortcodes preview.
+5. Buttons shortcode examples.
+6. Promo box shortcode examples.
+7. Featurebox shortcode examples.
+8. Progress Bar shortcode examples.
+
 
 == Changelog ==
+
+= 1.6.0 - 07/11/2016 =
+* Improve - Improved modal shortcode
+* Added : new option for countdowns( type -> circle, day/hours/minutes/seconds field text, google fonts, circle type day/hours/minutes/seconds color )
+* Fix - Fixed magee slider translation issue
+* Fix - Fixed counter shortcode issue
+* Fix - Fixed font weight option issue for heading shortcode
+* Fix - Fixed promo box shortcode issue
+* Fix - Fixed icon/person/tab iconpicker issues
+* Fix - Fixed styles( beside/below ) issue for person shortcode
+
+= 1.5.9 - 17/10/2016 =
+* Fix - Fixed filp-box responsive issue on mobile 
+
+= 1.5.8 - 15/07/2016 =
+Added: new option for Social ( Target )
+Added: new option for accordion( style->spacing style, type->none type, title color, title background color )
+Added: new shortcode Aduio
+Added: new option for Tooltip ( tooltip background color, tooltip border radius )
+
+= 1.5.7 - 21/06/2016 =
+Added: new option for List
+Added: new option for Flip Box ( Diretion:flip top/left/bottom/right; slide top/left/bottom/right )
+Added: new option for Custom Box ( Fixed Background ,Background Position )
+Added: new option for Accordion Item ( icon, status )
+Added: new option for Icon ( data-open/data-close )
+Added: new option for Highlight ( font color )
+Added: new option for Image Compare ( style, percent )
+Added: new option for Piechart ( line cap )
+Added: new option for Progress ( style )
+Added: new option for Column ( align  )
+Improved shortcode Counter
+
+= 1.5.6 - 06/06/2016 =
+* Fix - Fixed image uploader issue
+* Fix - Fixed vimeo/youtube shortcodes issue
+
+= 1.5.5 - 03/06/2016 =
+* Added: New shortcode -- Chart Bar
+* Added: New shortcode -- Chart Doughnut
+* Added: New shortcode -- Chart Line
+* Added: New shortcode -- Chart Pie
+
+= 1.5.4 - 31/05/2016 =
+* Compatible with magee theme
+
+= 1.5.3 - 16/05/2016 =
+* Fix - Fixed animation issue
+
+= 1.5.2 - 04/05/2016 =
+* Feature - Added widget area shortcode
+
+= 1.5.1 - 27/04/2016 =
+* Fixed color picker issues
+
+= 1.5.0 - 21/04/2016 =
+* Feature - Improved shortcode generator appearance
+* Feature - Added shortcode preview function
+* Fixed Promo Box issue
+* Updated .pot file
+
+= 1.4.2 - 13/03/2016 =
+* Fix - Fixed empty menu issues
+
+= 1.4.1 - 07/03/2016 =
+* Fix - Fixed CSS issues
+
+= 1.4.0 - 04/03/2016 =
+* Added: New shortcode -- Quote
+* Added: New shortcode -- Pullquote
+* Added: New shortcode -- Expand
+* Added: New shortcode -- Targeted
+* Added: New shortcode -- Scheduled
+* Added: New shortcode -- RSS Feed
+* Added: New shortcode -- Menu
+* Added: New shortcode -- Document
+* Added: New shortcode -- Dummy Text
+* Added: New shortcode -- Dummy Image
+* Added: New shortcode -- Dailymotion
+* Improved shortcode -- Column
+* Updated .pot file
 
 = 1.3.1 - 19/02/2016 =
 * Fix - Fixed Label shortcode issue
@@ -84,7 +165,7 @@ Activate plugin at "Plugins" administration page.
 * Added: New options for shortcode -- Heading: Responsive Text
 * Added: New options for shortcode -- Icon: Icon Circle
 * Added: New options for shortcode -- Image Frame: Light Box, Border Radius
-
+ 
 = 1.2.9 - 21/01/2016 =
 * Feature - Added heading shortcode
 * Feature - Added icon shortcode

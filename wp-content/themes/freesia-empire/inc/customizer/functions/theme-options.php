@@ -132,7 +132,7 @@
 		'type' => 'option',
 	));
 	$wp_customize->add_control( 'freesiaempire_theme_options[freesiaempire_top_social_icons]', array(
-		'priority'=>40,
+		'priority'=>43,
 		'label' => __('Disable Top Social Icons', 'freesia-empire'),
 		'section' => 'freesiaempire_custom_header',
 		'settings' => 'freesiaempire_theme_options[freesiaempire_top_social_icons]',
@@ -144,10 +144,34 @@
 		'type' => 'option',
 	));
 	$wp_customize->add_control( 'freesiaempire_theme_options[freesiaempire_buttom_social_icons]', array(
-		'priority'=>40,
+		'priority'=>46,
 		'label' => __('Disable Buttom Social Icons', 'freesia-empire'),
 		'section' => 'freesiaempire_custom_header',
 		'settings' => 'freesiaempire_theme_options[freesiaempire_buttom_social_icons]',
+		'type' => 'checkbox',
+	));
+	$wp_customize->add_setting( 'freesiaempire_theme_options[freesiaempire_display_page_featured_image]', array(
+		'default' => 0,
+		'sanitize_callback' => 'freesiaempire_checkbox_integer',
+		'type' => 'option',
+	));
+	$wp_customize->add_control( 'freesiaempire_theme_options[freesiaempire_display_page_featured_image]', array(
+		'priority'=>48,
+		'label' => __('Display Page Featured Image', 'freesia-empire'),
+		'section' => 'freesiaempire_custom_header',
+		'settings' => 'freesiaempire_theme_options[freesiaempire_display_page_featured_image]',
+		'type' => 'checkbox',
+	));
+	$wp_customize->add_setting( 'freesiaempire_theme_options[freesiaempire_crop_excerpt_length]', array(
+		'default' => 1,
+		'sanitize_callback' => 'freesiaempire_checkbox_integer',
+		'type' => 'option',
+	));
+	$wp_customize->add_control( 'freesiaempire_theme_options[freesiaempire_crop_excerpt_length]', array(
+		'priority'=>49,
+		'label' => __('Crop Excerpt length by text', 'freesia-empire'),
+		'section' => 'freesiaempire_custom_header',
+		'settings' => 'freesiaempire_theme_options[freesiaempire_crop_excerpt_length]',
 		'type' => 'checkbox',
 	));
 	$wp_customize->add_setting( 'freesiaempire_theme_options[freesiaempire_reset_all]', array(
@@ -202,4 +226,3 @@
 	'priority' => 60,
 	'panel' => 'freesiaempire_wordpress_default_panel'
 	));
-?>

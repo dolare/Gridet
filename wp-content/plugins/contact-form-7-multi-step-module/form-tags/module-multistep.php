@@ -34,7 +34,7 @@ function cf7msm_add_shortcode_multistep() {
             'cf7msm_multistep_shortcode_handler',
             true
         );
-    }    
+    }
 }
 add_action( 'wpcf7_init', 'cf7msm_add_shortcode_multistep' );
 
@@ -44,7 +44,7 @@ add_action( 'wpcf7_init', 'cf7msm_add_shortcode_multistep' );
 function cf7msm_add_tag_generator_multistep() {
     if ( class_exists( 'WPCF7_TagGenerator' ) ) {
         $tag_generator = WPCF7_TagGenerator::get_instance();
-        $tag_generator->add( 'multistep', __( 'multistep', 'contact-form-7-multi-step-module' ), 'cf7msm_multistep_tag_generator' );
+        $tag_generator->add( 'multistep', esc_html( __( 'multistep', 'contact-form-7-multi-step-module' ) ), 'cf7msm_multistep_tag_generator' );
     }
 }
 add_action( 'admin_init', 'cf7msm_add_tag_generator_multistep', 30 );
@@ -55,7 +55,7 @@ add_action( 'admin_init', 'cf7msm_add_tag_generator_multistep', 30 );
  * and if it should redirect the user to step 1.
  */
 function cf7msm_multistep_shortcode_handler( $tag ) {
-    $tag = new WPCF7_Shortcode( $tag );
+    $tag = new WPCF7_FormTag( $tag );
     $validation_error = wpcf7_get_validation_error( $tag->name );
     $class = wpcf7_form_controls_class( $tag->type, 'cf7msm-multistep' );
     if ( $validation_error ) {
@@ -74,10 +74,15 @@ function cf7msm_multistep_shortcode_handler( $tag ) {
         'type'               => 'hidden',
         'class'              => $tag->get_class_option( $class ),
         'value'              => $step_value,
-        'name'               => 'step'
+        'name'               => 'cf7msm-step'
     );
     $atts = wpcf7_format_atts( $atts );
     $html = sprintf( '<input %1$s />%2$s', $atts, $validation_error );
+    $html .= sprintf( '<input %1$s />', wpcf7_format_atts( array( 
+        'type'  => 'hidden', 
+        'name'  => 'cf7msm-no-ss',
+        'value' => ''
+    ) ) );
 
     //populate rest of form in hidden tags.
     $submission = WPCF7_Submission::get_instance();
@@ -111,12 +116,12 @@ function cf7msm_multistep_tag_generator( $contact_form, $args = '' ) {
             <tbody>
                 <tr>
                     <th scope="row">
-                        <?php _e('Current Step', 'cf7msm'); ?>
+                        <?php echo esc_html( __('Current Step', 'contact-form-7-multi-step-module' ) ); ?>
                     </th>
                     <td>
                         <input id="tag-generator-panel-current-step" type="number" name="values_current_step" class="oneline cf7msm-multistep-values" min="1" />
                         <label for="tag-generator-panel-current-step">
-                            <span class="description">The current step of this multi-step form.</span>
+                            <span class="description"><?php echo esc_html( __( 'The current step of this multi-step form.', 'contact-form-7-multi-step-module' ) ) ?> </span>
                         </label>
                     </td>
                 </tr>
@@ -127,7 +132,7 @@ function cf7msm_multistep_tag_generator( $contact_form, $args = '' ) {
                     <td>
                         <input id="tag-generator-panel-total-steps" type="number" name="values_total_steps" class="oneline cf7msm-multistep-values" min="1" />
                         <label for="tag-generator-panel-total-steps">
-                            <span class="description">The total number of steps in your multi-step form.</span>
+                            <span class="description"><?php echo esc_html( __( 'The total number of steps in your multi-step form.', 'contact-form-7-multi-step-module' ) ) ?> </span>
                         </label>
                         <br>
                     </td>
@@ -140,15 +145,17 @@ function cf7msm_multistep_tag_generator( $contact_form, $args = '' ) {
                         <input id="tag-generator-panel-next-url" type="text" name="next_url" class="oneline cf7msm-multistep-values" />
                         <br>
                         <label for="tag-generator-panel-next-url">
-                            <span class="description">The URL of the page that contains the next form.  (Leave blank on last step)</span>
+                            <span class="description"><?php echo esc_html( __( 'The URL of the page that contains the next form.  (Leave blank on last step)', 'contact-form-7-multi-step-module' ) ) ?> </span>
                         </label>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <p class="cf7msm-faq" style="display:none;">
-            <strong>Warning:</strong> Your form may be at risk of being too large for this plugin. <a href="">See here for more information.</a>
-        </p>
+        <div class="cf7msm-faq" style="display:none;">
+            <?php if ( cf7msm_fs()->is_not_paying() ) : ?>
+            <?php printf( cf7msm_kses( __( '<p><strong>Warning:</strong> Your form may be at risk of being too large for the free version of this plugin.<br>If a user submits too much data in the forms you may not get all information.<br><button class="cf7msm-freemius-purchase">Upgrade Now</button><br><a href="%s" target="_blank">See here for more information.</a></p>', 'contact-form-7-multi-step-module' ) ), CF7MSM_LEARN_MORE_URL ); ?>
+            <?php endif; ?>
+        </div>
     </fieldset>
 </div>
     <div class="insert-box">
@@ -156,12 +163,12 @@ function cf7msm_multistep_tag_generator( $contact_form, $args = '' ) {
         <input type="text" name="multistep" class="tag code" readonly="readonly" onfocus="this.select()" />
 
         <div class="submitbox">
-            <input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'contact-form-7' ) ); ?>" />
+            <input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'contact-form-7-multi-step-module' ) ); ?>" />
         </div>
 
         <br class="clear" />
 
-        <p class="description mail-tag"><label><?php echo esc_html( __( "This field should not be used on the Mail tab.", 'contact-form-7' ) ); ?></label>
+        <p class="description mail-tag"><label><?php echo esc_html( __( "This field should not be used on the Mail tab.", 'contact-form-7-multi-step-module' ) ); ?></label>
         </p>
         <?php cf7msm_form_tag_footer_text();?>
     </div>

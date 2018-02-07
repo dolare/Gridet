@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Popover') ):
 class Magee_Popover {
 
 	public static $args;
@@ -37,12 +38,13 @@ class Magee_Popover {
 		$uniqid = uniqid('popover-');
 		$this->id = $id.$uniqid;
 			
-		$html= sprintf('<span class="%s" id="%s" data-toggle="popover" data-trigger="%s" data-placement="%s" 
+		$html= sprintf('<span class="popover-preview magee-popover %s" id="%s" data-toggle="popover" data-trigger="%s" data-placement="%s" 
 		data-content="%s" data-original-title="%s" >%s</span>',$class,$id,$trigger,$placement,do_shortcode( Magee_Core::fix_shortcodes($content)),$title,$triggering_text);
-		
+	
 		return $html;
 	}
 	
 }
 
 new Magee_Popover();
+endif;

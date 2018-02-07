@@ -7,21 +7,17 @@
  * @since Freesia Empire 1.0
  */
 $freesiaempire_settings = freesiaempire_get_theme_options();
-global $post; ?>
-	<?php
 	$format = get_post_format(); ?>
 	<article <?php post_class('post-format'.' format-'.$format); ?> id="post-<?php the_ID(); ?>">
 	<?php
 		$freesiaempire_blog_post_image = $freesiaempire_settings['freesiaempire_blog_post_image'];
-				if( has_post_thumbnail() && $freesiaempire_blog_post_image == 'on') {
-					$image = '';
-					$title_attribute = apply_filters( 'the_title', get_the_title( $post->ID ) );
-					$image .= '<figure class="post-featured-image">';
-					$image .= '<a href="' . get_permalink() . '" title="'.the_title( '', '', false ).'">';
-					$image .= get_the_post_thumbnail( $post->ID, 'post-thumbnails', array( 'title' => esc_attr( $title_attribute ), 'alt' => esc_attr( $title_attribute ) ) ).'</a>';
-					$image .= '</figure><!-- end.post-featured-image  -->';
-					echo $image;
-				} ?>
+				if( has_post_thumbnail() && $freesiaempire_blog_post_image == 'on') { ?>
+					<figure class="post-featured-image">
+						<a href="<?php the_permalink();?>" title="<?php echo the_title_attribute('echo=0'); ?>">
+						<?php the_post_thumbnail(); ?>
+						</a>
+					</figure><!-- end.post-featured-image  -->
+				<?php } ?>
 		<header class="entry-header">
 			<h2 class="entry-title"> <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"> <?php the_title();?> </a> </h2> <!-- end.entry-title -->
 		<?php 
@@ -74,7 +70,7 @@ global $post; ?>
 			}
 			$freesiaempire_tag_text = $freesiaempire_settings['freesiaempire_tag_text'];
 			if(strlen($excerpt) < strlen($content) && $disable_entry_format !='hide-button'){ ?>
-			<a class="more-link" title="<?php the_title( '', '', false );?>" href="<?php the_permalink();?>">
+			<a class="more-link" title="<?php echo the_title_attribute('echo=0');?>" href="<?php the_permalink();?>">
 			<?php
 				if($freesiaempire_tag_text == 'Read More' || $freesiaempire_tag_text == ''):
 					_e('Read More', 'freesia-empire');

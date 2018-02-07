@@ -9,8 +9,7 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  */
-?>
-<?php get_header(); ?> 
+ get_header(); ?> 
 <div id="slider" class="sl-slider-wrapper">
     <div class="sl-slider animated">				
         <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
@@ -28,8 +27,8 @@
                         <a href="#"><h1>
                                 <?php _e('Your Site is faster to build.', 'compass'); ?>
                             </h1></a>
-                    <?php } ?>
-                    <?php if (compass_get_option('compass_sliderdes1') != '') { ?>
+                    <?php } 
+                    if (compass_get_option('compass_sliderdes1') != '') { ?>
                         <p><?php echo compass_get_option('compass_sliderdes1'); ?></p>
                     <?php } else { ?>
                         <p>
@@ -50,8 +49,7 @@
             }
             // Note our use of ===.  Simply == would not work as expected
             // because the position of 'a' was the 0th (first) character.
-            ?>
-            <?php if ($check_img_ofset == 0 && compass_get_option('compass_slideimage1') != '') { ?>
+             if ($check_img_ofset == 0 && compass_get_option('compass_slideimage1') != '') { ?>
                 <div class="bg-img bg-img-1"><?php echo compass_get_option('compass_slideimage1'); ?></div>
             <?php } else { ?>  
                 <div class="bg-img bg-img-1">

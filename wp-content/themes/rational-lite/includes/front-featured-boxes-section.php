@@ -25,8 +25,8 @@
 						</a>
 					</div>		
 					<div class="iconbox-content">		
-						<h4><?php echo esc_attr( get_theme_mod('rational_lite_second_feature_title', __('Second Feature Heading', 'rational-lite') ) ); ?></h4>
-						<p><?php echo wp_kses_post( get_theme_mod('rational_lite_second_feature_content', __('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.', 'rational-lite') ) ); ?></p>
+						<h4><?php echo esc_attr( get_theme_mod('rational_lite_second_feature_title', __('UPGRID - EXEC. ED.', 'rational-lite') ) ); ?></h4>
+						<p><?php echo wp_kses_post( get_theme_mod('rational_lite_second_feature_content', __('For institutions with Open-Enrollment and Customized Offerings.', 'rational-lite') ) ); ?></p>
 					</div>			
 					<div class="clearfix"></div>	
 				</div>
@@ -40,8 +40,8 @@
 						</a>
 					</div>			
 					<div class="iconbox-content">			
-						<h4><?php echo esc_attr( get_theme_mod('rational_lite_third_feature_title', __('Third Feature Heading', 'rational-lite') ) ); ?></h4>
-						<p><?php echo wp_kses_post( get_theme_mod('rational_lite_third_feature_content', __('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.', 'rational-lite') ) ); ?></p>
+						<h4><?php echo esc_attr( get_theme_mod('rational_lite_third_feature_title', __('GRADGRID', 'rational-lite') ) ); ?></h4>
+						<p><?php echo wp_kses_post( get_theme_mod('rational_lite_third_feature_content', __('A Program Research & Comparison Tool provided for free', 'rational-lite') ) ); ?></p>
 					</div>		
 					<div class="clearfix"></div>	
 				</div>

@@ -113,49 +113,54 @@ class GMWDControllerMaps_gmwd extends GMWDController{
     
     protected function dublicate($table_name = ""){  
         global $wpdb;
+		$ids = array();
 		if(isset($_POST["ids"])){
 			$ids = $_POST["ids"] ;			
 		}
-        
-        $map_columns = GMWDModel::get_columns("gmwd_maps");
-		$map_column_types = GMWDModel::column_types("gmwd_maps");
-        
-        $pois = array("markers", "polygons", "polylines");
-        foreach($ids as $id){
-            $row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "gmwd_maps  WHERE id = '%d'", (int)$id ));
-            $data = array();
-            $format = array();
-            foreach($map_columns as $column_name){
-                $data[$column_name] = esc_html(stripslashes($row->$column_name));
-                $format[] = $map_column_types[$column_name];		
-            }
-            $data["id"] = "";
-            $max_shortcode_id = $wpdb->get_var("SELECT MAX(id) FROM ". $wpdb->prefix . "gmwd_shortcodes"); 
-            $data["shortcode_id"] = $max_shortcode_id + 1;
+        if(empty($ids) === false){
+			$map_columns = GMWDModel::get_columns("gmwd_maps");
+			$map_column_types = GMWDModel::column_types("gmwd_maps");
+			
+			$pois = array("markers", "polygons", "polylines");
+			foreach($ids as $id){
+				$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "gmwd_maps  WHERE id = '%d'", (int)$id ));
+				$data = array();
+				$format = array();
+				foreach($map_columns as $column_name){
+					$data[$column_name] = esc_html(stripslashes($row->$column_name));
+					$format[] = $map_column_types[$column_name];		
+				}
+				$data["id"] = "";
+				$max_shortcode_id = $wpdb->get_var("SELECT MAX(id) FROM ". $wpdb->prefix . "gmwd_shortcodes"); 
+				$data["shortcode_id"] = $max_shortcode_id + 1;
 
-            
-            $wpdb->insert( $wpdb->prefix . "gmwd_maps", $data, $format );
-            $last_map_id = $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "gmwd_maps");
-            
-            $this->shortcode_id = $max_shortcode_id + 1;
-            $this->map = $last_map_id;
-            $this->store_shortcode();
-            
-            foreach($pois as $poi){
-                $columns = GMWDModel::get_columns("gmwd_".$poi);
-                unset($columns[0]);
-                $inserted_columns = $columns;
-                $inserted_columns[array_search("map_id",$inserted_columns)] = $last_map_id;
-                $columns = implode(",", $columns);
-                $inserted_columns = implode(",", $inserted_columns);
-                $rows_poi = $wpdb->query("INSERT INTO  " . $wpdb->prefix . "gmwd_".$poi." (".$columns.")
-                SELECT ".$inserted_columns." FROM " . $wpdb->prefix . "gmwd_".$poi." WHERE map_id = '". (int)$id."'");
+				
+				$wpdb->insert( $wpdb->prefix . "gmwd_maps", $data, $format );
+				$last_map_id = $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "gmwd_maps");
+				
+				$this->shortcode_id = $max_shortcode_id + 1;
+				$this->map = $last_map_id;
+				$this->store_shortcode();
+				
+				foreach($pois as $poi){
+					$columns = GMWDModel::get_columns("gmwd_".$poi);
+					unset($columns[0]);
+					$inserted_columns = $columns;
+					$inserted_columns[array_search("map_id",$inserted_columns)] = $last_map_id;
+					$columns = implode(",", $columns);
+					$inserted_columns = implode(",", $inserted_columns);
+					$rows_poi = $wpdb->query("INSERT INTO  " . $wpdb->prefix . "gmwd_".$poi." (".$columns.")
+					SELECT ".$inserted_columns." FROM " . $wpdb->prefix . "gmwd_".$poi." WHERE map_id = '". (int)$id."'");
 
-            }
-        }
-
+				}
+			}
+			GMWDHelper::message(__("Item Succesfully Duplicated.","gmwd"),'updated');
+		}
+		else{
+			GMWDHelper::message(__("You Must Select At Least One Item.","gmwd"),'updated');
+		}
+		
         $view = $this->view;
-        GMWDHelper::message(__("Item Succesfully Dublicated.","gmwd"),'updated');
 		$view->display();         
     }
     
@@ -235,7 +240,7 @@ class GMWDControllerMaps_gmwd extends GMWDController{
                 if($key == "title" || $key == "address"){
                     $value = str_replace("@@@",'&quot;',$value);
                 }             
-				$data[$key] = esc_html($value);
+				$data[$key] = sanitize_text_field(esc_html(stripslashes($value)));
 				$format[] = $data_types[$key];
 			}
 

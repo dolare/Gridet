@@ -98,7 +98,7 @@ class GMWDViewFrontendMap extends GMWDViewFrontend{
                         gmwdmapData["markerListingType" + '<?php echo $shortcode_id;?>'] = "<?php echo  $row->marker_listing_type;?>";
                         gmwdmapData["markerListInsideMap" + '<?php echo $shortcode_id;?>'] = "<?php echo  $row->marker_list_inside_map;?>";
                         gmwdmapData["markerListPosition" + '<?php echo $shortcode_id;?>'] = Number("<?php echo  $row->marker_list_inside_map_position;?>");
-                    
+                        gmwdmapData["infoWindowInfo" + '<?php echo $shortcode_id;?>'] = "<?php echo $row->info_window_info;?>";
                         gmwdmapData["advancedInfoWindowPosition" + '<?php echo $shortcode_id;?>'] = Number("<?php echo  $row->advanced_info_window_position ? $row->advanced_info_window_position : 10 ;?>");
                         gmwdmapData["geolocateUser" + '<?php echo $shortcode_id;?>'] = Number("<?php echo $row->geolocate_user;?>");
                         gmwdmapData["items" + '<?php echo $shortcode_id;?>'] = "<?php echo $theme->carousel_items_count;?>";
@@ -115,7 +115,7 @@ class GMWDViewFrontendMap extends GMWDViewFrontend{
                         gmwdmapData["ajaxData" + '<?php echo $shortcode_id;?>']  = {};
                         
                         var ajaxURL = "<?php echo admin_url('admin-ajax.php');?>";
-                        var	markerDefaultIcon = "<?php echo  gmwd_get_option("marker_default_icon");?>";
+                        var markerDefaultIcon = "<?php echo  gmwd_get_option("marker_default_icon");?>";
                         var GMWD_URL = "<?php echo GMWD_URL;?>";
                         jQuery( document ).ready(function() {					
                             gmwdInitMainMap("wd-map<?php echo $shortcode_id;?>",false, '<?php echo $shortcode_id;?>');

@@ -1,8 +1,8 @@
 == Rational Lite ==
 Contributors: SketchThemes, tikendramaitry
-Tags:  blue, gray, orange, pink, purple, dark, light, two-columns, right-sidebar, fixed-layout, fluid-layout, responsive-layout, custom-header, custom-background, custom-colors, custom-menu, featured-images, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready
+Tags: two-columns, right-sidebar, custom-header, custom-background, custom-colors, custom-menu, featured-images, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready
 Requires at least: 4.1
-Tested up to: 4.4.2
+Tested up to: 4.6
 Stable tag: 1.0.10
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -71,7 +71,14 @@ Read the following blog for more https://sketchthemes.com/blog/effective-steps-t
 
 == Changelog ==
 
-= 1.0.9 =
+= 1.0.11 =
+* WP 4.6 compatible.
+* Updated font-awesome icons.
+* Removed unused css.
+* Fix translation issues.
+* Added social links.
+
+= 1.0.10 =
 * Fixed theme version parameter in style enqueue.
 
 = 1.0.9 =

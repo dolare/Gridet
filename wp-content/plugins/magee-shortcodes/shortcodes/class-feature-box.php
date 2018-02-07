@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Featurebox') ):
 class Magee_Featurebox {
 
 	public static $args;
@@ -68,8 +69,10 @@ class Magee_Featurebox {
 		$icon_border_width = $icon_border_width.'px';
 		if( is_numeric($icon_size))
 		$icon_size = $icon_size.'px';
-		
-		
+		if(is_numeric($icon_image_width))
+        $icon_image_width = $icon_image_width.'px';
+		if(is_numeric($icon_image_height))
+		$icon_image_height = $icon_image_height.'px';		
 		
 		if( $title_font_size )
 		$css_style .= '.'.$uniq_class.' h3 {font-size:'.$title_font_size.';}';
@@ -120,7 +123,8 @@ class Magee_Featurebox {
 			 }
              else{
 				 if( $icon !=''){
-             $html .= '<div class="icon-box '.$icon_box_class.'" data-animation="'.esc_attr($icon_animation_type).'"> <i class="feature-box-icon fa '.esc_attr($icon).' '.$icon_class.' fa-fw"></i></div>';
+				 
+             $html .= '<div class="icon-box '.$icon_box_class.'" data-animation="'.esc_attr($icon_animation_type).'"> <i class="feature-box-icon fa '.esc_attr($icon).' '.$icon_class.' "></i></div>';
 				 }
 			 }
 			  if( $link_url )
@@ -141,3 +145,4 @@ class Magee_Featurebox {
 }
 
 new Magee_Featurebox();
+endif;

@@ -1,3 +1,30 @@
+v2.1.0  - Added upsell link with trt-customizer-pro class
+
+v2.0.9  - Fixed prefixing of scripts
+
+v2.0.8  - Added prefixing to scripts and css
+        - Added jquery dependency to all dependent scripts
+        - Moved conditional scripts to wp_script_add_data model
+        - Wrapped update migration code in function
+
+v2.0.7  - Fixed variable issue in meta_box
+
+v2.0.6  - Fixed subpage banner image issue
+        - Fixed sanitize function in options
+
+v2.0.5  - Added - use featured image in subpage banner
+        - Made social buttons open in new tab
+        - Changed from redux to kirki
+        - All text now can be translated
+        - Sanitized and escaped all input/output
+        - Added readme in /lang/
+        - updated licence and copyright
+        - Added support for title-tag 
+        - Updated tags
+        - Changed text-domain
+        - Moved all assets to /assets/*
+        - Moved supporting libs and classes to /inc/
+        
 v2.0.4  - Added WooCommerce support
         - Added scrollto on contact form submit
 

@@ -22,6 +22,7 @@ class GMWDModelMaps_gmwd extends GMWDModel {
 		$row = parent::get_row_by_id($id);
      
 		if($id){
+            $row->info_window_info = explode(",",$row->info_window_info); 
 			$limit_markers = isset($_POST["limit_markers"]) ? (int)$_POST["limit_markers"] : 20;	
 			$limit_polygons = isset($_POST["limit_polygons"]) ? (int)$_POST["limit_polygons"] : 20;	
 			$limit_polylines = isset($_POST["limit_polylines"]) ? (int)$_POST["limit_polylines"] : 20;
@@ -142,7 +143,7 @@ class GMWDModelMaps_gmwd extends GMWDModel {
             $row->directions_window_open = 1;
 			$row->directions_window_width_unit = "%";
             $row->store_locator_header_title = "Store Locator";
-            
+            $row->info_window_info = array("title", "address", "desc", "pic");
             $map_theme_code = $wpdb->get_var("SELECT map_style_code FROM ". $wpdb->prefix . "gmwd_themes WHERE `default`='1'");
 			$row->map_theme_code = $map_theme_code ? $map_theme_code : "[]";
             $row->theme_id = $wpdb->get_var("SELECT id FROM ". $wpdb->prefix . "gmwd_themes WHERE `default`='1'");            

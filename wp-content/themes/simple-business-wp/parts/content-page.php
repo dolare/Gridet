@@ -23,7 +23,7 @@ if (empty($sidebar_select) || ($sidebar_select == 'none')) {
                 get_template_part( 'parts/image', '1168_526');
             }
             the_content();
-            nimbus_clear();
+            simple_business_wp_clear();
             get_template_part( 'parts/wp_link_pages');
             comments_template();
             ?>
@@ -47,7 +47,7 @@ if (empty($sidebar_select) || ($sidebar_select == 'none')) {
                 get_template_part( 'parts/image', '1168_526');
             }
             the_content();
-            nimbus_clear();
+            simple_business_wp_clear();
             get_template_part( 'parts/wp_link_pages');
             comments_template();
             ?>

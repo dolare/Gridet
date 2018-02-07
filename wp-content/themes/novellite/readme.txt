@@ -84,9 +84,6 @@ Licensed under the MIT license
 == jquery.bxslider.css
 Released under the MIT license
 
-==jquery.superslides.js
-Released under the MIT license
-
 ==hammer.min.js
 Released under the MIT license
 
